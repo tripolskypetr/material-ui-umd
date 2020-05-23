@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "moduleResolution": "classic",
+    "jsx": "react",
+    "sourceMap": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "lib": ["es2015", "dom"],
+    "outFile": "./dist/material-ui.d.ts",
+    "baseUrl": "./",
+    "types": [],
+    "typeRoots": ["./type"]
+  },
+  "exclude": [
+    "./node_modules/@types/",
+    "./node_modules/",
+    "./dist/*"
+  ],
+  "include": [
+    "./packages/material-ui-core/src/**/*.ts"
+  ]
+}

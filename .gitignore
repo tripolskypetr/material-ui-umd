@@ -1,0 +1,7 @@
+node_modules
+.nyc_output
+package-lock.json
+.DS_Store
+dist/*.js
+dist/*.d.ts
+@types
