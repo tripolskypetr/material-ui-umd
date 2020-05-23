@@ -1,4 +1,4 @@
-# Material-ui-umd
+# material-umd
 
 > UMD дистрибутив ui тулкита [material-ui](https://github.com/mui-org/material-ui), поставляемый вместе с файлом описания типов typescript с пространствами имен глобального объекта
 
@@ -9,7 +9,7 @@
 ## Ссылки
 
  - [Демо-проект, использующий umd дистрибутив](packages/documentation-site/README.md)
- - [Инструкция, как быстро генерировать свои umd порты](packages/how-it-is-made/README.md)
+ - [Генерация type definition для umd на основе вложенности](packages/how-it-is-made/README.md)
 
 ## Брифинг
 
