@@ -17,7 +17,7 @@
                 } else {
                     tree[key] = f;
                 }
-            } else if (typeof value === 'object') {
+            } else if (typeof value === 'object' && value !== null) {
                 tree[key] = entries(value);
             } else {
                 tree[key] = f;
