@@ -2,6 +2,7 @@
 
   const applyUserGesture = () => new Promise((resolve) => {
     alert('Click on web page to continue');
+    document.body.style.minHeight = '100vh';
     const handler = () => {
       document.body.removeEventListener('click', handler);
       resolve();
