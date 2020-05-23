@@ -21,10 +21,6 @@ declare namespace material {
   export function withTheme(...args: any): any;
   export function createGenerateClassName(...args: any): any;
   export function jssPreset(...args: any): any;
-  export function ServerStyleSheets(...args: any): any;
-  export function StylesProvider(...args: any): any;
-  export function MuiThemeProvider(...args: any): any;
-  export function ThemeProvider(...args: any): any;
   export function capitalize(...args: any): any;
   export function createChainedFunction(...args: any): any;
   export function createSvgIcon(...args: any): any;
