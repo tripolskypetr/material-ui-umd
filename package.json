@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:umd": "sh scripts/build-umd.sh",
+    "build:umd": "webpack-cli",
     "build:types": "tsc"
   },
   "repository": {

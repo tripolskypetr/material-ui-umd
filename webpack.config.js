@@ -4,9 +4,9 @@ module.exports = {
   entry: path.resolve(__dirname, './index.js'),
   mode: 'production',
   output: {
-    filename: 'material-ui-core.min.js',
-    path: path.resolve(__dirname, '../../dist'),
-    library: 'MaterialUi',
+    filename: 'material-ui.min.js',
+    path: path.resolve(__dirname, './dist'),
+    library: 'material',
     libraryTarget: 'umd',
   },
   externals: {

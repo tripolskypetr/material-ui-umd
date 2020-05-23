@@ -8,6 +8,7 @@
     "emitDeclarationOnly": true,
     "lib": ["es2015", "dom"],
     "outFile": "./dist/material-ui.d.ts",
+    "rootDir": "./src/",
     "baseUrl": "./",
     "types": [],
     "typeRoots": ["./type"]
@@ -17,7 +18,4 @@
     "./node_modules/",
     "./dist/*"
   ],
-  "include": [
-    "./packages/material-ui-core/src/**/*.ts"
-  ]
 }

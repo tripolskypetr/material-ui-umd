@@ -1,3 +1,6 @@
+
+import * as CSSType from '../csstype@2.6.10/index';
+
 declare namespace typestyle {
   /** Sets the target tag where we write the css on style updates */
   const setStylesTarget: (tag: StylesTarget) => void;
