@@ -1,0 +1,7 @@
+* linguist-language=TypeScript
+dist/*.js linguist-vendored
+assets/js/*.js linguist-vendored
+3rdparty/**/*.js linguist-vendored
+index.js linguist-vendored
+webpack.config.js linguist-vendored
+index.html linguist-vendored

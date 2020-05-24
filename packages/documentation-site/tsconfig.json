@@ -2,24 +2,27 @@
   "compilerOptions": {
     "module": "system",
     "moduleResolution": "classic",
+    "jsx": "react",
     "sourceMap": false,
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "declaration": false,
     "lib": ["es2015", "dom"],
-    "outFile": "./dist/material-ui.d.ts",
+    "outFile": "./dist/documentation-site.js",
     "rootDir": "./src/",
     "baseUrl": "./",
     "types": [],
-    "typeRoots": ["./type"],
+    "typeRoots": [
+      "../../type",
+      "../../dist",
+    ],
   },
   "exclude": [
     "./node_modules/@types/",
     "./node_modules/",
-    "./packages/",
     "./dist/*",
   ],
   "include": [
-    "./type",
+    "../../type",
+    "../../dist",
     "./src",
   ],
 }
