@@ -3,10 +3,17 @@
   <head>
     <script src="../../3rdparty/react@16.13.1/react.development.js"></script>
     <script src="../../3rdparty/react-dom@16.13.1/react-dom.development.js"></script>
+    <script src="../../3rdparty/react-redux@6.0.4/react-redux.min.js"></script>
+    <script src="../../3rdparty/redux@v4.0.5/redux.min.js"></script>
     <script src="../../dist/material-ui.min.js"></script>
-    <link rel="stylesheet" href="../../assets/css/normalize.css">
+    <script src="./dist/documentation-site.js"></script>
+    <link rel="stylesheet" href="../../assets/css/normalize.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
   </head>
   <body>
-    <script src="./dist/documentation-site.js"></script>
+    <div id="mount-point"></div>
+    <script>
+      documentation.main();
+    </script>
   </body>
 </html>
