@@ -1,0 +1,7 @@
+{
+  "name": "offline-docs",
+  "scripts": {
+    "unzip": "unzip v4.10.0.zip",
+    "serve": "python3 -m http.server"
+  }
+}
