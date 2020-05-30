@@ -1,3 +1,6 @@
+
+/// <reference path="../actions.ts"/>
+
 namespace boilerplate {
 
   const {
@@ -36,6 +39,10 @@ namespace boilerplate {
     useScrollTrigger
   } = material.core;
 
+  const {
+    connect
+  } = ReactRedux;
+
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -73,6 +80,7 @@ namespace boilerplate {
 
       const Navigation = ({
         setOpened = (v) => console.log({v}),
+        onGo = (v) => console.log({v}),
         classes = null,
         pages,
       }) => (
@@ -82,12 +90,12 @@ namespace boilerplate {
             onClick={() => setOpened(false)}
             onKeyDown={() => setOpened(false)}>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
+            {pages.map((item, index) => (
+              <ListItem button onClick={() => onGo({type: item.payload})} key={index}>
                 <ListItemIcon>
-                  <Icon>star</Icon>
+                  <Icon>{item.icon}</Icon>
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={item.title} />
               </ListItem>
             ))}
           </List>
@@ -95,8 +103,9 @@ namespace boilerplate {
       );
 
       export const Scaffold = ({
+        onGo = (v) => console.log({v}),
         children = null,
-        pages
+        pages,
       }) => {
         const classes = useStyles();
         const [opened, setOpened] = useState(false);
@@ -111,7 +120,7 @@ namespace boilerplate {
         return (
           <Fragment>
             <Drawer open={opened} onClose={() => setOpened(false)}>
-              <Navigation pages={pages} setOpened={(v) => setOpened(v)} classes={classes}/>
+              <Navigation pages={pages} onGo={onGo} setOpened={(v) => setOpened(v)} classes={classes}/>
             </Drawer>
             <HideOnScroll>
               <AppBar className={classes.appBar}>
@@ -144,7 +153,11 @@ namespace boilerplate {
       pages: {title: string, icon: string, payload: string}[];
     }
 
-    export const Scaffold = internal.Scaffold;
+    const mapDispatchToProps = (dispatch) => ({
+      onGo: (payload) => dispatch({type: RouteActions.Go, payload})
+    });
+
+    export const Scaffold = connect(null, mapDispatchToProps)(internal.Scaffold);
 
   } // namespace components
 

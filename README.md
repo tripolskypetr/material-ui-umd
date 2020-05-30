@@ -8,8 +8,9 @@
 
 ## Ссылки
 
- - [Демо-проект, использующий umd дистрибутив](packages/documentation-site/README.md)
- - [Генерация type definition для umd на основе вложенности](packages/how-it-is-made/README.md)
+ - [Шаблон для быстрого старта](packages/boilerplate-app/README.md)
+ - [Оффлайн-копия сайта с документацией](packages/offline-docs/README.md)
+ - [Создать свой umd дистрибутив](packages/how-it-is-made/README.md)
 
 ## Брифинг
 
@@ -33,6 +34,6 @@
 
 ## Где можно посмотреть примеры кода?
 
-В папке packages будут размещаться приложения, написанные с этим инструментарием. Вы можете посмотреть посмотреть [шаблон для быстрого старта](packages/documentation-site/README.md) прямо сейчас.
+В папке packages будут размещаться приложения, написанные с этим инструментарием. Вы можете посмотреть посмотреть [шаблон для быстрого старта](packages/boilerplate-app/README.md) прямо сейчас.
 
  <img src="assets/img/kukamon.png" height="41px" width="60px" align="right" />

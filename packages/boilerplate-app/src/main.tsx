@@ -52,6 +52,7 @@ namespace boilerplate {
 
   const pages = [
     {title: 'Главная', icon: 'home', payload: 'briefing'},
+    {title: 'Компоненты', icon: 'insert_emoticon', payload: 'components'},
   ];
 
   const App = () => {

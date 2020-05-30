@@ -20,9 +20,9 @@ namespace boilerplate {
   } = reducers;
 
   export const store = createStore(
-    combineReducers(
+    combineReducers({
       route
-    ),
+    }),
     applyMiddleware(
       async,
       logger,

@@ -68,7 +68,7 @@ namespace boilerplate {
           </Typography>
           <Typography variant="body1">
             Приложение-шаблон для быстрого старта других проектов. Просто скопируйте его содержимое
-            и переименуйте пространство имен "documentation" исходя из ваших нужд.
+            и переименуйте пространство имен "boilerplate" исходя из ваших нужд.
           </Typography>
 
           <Center className={classNames(classes.center, classes.column)}>
