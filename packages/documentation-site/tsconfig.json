@@ -3,7 +3,7 @@
     "module": "system",
     "moduleResolution": "classic",
     "jsx": "react",
-    "sourceMap": false,
+    "sourceMap": true,
     "declaration": false,
     "lib": ["es2015", "dom"],
     "outFile": "./dist/documentation-site.js",

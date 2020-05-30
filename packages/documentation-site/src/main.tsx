@@ -1,86 +1,69 @@
+
+/// <reference path="./components/index.ts"/>
+/// <reference path="./store.ts"/>
+
 namespace documentation {
 
   const {
     MuiThemeProvider,
-    Drawer,
-    MenuItem,
-    AppBar,
-    Toolbar,
-    IconButton,
-    Typography,
-    Button,
     createMuiTheme,
+    CssBaseline,
   } = material.core;
-
-  const {
-    makeStyles
-  } = material.styles;
-
-  const {
-    ThemeProvider,
-  } = material.core;
-
-  const {
-    Menu
-  } = material.icons;
-
-  const {
-    purple,
-    green,
-  } = material.core.colors
 
   const {
     Provider
   } = ReactRedux;
 
-  const useStyles = makeStyles((theme) => {
-    console.log({theme})
-    return ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  })});
+  const {
+    blue,
+    pink,
+    red
+  } = material.core.colors;
+
+  const {
+    Scaffold,
+    Router
+  } = components;
 
   const theme = createMuiTheme({
     palette: {
-      primary: purple,
-      secondary: green,
+      type: 'dark',
+      primary: {
+        main: '#f48fb1',
+      },
+      text: {
+        primary: "#fff",
+        secondary: "rgba(255, 255, 255, 0.7)",
+        disabled: "rgba(255, 255, 255, 0.5)",
+        hint: "rgba(255, 255, 255, 0.5)",
+        icon: "rgba(255, 255, 255, 0.5)"
+      },
+      background: {
+        paper: "#424242",
+        default: "#212121",
+        level2: "#333333",
+        level1: "#212121"
+      },
     },
-    status: {
-      danger: 'orange',
-    },
-  })
+  });
 
-  console.log({theme})
+  const pages = [
+    {title: 'Главная', icon: 'home', payload: 'briefing'},
+  ];
 
   const App = () => {
     return (
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
-          <Drawer docked={false}>
-            <MenuItem>Menu item</MenuItem>
-          </Drawer>
-          <AppBar>
-            <Toolbar>
-              <IconButton edge="start" color="inherit" aria-label="menu">
-                <Menu />
-              </IconButton>
-              <Typography variant="h6">
-                News
-                </Typography>
-              <Button color="inherit">Login</Button>
-            </Toolbar>
-          </AppBar>
+          <CssBaseline/>
+          <Scaffold pages={pages}>
+            <Router/>
+          </Scaffold>
         </MuiThemeProvider>
       </Provider>
     );
   };
 
-  export const main = () => ReactDOM.render(<App />, document.querySelector('#mount-point'));
-}
+  export const main = () => ReactDOM.render(<App/>, document.querySelector('#mount-point'));
+
+} // namespace documentation

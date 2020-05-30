@@ -1,16 +1,32 @@
+
+/// <reference path="./reducers/index.ts"/>
+/// <reference path="./middlewares/index.ts"/>
+
 namespace documentation {
 
-  const initialState = {
-    value: 0
-  }
+  const {
+    applyMiddleware,
+    combineReducers,
+    createStore
+  } = Redux;
 
-  function reducer(state = initialState, action) {
-    switch (action.type) {
-      default:
-        return state;
-    }
-  }
+  const {
+    async,
+    logger,
+  } = middlewares;
 
-  export const store = Redux.createStore(reducer);
+  const {
+    route
+  } = reducers;
 
-}
+  export const store = createStore(
+    combineReducers(
+      route
+    ),
+    applyMiddleware(
+      async,
+      logger,
+    )
+  );
+
+} // namespace documentation
