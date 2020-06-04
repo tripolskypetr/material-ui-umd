@@ -46,6 +46,18 @@ namespace mark {
             id="${id}">
           </area-selector>
         `;
+        const roi = (args) => {
+          const [id, top, left, right, bottom] = args;
+          onChange({type: 'roi', id, top, left, right, bottom});
+        };
+        const rect = (args) => {
+          const [id, top, left, height, width] = args;
+          onChange({type: 'rect', top, left, height, width, id});
+        };
+        const square = (args) => {
+          const [id, top, left, side] = args;
+          onChange({type: 'square', id, top, left, side});
+        };
         areaSelector(
           (refId, ref) => {
             if (refId === id) {
@@ -57,9 +69,16 @@ namespace mark {
             if (refId === id) {
               switch (type) {
                 case 'rect-area-changed':
-                  const [id, top, left, height, width] = args;
-                  onChange({type, top, height, width, id});
+                  rect(args);
                   break;
+                case 'roi-area-changed':
+                  roi(args);
+                  break;
+                case 'square-area-changed':
+                  square(args);
+                  break;
+                default:
+                  throw new Error('Selector unknown event type');
               }
             }
           },

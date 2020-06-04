@@ -1,3 +1,6 @@
+
+// tslint:disable: max-classes-per-file
+
 namespace mark {
 
   export namespace webcomponents {
@@ -11,7 +14,7 @@ namespace mark {
 
     const createCamRect = (
       RUN_OUTSIDE_ANGULAR = (c) => c(),
-      CAM_AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args }),
+      AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args }),
       ID = 'unset',
       ENTITY_ID = 'unset-zone',
       TOP = 10,
@@ -35,7 +38,7 @@ namespace mark {
         left = round(LEFT / KX),
         width = round(WIDTH / KX),
         height = round(HEIGHT / KY),
-      ) => CAM_AREA_EVENT_CALLBACK(ID, 'rect-area-changed', ENTITY_ID, top, left, height, width);
+      ) => AREA_EVENT_CALLBACK(ID, 'rect-area-changed', ENTITY_ID, top, left, height, width);
 
       area.style.position = 'absolute';
       area.style.display = 'flex';
@@ -196,7 +199,7 @@ namespace mark {
 
     const createCamRoi = (
       RUN_OUTSIDE_ANGULAR = (c) => c(),
-      CAM_AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args }),
+      AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args }),
       ID = 'unset',
       TOP = 10,
       LEFT = 10,
@@ -216,7 +219,7 @@ namespace mark {
         left = round(LEFT / KX),
         right = round(RIGHT / KX),
         bottom = round(BOTTOM / KY),
-      ) => CAM_AREA_EVENT_CALLBACK(ID, 'roi-area-changed', top, left, right, bottom);
+      ) => AREA_EVENT_CALLBACK(ID, 'roi-area-changed', top, left, right, bottom);
 
       const createArea = (
         top = TOP,
@@ -377,7 +380,7 @@ namespace mark {
 
     const createCamSquare = (
       RUN_OUTSIDE_ANGULAR = (c) => c(),
-      CAM_AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args }),
+      AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args }),
       ID = 'unset',
       ENTITY_ID = 'unset-rect',
       TOP = 10,
@@ -400,7 +403,7 @@ namespace mark {
         top = round(TOP / KY),
         left = round(LEFT / KX),
         side = round(SIDE / max(KX, KY))
-      ) => CAM_AREA_EVENT_CALLBACK(ID, 'square-area-changed', ENTITY_ID, top, left, side);
+      ) => AREA_EVENT_CALLBACK(ID, 'square-area-changed', ENTITY_ID, top, left, side);
 
       area.style.position = 'absolute';
       area.style.display = 'flex';
@@ -601,8 +604,8 @@ namespace mark {
     };
 
     let RUN_OUTSIDE_ANGULAR = (c) => c();
-    let CAM_AREA_REFERENCE_CALLBACK = (id, ref) => debug.log({ id, ref });
-    let CAM_AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args });
+    let AREA_REFERENCE_CALLBACK = (id, ref) => debug.log({ id, ref });
+    let AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args });
     let RESIZE_CALLBACK = (id, img) => debug.log({ id, img });
 
     declare var ResizeObserver: any;
@@ -719,10 +722,21 @@ namespace mark {
 
       const observer = new ResizeObserver(() => resizePipeline.exec([img, area, root]));
       RUN_OUTSIDE_ANGULAR(() => observer.observe(root));
+      RUN_OUTSIDE_ANGULAR(() => observer.observe(img));
 
       self.appendChild(root);
       root.appendChild(area);
       root.appendChild(img);
+
+      const disposeHandler = () => {
+        if (!document.body.contains(root) && img.parentElement) {
+          observer.unobserve(root);
+          observer.unobserve(img);
+          img.src = '#';
+          img.parentElement.removeChild(img);
+          console.log('dispose');
+        }
+      };
 
       const setControls = async (controls) => {
         area.style.visibility = 'hidden';
@@ -732,7 +746,7 @@ namespace mark {
           const ref = AREA_SELECTORS[type];
           let [node, resize] = [null, null];
           if (ref) {
-            [node, resize] = ref(RUN_OUTSIDE_ANGULAR, CAM_AREA_EVENT_CALLBACK, ID, ...args);
+            [node, resize] = ref(RUN_OUTSIDE_ANGULAR, AREA_EVENT_CALLBACK, ID, ...args);
           } else {
             throw new Error('area-selector control not found ' + type);
           }
@@ -741,11 +755,12 @@ namespace mark {
         }
         await waitForSize(img);
         resizePipeline.addHandler(([img]) => RESIZE_CALLBACK(ID, img));
+        resizePipeline.addHandler(disposeHandler);
         resizePipeline.exec([img, area, root]);
         area.style.visibility = 'visible';
       };
 
-      RUN_OUTSIDE_ANGULAR(() => setTimeout(() => CAM_AREA_REFERENCE_CALLBACK(ID, createControlObject({ setControls }))));
+      RUN_OUTSIDE_ANGULAR(() => setTimeout(() => AREA_REFERENCE_CALLBACK(ID, createControlObject({ setControls }))));
 
       return self;
     }
@@ -761,13 +776,13 @@ namespace mark {
      * document.body.innerHTML = '<cam-area id="some-id" imageSrc="image.png"></cam-area>';
      */
     export function areaSelector(
-      areaRef = CAM_AREA_REFERENCE_CALLBACK,
-      areaEvent = CAM_AREA_EVENT_CALLBACK,
+      areaRef = AREA_REFERENCE_CALLBACK,
+      areaEvent = AREA_EVENT_CALLBACK,
       runRef = RUN_OUTSIDE_ANGULAR,
       resizeCallback = RESIZE_CALLBACK,
     ) {
-      CAM_AREA_REFERENCE_CALLBACK = areaRef;
-      CAM_AREA_EVENT_CALLBACK = areaEvent;
+      AREA_REFERENCE_CALLBACK = areaRef;
+      AREA_EVENT_CALLBACK = areaEvent;
       RESIZE_CALLBACK = resizeCallback;
       RUN_OUTSIDE_ANGULAR = runRef;
     }
