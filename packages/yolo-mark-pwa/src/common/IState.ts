@@ -5,7 +5,7 @@ namespace mark {
 
   export interface IState {
     files: IFile[];
-    cordsList: Map<string, ICord>;
+    cordsList: Map<string, ICord[]>;
     current: number;
   };
 

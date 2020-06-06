@@ -27,7 +27,8 @@ namespace mark {
   } = material.styles;
 
   const {
-    useState
+    useState,
+    useCallback,
   } = React;
 
   export namespace pages {
@@ -44,45 +45,84 @@ namespace mark {
       }
     }));
 
+    export const useForceUpdate = () => {
+      const [, setTick] = useState(0);
+      const update = useCallback(() => {
+        setTick(tick => tick + 1);
+      }, [])
+      return update;
+    };
+
     export const App = () => {
 
       const classes = useStyles();
+      useForceUpdate();
 
-      const [state, setState] = useState<IState>({
-        cordsList: new Map(),
-        current: -1,
-        files: [],
-      });
+      const [cordsList, setCordsList] = useState<Map<string, ICord[]>>(new Map());
+      const [currentFile, setCurrentFile] = useState<IFile>(null);
+      const [files, setFiles] = useState<IFile[]>([]);
+
+      const getInitialCords = (file: IFile) => {
+        const {url} = file;
+        if (cordsList && cordsList.has(url)) {
+          return cordsList.get(url);
+        } else {
+          return [];
+        }
+      };
 
       const onSave = (cords) => console.log({cords});
 
       const onAddImage = async () => {
         const file: IFile = await openImage();
-        setState(({files, cordsList}) => ({files: [...files, file], current: files.length, cordsList}));
+        setFiles((files) => [...files, file]);
+        setCurrentFile(file);
       };
 
-      const onRemoveImage = (url) => setState(({files, cordsList}) => ({
-        files: files.filter((f) => f.url !== url),
-        current: files.length === 1 ? -1 : files.length - 1,
-        cordsList
-      }));
+      const onRemoveImage = (url) => {
+        setCurrentFile(files.length > 1 ? files[0] : null);
+        setFiles((files) => files.filter((f) => f.url !== url));
+      }
 
-      const onSelectImage = (url) => setState(({files, cordsList}) => ({
-        files, current: files.findIndex((f) => f.url === url), cordsList
-      }));
+      const onSelectImage = (url) => 
+        setCurrentFile(files.find((f) => f.url === url));
+
+      const onEditorChange = (url, cords) => setCordsList((cordsList) => {
+        cordsList.set(url, cords);
+        return cordsList;
+      });
+
+      const render = () => {
+        if (currentFile) {
+          return (
+            <Editor
+              src={currentFile.url}
+              initialCords={getInitialCords(currentFile)}
+              onChange={(c) => onEditorChange(currentFile.url, c)}
+              onSave={onSave}/>
+          );
+        } else {
+          return (
+            <Typography
+              className={classes.openFile}
+              variant="h4">
+                Please open file to continue
+              </Typography>
+          );
+        }
+      };
 
       return (
         <Fragment>
           <Drawer variant="permanent" open={true} className={classes.drawer}>
             <Files
               onAdd={onAddImage}
-              files={state.files}
+              files={files}
               onRemove={onRemoveImage}
               onSelect={onSelectImage}/>
           </Drawer>
           <div className={classes.adjust}>
-            {state.current === -1 && <Typography className={classes.openFile} variant="h4">Please open file to continue</Typography>}
-            {state.current !== -1 && <Editor onSave={onSave}/>}
+            {render()}
           </div>
         </Fragment>
       );

@@ -110,6 +110,7 @@ namespace mark {
       const onAddRect = () => setCords((cords) => [...cords, defaultCord('rect')]);
       const onDelete = (id) => setCords((cords) => cords.filter((c) => c.id !== id));
       const onAddSquare = () => setCords((cords) => [...cords, defaultCord('square')]);
+      const onNameChanged = (id, name) => setCords((cords) => cords.map((c) => c.id === id ? {...c, name} : c));
 
       const onChangeCords = ({ type, id, top, left, height, width }) => setCords(
         (cords) => cords.map((c) => c.id === id ? {
@@ -125,15 +126,21 @@ namespace mark {
         onChange(cords);
       }, [cords]);
 
+      useEffect(() => {
+        setCords(initialCords);
+      }, [initialCords]);
+
       return (
         <Fragment>
           <Selector
             cords={lowCords}
             src={src}
+            id={src}
             onChange={debounce(onChangeCords, 200)} />
           <div className={classes.container}>
             <CordPicker
               cords={cords}
+              onNameChanged={onNameChanged}
               onSave={() => onSave(cords)}
               onDelete={onDelete}
               onAddRect={onAddRect}

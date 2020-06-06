@@ -36,7 +36,6 @@ namespace mark {
 
       const parentRef = useRef(null);
       const mountRef = useRef(true);
-      const areaRef = useRef(null);
       const classes = useStyles();
 
       useLayoutEffect(() => {
@@ -69,7 +68,6 @@ namespace mark {
         areaSelector(
           (refId, ref) => {
             if (refId === id) {
-              areaRef.current = ref;
               ref.controls = cords;
             }
           },
@@ -91,15 +89,9 @@ namespace mark {
             }
           },
         );
+        mountRef.current = true;
         return () => mountRef.current = false;
-      }, [src, id]);
-
-      useEffect(() => {
-        const {current} = areaRef;
-        if (current) {
-          current.controls = cords;
-        }
-      }, [cords]);
+      }, [src, id, cords]);
 
       return (
         <div className={classes.parent} ref={parentRef}></div>
