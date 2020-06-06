@@ -13,19 +13,19 @@ namespace mark {
     makeStyles
   } = material.styles;
 
-  const useStyles = makeStyles((theme) => ({
-    parent: {
-      margin: '24px',
-      position: 'relative',
-      width: 'calc(100vw - 288px)',
-    },
-  }));
-
   export namespace components {
 
     const {
       areaSelector
     } = webcomponents;
+
+    const useStyles = makeStyles((theme) => ({
+      parent: {
+        margin: '24px',
+        position: 'relative',
+        width: 'calc(100vw - 288px)',
+      },
+    }));
 
     export const Selector = ({
       src = 'image.png',
@@ -35,6 +35,7 @@ namespace mark {
     }) => {
 
       const parentRef = useRef(null);
+      const mountRef = useRef(true);
       const areaRef = useRef(null);
       const classes = useStyles();
 
@@ -48,16 +49,22 @@ namespace mark {
         `;
         const roi = (args) => {
           const [id, top, left, right, bottom] = args;
-          onChange({type: 'roi', id, top, left, right, bottom});
+          const {current} = mountRef;
+          if (current)
+            onChange({type: 'roi', id, top, left, right, bottom});
         };
         const rect = (args) => {
           const [id, top, left, height, width] = args;
-          onChange({type: 'rect', top, left, height, width, id});
+          const {current} = mountRef;
+          if (current)
+            onChange({type: 'rect', top, left, height, width, id});
         };
         const square = (args) => {
           const [id, top, left, side] = args;
           const [height, width] = [...new Array(2)].map(() => side);
-          onChange({type: 'square', id, top, left, height, width});
+          const {current} = mountRef;
+          if (current)
+            onChange({type: 'square', id, top, left, height, width});
         };
         areaSelector(
           (refId, ref) => {
@@ -84,6 +91,7 @@ namespace mark {
             }
           },
         );
+        return () => mountRef.current = false;
       }, [src, id]);
 
       useEffect(() => {

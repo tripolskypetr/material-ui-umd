@@ -3,10 +3,13 @@ namespace mark {
   const {
     Box,
     List,
+    Avatar,
     ListItem,
     IconButton,
     Typography,
     ListItemText,
+    ListItemAvatar,
+    ListItemSecondaryAction,
   } = material.core;
 
   const {
@@ -14,25 +17,31 @@ namespace mark {
   } = material.styles;
 
   const {
-    Add
+    Add,
+    Image,
+    Clear,
   } = material.icons;
-
-  const useStyles = makeStyles((theme) => ({
-    header: {
-      margin: theme.spacing(2),
-    },
-    list: {
-      width: 240,
-      maxHeight: '100vh',
-      overflowY: 'scroll',
-    }
-  }));
 
   export namespace components {
 
+    const useStyles = makeStyles((theme) => ({
+      header: {
+        margin: theme.spacing(2),
+      },
+      list: {
+        width: 240,
+        maxHeight: '100vh',
+        overflowY: 'scroll',
+      }
+    }));
+
     export const Files = ({
-      files = ['first.png', 'second.png', 'third.png'],
-      onSelect = (select) => console.log({select}),
+      files = [
+        {name: 'file.png', date: 'Jan 9, 2014', url: 'unset'}
+      ],
+      onSelect = (select) => console.log({ select }),
+      onRemove = (remove) => console.log({ remove }),
+      onAdd = () => console.log('add'),
     }) => {
       const classes = useStyles();
       return (
@@ -51,13 +60,23 @@ namespace mark {
                 Files
               </Typography>
             </Box>
-            <IconButton>
-              <Add/>
+            <IconButton onClick={onAdd}>
+              <Add />
             </IconButton>
           </Box>
-          {files.map((item, index) => (
-            <ListItem onClick={() => onSelect(item)} button key={index}>
-              <ListItemText primary={item} />
+          {files.map(({name, date, url}, index) => (
+            <ListItem onClick={() => onSelect(url)} button key={index}>
+              <ListItemAvatar>
+                <Avatar>
+                  <Image />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={name} secondary={date} />
+              <ListItemSecondaryAction>
+                <IconButton onClick={() => onRemove(url)} edge="end">
+                  <Clear />
+                </IconButton>
+              </ListItemSecondaryAction>
             </ListItem>
           ))}
         </List>

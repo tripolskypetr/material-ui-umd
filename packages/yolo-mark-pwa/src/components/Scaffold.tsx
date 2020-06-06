@@ -24,26 +24,26 @@ namespace mark {
     Fragment
   } = React;
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-    appBar: {
-      background: theme.palette.background.level2,
-      color: theme.palette.text.primary,
-      width: 'calc(100vw - 240px)',
-      left: 240,
-    },
-    offset: theme.mixins.toolbar,
-  }));
-
   export namespace components {
+
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        flexGrow: 1,
+      },
+      menuButton: {
+        marginRight: theme.spacing(2),
+      },
+      title: {
+        flexGrow: 1,
+      },
+      appBar: {
+        background: theme.palette.background.level2,
+        color: theme.palette.text.primary,
+        width: 'calc(100vw - 240px)',
+        left: 240,
+      },
+      offset: theme.mixins.toolbar,
+    }));
 
     const HideOnScroll = ({
       children = null,
@@ -63,7 +63,7 @@ namespace mark {
 
       const openBlank = () => {
         const a = document.createElement('a');
-        a.href = 'https://github.com/tripolskypetr/material-ui-umd';
+        a.href = 'https://github.com/tripolskypetr/material-ui-umd/tree/master/packages/yolo-mark-pwa';
         a.target = '_blank';
         a.click();
       };

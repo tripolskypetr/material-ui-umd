@@ -21,17 +21,17 @@ namespace mark {
     Delete
   } = material.icons;
 
-  const useStyles = makeStyles((theme) => ({
-    header: {
-      background: theme.palette.background.level2,
-      color: theme.palette.text.primary,
-    },
-    transparent: {
-      background: 'transparent'
-    },
-  }));
-
   export namespace components {
+
+    const useStyles = makeStyles((theme) => ({
+      header: {
+        background: theme.palette.background.level2,
+        color: theme.palette.text.primary,
+      },
+      transparent: {
+        background: 'transparent'
+      },
+    }));
 
     export const CordPicker = ({
       cords = [
@@ -56,10 +56,10 @@ namespace mark {
             <TableHead className={classes.header}>
               <TableRow>
                 <TableCell className={classes.transparent} align="left">Type of figure</TableCell>
-                <TableCell className={classes.transparent} align="left">Top margin</TableCell>
-                <TableCell className={classes.transparent} align="left">Left margin</TableCell>
-                <TableCell className={classes.transparent} align="left">Height</TableCell>
-                <TableCell className={classes.transparent} align="left">Width</TableCell>
+                <TableCell className={classes.transparent} align="center">Top margin</TableCell>
+                <TableCell className={classes.transparent} align="center">Left margin</TableCell>
+                <TableCell className={classes.transparent} align="center">Height</TableCell>
+                <TableCell className={classes.transparent} align="center">Width</TableCell>
                 <TableCell className={classes.transparent} align="right">Remove</TableCell>
               </TableRow>
             </TableHead>
