@@ -56,7 +56,8 @@ namespace mark {
         };
         const square = (args) => {
           const [id, top, left, side] = args;
-          onChange({type: 'square', id, top, left, side});
+          const [height, width] = [...new Array(2)].map(() => side);
+          onChange({type: 'square', id, top, left, height, width});
         };
         areaSelector(
           (refId, ref) => {
