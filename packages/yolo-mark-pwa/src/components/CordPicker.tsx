@@ -4,6 +4,7 @@ namespace mark {
     TableContainer,
     TableFooter,
     IconButton,
+    TextField,
     TableHead,
     TableCell,
     TableBody,
@@ -48,14 +49,20 @@ namespace mark {
       onDelete = (id) => console.log({id}),
       onAddRect = () => console.log('add rect'),
       onAddSquare = () => console.log('add square'),
+      onNameChanged = (id, name) => console.log({name, id}),
     }) => {
       const classes = useStyles();
+      const onChange = (id, {target}) => {
+        const {value} = target;
+        onNameChanged(id, value);
+      };
       return (
         <TableContainer component={Paper}>
           <Table stickyHeader className={classes.table} aria-label="simple table">
             <TableHead className={classes.header}>
               <TableRow>
-                <TableCell className={classes.transparent} align="left">Type of figure</TableCell>
+                <TableCell className={classes.transparent} align="left">Name</TableCell>
+                <TableCell className={classes.transparent} align="center">Type</TableCell>
                 <TableCell className={classes.transparent} align="center">Top margin</TableCell>
                 <TableCell className={classes.transparent} align="center">Left margin</TableCell>
                 <TableCell className={classes.transparent} align="center">Height</TableCell>
@@ -66,7 +73,10 @@ namespace mark {
             <TableBody>
               {cords.map(({id, type, top, left, height, width}) => (
                 <TableRow key={id}>
-                  <TableCell align="left" component="th" scope="row">{type}</TableCell>
+                  <TableCell align="left" component="th" scope="row">
+                    <TextField onChange={(e) => onChange(id, e)} label="Some class" />
+                  </TableCell>
+                  <TableCell align="center">{type}</TableCell>
                   <TableCell align="center">{top}</TableCell>
                   <TableCell align="center">{left}</TableCell>
                   <TableCell align="center">{height}</TableCell>
@@ -86,7 +96,7 @@ namespace mark {
                     Save markup
                   </Button>
                 </TableCell>
-                {[...new Array(3)].reduce((acm) => [...acm, acm.length], []).map((i) => <TableCell key={i}/>)}
+                {[...new Array(4)].reduce((acm) => [...acm, acm.length], []).map((i) => <TableCell key={i}/>)}
                 <TableCell align="right">
                   <Button onClick={onAddRect} size="small" variant="outlined" color="secondary">
                     Add rect

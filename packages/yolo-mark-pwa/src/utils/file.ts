@@ -12,14 +12,12 @@ namespace mark {
     });
 
     export const openImage = () => new Promise<any>((res) => {
-      let changed = false;
       const input = document.createElement('input');
       input.type = 'file';
       input.accept='.png, .jpg';
       input.onchange = ({target}) => {
         const file = (target as any).files[0];
         const name = file.name;
-        changed = true;
         const extension = name.split('.').pop().toLowerCase();
         if (extension === 'png' || extension === "jpg") {
           const reader = new FileReader();

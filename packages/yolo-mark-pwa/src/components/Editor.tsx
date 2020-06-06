@@ -93,6 +93,7 @@ namespace mark {
       left: 50,
       width: 100,
       height: 100,
+      name: 'some-class',
     });
 
     export const Editor = ({
@@ -112,7 +113,7 @@ namespace mark {
 
       const onChangeCords = ({ type, id, top, left, height, width }) => setCords(
         (cords) => cords.map((c) => c.id === id ? {
-          type, id, top, left, height, width
+          type, id, top, left, height, width, name: c.name
         } : c)
       );
 
@@ -120,8 +121,8 @@ namespace mark {
         const newCords = lowLevelCords(cords);
         if (!deepCompare(newCords, lowCords)) {
           setLowCords(newCords);
-          onChange(cords);
         }
+        onChange(cords);
       }, [cords]);
 
       return (
@@ -139,7 +140,7 @@ namespace mark {
               onAddSquare={onAddSquare} />
           </div>
         </Fragment>
-      )
+      );
 
     };
 
