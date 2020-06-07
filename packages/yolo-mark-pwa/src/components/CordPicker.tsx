@@ -113,7 +113,7 @@ namespace mark {
                       </Button>
                     </Grid>
                     <Grid item>
-                      <Button startIcon={<Publish />} onClick={onSave} size="small" variant="outlined" color="primary">
+                      <Button disabled startIcon={<Publish />} onClick={onSave} size="small" variant="outlined" color="primary">
                         Load markup
                       </Button>
                     </Grid>

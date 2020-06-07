@@ -6,6 +6,8 @@ namespace mark {
 
   const {
     openImage,
+    saveMarkupFile,
+    createExportCord,
   } = utils;
 
   const {
@@ -53,6 +55,8 @@ namespace mark {
       return update;
     };
 
+    const withoutExtension = (v) => v.split('.')[0];
+
     export const App = () => {
 
       const classes = useStyles();
@@ -71,7 +75,19 @@ namespace mark {
         }
       };
 
-      const onSave = (cords) => console.log({cords});
+      const onSave = (url, cords) => {
+        const file = files.find((f) => f.url === url);
+        const { name, naturalHeight, naturalWidth } = file;
+        saveMarkupFile(cords.map(({name, top, left, height, width}) =>
+          createExportCord({
+            bottom: (naturalHeight - top) - height,
+            right: (naturalWidth - left) - width,
+            height: naturalHeight,
+            width: naturalWidth,
+            name, top, left,
+          })
+        ).join("\n"), withoutExtension(name) + '.txt');
+      };
 
       const onAddImage = async () => {
         const file: IFile = await openImage();
@@ -98,8 +114,8 @@ namespace mark {
             <Editor
               src={currentFile.url}
               initialCords={getInitialCords(currentFile)}
-              onChange={(c) => onEditorChange(currentFile.url, c)}
-              onSave={onSave}/>
+              onSave={(cords) => onSave(currentFile.url, cords)}
+              onChange={(c) => onEditorChange(currentFile.url, c)}/>
           );
         } else {
           return (
