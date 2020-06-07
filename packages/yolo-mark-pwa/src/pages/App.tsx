@@ -92,6 +92,7 @@ namespace mark {
       };
 
       const onRemoveImage = (url) => {
+        URL.revokeObjectURL(url);
         setCurrentFile(files.length > 1 ? files[0] : null);
         setFiles((files) => files.filter((f) => f.url !== url));
       }
@@ -109,6 +110,7 @@ namespace mark {
           return (
             <Editor
               src={currentFile.url}
+              name={currentFile.name}
               naturalWidth={currentFile.naturalWidth}
               naturalHeight={currentFile.naturalHeight}
               initialCords={getInitialCords(currentFile)}

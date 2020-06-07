@@ -12,13 +12,55 @@ namespace mark {
       }
     };
 
+    // tslint:disable-next-line: new-parens
+    const touchManager = new class {
+      _wrappers = new Map();
+      applyTouchWrapper(callback) {
+        const handler = ({touches}) => callback(touches[0]);
+        this._wrappers.set(callback, handler);
+        return handler;
+      }
+      disposeTouchWrapper(callback) {
+        const wrapper = this._wrappers.get(callback);
+        this._wrappers.delete(callback);
+        return wrapper;
+      }
+    }
+
     const on = (ref, event, callback) => {
-      // mousemove mousedown mousemove
-      ref.addEventListener(event, callback);
+      if (event === 'mousemove') {
+        const wrapped = touchManager.applyTouchWrapper(callback);
+        ref.addEventListener('mousemove', callback);
+        ref.addEventListener('touchmove', wrapped);
+      } else if (event === 'mousedown') {
+        const wrapped = touchManager.applyTouchWrapper(callback);
+        ref.addEventListener('mousedown', callback);
+        ref.addEventListener('touchstart', wrapped);
+      } else if (event === 'mouseup') {
+        const wrapped = touchManager.applyTouchWrapper(callback);
+        ref.addEventListener('mouseup', callback);
+        ref.addEventListener('touchend', wrapped);
+      } else {
+        throw new Error(`area-selector on unknown event: ${event}`);
+      }
     };
 
     const un = (ref, event, callback) => {
-      ref.removeEventListener(event, callback);
+      if (event === 'mousemove') {
+        const wrapped = touchManager.disposeTouchWrapper(callback);
+        ref.removeEventListener('mousemove', callback);
+        ref.removeEventListener('touchmove', wrapped);
+      } else if (event === 'mousedown') {
+        const wrapped = touchManager.disposeTouchWrapper(callback);
+        ref.removeEventListener('mousedown', callback);
+        ref.removeEventListener('touchstart', wrapped);
+      } else if (event === 'mouseup') {
+        const wrapped = touchManager.disposeTouchWrapper(callback);
+        ref.removeEventListener('mouseup', callback);
+        ref.removeEventListener('touchend', wrapped);
+      } else {
+        throw new Error(`area-selector un unknown event: ${event}`);
+      }
     };
 
     const createCamRect = (

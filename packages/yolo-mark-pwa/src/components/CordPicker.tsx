@@ -10,6 +10,7 @@ namespace mark {
     TableBody,
     TableRow,
     Button,
+    Avatar,
     Table,
     Paper,
     Grid,
@@ -84,9 +85,9 @@ namespace mark {
               {cords.map(({ id, type, top, left, height, width, color, name }) => (
                 <TableRow key={id}>
                   <TableCell align="left" component="th" scope="row">
-                    <IconButton>
+                    <Avatar style={{background: '#75757530'}}>
                       <Palette style={{color}}/>
-                    </IconButton>
+                    </Avatar>
                   </TableCell>
                   <TableCell align="left" component="th" scope="row">
                     <TextField onChange={(e) => onChange(id, e)} value={name} label="Some class" />

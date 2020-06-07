@@ -31,6 +31,10 @@ namespace mark {
     max
   } = Math;
 
+  const {
+    Typography
+  } = material.core;
+
   export namespace components {
 
     const debounce = (f, t) => {
@@ -87,6 +91,9 @@ namespace mark {
       container: {
         margin: 24,
       },
+      fileName: {
+        margin: 24,
+      },
     }));
 
     const defaultCord = (type) => ({
@@ -102,6 +109,7 @@ namespace mark {
 
     export const Editor = ({
       src = 'image.png',
+      name = 'filename.png',
       initialCords = [],
       naturalHeight = 100,
       naturalWidth = 100,
@@ -144,11 +152,13 @@ namespace mark {
 
       useEffect(() => {
         setCords(initialCords);
-        console.log({initialCords});
       }, [initialCords]);
 
       return (
         <Fragment>
+          <Typography className={classes.fileName} variant="h4">
+            {name}
+          </Typography>
           <Selector
             cords={lowCords}
             src={src}
