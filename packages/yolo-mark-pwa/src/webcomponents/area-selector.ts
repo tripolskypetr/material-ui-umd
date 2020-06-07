@@ -63,6 +63,47 @@ namespace mark {
       }
     };
 
+    // tslint:disable-next-line: no-string-literal
+    if (!window['ResizeObserver']) {
+      // tslint:disable-next-line: no-string-literal
+      window['ResizeObserver'] = class {
+        _callback = null;
+        _sizes = new Map();
+        _interval = null;
+        constructor(callback) {
+          this._callback = callback;
+        }
+        _dispose() {
+          if (this._sizes.size === 0 && this._interval !== null) {
+            clearInterval(this._interval);
+            this._interval = null;
+          }
+        }
+        _init() {
+          if (this._sizes.size > 0 && this._interval === null) {
+            this._interval = setInterval(() => Array.from(this._sizes)
+              .forEach(([ref, size]) => {
+                const {height, width} = ref.getBoundingClientRect();
+                if (size.height !== height || size.width !== width) {
+                  this._sizes.set(ref, {height, width});
+                  this._callback();
+                }
+              }
+            ), 250);
+          }
+        }
+        observe(ref) {
+          const {height, width} = ref.getBoundingClientRect();
+          this._sizes.set(ref, {height, width});
+          this._init();
+        }
+        unobserve(ref) {
+          this._sizes.delete(ref);
+          this._dispose();
+        }
+      }
+    }
+
     const createCamRect = (
       RUN_OUTSIDE_ANGULAR = (c) => c(),
       AREA_EVENT_CALLBACK = (id, type, ...args) => debug.log({ id, type, args }),

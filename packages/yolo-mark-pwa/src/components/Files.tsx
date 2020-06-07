@@ -32,7 +32,11 @@ namespace mark {
         width: 240,
         maxHeight: '100vh',
         overflowY: 'scroll',
-      }
+      },
+      maxWidth: {
+        maxWidth: '120px',
+        overflow: 'hidden',
+      },
     }));
 
     export const Files = ({
@@ -71,7 +75,7 @@ namespace mark {
                   <Image />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={name} secondary={date} />
+              <ListItemText className={classes.maxWidth} primary={name} secondary={date} />
               <ListItemSecondaryAction>
                 <IconButton onClick={() => onRemove(url)} edge="end">
                   <Clear />

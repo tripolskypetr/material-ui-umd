@@ -1,30 +1,9 @@
-# boilerplate-app
+# yolo-mark-pwa
 
-> Шаблон для быстрого старта проекта с material-umd. Просто скопируйте его содержимое и переименуйте пространство имен `boilerplate` исходя из ваших нужд.
+> PWA for marking bounded boxes of objects in images for training neural network Yolo v3 and v2 with touchscreen support right in your web browser
 
-## Как запустить
+![screenshot](screenshot.png)
 
- - Соберите umd дистрибутив, запустив команды ниже в корне копии этого репозитория
+## Browser support, development reason
 
-```
-pwd # путь material-ui-umd
-npm install
-npm run build:umd
-npm run build:types
-```
-
- - После, соберите это приложение
-
-```
-pwd # путь material-ui-umd/packages/boilerplate-app
-npm run build
-npx open index.html # быстрое открытие файла в браузере
-```
-
- - Для запуска (после сборки) откройте `index.html` в директории приложения
-
-Так же, попробуйте использовать этот инструмент в сочетании с [Apache Cordova](https://cordova.apache.org/). Компоненты пользовательского интерфейса отлично работают с сенсорным экраном.
-
-## Скриншот
-
-![screenshot](../../assets/img/screenshot.png)
+Wrote for *Desktop Chrome 83*, but it look's like works in *Desktop Firefox 77* too. *Desktop Safari 12.1.1 on Mac OS 10.14.5* works like a charm. It wood be great to test on iPad mobile safari. The application is written as an example of usage [material-ui-umd](https://github.com/tripolskypetr/material-ui-umd) in practice. If it’s not difficult for you, a ⭐️ will be appreciated
