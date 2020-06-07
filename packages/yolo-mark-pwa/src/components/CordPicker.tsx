@@ -12,6 +12,7 @@ namespace mark {
     Button,
     Table,
     Paper,
+    Grid,
   } = material.core;
 
   const {
@@ -19,7 +20,11 @@ namespace mark {
   } = material.styles;
 
   const {
-    Delete
+    CropLandscape,
+    CropSquare,
+    Publish,
+    Delete,
+    Save,
   } = material.icons;
 
   export namespace components {
@@ -46,14 +51,14 @@ namespace mark {
         }
       ],
       onSave = () => console.log('save'),
-      onDelete = (id) => console.log({id}),
+      onDelete = (id) => console.log({ id }),
       onAddRect = () => console.log('add rect'),
       onAddSquare = () => console.log('add square'),
-      onNameChanged = (id, name) => console.log({name, id}),
+      onNameChanged = (id, name) => console.log({ name, id }),
     }) => {
       const classes = useStyles();
-      const onChange = (id, {target}) => {
-        const {value} = target;
+      const onChange = (id, { target }) => {
+        const { value } = target;
         onNameChanged(id, value);
       };
       return (
@@ -63,15 +68,15 @@ namespace mark {
               <TableRow>
                 <TableCell className={classes.transparent} align="left">Name</TableCell>
                 <TableCell className={classes.transparent} align="center">Type</TableCell>
-                <TableCell className={classes.transparent} align="center">Top margin</TableCell>
-                <TableCell className={classes.transparent} align="center">Left margin</TableCell>
+                <TableCell className={classes.transparent} align="center">Top</TableCell>
+                <TableCell className={classes.transparent} align="center">Left</TableCell>
                 <TableCell className={classes.transparent} align="center">Height</TableCell>
                 <TableCell className={classes.transparent} align="center">Width</TableCell>
                 <TableCell className={classes.transparent} align="right">Remove</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {cords.map(({id, type, top, left, height, width}) => (
+              {cords.map(({ id, type, top, left, height, width }) => (
                 <TableRow key={id}>
                   <TableCell align="left" component="th" scope="row">
                     <TextField onChange={(e) => onChange(id, e)} label="Some class" />
@@ -83,7 +88,7 @@ namespace mark {
                   <TableCell align="center">{width}</TableCell>
                   <TableCell align="right">
                     <IconButton onClick={() => onDelete(id)}>
-                      <Delete/>
+                      <Delete />
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -91,21 +96,29 @@ namespace mark {
             </TableBody>
             <TableFooter>
               <TableRow>
-                <TableCell align="left">
-                  <Button onClick={onSave} size="small" variant="outlined" color="primary">
-                    Save markup
-                  </Button>
-                </TableCell>
-                {[...new Array(4)].reduce((acm) => [...acm, acm.length], []).map((i) => <TableCell key={i}/>)}
-                <TableCell align="right">
-                  <Button onClick={onAddRect} size="small" variant="outlined" color="secondary">
-                    Add rect
-                  </Button>
-                </TableCell>
-                <TableCell align="right">
-                  <Button onClick={onAddSquare} size="small" variant="outlined" color="secondary">
-                    Add square
-                  </Button>
+                <TableCell colSpan={7} align="left">
+                  <Grid container spacing={2}>
+                    <Grid item>
+                      <Button startIcon={<Save />} onClick={onSave} size="small" variant="outlined" color="primary">
+                        Save markup
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button startIcon={<Publish />} onClick={onSave} size="small" variant="outlined" color="primary">
+                        Load markup
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button startIcon={<CropLandscape />} onClick={onAddRect} size="small" variant="outlined" color="secondary">
+                        Add rect
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button startIcon={<CropSquare />} onClick={onAddSquare} size="small" variant="outlined" color="secondary">
+                        Add square
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
             </TableFooter>
