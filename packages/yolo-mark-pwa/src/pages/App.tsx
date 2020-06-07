@@ -109,17 +109,17 @@ namespace mark {
           return (
             <Editor
               src={currentFile.url}
+              naturalWidth={currentFile.naturalWidth}
+              naturalHeight={currentFile.naturalHeight}
               initialCords={getInitialCords(currentFile)}
               onSave={(cords) => onSave(currentFile.url, cords)}
               onChange={(c) => onEditorChange(currentFile.url, c)}/>
           );
         } else {
           return (
-            <Typography
-              className={classes.openFile}
-              variant="h4">
-                Please open file to continue
-              </Typography>
+            <Typography className={classes.openFile} variant="h4">
+              Please open file to continue
+            </Typography>
           );
         }
       };

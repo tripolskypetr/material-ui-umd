@@ -35,6 +35,26 @@ namespace mark {
       input.click();
     });
 
+    export const openMarkup = () => new Promise<any>((res) => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept='.txt';
+      input.onchange = ({target}) => {
+        const file = (target as any).files[0];
+        const name = file.name;
+        const extension = name.split('.').pop().toLowerCase();
+        if (extension === 'txt') {
+          const reader = new FileReader();
+          reader.readAsText(file);
+          reader.onload = async () => {
+            const {result} = reader;
+            res(result);
+          };
+        }
+      };
+      input.click();
+    });
+
   } // namespace utils
 
 } // namespace mark

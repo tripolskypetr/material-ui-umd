@@ -8,6 +8,8 @@ namespace mark {
   const {
     uuid,
     color,
+    openMarkup,
+    readExportCord,
   } = utils;
 
   const {
@@ -101,6 +103,8 @@ namespace mark {
     export const Editor = ({
       src = 'image.png',
       initialCords = [],
+      naturalHeight = 100,
+      naturalWidth = 100,
       onSave = (cords) => console.log({cords}),
       onChange = (cords) => console.log({cords}),
     }) => {
@@ -120,6 +124,16 @@ namespace mark {
         } : c)
       );
 
+      const onLoad = async () => {
+        const line = await openMarkup();
+        const cords = readExportCord({
+          lines: line.split('\n'),
+          naturalHeight,
+          naturalWidth,
+        });
+        setCords(cords);
+      };
+
       useEffect(() => {
         const newCords = lowLevelCords(cords);
         if (!deepCompare(newCords, lowCords)) {
@@ -130,6 +144,7 @@ namespace mark {
 
       useEffect(() => {
         setCords(initialCords);
+        console.log({initialCords});
       }, [initialCords]);
 
       return (
@@ -144,6 +159,7 @@ namespace mark {
               cords={cords}
               onNameChanged={onNameChanged}
               onSave={() => onSave(cords)}
+              onLoad={onLoad}
               onDelete={onDelete}
               onAddRect={onAddRect}
               onAddSquare={onAddSquare} />

@@ -54,6 +54,7 @@ namespace mark {
         }
       ],
       onSave = () => console.log('save'),
+      onLoad = () => console.log('load'),
       onDelete = (id) => console.log({ id }),
       onAddRect = () => console.log('add rect'),
       onAddSquare = () => console.log('add square'),
@@ -113,7 +114,7 @@ namespace mark {
                       </Button>
                     </Grid>
                     <Grid item>
-                      <Button disabled startIcon={<Publish />} onClick={onSave} size="small" variant="outlined" color="primary">
+                      <Button startIcon={<Publish />} onClick={onLoad} size="small" variant="outlined" color="primary">
                         Load markup
                       </Button>
                     </Grid>
