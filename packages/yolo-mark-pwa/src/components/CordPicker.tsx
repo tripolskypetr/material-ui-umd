@@ -22,6 +22,7 @@ namespace mark {
   const {
     CropLandscape,
     CropSquare,
+    Palette,
     Publish,
     Delete,
     Save,
@@ -44,6 +45,8 @@ namespace mark {
         {
           id: 'uuid',
           type: 'rect',
+          color: 'cyan',
+          name: 'unset',
           top: 10,
           left: 10,
           height: 100,
@@ -66,6 +69,7 @@ namespace mark {
           <Table stickyHeader className={classes.table} aria-label="simple table">
             <TableHead className={classes.header}>
               <TableRow>
+                <TableCell className={classes.transparent} align="left">Color</TableCell>
                 <TableCell className={classes.transparent} align="left">Name</TableCell>
                 <TableCell className={classes.transparent} align="center">Type</TableCell>
                 <TableCell className={classes.transparent} align="center">Top</TableCell>
@@ -76,10 +80,15 @@ namespace mark {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cords.map(({ id, type, top, left, height, width }) => (
+              {cords.map(({ id, type, top, left, height, width, color, name }) => (
                 <TableRow key={id}>
                   <TableCell align="left" component="th" scope="row">
-                    <TextField onChange={(e) => onChange(id, e)} label="Some class" />
+                    <IconButton>
+                      <Palette style={{color}}/>
+                    </IconButton>
+                  </TableCell>
+                  <TableCell align="left" component="th" scope="row">
+                    <TextField onChange={(e) => onChange(id, e)} value={name} label="Some class" />
                   </TableCell>
                   <TableCell align="center">{type}</TableCell>
                   <TableCell align="center">{top}</TableCell>

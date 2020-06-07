@@ -10,7 +10,16 @@ namespace mark {
       log(...args) {
         // console.log(...args);
       }
-    }
+    };
+
+    const on = (ref, event, callback) => {
+      // mousemove mousedown mousemove
+      ref.addEventListener(event, callback);
+    };
+
+    const un = (ref, event, callback) => {
+      ref.removeEventListener(event, callback);
+    };
 
     const createCamRect = (
       RUN_OUTSIDE_ANGULAR = (c) => c(),
@@ -87,6 +96,10 @@ namespace mark {
 
         const dragHandler = ({ pageX, pageY }) => {
 
+          const {scrollX, scrollY} = window;
+          pageX -= scrollX;
+          pageY -= scrollY;
+
           let areaHeight = null;
           let areaWidth = null;
 
@@ -126,15 +139,15 @@ namespace mark {
           }
         };
 
-        RUN_OUTSIDE_ANGULAR(() => control.addEventListener('mousedown', () => {
+        RUN_OUTSIDE_ANGULAR(() => on(control, 'mousedown', () => {
           resizing = true;
-          RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mousemove', dragHandler));
-          RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mouseup', () => {
-            RUN_OUTSIDE_ANGULAR(() => window.removeEventListener('mousemove', dragHandler));
+          RUN_OUTSIDE_ANGULAR(() => on(window, 'mousemove', dragHandler));
+          RUN_OUTSIDE_ANGULAR(() => on(window, 'mouseup', () => {
+            RUN_OUTSIDE_ANGULAR(() => un(window, 'mousemove', dragHandler));
             resizing = false;
           }));
           return false;
-        }, false));
+        }));
 
         return control;
       };
@@ -147,6 +160,10 @@ namespace mark {
       let [dx, dy] = [null, null]; // pos delta
 
       const dragHandler = ({ pageX, pageY }) => {
+
+        const {scrollX, scrollY} = window;
+        pageX -= scrollX;
+        pageY -= scrollY;
 
         {
           const { top, left } = area.parentElement.getBoundingClientRect();
@@ -166,13 +183,13 @@ namespace mark {
         }
       };
 
-      RUN_OUTSIDE_ANGULAR(() => area.addEventListener('mousedown', () => {
-        RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mousemove', dragHandler));
-        RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mouseup', () =>
-          RUN_OUTSIDE_ANGULAR(() => window.removeEventListener('mousemove', dragHandler))
+      RUN_OUTSIDE_ANGULAR(() => on(area, 'mousedown', () => {
+        RUN_OUTSIDE_ANGULAR(() => on(window, 'mousemove', dragHandler));
+        RUN_OUTSIDE_ANGULAR(() => on(window, 'mouseup', () =>
+          RUN_OUTSIDE_ANGULAR(() => un(window, 'mousemove', dragHandler))
         ));
         return false;
-      }, false));
+      }));
 
       const resize = ([image, area, root]) => {
         const { naturalWidth, naturalHeight } = image;
@@ -326,6 +343,9 @@ namespace mark {
         let [x1, y1] = [null, null]; // mouse relative to image
 
         const dragHandler = ({ pageX, pageY }) => {
+          const {scrollX, scrollY} = window;
+          pageX -= scrollX;
+          pageY -= scrollY;
           const { top, left, right, bottom, height, width } = area.getBoundingClientRect();
           x1 = max(leftAnchor ? min(pageX - left, width - RIGHT) : min(-1 * (pageX - right), width - LEFT), 0);
           y1 = max(topAnchor ? min(pageY - top, height - BOTTOM) : min(-1 * (pageY - bottom), height - TOP), 0);
@@ -333,13 +353,13 @@ namespace mark {
           setVertical(y1);
         };
 
-        RUN_OUTSIDE_ANGULAR(() => control.addEventListener('mousedown', () => {
-          RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mousemove', dragHandler));
-          RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mouseup', () =>
-            RUN_OUTSIDE_ANGULAR(() => window.removeEventListener('mousemove', dragHandler))
+        RUN_OUTSIDE_ANGULAR(() => on(control, 'mousedown', () => {
+          RUN_OUTSIDE_ANGULAR(() => on(window, 'mousemove', dragHandler));
+          RUN_OUTSIDE_ANGULAR(() => on(window, 'mouseup', () =>
+            RUN_OUTSIDE_ANGULAR(() => un(window, 'mousemove', dragHandler))
           ));
           return false;
-        }, false));
+        }));
 
         return control;
       };
@@ -455,6 +475,10 @@ namespace mark {
 
         const dragHandler = ({ pageX, pageY }) => {
 
+          const {scrollX, scrollY} = window;
+          pageX -= scrollX;
+          pageY -= scrollY;
+
           let move = null;
           let check = null;
 
@@ -532,17 +556,17 @@ namespace mark {
 
         };
 
-        RUN_OUTSIDE_ANGULAR(() => control.addEventListener('mousedown', () => {
+        RUN_OUTSIDE_ANGULAR(() => on(control, 'mousedown', () => {
           toRight = 0;
           resizing = true;
-          RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mousemove', dragHandler));
-          RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mouseup', () => {
-            RUN_OUTSIDE_ANGULAR(() => window.removeEventListener('mousemove', dragHandler));
+          RUN_OUTSIDE_ANGULAR(() => on(window, 'mousemove', dragHandler));
+          RUN_OUTSIDE_ANGULAR(() => on(window, 'mouseup', () => {
+            RUN_OUTSIDE_ANGULAR(() => un(window, 'mousemove', dragHandler));
             toRight = 0;
             resizing = false;
           }));
           return false;
-        }, false));
+        }));
 
         return control;
       };
@@ -555,6 +579,10 @@ namespace mark {
       let [dx, dy] = [null, null]; // pos delta
 
       const dragHandler = ({ pageX, pageY }) => {
+
+        const {scrollX, scrollY} = window;
+        pageX -= scrollX;
+        pageY -= scrollY;
 
         {
           const { top, left } = area.parentElement.getBoundingClientRect();
@@ -574,13 +602,13 @@ namespace mark {
         }
       };
 
-      RUN_OUTSIDE_ANGULAR(() => area.addEventListener('mousedown', () => {
-        RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mousemove', dragHandler));
-        RUN_OUTSIDE_ANGULAR(() => window.addEventListener('mouseup', () =>
-          RUN_OUTSIDE_ANGULAR(() => window.removeEventListener('mousemove', dragHandler))
+      RUN_OUTSIDE_ANGULAR(() => on(area, 'mousedown', () => {
+        RUN_OUTSIDE_ANGULAR(() => on(window, 'mousemove', dragHandler));
+        RUN_OUTSIDE_ANGULAR(() => on(window, 'mouseup', () =>
+          RUN_OUTSIDE_ANGULAR(() => un(window, 'mousemove', dragHandler))
         ));
         return false;
-      }, false));
+      }));
 
       const resize = ([image, area, root]) => {
         const { naturalWidth, naturalHeight } = image;
@@ -734,7 +762,7 @@ namespace mark {
           observer.unobserve(img);
           img.src = '#';
           img.parentElement.removeChild(img);
-          console.log('dispose');
+          debug.log('dispose');
         }
       };
 
@@ -793,8 +821,8 @@ namespace mark {
       left = 10,
       height = 125,
       width = 125,
-      imageSrc = '',
       lineColor = 'cyan',
+      imageSrc = '',
       backgroundColor = 'rgba(0, 0, 0, 0.5)',
     ) => [
         'rect', entityId, top, left, height, width, imageSrc, lineColor, backgroundColor
@@ -816,8 +844,8 @@ namespace mark {
       top = 10,
       left = 10,
       side = 125,
-      imageSrc = '',
       lineColor = 'cyan',
+      imageSrc = '',
       backgroundColor = 'rgba(0, 0, 0, 0.5)',
       moveDelta = 25,
     ) => [

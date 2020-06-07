@@ -6,7 +6,8 @@
 namespace mark {
 
   const {
-    uuid
+    uuid,
+    color,
   } = utils;
 
   const {
@@ -74,9 +75,9 @@ namespace mark {
     };
 
     const lowLevelCords = (cords: ICord[]) => cords.map(({
-      id, type, height, width, top, left
-    }) => type === 'rect' ? rect(id, top, left, height, width)
-      : type === 'square' ? square(id, top, left, max(height, width))
+      id, type, height, width, top, left, color
+    }) => type === 'rect' ? rect(id, top, left, height, width, color)
+      : type === 'square' ? square(id, top, left, max(height, width), color)
       : console.error('lowLevelCords invalid cord type', type)
     );
 
@@ -94,6 +95,7 @@ namespace mark {
       width: 100,
       height: 100,
       name: 'some-class',
+      color: color(),
     });
 
     export const Editor = ({
@@ -114,7 +116,7 @@ namespace mark {
 
       const onChangeCords = ({ type, id, top, left, height, width }) => setCords(
         (cords) => cords.map((c) => c.id === id ? {
-          type, id, top, left, height, width, name: c.name
+          type, id, top, left, height, width, name: c.name, color: c.color
         } : c)
       );
 
