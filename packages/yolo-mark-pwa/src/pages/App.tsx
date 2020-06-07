@@ -60,6 +60,7 @@ namespace mark {
     export const App = () => {
 
       const classes = useStyles();
+      useForceUpdate();
 
       const [cordsList, setCordsList] = useState<Map<string, ICord[]>>(new Map());
       const [currentFile, setCurrentFile] = useState<IFile>(null);
@@ -79,11 +80,7 @@ namespace mark {
         const { name, naturalHeight, naturalWidth } = file;
         saveMarkupFile(cords.map(({name, top, left, height, width}) =>
           createExportCord({
-            bottom: (naturalHeight - top) - height,
-            right: (naturalWidth - left) - width,
-            height: naturalHeight,
-            width: naturalWidth,
-            name, top, left,
+            name, top, left, height, width, naturalHeight, naturalWidth
           })
         ).join("\n"), withoutExtension(name) + '.txt');
       };
