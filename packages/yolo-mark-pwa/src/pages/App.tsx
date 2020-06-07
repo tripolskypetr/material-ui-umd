@@ -60,7 +60,6 @@ namespace mark {
     export const App = () => {
 
       const classes = useStyles();
-      useForceUpdate();
 
       const [cordsList, setCordsList] = useState<Map<string, ICord[]>>(new Map());
       const [currentFile, setCurrentFile] = useState<IFile>(null);

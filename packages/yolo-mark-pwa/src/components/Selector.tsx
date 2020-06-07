@@ -94,7 +94,9 @@ namespace mark {
       }, [src, id, cords]);
 
       return (
-        <div className={classes.parent} ref={parentRef}></div>
+        <div className={classes.parent} ref={parentRef}>
+          <img src={src}/>
+        </div>
       );
     };
 
