@@ -15,11 +15,13 @@ namespace mark {
     // tslint:disable-next-line: new-parens
     const touchManager = new class {
       _wrappers = new Map();
-      applyTouchWrapper(callback) {
+      applyTouchWrapper(callback, passive = false) {
         const handler = (e) => {
           const {touches} = e;
-          e.preventDefault();
-          e.stopPropagation();
+          if (!passive) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
           callback(touches[0]);
         };
         this._wrappers.set(callback, handler);
@@ -34,7 +36,7 @@ namespace mark {
 
     const on = (ref, event, callback) => {
       if (event === 'mousemove') {
-        const wrapped = touchManager.applyTouchWrapper(callback);
+        const wrapped = touchManager.applyTouchWrapper(callback, true);
         ref.addEventListener('mousemove', callback);
         ref.addEventListener('touchmove', wrapped);
       } else if (event === 'mousedown') {
@@ -42,7 +44,7 @@ namespace mark {
         ref.addEventListener('mousedown', callback);
         ref.addEventListener('touchstart', wrapped);
       } else if (event === 'mouseup') {
-        const wrapped = touchManager.applyTouchWrapper(callback);
+        const wrapped = touchManager.applyTouchWrapper(callback, true);
         ref.addEventListener('mouseup', callback);
         ref.addEventListener('touchend', wrapped);
       } else {
