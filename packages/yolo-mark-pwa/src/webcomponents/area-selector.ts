@@ -16,7 +16,12 @@ namespace mark {
     const touchManager = new class {
       _wrappers = new Map();
       applyTouchWrapper(callback) {
-        const handler = ({touches}) => callback(touches[0]);
+        const handler = (e) => {
+          const {touches} = e;
+          e.preventDefault();
+          e.stopPropagation();
+          callback(touches[0]);
+        };
         this._wrappers.set(callback, handler);
         return handler;
       }
@@ -818,6 +823,8 @@ namespace mark {
         resizePipeline.exec([img, area, root]);
         area.style.visibility = 'visible';
       };
+      img.style.touchAction = 'none';
+      img.style.pointerEvents = 'none';
       img.style.position = 'absolute';
       img.crossOrigin = 'anonymous';
       img.style.width = '100%';
