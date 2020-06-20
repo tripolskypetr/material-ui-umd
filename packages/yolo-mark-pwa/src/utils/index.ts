@@ -4,3 +4,4 @@
 /// <reference path="./createExportCord.ts"/>
 /// <reference path="./saveMarkupFile.ts"/>
 /// <reference path="./readExportCord.ts"/>
+/// <reference path="./saveImageFile.ts"/>

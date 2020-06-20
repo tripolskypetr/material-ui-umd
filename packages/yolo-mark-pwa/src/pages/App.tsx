@@ -6,6 +6,7 @@ namespace mark {
 
   const {
     openImage,
+    saveImageFile,
     saveMarkupFile,
     createExportCord,
   } = utils;
@@ -65,6 +66,7 @@ namespace mark {
       const [cordsList, setCordsList] = useState<Map<string, ICord[]>>(new Map());
       const [currentFile, setCurrentFile] = useState<IFile>(null);
       const [files, setFiles] = useState<IFile[]>([]);
+      const [crop, setCrop] = useState(false);
 
       const getInitialCords = (file: IFile) => {
         const {url} = file;
@@ -77,12 +79,19 @@ namespace mark {
 
       const onSave = (url, cords) => {
         const file = files.find((f) => f.url === url);
-        const { name, naturalHeight, naturalWidth } = file;
-        saveMarkupFile(cords.map(({name, top, left, height, width}) =>
-          createExportCord({
-            name, top, left, height, width, naturalHeight, naturalWidth
-          })
-        ).join("\n"), withoutExtension(name) + '.txt');
+        if (crop) {
+          const roi = cords.find((c) => c.type === 'roi');
+          const {top, left, height, width} = roi;
+          const {url, name} = file;
+          saveImageFile({url, name, top, left, height, width});
+        } else {
+          const { name, naturalHeight, naturalWidth } = file;
+          saveMarkupFile(cords.map(({name, top, left, height, width}) =>
+            createExportCord({
+              name, top, left, height, width, naturalHeight, naturalWidth
+            })
+          ).join("\n"), withoutExtension(name) + '.txt');
+        }
       };
 
       const onAddImage = async () => {
@@ -97,7 +106,7 @@ namespace mark {
         setFiles((files) => files.filter((f) => f.url !== url));
       }
 
-      const onSelectImage = (url) => 
+      const onSelectImage = (url) =>
         setCurrentFile(files.find((f) => f.url === url));
 
       const onEditorChange = (url, cords) => setCordsList((cordsList) => {
@@ -111,6 +120,7 @@ namespace mark {
             <Editor
               src={currentFile.url}
               name={currentFile.name}
+              onCrop={(v) =>setCrop(v)}
               naturalWidth={currentFile.naturalWidth}
               naturalHeight={currentFile.naturalHeight}
               initialCords={getInitialCords(currentFile)}

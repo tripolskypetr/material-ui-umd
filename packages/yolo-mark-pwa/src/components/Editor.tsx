@@ -19,20 +19,21 @@ namespace mark {
   } = React;
 
   const {
+    roi,
     rect,
     square,
   } = webcomponents;
 
   const {
-    makeStyles
+    makeStyles,
   } = material.styles;
 
   const {
-    max
+    max,
   } = Math;
 
   const {
-    Typography
+    Typography,
   } = material.core;
 
   export namespace components {
@@ -80,10 +81,11 @@ namespace mark {
       }
     };
 
-    const lowLevelCords = (cords: ICord[]) => cords.map(({
+    const lowLevelCords = (cords: ICord[], naturalHeight = 100, naturalWidth = 100) => cords.map(({
       id, type, height, width, top, left, color
     }) => type === 'rect' ? rect(id, top, left, height, width, color)
       : type === 'square' ? square(id, top, left, max(height, width), color)
+      : type === 'roi' ? roi(top, left, naturalWidth - left - width, naturalHeight - top - height, color)
       : console.error('lowLevelCords invalid cord type', type)
     );
 
@@ -113,6 +115,7 @@ namespace mark {
       initialCords = [],
       naturalHeight = 100,
       naturalWidth = 100,
+      onCrop = (crop) => console.log({crop}),
       onSave = (cords) => console.log({cords}),
       onChange = (cords) => console.log({cords}),
     }) => {
@@ -142,8 +145,29 @@ namespace mark {
         setCords(cords);
       };
 
+      const onCropChanged = (enabled = false) => {
+        setCords((cords) => {
+          if (enabled && !cords.find((c) => c.type === 'roi')) {
+            const roi: ICord = {
+              type: 'roi',
+              id: 'roi',
+              color: '#ff00ff',
+              top: 50,
+              left: 50,
+              height: naturalHeight - 100,
+              width: naturalWidth - 100,
+              name: 'Roi area',
+            };
+            return [...cords, roi];
+          } else if (!enabled) {
+            return cords.filter((c) => c.type !== 'roi');
+          }
+        });
+        onCrop(enabled);
+      };
+
       useEffect(() => {
-        const newCords = lowLevelCords(cords);
+        const newCords = lowLevelCords(cords, naturalHeight, naturalWidth);
         if (!deepCompare(newCords, lowCords)) {
           setLowCords(newCords);
         }
@@ -163,12 +187,15 @@ namespace mark {
             cords={lowCords}
             src={src}
             id={src}
+            naturalHeight={naturalHeight}
+            naturalWidth={naturalWidth}
             onChange={debounce(onChangeCords, 200)} />
           <div className={classes.container}>
             <CordPicker
               cords={cords}
               onNameChanged={onNameChanged}
               onSave={() => onSave(cords)}
+              onCrop={onCropChanged}
               onLoad={onLoad}
               onDelete={onDelete}
               onAddRect={onAddRect}

@@ -31,6 +31,8 @@ namespace mark {
       src = 'image.png',
       id = 'unset',
       cords = [],
+      naturalHeight = 100,
+      naturalWidth = 100,
       onChange = (...args) => console.log({args}),
     }) => {
 
@@ -47,16 +49,20 @@ namespace mark {
           </area-selector>
         `;
         const roi = (args) => {
-          const [id, top, left, right, bottom] = args;
+          const [top, left, right, bottom] = args;
           const {current} = mountRef;
           if (current)
-            onChange({type: 'roi', id, top, left, right, bottom});
+            onChange({
+              type: 'roi', id: 'roi', top, left,
+              height: naturalHeight - top - bottom,
+              width: naturalWidth - left - right,
+            });
         };
         const rect = (args) => {
           const [id, top, left, height, width] = args;
           const {current} = mountRef;
           if (current)
-            onChange({type: 'rect', top, left, height, width, id});
+            onChange({type: 'rect', id, top, left, height, width});
         };
         const square = (args) => {
           const [id, top, left, side] = args;

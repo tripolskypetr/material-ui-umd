@@ -1,7 +1,7 @@
 namespace mark {
 
   export interface ICord {
-    type: 'rect' | 'square',
+    type: 'rect' | 'square' | 'roi',
     color: string,
     name: string,
     id: string,
