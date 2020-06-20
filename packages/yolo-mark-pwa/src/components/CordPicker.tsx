@@ -33,6 +33,10 @@ namespace mark {
     Save,
   } = material.icons;
 
+  const {
+    round
+  } = Math;
+
   export namespace components {
 
     const useStyles = makeStyles((theme) => ({
@@ -108,12 +112,12 @@ namespace mark {
                     <TextField disabled={type === 'roi'} onChange={(e) => onChange(id, e)} value={name} label="Some class" />
                   </TableCell>
                   <TableCell align="center">{type}</TableCell>
-                  <TableCell align="center">{top}</TableCell>
-                  <TableCell align="center">{left}</TableCell>
-                  <TableCell align="center">{height}</TableCell>
-                  <TableCell align="center">{width}</TableCell>
+                  <TableCell align="center">{round(top)}</TableCell>
+                  <TableCell align="center">{round(left)}</TableCell>
+                  <TableCell align="center">{round(height)}</TableCell>
+                  <TableCell align="center">{round(width)}</TableCell>
                   <TableCell align="right">
-                    <IconButton onClick={() => onDelete(id)}>
+                    <IconButton disabled={type === 'roi'} onClick={() => onDelete(id)}>
                       <Delete />
                     </IconButton>
                   </TableCell>

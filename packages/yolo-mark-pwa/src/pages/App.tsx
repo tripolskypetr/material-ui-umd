@@ -34,6 +34,11 @@ namespace mark {
     useCallback,
   } = React;
 
+  const {
+    min,
+    max,
+  } = Math;
+
   export namespace pages {
 
     const useStyles = makeStyles((theme) => ({
@@ -79,14 +84,47 @@ namespace mark {
 
       const onSave = (url, cords) => {
         const file = files.find((f) => f.url === url);
+
+        const applyRoiAdjust = (cords, roi) => {
+          const {top, left, height, width} = roi;
+          const heightClearfix = (c) => {
+            if ((c.top + c.height) > (top + height)) {
+              return c.height - ((c.top + c.height) - (top + height));
+            } else {
+              return c.height;
+            }
+          };
+          const widthClearfix = (c) => {
+            if ((c.left + c.width) > (left + width)) {
+              return c.width - ((c.left + c.width) - (left + width));
+            } else {
+              return c.width;
+            }
+          };
+          return cords.slice().filter((type) => type !== 'roi').map((c) => ({
+            ...c,
+            top: max(c.top - top, 0),
+            left: max(c.left - left, 0),
+            height: heightClearfix(c),
+            width: widthClearfix(c),
+          }));
+        };
+
         if (crop) {
           const roi = cords.find((c) => c.type === 'roi');
           const {top, left, height, width} = roi;
           const {url, name} = file;
           saveImageFile({url, name, top, left, height, width});
+          saveMarkupFile(applyRoiAdjust(cords, roi).map(({name, top, left, height, width}) =>
+            createExportCord({
+              name, top, left, height, width,
+              naturalHeight: roi.height,
+              naturalWidth: roi.width,
+            })
+          ).join("\n"), withoutExtension(name) + '.txt');
         } else {
           const { name, naturalHeight, naturalWidth } = file;
-          saveMarkupFile(cords.map(({name, top, left, height, width}) =>
+          saveMarkupFile(cords.filter((type) => type !== 'roi').map(({name, top, left, height, width}) =>
             createExportCord({
               name, top, left, height, width, naturalHeight, naturalWidth
             })

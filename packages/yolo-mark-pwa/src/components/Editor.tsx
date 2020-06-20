@@ -148,14 +148,15 @@ namespace mark {
       const onCropChanged = (enabled = false) => {
         setCords((cords) => {
           if (enabled && !cords.find((c) => c.type === 'roi')) {
+            const side = Math.min(naturalWidth, naturalHeight) * 0.05;
             const roi: ICord = {
               type: 'roi',
               id: 'roi',
               color: '#ff00ff',
-              top: 50,
-              left: 50,
-              height: naturalHeight - 100,
-              width: naturalWidth - 100,
+              top: side,
+              left: side,
+              height: naturalHeight - (2 * side),
+              width: naturalWidth - (2 * side),
               name: 'Roi area',
             };
             return [...cords, roi];
@@ -163,7 +164,7 @@ namespace mark {
             return cords.filter((c) => c.type !== 'roi');
           }
         });
-        onCrop(enabled);
+        setTimeout(() => onCrop(enabled));
       };
 
       useEffect(() => {
