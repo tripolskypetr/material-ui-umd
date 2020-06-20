@@ -137,12 +137,12 @@ namespace mark {
 
       const onLoad = async () => {
         const line = await openMarkup();
-        const cords = readExportCord({
+        setCords([]);
+        setTimeout(() => setCords(readExportCord({
           lines: line.split('\n'),
           naturalHeight,
           naturalWidth,
-        });
-        setCords(cords);
+        })));
       };
 
       const onCropChanged = (enabled = false) => {
