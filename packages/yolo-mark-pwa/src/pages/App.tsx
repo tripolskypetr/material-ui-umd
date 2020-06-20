@@ -101,7 +101,7 @@ namespace mark {
               return c.width;
             }
           };
-          return cords.slice().filter((type) => type !== 'roi').map((c) => ({
+          return cords.slice().filter(({type}) => type !== 'roi').map((c) => ({
             ...c,
             top: max(c.top - top, 0),
             left: max(c.left - left, 0),
@@ -124,7 +124,7 @@ namespace mark {
           ).join("\n"), withoutExtension(name) + '.txt');
         } else {
           const { name, naturalHeight, naturalWidth } = file;
-          saveMarkupFile(cords.filter((type) => type !== 'roi').map(({name, top, left, height, width}) =>
+          saveMarkupFile(cords.filter(({type}) => type !== 'roi').map(({name, top, left, height, width}) =>
             createExportCord({
               name, top, left, height, width, naturalHeight, naturalWidth
             })
