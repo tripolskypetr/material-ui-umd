@@ -35,8 +35,8 @@ namespace mark {
   } = React;
 
   const {
-    min,
     max,
+    min,
   } = Math;
 
   export namespace pages {
@@ -85,30 +85,14 @@ namespace mark {
       const onSave = (url, cords) => {
         const file = files.find((f) => f.url === url);
 
-        const applyRoiAdjust = (cords, roi) => {
-          const {top, left, height, width} = roi;
-          const heightClearfix = (c) => {
-            if ((c.top + c.height) > (top + height)) {
-              return c.height - ((c.top + c.height) - (top + height));
-            } else {
-              return c.height;
-            }
-          };
-          const widthClearfix = (c) => {
-            if ((c.left + c.width) > (left + width)) {
-              return c.width - ((c.left + c.width) - (left + width));
-            } else {
-              return c.width;
-            }
-          };
-          return cords.slice().filter(({type}) => type !== 'roi').map((c) => ({
+        const applyRoiAdjust = (cords, roi) => cords.slice()
+          .filter(({type}) => type !== 'roi').map((c) => ({
             ...c,
-            top: max(c.top - top, 0),
-            left: max(c.left - left, 0),
-            height: heightClearfix(c),
-            width: widthClearfix(c),
+            top: max(c.top - roi.top, 0),
+            left: max(c.left - roi.left, 0),
+            height: min(max(c.top + c.height - roi.top, 0), max(roi.top + roi.height - c.top, 0), roi.height),
+            width: min(max(c.left + c.width - roi.left, 0), max(roi.left + roi.width - c.left, 0), roi.width),
           }));
-        };
 
         if (crop) {
           const roi = cords.find((c) => c.type === 'roi');
