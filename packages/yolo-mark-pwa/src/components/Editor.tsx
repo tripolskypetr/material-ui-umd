@@ -168,18 +168,15 @@ namespace mark {
       };
 
       useEffect(() => {
-        const newCords = lowLevelCords(cords, naturalHeight, naturalWidth);
+        const newCords = lowLevelCords(initialCords, naturalHeight, naturalWidth);
         if ((newCords as any).flat(Infinity).find((v) => typeof v === 'number' && isNaN(v)) !== undefined) {
           return;
         }
         if (!deepCompare(newCords, lowCords)) {
           setLowCords(newCords);
+          setCords(initialCords);
         }
         onChange(cords);
-      }, [cords]);
-
-      useEffect(() => {
-        setCords(initialCords);
       }, [initialCords]);
 
       return (
@@ -193,7 +190,7 @@ namespace mark {
             id={src}
             naturalHeight={naturalHeight}
             naturalWidth={naturalWidth}
-            onChange={debounce(onChangeCords, 2000)} />
+            onChange={debounce(onChangeCords, 200)} />
           <div className={classes.container}>
             <CordPicker
               cords={cords}
