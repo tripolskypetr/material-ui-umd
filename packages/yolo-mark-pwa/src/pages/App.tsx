@@ -75,16 +75,15 @@ namespace mark {
       const [files, setFiles] = useState<IFile[]>([]);
       const [crop, setCrop] = useState(false);
 
-      const getInitialCords = (file: IFile) => {
-        const {url} = file;
+      const getInitialCords = useCallback((url) => {
         if (cordsList && cordsList.has(url)) {
           return cordsList.get(url);
         } else {
           return [];
         }
-      };
+      }, [cordsList]);
 
-      const onSave = (url, cords) => {
+      const onSave = useCallback((url, cords) => {
         const file = files.find((f) => f.url === url);
 
         const applyRoiAdjust = (cords, roi) => cords.slice()
@@ -116,7 +115,7 @@ namespace mark {
             })
           ).join("\n"), withoutExtension(name) + '.txt');
         }
-      };
+      }, [files]);
 
       const onAddImage = async () => {
         const file: IFile = await openImage();
@@ -166,16 +165,17 @@ namespace mark {
 
       const render = () => {
         if (currentFile) {
+          const {url, name, naturalWidth, naturalHeight} = currentFile;
           return (
             <Editor
-              src={currentFile.url}
-              name={currentFile.name}
-              onCrop={(v) =>setCrop(v)}
-              naturalWidth={currentFile.naturalWidth}
-              naturalHeight={currentFile.naturalHeight}
-              initialCords={getInitialCords(currentFile)}
-              onSave={(cords) => onSave(currentFile.url, cords)}
-              onChange={(c) => onEditorChange(currentFile.url, c)}/>
+              src={url}
+              name={name}
+              onCrop={(v) => setCrop(v)}
+              naturalWidth={naturalWidth}
+              naturalHeight={naturalHeight}
+              initialCords={getInitialCords(url)}
+              onSave={(cords) => onSave(url, cords)}
+              onChange={(c) => onEditorChange(url, c)}/>
           );
         } else {
           return (

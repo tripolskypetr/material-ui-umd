@@ -78,7 +78,9 @@ namespace mark {
             }
           },
           (refId, type, ...args) => {
-            if (refId === id) {
+            if (args.find((v) => typeof v === 'number' && isNaN(v)) !== undefined) {
+              return;
+            } else if (refId === id) {
               switch (type) {
                 case 'rect-area-changed':
                   rect(args);

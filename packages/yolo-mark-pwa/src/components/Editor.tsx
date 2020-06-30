@@ -188,13 +188,13 @@ namespace mark {
           setLowCords(newCords);
           setCords(initialCords);
         }
-        onChange(cords);
       }, [initialCords]);
 
       useEffect(() => {
         if (internalUpdate.current) {
           setLowCords(lowLevelCords(cords, naturalHeight, naturalWidth));
           internalUpdate.current = false;
+          onChange(cords);
         }
       }, [cords]);
 
