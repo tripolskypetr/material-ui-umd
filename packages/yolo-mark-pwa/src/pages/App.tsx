@@ -14,6 +14,7 @@ namespace mark {
   const {
     Files,
     Editor,
+    DragAndDrop,
   } = components;
 
   const {
@@ -31,6 +32,7 @@ namespace mark {
 
   const {
     useState,
+    useEffect,
     useCallback,
   } = React;
 
@@ -122,11 +124,22 @@ namespace mark {
         setCurrentFile(file);
       };
 
-      const onRemoveImage = (url) => {
-        URL.revokeObjectURL(url);
-        setCurrentFile(files.length > 1 ? files[0] : null);
-        setFiles((files) => files.filter((f) => f.url !== url));
-      }
+      const onGo = useCallback((go) => {
+        if (currentFile) {
+          const {url} = currentFile;
+          const [index] = files.map((v, i) => [i, v]).find(([, v]) => (v as IFile).url === url);
+          const file = files[index + go];
+          if (file) {
+            setCurrentFile(file);
+          }
+        }
+      }, [currentFile, files]);
+
+      const onRemoveImage = (url) => setFiles((files) => {
+        const result = files.filter((f) => f.url !== url);
+        setCurrentFile(result.length === 0 ? null : result[0]);
+        return result;
+      });
 
       const onSelectImage = (url) =>
         setCurrentFile(files.find((f) => f.url === url));
@@ -135,6 +148,21 @@ namespace mark {
         cordsList.set(url, cords);
         return cordsList;
       });
+
+      const onDropped = (files, cords) => {
+        setFiles(files);
+        setCordsList(cords);
+      };
+
+      useEffect(() => {
+        const handler = (e) => {
+          e.preventDefault();
+          const {key} = e;
+          onGo(key === 'ArrowUp' ? -1 : key === 'ArrowDown' ? 1 : 0);
+        };
+        document.addEventListener('keydown', handler);
+        return () => document.removeEventListener('keydown', handler);
+      }, [onGo]);
 
       const render = () => {
         if (currentFile) {
@@ -151,19 +179,28 @@ namespace mark {
           );
         } else {
           return (
-            <Typography className={classes.openFile} variant="h4">
-              Please open file to continue
-            </Typography>
+            <div className={classes.openFile}>
+              <Typography variant="h4">
+                Please open file to continue
+              </Typography>
+              <br/>
+              <Typography variant="subtitle1">
+                Or drag multiple files together with txt markup (optionally) directly into the browser window. Only .png and .jpg extensions are supported
+              </Typography>
+            </div>
           );
         }
       };
 
       return (
         <Fragment>
+          <DragAndDrop onDropped={onDropped}/>
           <Drawer variant="permanent" open={true} className={classes.drawer}>
             <Files
-              onAdd={onAddImage}
               files={files}
+              current={currentFile?.url}
+              onGo={onGo}
+              onAdd={onAddImage}
               onRemove={onRemoveImage}
               onSelect={onSelectImage}/>
           </Drawer>

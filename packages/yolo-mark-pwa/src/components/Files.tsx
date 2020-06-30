@@ -20,6 +20,8 @@ namespace mark {
     Add,
     Image,
     Clear,
+    ArrowDropUp,
+    ArrowDropDown,
   } = material.icons;
 
   export namespace components {
@@ -37,14 +39,19 @@ namespace mark {
         maxWidth: '120px',
         overflow: 'hidden',
       },
+      focused: {
+        background: '#ffffff1a',
+      },
     }));
 
     export const Files = ({
       files = [
-        {name: 'file.png', date: 'Jan 9, 2014', url: 'unset'}
+        {name: 'file.png', date: 'Jan 9, 2014', url: 'unset', color: '#424242'}
       ],
+      current = '',
       onSelect = (select) => console.log({ select }),
       onRemove = (remove) => console.log({ remove }),
+      onGo = (go) => console.log({go}),
       onAdd = () => console.log('add'),
     }) => {
       const classes = useStyles();
@@ -64,15 +71,21 @@ namespace mark {
                 Files
               </Typography>
             </Box>
-            <IconButton onClick={onAdd}>
+            <IconButton size="small" onClick={() => onGo(-1)}>
+              <ArrowDropUp />
+            </IconButton>
+            <IconButton size="small" onClick={() => onGo(1)}>
+              <ArrowDropDown />
+            </IconButton>
+            <IconButton size="small" onClick={onAdd}>
               <Add />
             </IconButton>
           </Box>
-          {files.map(({name, date, url}, index) => (
-            <ListItem onClick={() => onSelect(url)} button key={index}>
+          {files.map(({name, date, url, color}, index) => (
+            <ListItem className={classNames({[classes.focused]: url === current})} onClick={() => onSelect(url)} button key={index}>
               <ListItemAvatar>
                 <Avatar>
-                  <Image />
+                  <Image style={{color}} />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText className={classes.maxWidth} primary={name} secondary={date} />

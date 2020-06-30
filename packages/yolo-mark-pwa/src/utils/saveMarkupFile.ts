@@ -9,7 +9,6 @@ namespace mark {
       const a = document.createElement('a');
       [a.href, a.download] = [url, name];
       a.click();
-      window.URL.revokeObjectURL(url);
     };
 
   } // namespace utils
