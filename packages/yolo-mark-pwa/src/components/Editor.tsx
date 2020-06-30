@@ -65,7 +65,7 @@ namespace mark {
         return false;
       } else {
         const l1: any[][] = low1.sort(([id1, type1], [id2, type2]) => `${id1}${type1}`.localeCompare(`${id2}${type2}`));
-        const l2: any[][] = low1.sort(([id1, type1], [id2, type2]) => `${id1}${type1}`.localeCompare(`${id2}${type2}`));
+        const l2: any[][] = low2.sort(([id1, type1], [id2, type2]) => `${id1}${type1}`.localeCompare(`${id2}${type2}`));
         const pairs = l1.map((item, index) => [item, l2[index]])
         for (const [current, other] of pairs) {
           if (current.length !== other.length) {
@@ -169,6 +169,9 @@ namespace mark {
 
       useEffect(() => {
         const newCords = lowLevelCords(cords, naturalHeight, naturalWidth);
+        if ((newCords as any).flat(Infinity).find((v) => typeof v === 'number' && isNaN(v)) !== undefined) {
+          return;
+        }
         if (!deepCompare(newCords, lowCords)) {
           setLowCords(newCords);
         }
@@ -190,7 +193,7 @@ namespace mark {
             id={src}
             naturalHeight={naturalHeight}
             naturalWidth={naturalWidth}
-            onChange={debounce(onChangeCords, 200)} />
+            onChange={debounce(onChangeCords, 2000)} />
           <div className={classes.container}>
             <CordPicker
               cords={cords}
