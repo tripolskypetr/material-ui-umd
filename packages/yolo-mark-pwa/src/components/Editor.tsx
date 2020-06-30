@@ -14,6 +14,7 @@ namespace mark {
 
   const {
     Fragment,
+    useRef,
     useState,
     useEffect,
   } = React;
@@ -122,11 +123,21 @@ namespace mark {
 
       const [cords, setCords] = useState<ICord[]>(initialCords);
       const [lowCords, setLowCords] = useState([]);
+      const internalUpdate = useRef(false);
       const classes = useStyles();
 
-      const onAddRect = () => setCords((cords) => [...cords, defaultCord('rect')]);
-      const onDelete = (id) => setCords((cords) => cords.filter((c) => c.id !== id));
-      const onAddSquare = () => setCords((cords) => [...cords, defaultCord('square')]);
+      const onAddRect = () => {
+        setCords((cords) => [...cords, defaultCord('rect')]);
+        internalUpdate.current = true;
+      };
+      const onDelete = (id) => {
+        setCords((cords) => cords.filter((c) => c.id !== id));
+        internalUpdate.current = true;
+      };
+      const onAddSquare = () => {
+        setCords((cords) => [...cords, defaultCord('square')]);
+        internalUpdate.current = true;
+      };
       const onNameChanged = (id, name) => setCords((cords) => cords.map((c) => c.id === id ? {...c, name} : c));
 
       const onChangeCords = ({ type, id, top, left, height, width }) => setCords(
@@ -137,12 +148,12 @@ namespace mark {
 
       const onLoad = async () => {
         const lines = await openMarkup();
-        setCords([]);
-        setTimeout(() => setCords(readExportCord({
+        setCords(readExportCord({
           naturalHeight,
           naturalWidth,
           lines,
-        })));
+        }));
+        internalUpdate.current = true;
       };
 
       const onCropChanged = (enabled = false) => {
@@ -165,6 +176,7 @@ namespace mark {
           }
         });
         setTimeout(() => onCrop(enabled));
+        internalUpdate.current = true;
       };
 
       useEffect(() => {
@@ -178,6 +190,13 @@ namespace mark {
         }
         onChange(cords);
       }, [initialCords]);
+
+      useEffect(() => {
+        if (internalUpdate.current) {
+          setLowCords(lowLevelCords(cords, naturalHeight, naturalWidth));
+          internalUpdate.current = false;
+        }
+      }, [cords]);
 
       return (
         <Fragment>
