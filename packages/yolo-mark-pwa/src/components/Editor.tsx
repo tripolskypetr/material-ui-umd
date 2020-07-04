@@ -194,6 +194,7 @@ namespace mark {
         if (internalUpdate.current) {
           setLowCords(lowLevelCords(cords, naturalHeight, naturalWidth));
           internalUpdate.current = false;
+        } else {
           onChange(cords);
         }
       }, [cords]);
