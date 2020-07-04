@@ -73,7 +73,6 @@ namespace mark {
       const [cordsList, setCordsList] = useState<Map<string, ICord[]>>(new Map());
       const [currentFile, setCurrentFile] = useState<IFile>(null);
       const [files, setFiles] = useState<IFile[]>([]);
-      const [crop, setCrop] = useState(false);
 
       const getInitialCords = useCallback((url) => {
         if (cordsList && cordsList.has(url)) {
@@ -83,6 +82,17 @@ namespace mark {
         }
       }, [cordsList]);
 
+      const setCrop = useCallback((crop: boolean) => {
+        setCurrentFile({...currentFile, crop});
+        setFiles(files.map((f) => {
+          if (f.url === currentFile.url) {
+            return {...f, crop};
+          } else {
+            return f;
+          }
+        }));
+      }, [currentFile, files]);
+
       const onSave = useCallback((url, cords) => {
         const file = files.find((f) => f.url === url);
 
@@ -91,11 +101,11 @@ namespace mark {
             ...c,
             top: max(c.top - roi.top, 0),
             left: max(c.left - roi.left, 0),
-            height: min(max(c.top + c.height - roi.top, 0), max(roi.top + roi.height - c.top, 0), roi.height),
-            width: min(max(c.left + c.width - roi.left, 0), max(roi.left + roi.width - c.left, 0), roi.width),
+            height: c.height - Math.max((c.top + c.height) - (roi.top + roi.height), 0) - Math.max(roi.top - c.top, 0),
+            width: c.width - Math.max((c.left + c.width) - (roi.left + roi.width), 0) - Math.max(roi.left - c.left, 0),
           }));
 
-        if (crop) {
+        if (file.crop) {
           const roi = cords.find((c) => c.type === 'roi');
           const {top, left, height, width} = roi;
           const {url, name} = file;
@@ -173,11 +183,12 @@ namespace mark {
 
       const render = () => {
         if (currentFile) {
-          const {url, name, naturalWidth, naturalHeight} = currentFile;
+          const {url, name, naturalWidth, naturalHeight, crop} = currentFile;
           return (
             <Editor
               src={url}
               name={name}
+              crop={crop}
               onCrop={(v) => setCrop(v)}
               naturalWidth={naturalWidth}
               naturalHeight={naturalHeight}

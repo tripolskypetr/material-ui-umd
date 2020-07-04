@@ -21,7 +21,7 @@ namespace mark {
         const date = new Date(file.lastModified).toISOString();
         const {naturalHeight, naturalWidth} = await readSize(url);
         const color = await averageColor(url);
-        res({url, name: file.name, date, naturalHeight, naturalWidth, color});
+        res({url, name: file.name, date, naturalHeight, naturalWidth, color, crop: false});
       };
     });
 

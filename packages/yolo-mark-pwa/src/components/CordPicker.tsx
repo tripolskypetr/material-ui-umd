@@ -72,6 +72,7 @@ namespace mark {
           width: 100,
         }
       ],
+      crop = false,
       onSave = () => console.log('save'),
       onLoad = () => console.log('load'),
       onCrop = (crop) => console.log({crop}),
@@ -150,7 +151,7 @@ namespace mark {
                     </Grid>
                     <Box flexGrow={1}/>
                     <Grid item className={classes.center}>
-                      <Checkbox onChange={({target}) => onCrop(target.checked)} icon={<Crop />} checkedIcon={<CropFree />} />
+                      <Checkbox checked={crop} onChange={({target}) => onCrop(target.checked)} icon={<Crop />} checkedIcon={<CropFree />} />
                     </Grid>
                   </Grid>
                 </TableCell>

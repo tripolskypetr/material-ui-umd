@@ -7,6 +7,7 @@ namespace mark {
     date: string;
     name: string;
     url: string;
+    crop: boolean;
   };
 
 } // namespace mark

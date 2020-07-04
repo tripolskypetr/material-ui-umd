@@ -116,6 +116,7 @@ namespace mark {
       initialCords = [],
       naturalHeight = 100,
       naturalWidth = 100,
+      crop = false,
       onCrop = (crop) => console.log({crop}),
       onSave = (cords) => console.log({cords}),
       onChange = (cords) => console.log({cords}),
@@ -211,6 +212,7 @@ namespace mark {
           <div className={classes.container}>
             <CordPicker
               cords={cords}
+              crop={crop}
               onNameChanged={onNameChanged}
               onSave={() => onSave(cords)}
               onCrop={onCropChanged}
