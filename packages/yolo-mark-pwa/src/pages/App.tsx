@@ -119,6 +119,12 @@ namespace mark {
 
       const onAddImage = async () => {
         const file: IFile = await openImage();
+        const {name} = file;
+        if (name.match(/(?:.png)/g)) {
+          console.warn(`It looks like you are opening a PNG image.
+            I highly recommend you use JPEG images with Darknet to save images without alpha channel
+          `);
+        }
         setFiles((files) => [...files, file]);
         setCurrentFile(file);
       };
