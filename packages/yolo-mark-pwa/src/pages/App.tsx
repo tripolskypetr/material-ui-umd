@@ -121,9 +121,11 @@ namespace mark {
         const file: IFile = await openImage();
         const {name} = file;
         if (name.match(/(?:.png)/g)) {
-          console.warn(`It looks like you are opening a PNG image.
-            I highly recommend you use JPEG images with Darknet to save images without alpha channel
-          `);
+          console.warn(`
+            It looks like you are opening a PNG image.
+            I highly recommend you use JPEG images with
+            Darknet to save images without alpha channel
+          `.trim());
         }
         setFiles((files) => [...files, file]);
         setCurrentFile(file);

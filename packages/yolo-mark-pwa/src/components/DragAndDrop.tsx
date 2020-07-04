@@ -5,6 +5,7 @@ namespace mark {
 
   const {
     Fragment,
+    useRef,
     useState,
     useEffect,
     useCallback,
@@ -61,6 +62,7 @@ namespace mark {
 
       const [drag, setDrag] = useState(false);
       const [drop, setDrop] = useState<{total: number, current: number}>(null);
+      const counter = useRef(0);
       const classes = useStyles();
 
       const dragHandler = useCallback((v) => setDrag(v), [drag]);
@@ -113,24 +115,25 @@ namespace mark {
       }, [drop]);
 
       useEffect(() => {
-        let leaveTimeout = null;
-        const handler = () => dragHandler(true);
-        const timeout = (e) => {
+        
+        const handler = (enter = true) => (e) => {
           e.preventDefault();
-          if (leaveTimeout) {
-            clearTimeout(leaveTimeout);
-          }
-          leaveTimeout = setTimeout(() => dragHandler(false), 200);
+          counter.current += enter ? 1 : -1;
+          dragHandler(counter.current > 0);
         };
-        document.body.addEventListener('dragenter', handler);
-        document.body.addEventListener('dragover', timeout);
+
+        const passive = (e) => e.preventDefault();
+        const leave = handler(false);
+        const enter = handler(true);
+
+        document.body.addEventListener('dragenter', enter);
+        document.body.addEventListener('dragleave', leave);
+        document.body.addEventListener('dragover', passive);
         document.body.addEventListener('drop', dropHandler);
         return () => {
-          if (leaveTimeout) {
-            clearTimeout(leaveTimeout);
-          }
-          document.body.removeEventListener('dragenter', handler);
-          document.body.removeEventListener('dragover', timeout);
+          document.body.removeEventListener('dragenter', enter);
+          document.body.removeEventListener('dragleave', leave);
+          document.body.removeEventListener('dragover', passive);
           document.body.removeEventListener('drop', dropHandler);
         };
       }, [dragHandler, dropHandler]);
