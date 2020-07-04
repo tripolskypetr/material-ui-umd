@@ -156,28 +156,25 @@ namespace mark {
         internalUpdate.current = true;
       };
 
-      const onCropChanged = (enabled = false) => {
-        setCords((cords) => {
-          if (enabled && !cords.find((c) => c.type === 'roi')) {
-            const side = Math.min(naturalWidth, naturalHeight) * 0.05;
-            const roi: ICord = {
-              type: 'roi',
-              id: 'roi',
-              color: '#ff00ff',
-              top: side,
-              left: side,
-              height: naturalHeight - (2 * side),
-              width: naturalWidth - (2 * side),
-              name: 'Roi area',
-            };
-            return [...cords, roi];
-          } else if (!enabled) {
-            return cords.filter((c) => c.type !== 'roi');
-          }
-        });
+      const onCropChanged = (enabled = false) => setCords((cords) => {
         setTimeout(() => onCrop(enabled));
-        internalUpdate.current = true;
-      };
+        if (enabled && !cords.find((c) => c.type === 'roi')) {
+          const side = Math.min(naturalWidth, naturalHeight) * 0.05;
+          const roi: ICord = {
+            type: 'roi',
+            id: 'roi',
+            color: '#ff00ff',
+            top: side,
+            left: side,
+            height: naturalHeight - (2 * side),
+            width: naturalWidth - (2 * side),
+            name: 'Roi area',
+          };
+          return [...cords, roi];
+        } else if (!enabled) {
+          return cords.filter((c) => c.type !== 'roi');
+        }
+      });
 
       useEffect(() => {
         const newCords = lowLevelCords(initialCords, naturalHeight, naturalWidth);
