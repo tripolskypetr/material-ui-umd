@@ -173,9 +173,14 @@ namespace mark {
 
       useEffect(() => {
         const handler = (e) => {
-          e.preventDefault();
           const {key} = e;
-          onGo(key === 'ArrowUp' ? -1 : key === 'ArrowDown' ? 1 : 0);
+          if (key === 'ArrowUp') {
+            e.preventDefault();
+            onGo(-1);
+          } else if (key === 'ArrowDown') {
+            e.preventDefault();
+            onGo(1);
+          }
         };
         document.addEventListener('keydown', handler);
         return () => document.removeEventListener('keydown', handler);
