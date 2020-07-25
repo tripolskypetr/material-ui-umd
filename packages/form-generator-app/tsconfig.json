@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "moduleResolution": "classic",
+    "jsx": "react",
+    "sourceMap": true,
+    "declaration": false,
+    "lib": ["es2015", "dom"],
+    "outFile": "./dist/form-generator-app.js",
+    "rootDir": "./src/",
+    "baseUrl": "./",
+    "types": [],
+    "typeRoots": [
+      "../../type",
+      "../../dist",
+      "../../lib/jsonschema-form/dist",
+    ],
+  },
+  "exclude": [
+    "./node_modules/@types/",
+    "./node_modules/",
+    "./dist/*",
+  ],
+  "include": [
+    "../../type",
+    "../../dist",
+    "../../lib/jsonschema-form/dist",
+    "./src",
+  ],
+}
