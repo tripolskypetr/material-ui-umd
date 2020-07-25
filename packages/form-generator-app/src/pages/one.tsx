@@ -18,10 +18,12 @@ namespace app {
     const fields: form.IField[] = [
       {
         type: FieldType.Expansion,
-        columns: '3',
-        name: 'text',
+        columns: '12',
         title: 'title',
         description: 'subtitle',
+        fields: [
+          {type: FieldType.String}
+        ]
       }
     ];
 
