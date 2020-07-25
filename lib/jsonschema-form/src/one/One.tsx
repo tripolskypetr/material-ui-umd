@@ -40,27 +40,22 @@ namespace form {
           {fields?.map((field, index) => {
             const entity: IEntity = {...field, object, change};
             const currentPath = `${path}.${field.name}[${index}]`;
-            console.log(currentPath);
             if (field.type === FieldType.String) {
-              return <String {...entity} key={currentPath} />;
+              return <String {...entity} key={currentPath} />
             } else if (field.type === FieldType.Expansion) {
               return (
                 <Expansion {...field} key={currentPath}>
                   <OneInternal LoadPlaceholder={LoadPlaceholder}
-                    fields={field.fields}
-                    path={currentPath}
-                    handler={handler}
-                    change={change}/>
+                    fields={field.fields} path={currentPath}
+                    handler={handler} change={change}/>
                 </Expansion>
               );
             } else if (field.type === FieldType.Group) {
               return (
                 <Group {...field} key={currentPath}>
                   <OneInternal LoadPlaceholder={LoadPlaceholder}
-                    fields={field.fields}
-                    path={currentPath}
-                    handler={handler}
-                    change={change}/>
+                    fields={field.fields} path={currentPath}
+                    handler={handler} change={change}/>
                 </Group>
               );
             } else {
