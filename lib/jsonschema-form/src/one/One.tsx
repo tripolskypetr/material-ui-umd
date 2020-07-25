@@ -64,7 +64,7 @@ namespace form {
                     handler={handler}
                     change={change}/>
                 </Group>
-              )
+              );
             } else {
               throw new Error('One unknown field type');
             }

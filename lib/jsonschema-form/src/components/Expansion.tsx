@@ -28,8 +28,8 @@ namespace form {
     strech: {
       position: 'relative',
       display: 'flex',
-      alignItems: 'strech',
-      justifyContent: 'strech',
+      alignItems: 'stretch',
+      justifyContent: 'stretch',
     },
     content: {
       flexGrow: 1,
