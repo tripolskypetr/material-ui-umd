@@ -1,5 +1,11 @@
 
 /// <reference path="../common/IOneProps.ts"/>
+/// <reference path="../common/IEntity.ts"/>
+/// <reference path="../common/IField.ts"/>
+/// <reference path="../common/FieldType.ts"/>
+
+/// <reference path="../components/Group.tsx"/>
+/// <reference path="../components/Expansion.tsx"/>
 
 /// <reference path="../fields/String.tsx"/>
 
@@ -11,12 +17,14 @@ namespace form {
     useEffect,
   } = React;
 
-  const useResolved = (handler: () => Promise<any> | object): object => {
+  const useResolved = (handler: () => Promise<any> | any): any => {
     const [data, setData] = useState(null);
     useEffect(() => {
       const tryResolve = async () => {
         if (handler instanceof Promise) {
           setData(await handler());
+        } else if (typeof handler === 'function') {
+          setData(handler());
         } else {
           setData(handler);
         }
@@ -39,9 +47,25 @@ namespace form {
             const entity: IEntity = {...field, object, change};
             if (field.type === FieldType.String) {
               return <String {...entity} />;
-            } /* else if (field.type === FieldType.ExpansionGroup) {
-              return
-            } */ else {
+            } else if (field.type === FieldType.Expansion) {
+              return (
+                <Expansion {...field}>
+                  <One LoadPlaceholder={LoadPlaceholder}
+                    fields={field.fields}
+                    handler={handler}
+                    change={change}/>
+                </Expansion>
+              );
+            } else if (field.type === FieldType.Group) {
+              return (
+                <Group {...field}>
+                  <One LoadPlaceholder={LoadPlaceholder}
+                    fields={field.fields}
+                    handler={handler}
+                    change={change}/>
+                </Group>
+              )
+            } else {
               throw new Error('One unknown field type');
             }
           })}

@@ -57,7 +57,7 @@ namespace form {
           phoneColumns={phoneColumns}
           tabletColumns={tabletColumns}
           desktopColumns={desktopColumns}>
-          <ExpansionPanel>
+          <ExpansionPanel className={classes.content}>
             <ExpansionPanelSummary expandIcon={<ExpandMore />}>
               <Typography className={classes.heading}>{title}</Typography>
               <Typography className={classes.secondaryHeading}>{description}</Typography>

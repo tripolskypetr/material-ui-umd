@@ -4,10 +4,10 @@
 namespace form {
 
   export interface IOneProps {
-    handler: () => Promise<object> | object;
+    handler: () => Promise<any> | Function | any;
     change: (object) => void;
     fields: IField[];
-    LoadPlaceholder?: null | material.Component;
+    LoadPlaceholder?: null | material.Element;
   }
 
 } // namespace form
