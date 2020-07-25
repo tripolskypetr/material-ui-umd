@@ -39,10 +39,10 @@ namespace form {
      * Если указано поле columns, то остальные приравниваются к
      * его значению
      */
-    columns?: number;
-    phoneColumns?: number;
-    tabletColumns?: number;
-    desktopColumns?: number;
+    columns?: '';
+    phoneColumns?: '';
+    tabletColumns?: '';
+    desktopColumns?: '';
 
     /**
      * Дочерние поля для групп
