@@ -5,7 +5,8 @@ namespace app {
   } = material.core;
 
   const {
-    One: OneForm
+    One: OneForm,
+    FieldType
   } = form;
 
   const {
@@ -14,8 +15,12 @@ namespace app {
 
   export namespace pages {
 
-    const fields = [
-
+    const fields: form.IField[] = [
+      {
+        type: form.FieldType.Expansion,
+        columns: '12',
+        name: 'text'
+      }
     ];
 
     const handler = () => ({

@@ -17,13 +17,12 @@ namespace form {
 
   const useStyles = createStyles((theme) => ({
     heading: {
-      fontSize: theme.typography.pxToRem(15),
+      fontSize: 15,
       flexBasis: '33.33%',
       flexShrink: 0,
     },
     secondaryHeading: {
-      fontSize: theme.typography.pxToRem(15),
-      color: theme.palette.text.secondary,
+      fontSize: 12,
     },
     strech: {
       position: 'relative',

@@ -43,7 +43,7 @@ namespace form {
       }
       return (
         <Fragment>
-          {fields.map((field) => {
+          {fields?.map((field) => {
             const entity: IEntity = {...field, object, change};
             if (field.type === FieldType.String) {
               return <String {...entity} />;
