@@ -75,7 +75,7 @@ namespace mark {
               <Toolbar>
                 <Typography variant="h6" className={classes.title}>
                   Yolo markup tool
-                    </Typography>
+                </Typography>
                 <IconButton color="inherit" onClick={openBlank}>
                   <GitHub />
                 </IconButton>
