@@ -1,6 +1,6 @@
 namespace form {
 
-  export const enum FieldType {
+  export enum FieldType {
     String = 'string',
     Group = 'group',
     Expansion= 'expansion',

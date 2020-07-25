@@ -2,14 +2,14 @@ namespace app {
 
   const {
     Typography,
-    createStyles,
+    makeStyles,
   } = material.core;
 
   const {
     Fragment
   } = React;
 
-  const useStyles = createStyles({
+  const useStyles = makeStyles({
 
   });
 

@@ -8,21 +8,22 @@ namespace form {
     ExpansionPanel,
     ExpansionPanelDetails,
     ExpansionPanelSummary,
-    createStyles,
+    makeStyles,
   } = material.core;
 
   const {
     ExpandMore,
   } = material.icons;
 
-  const useStyles = createStyles((theme) => ({
+  const useStyles = makeStyles((theme) => ({
     heading: {
-      fontSize: 15,
+      fontSize: theme.typography.pxToRem(15),
       flexBasis: '33.33%',
       flexShrink: 0,
     },
     secondaryHeading: {
-      fontSize: 12,
+      fontSize: theme.typography.pxToRem(15),
+      color: theme.palette.text.secondary,
     },
     strech: {
       position: 'relative',
