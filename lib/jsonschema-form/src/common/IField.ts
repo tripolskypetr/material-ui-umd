@@ -1,10 +1,16 @@
-declare namespace form {
 
+/// <reference path="./FieldType.ts"/>
+
+namespace form {
+
+  /**
+   * Объект поля для прикладного программиста
+   */
   export interface IField {
 
     /**
      * Общие поля. Поле name позволяет задать забор
-     * поля из целевого объекта. 
+     * поля из целевого объекта.
      *  - Поле id пробрасывается в аттрибуты корневого
      * блока компонента на странице и не используется в
      * компоненте List.
@@ -15,7 +21,18 @@ declare namespace form {
     id?: string;
     key?: string;
     name: string;
-    type: string;
+    type: FieldType;
+
+    /**
+     * Наименование класса для поля (опционально)
+     */
+    className?: string;
+
+    /**
+     * Заголовок и описание, если возможен вывод у поля
+     */
+    title?: string;
+    description?: string;
 
     /**
      * Колонки для One. Не используются в List (кроме фильтров).
@@ -55,7 +72,7 @@ declare namespace form {
      * Специфичное для выпадающего меню поле, позволяющее выбрать
      * возможные значения с сопоставленными наименованиями
      */
-    items?: Array<{id: number, name: string}>
+    items?: {id: number, name: string}[];
 
   }
 

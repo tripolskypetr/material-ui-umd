@@ -1,15 +1,14 @@
-/// <reference path="./common/IField.d.ts"/>
+
+/// <reference path="./common/index.ts"/>
+/// <reference path="./list/List.tsx"/>
 /// <reference path="./one/One.tsx"/>
 
 namespace form {
 
   const {
     One: OneDefault,
-  } = one;
-
-  const {
     List: ListDefault,
-  } = list;
+  } = internal;
 
   export const One = OneDefault;
   export const List = ListDefault;
