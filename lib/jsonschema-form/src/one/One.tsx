@@ -1,11 +1,5 @@
-
-/// <reference path="../common/IOneProps.ts"/>
-/// <reference path="../common/IEntity.ts"/>
-/// <reference path="../common/IField.ts"/>
-/// <reference path="../common/FieldType.ts"/>
-
-/// <reference path="../components/Group.tsx"/>
-/// <reference path="../components/Expansion.tsx"/>
+/// <reference path="../components/index.ts"/>
+/// <reference path="../common/index.ts"/>
 
 /// <reference path="../fields/String.tsx"/>
 
@@ -36,31 +30,35 @@ namespace form {
 
   export namespace internal {
 
-    export const One = ({fields, handler, change, LoadPlaceholder = null}: IOneProps) => {
+    const OneInternal = ({fields, handler, change, path = 'root', LoadPlaceholder = null}: IOnePropsInternal) => {
       const object = useResolved(handler);
       if (object === null) {
         return LoadPlaceholder;
       }
       return (
         <Fragment>
-          {fields?.map((field) => {
+          {fields?.map((field, index) => {
             const entity: IEntity = {...field, object, change};
+            const currentPath = `${path}.${field.name}[${index}]`;
+            console.log(currentPath);
             if (field.type === FieldType.String) {
-              return <String {...entity} />;
+              return <String {...entity} key={currentPath} />;
             } else if (field.type === FieldType.Expansion) {
               return (
-                <Expansion {...field}>
-                  <One LoadPlaceholder={LoadPlaceholder}
+                <Expansion {...field} key={currentPath}>
+                  <OneInternal LoadPlaceholder={LoadPlaceholder}
                     fields={field.fields}
+                    path={currentPath}
                     handler={handler}
                     change={change}/>
                 </Expansion>
               );
             } else if (field.type === FieldType.Group) {
               return (
-                <Group {...field}>
-                  <One LoadPlaceholder={LoadPlaceholder}
+                <Group {...field} key={currentPath}>
+                  <OneInternal LoadPlaceholder={LoadPlaceholder}
                     fields={field.fields}
+                    path={currentPath}
                     handler={handler}
                     change={change}/>
                 </Group>
@@ -72,6 +70,8 @@ namespace form {
         </Fragment>
       );
     };
+
+    export const One = withType<IOneProps>(OneInternal);
 
   } // namespace internal
 
