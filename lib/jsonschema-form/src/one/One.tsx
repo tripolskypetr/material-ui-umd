@@ -50,6 +50,8 @@ namespace form {
               return <StringField {...entity} key={currentPath} />
             } else if (field.type === FieldType.Line) {
               return <LineField {...entity} key={currentPath} />
+            } else if (field.type === FieldType.Radio) {
+              return <RadioField {...entity} key={currentPath} />
             } else if (field.type === FieldType.Switch) {
               return <SwitchField {...entity} key={currentPath} />
             } else if (field.type === FieldType.Expansion) {

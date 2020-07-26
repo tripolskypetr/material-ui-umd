@@ -28,6 +28,12 @@ namespace form {
     outlined?: boolean;
 
     /**
+     * Поле, специфичное для RadioField и позволяющее
+     * задать значение при выборе элемента кликом
+     */
+    radioValue?: string;
+
+    /**
      * Тип поля для логического ветвления при рендеринге
      */
     type: FieldType;

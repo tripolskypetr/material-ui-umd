@@ -60,12 +60,31 @@ namespace app {
                 type: FieldType.String,
                 title: 'Some text field',
                 description: 'Some hint',
+                isDisabled: (obj) => !obj.bool.test,
               },
               {
                 type: FieldType.Switch,
                 name: 'bool.test',
                 title: 'Switch',
                 columns: '6',
+              },
+              {
+                type: FieldType.Radio,
+                name: 'radio.field',
+                title: 'Gender 1',
+                radioValue: 'gender1'
+              },
+              {
+                type: FieldType.Radio,
+                name: 'radio.field',
+                title: 'Gender 2',
+                radioValue: 'gender2'
+              },
+              {
+                type: FieldType.Radio,
+                name: 'radio.field',
+                title: 'Gender 3',
+                radioValue: 'gender3'
               }
             ]
           },
@@ -80,6 +99,9 @@ namespace app {
       },
       bool: {
         test: true,
+      },
+      radio: {
+        field: 'gender43'
       }
     });
 
