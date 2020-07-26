@@ -25,21 +25,25 @@ namespace form {
       };
       tryResolve();
     }, [handler]);
-    return data;
+    return [data, setData];
   };
 
   export namespace internal {
 
     export const One = ({fields, handler, change, prefix = 'root', LoadPlaceholder = null}: IOneProps) => {
-      const object = useResolved(handler);
+      const [object, setObject] = useResolved(handler);
+      const onChange = (v) => {
+        setObject(v);
+        change(v);
+      };
       if (object === null) {
         return LoadPlaceholder;
       }
       return (
         <Fragment>
           {fields?.map((field, index) => {
-            const entity: IEntity = {...field, object, change};
-            const currentPath = `${prefix}.${field.name || field.type}[${index}]`;
+            const entity: IEntity = {...field, object, change: onChange};
+            const currentPath = `${prefix}.${field.type}[${index}]`;
             if (field.type === FieldType.String) {
               return <String {...entity} key={currentPath} />
             } else if (field.type === FieldType.Expansion) {

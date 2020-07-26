@@ -10,8 +10,9 @@ namespace form {
   } = material.core;
 
   const {
+    useEffect,
     useState,
-    useEffect
+    useRef,
   } = React;
 
   export namespace internal {
@@ -53,8 +54,14 @@ namespace form {
       const [invalid, setInvalid] = useState(null);
       const [visible, setVisible] = useState(true);
 
+      const initComplete = useRef(false);
+
       const [value, setValue] = useState('');
 
+      /**
+       * Эффект входящего изменения. Испольняется один раз,
+       * при загрузке данных из handler
+       */
       useEffect(() => {
         setDisabled(isDisabled(object));
         setVisible(isVisible(object));
@@ -62,14 +69,25 @@ namespace form {
         setValue(get(object, name));
       }, [object]);
 
+      /**
+       * Эффект исходящего изменения. Осуществляет валидацию,
+       * нужно ли пробрасывать изменение исходя из коллбека
+       * isInvalid.
+       */
       useEffect(() => {
-        const copy = Object.assign({}, object);
-        const check = set(copy, name, value);
+        const copy = deepClone(object);
         const invalid = isInvalid(copy);
+        const check = set(copy, name, value);
         if (isNullOrUndefined(check) || !name) {
-          throw new Error('String error invalid name specified');
-        } else if (invalid === null) {
-          change(copy);
+          throw new Error(`String error invalid name specified "${name}"`);
+        } else if (invalid !== null) {
+          return;
+        } else if (!deepCompare(object, copy)) {
+          if (initComplete.current) {
+            change(copy);
+          } else {
+            initComplete.current = true;
+          }
         }
       }, [value]);
 
