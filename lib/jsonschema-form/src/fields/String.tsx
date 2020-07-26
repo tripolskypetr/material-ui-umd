@@ -12,6 +12,7 @@ namespace form {
   const {
     useEffect,
     useState,
+    useRef,
   } = React;
 
   export namespace internal {
@@ -53,34 +54,42 @@ namespace form {
       const [invalid, setInvalid] = useState(null);
       const [visible, setVisible] = useState(true);
 
+      const inputUpdate = useRef(false);
+
       const [value, setValue] = useState('');
 
       /**
        * Эффект входящего изменения.
        */
       useEffect(() => {
+        const newValue = get(object, name);
+        if (newValue !== value) {
+          inputUpdate.current = true;
+          setValue(newValue);
+        }
         setDisabled(isDisabled(object));
         setVisible(isVisible(object));
         setInvalid(isInvalid(object));
-        setValue(get(object, name));
       }, [object]);
 
       /**
-       * Эффект исходящего изменения. Осуществляет валидацию,
-       * нужно ли пробрасывать изменение исходя из коллбека
-       * isInvalid.
+       * Эффект исходящего изменения.
        */
       useEffect(() => {
-        const copy = deepClone(object);
-        const check = set(copy, name, value);
-        const invalid = isInvalid(copy);
-        setInvalid(invalid);
-        if (isNullOrUndefined(check) || !name) {
-          throw new Error(`String error invalid name specified "${name}"`);
-        } else if (invalid !== null) {
-          return;
-        } else if (!deepCompare(object, copy)) {
-          change(copy);
+        if (inputUpdate.current) {
+          inputUpdate.current = false;
+        } else {
+          const copy = deepClone(object);
+          const check = set(copy, name, value);
+          const invalid = isInvalid(copy);
+          setInvalid(invalid);
+          if (isNullOrUndefined(check) || !name) {
+            throw new Error(`String error invalid name specified "${name}"`);
+          } else if (invalid !== null) {
+            return;
+          } else if (!deepCompare(object, copy)) {
+            change(copy);
+          }
         }
       }, [value]);
 
@@ -92,8 +101,8 @@ namespace form {
       };
 
       const onChange = ({target}) => {
-        const {value} = target;
-        setValue(value);
+        const {value: newValue} = target;
+        setValue(newValue);
       };
 
       return (
