@@ -63,6 +63,7 @@ namespace app {
                 description: 'Some hint',
                 isDisabled: (obj) => !obj.bool.test,
                 readonly: true,
+                outlined: false,
               },
               {
                 type: FieldType.Switch,

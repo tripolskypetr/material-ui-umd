@@ -48,6 +48,7 @@ namespace form {
       object = {},
       name = '',
       readonly = false,
+      outlined = true,
     }: IEntity) => {
 
       const classes = useStyles();
@@ -114,8 +115,8 @@ namespace form {
         <Group className={classNames(className, classes.root, {
           [classes.hidden]: !visible
         })} {...groupProps}>
-          <TextField helperText={invalid || description} error={invalid !== null}
-            value={value || defaultValue} className={classes.stretch} variant="outlined"
+          <TextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
+            value={value || defaultValue} className={classes.stretch} error={invalid !== null}
             disabled={disabled} onChange={onChange} label={title} />
         </Group>
       );
