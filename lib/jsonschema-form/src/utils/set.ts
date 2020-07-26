@@ -8,7 +8,7 @@ namespace form {
       const parentPath = pathArrayFlat.slice(0, pathArrayFlat.length - 1);
       const parent = parentPath.reduce((obj, key) => obj && obj[key], object);
       const [name] = pathArrayFlat.reverse();
-      parent[name] = value;
+      return parent[name] = value;
     };
 
   } // namespace internal

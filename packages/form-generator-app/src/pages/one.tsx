@@ -22,13 +22,29 @@ namespace app {
         title: 'title',
         description: 'subtitle',
         fields: [
-          {type: FieldType.String}
+          {
+            columns: '6',
+            name: 'string.a',
+            type: FieldType.String,
+            title: 'Some text field',
+            description: 'Some hint',
+          },
+          {
+            columns: '6',
+            name: 'string.b',
+            type: FieldType.String,
+            title: 'Some text field',
+            description: 'Some hint',
+          }
         ]
       }
     ];
 
     const handler = () => ({
-      //
+      string: {
+        a: 'aaa',
+        b: 'bbb',
+      }
     });
 
     const change = (v) => console.log({v});
