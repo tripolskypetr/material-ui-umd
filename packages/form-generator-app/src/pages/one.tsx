@@ -27,6 +27,10 @@ namespace app {
             name: 'string.a',
             type: FieldType.String,
             title: 'Some text field',
+            isInvalid: (obj) => {
+              //debugger;
+              return obj.string.a.length < 3 ? 'Field len < 3' : null;
+            },
             description: 'Some hint',
           },
           {

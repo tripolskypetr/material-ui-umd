@@ -59,8 +59,7 @@ namespace form {
       const [value, setValue] = useState('');
 
       /**
-       * Эффект входящего изменения. Испольняется один раз,
-       * при загрузке данных из handler
+       * Эффект входящего изменения.
        */
       useEffect(() => {
         setDisabled(isDisabled(object));
@@ -76,8 +75,9 @@ namespace form {
        */
       useEffect(() => {
         const copy = deepClone(object);
-        const invalid = isInvalid(copy);
         const check = set(copy, name, value);
+        const invalid = isInvalid(copy);
+        setInvalid(invalid);
         if (isNullOrUndefined(check) || !name) {
           throw new Error(`String error invalid name specified "${name}"`);
         } else if (invalid !== null) {
