@@ -23,23 +23,39 @@ namespace app {
         description: 'subtitle',
         fields: [
           {
+            type: FieldType.Group,
             columns: '6',
-            name: 'string.a',
-            type: FieldType.String,
-            title: 'Some text field',
-            isInvalid: (obj) => {
-              //debugger;
-              return obj.string.a.length < 3 ? 'Field len < 3' : null;
-            },
-            description: 'Some hint',
+            fields: [
+              {
+                type: FieldType.Line,
+                title: 'Колонка слева',
+                columns: '12',
+              },
+              {
+                columns: '12',
+                name: 'string.a',
+                type: FieldType.String,
+                title: 'Some text field',
+                isInvalid: (obj) => obj.string.a.length < 3 ? 'Field len < 3' : null,
+                isDisabled: (obj) => obj.string.b.length > 5,
+                isVisible: (obj) => obj.string.b.length < 10,
+                description: 'Some hint',
+              },
+            ]
           },
           {
+            type: FieldType.Group,
             columns: '6',
-            name: 'string.b',
-            type: FieldType.String,
-            title: 'Some text field',
-            description: 'Some hint',
-          }
+            fields: [
+              {
+                columns: '6',
+                name: 'string.b',
+                type: FieldType.String,
+                title: 'Some text field',
+                description: 'Some hint',
+              }
+            ]
+          },
         ]
       }
     ];

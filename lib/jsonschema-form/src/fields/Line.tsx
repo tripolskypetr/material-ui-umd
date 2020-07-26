@@ -3,11 +3,52 @@
 
 namespace form {
 
+  const {
+    Typography,
+    Box,
+    makeStyles,
+  } = material.core;
+
   export namespace internal {
 
-    export const Line = ({}) => {
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        height: 56,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'stretch',
+      },
+      line: {
+        background: theme.palette.text.secondary,
+        flexGrow: 1,
+        margin: 15,
+        height: 1,
+      },
+    }));
+
+    export const Line = ({
+      className = '',
+      columns = '',
+      title = '',
+      phoneColumns = '',
+      tabletColumns = '',
+      desktopColumns = '',
+    }) => {
+
+      const classes = useStyles();
+
+      const groupProps = {
+        columns,
+        phoneColumns,
+        tabletColumns,
+        desktopColumns,
+      };
+
       return (
-        0
+        <Group {...groupProps} className={classNames(className, classes.root)}>
+          <Typography variant="h5">{title}</Typography>
+          <Box className={classes.line}></Box>
+        </Group>
       );
     };
 

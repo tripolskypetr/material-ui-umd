@@ -46,6 +46,8 @@ namespace form {
             const currentPath = `${prefix}.${field.type}[${index}]`;
             if (field.type === FieldType.String) {
               return <String {...entity} key={currentPath} />
+            } else if (field.type === FieldType.Line) {
+              return <Line {...entity} key={currentPath} />
             } else if (field.type === FieldType.Expansion) {
               return (
                 <Expansion {...field} key={currentPath}>

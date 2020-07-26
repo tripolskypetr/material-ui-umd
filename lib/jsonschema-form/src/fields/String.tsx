@@ -105,7 +105,7 @@ namespace form {
 
       return (
         <Group className={classNames(className, classes.root, {
-          [classes.visible]: visible
+          [classes.hidden]: !visible
         })} {...groupProps}>
           <TextField helperText={invalid || description} error={invalid !== null}
             value={value} className={classes.stretch} variant="outlined"
