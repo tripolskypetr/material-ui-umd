@@ -1,7 +1,9 @@
 /// <reference path="../components/index.ts"/>
 /// <reference path="../common/index.ts"/>
 
-/// <reference path="../fields/String.tsx"/>
+/// <reference path="../fields/StringField.tsx"/>
+/// <reference path="../fields/LineField.tsx"/>
+/// <reference path="../fields/SwitchField.tsx"/>
 
 namespace form {
 
@@ -45,9 +47,11 @@ namespace form {
             const entity: IEntity = {...field, object, change: onChange};
             const currentPath = `${prefix}.${field.type}[${index}]`;
             if (field.type === FieldType.String) {
-              return <String {...entity} key={currentPath} />
+              return <StringField {...entity} key={currentPath} />
             } else if (field.type === FieldType.Line) {
-              return <Line {...entity} key={currentPath} />
+              return <LineField {...entity} key={currentPath} />
+            } else if (field.type === FieldType.Switch) {
+              return <SwitchField {...entity} key={currentPath} />
             } else if (field.type === FieldType.Expansion) {
               return (
                 <Expansion {...field} key={currentPath}>

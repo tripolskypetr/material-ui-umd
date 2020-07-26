@@ -10,7 +10,7 @@ namespace form {
 
     export const Group = ({
       className = '',
-      columns = '',
+      columns = '12',
       phoneColumns = '',
       tabletColumns = '',
       desktopColumns = '',

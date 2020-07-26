@@ -32,7 +32,7 @@ namespace form {
       },
     });
 
-    export const String = ({
+    export const StringField = ({
       title = '',
       description = '',
       className = '',
@@ -40,6 +40,7 @@ namespace form {
       phoneColumns = '',
       tabletColumns = '',
       desktopColumns = '',
+      defaultValue = '',
       isDisabled = () => false,
       isVisible = () => true,
       isInvalid = () => null,
@@ -83,7 +84,7 @@ namespace form {
           const check = set(copy, name, value);
           const invalid = isInvalid(copy);
           setInvalid(invalid);
-          if (isNullOrUndefined(check) || !name) {
+          if (!check || !name) {
             throw new Error(`String error invalid name specified "${name}"`);
           } else if (invalid !== null) {
             return;
@@ -110,7 +111,7 @@ namespace form {
           [classes.hidden]: !visible
         })} {...groupProps}>
           <TextField helperText={invalid || description} error={invalid !== null}
-            value={value} className={classes.stretch} variant="outlined"
+            value={value || defaultValue} className={classes.stretch} variant="outlined"
             disabled={disabled} onChange={onChange} label={title} />
         </Group>
       );

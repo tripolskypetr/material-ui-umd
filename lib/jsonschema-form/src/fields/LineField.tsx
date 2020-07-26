@@ -26,7 +26,7 @@ namespace form {
       },
     }));
 
-    export const Line = ({
+    export const LineField = ({
       className = '',
       columns = '',
       title = '',

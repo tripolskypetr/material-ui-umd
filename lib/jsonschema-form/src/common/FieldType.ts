@@ -1,8 +1,8 @@
 namespace form {
 
   export enum FieldType {
-    List = 'list', // todo
-    Line = 'line', // todo
+    Switch = 'list', // todo
+    Line = 'line',
     String = 'string',
     Group = 'group',
     Expansion= 'expansion',
