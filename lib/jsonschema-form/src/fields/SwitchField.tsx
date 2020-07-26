@@ -1,5 +1,6 @@
 
 /// <reference path="../components/Group.tsx"/>
+/// <reference path="../utils/index.ts"/>
 
 namespace form {
 

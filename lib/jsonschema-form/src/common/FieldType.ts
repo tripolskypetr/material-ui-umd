@@ -7,6 +7,7 @@ namespace form {
     Group = 'group',
     Expansion= 'expansion',
     Radio = 'radio',
+    Checkbox = 'checkbox',
   };
 
 } // namespace form

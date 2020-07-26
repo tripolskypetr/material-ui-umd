@@ -5,9 +5,8 @@
 namespace form {
 
   const {
-    Radio,
+    Checkbox,
     FormGroup,
-    RadioGroup,
     FormControlLabel,
     makeStyles,
   } = material.core;
@@ -35,11 +34,10 @@ namespace form {
       },
     });
 
-    export const RadioField = ({
+    export const CheckboxField = ({
       title = '',
       className = '',
       columns = '',
-      radioValue = '',
       phoneColumns = '',
       tabletColumns = '',
       desktopColumns = '',
@@ -57,7 +55,7 @@ namespace form {
 
       const inputUpdate = useRef(false);
 
-      const [value, setValue] = useState('');
+      const [value, setValue] = useState(false);
 
       /**
        * Эффект входящего изменения.
@@ -82,7 +80,7 @@ namespace form {
           const copy = deepClone(object);
           const check = set(copy, name, value);
           if (!check || !name) {
-            throw new Error(`Radio error invalid name specified "${name}"`);
+            throw new Error(`Switch error invalid name specified "${name}"`);
           } else if (!deepCompare(object, copy)) {
             change(copy);
           }
@@ -96,8 +94,8 @@ namespace form {
         desktopColumns,
       };
 
-      const onChange = () => {
-        setValue(radioValue);
+      const onChange = ({target}) => {
+        setValue((prevValue) => !prevValue);
       };
 
       return (
@@ -105,9 +103,9 @@ namespace form {
           [classes.hidden]: !visible
         })} {...groupProps}>
           <FormGroup>
-            <RadioGroup name={name} disabled={disabled} value={value} onChange={onChange}>
-              <FormControlLabel value={radioValue} control={<Radio />} label={title} />
-            </RadioGroup>
+            <FormControlLabel className={classes.stretch}
+              control={<Checkbox disabled={disabled} checked={value} onChange={onChange} />}
+              label={title} />
           </FormGroup>
         </Group>
       );

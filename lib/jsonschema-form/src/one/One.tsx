@@ -54,6 +54,8 @@ namespace form {
               return <RadioField {...entity} key={currentPath} />
             } else if (field.type === FieldType.Switch) {
               return <SwitchField {...entity} key={currentPath} />
+            } else if (field.type === FieldType.Checkbox) {
+              return <CheckboxField {...entity} key={currentPath} />
             } else if (field.type === FieldType.Expansion) {
               return (
                 <Expansion {...field} key={currentPath}>

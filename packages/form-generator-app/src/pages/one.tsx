@@ -66,6 +66,14 @@ namespace app {
                 type: FieldType.Switch,
                 name: 'bool.test',
                 title: 'Switch',
+                isDisabled: (obj) => !obj.bool.anotherTest,
+                columns: '6',
+              },
+              {
+                type: FieldType.Checkbox,
+                name: 'bool.anotherTest',
+                isDisabled: (obj) => !obj.bool.test,
+                title: 'Checkbox',
                 columns: '6',
               },
               {
