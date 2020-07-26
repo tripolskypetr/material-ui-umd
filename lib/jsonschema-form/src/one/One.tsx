@@ -53,7 +53,7 @@ namespace form {
                 <Expansion {...field} key={currentPath}>
                   <One LoadPlaceholder={LoadPlaceholder}
                     fields={field.fields} prefix={currentPath}
-                    handler={handler} change={change}/>
+                    handler={object} change={onChange}/>
                 </Expansion>
               );
             } else if (field.type === FieldType.Group) {
@@ -61,7 +61,7 @@ namespace form {
                 <Group {...field} key={currentPath}>
                   <One LoadPlaceholder={LoadPlaceholder}
                     fields={field.fields} prefix={currentPath}
-                    handler={handler} change={change}/>
+                    handler={object} change={onChange}/>
                 </Group>
               );
             } else {

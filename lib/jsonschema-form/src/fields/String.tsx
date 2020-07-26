@@ -12,7 +12,6 @@ namespace form {
   const {
     useEffect,
     useState,
-    useRef,
   } = React;
 
   export namespace internal {
@@ -54,8 +53,6 @@ namespace form {
       const [invalid, setInvalid] = useState(null);
       const [visible, setVisible] = useState(true);
 
-      const initComplete = useRef(false);
-
       const [value, setValue] = useState('');
 
       /**
@@ -83,11 +80,7 @@ namespace form {
         } else if (invalid !== null) {
           return;
         } else if (!deepCompare(object, copy)) {
-          if (initComplete.current) {
-            change(copy);
-          } else {
-            initComplete.current = true;
-          }
+          change(copy);
         }
       }, [value]);
 
