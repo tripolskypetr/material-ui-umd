@@ -63,6 +63,9 @@ namespace app {
               },
               {
                 type: FieldType.Switch,
+                name: 'bool.test',
+                title: 'Switch',
+                columns: '6',
               }
             ]
           },
@@ -75,8 +78,8 @@ namespace app {
         a: 'aaa',
         b: 'bbb',
       },
-      list: {
-        test: 1,
+      bool: {
+        test: true,
       }
     });
 
