@@ -53,6 +53,7 @@ namespace app {
                 type: FieldType.String,
                 title: 'Some text field',
                 description: 'Some hint',
+                readonly: true,
               },
               {
                 columns: '6',
@@ -61,6 +62,7 @@ namespace app {
                 title: 'Some text field',
                 description: 'Some hint',
                 isDisabled: (obj) => !obj.bool.test,
+                readonly: true,
               },
               {
                 type: FieldType.Switch,
@@ -68,6 +70,7 @@ namespace app {
                 title: 'Switch',
                 isDisabled: (obj) => !obj.bool.anotherTest,
                 columns: '6',
+                readonly: true,
               },
               {
                 type: FieldType.Checkbox,
@@ -75,24 +78,28 @@ namespace app {
                 isDisabled: (obj) => !obj.bool.test,
                 title: 'Checkbox',
                 columns: '6',
+                readonly: true,
               },
               {
                 type: FieldType.Radio,
                 name: 'radio.field',
                 title: 'Gender 1',
-                radioValue: 'gender1'
+                radioValue: 'gender1',
+                readonly: true,
               },
               {
                 type: FieldType.Radio,
                 name: 'radio.field',
                 title: 'Gender 2',
-                radioValue: 'gender2'
+                radioValue: 'gender2',
+                readonly: true,
               },
               {
                 type: FieldType.Radio,
                 name: 'radio.field',
                 title: 'Gender 3',
-                radioValue: 'gender3'
+                radioValue: 'gender3',
+                readonly: true,
               }
             ]
           },
@@ -107,6 +114,7 @@ namespace app {
       },
       bool: {
         test: true,
+        anotherTest: true,
       },
       radio: {
         field: 'gender43'

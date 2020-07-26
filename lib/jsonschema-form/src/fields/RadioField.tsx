@@ -48,6 +48,7 @@ namespace form {
       change = ({v}) => console.log({v}),
       object = {},
       name = '',
+      readonly = false,
     }: IEntity) => {
 
       const classes = useStyles();
@@ -97,6 +98,9 @@ namespace form {
       };
 
       const onChange = () => {
+        if (readonly) {
+          return;
+        }
         setValue(radioValue);
       };
 
