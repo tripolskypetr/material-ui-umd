@@ -2,8 +2,8 @@ namespace form {
 
   export namespace internal {
 
-    export const List = ({}) => {
-      //
+    export const error = (msg) => {
+      throw new Error(msg);
     };
 
   } // namespace internal

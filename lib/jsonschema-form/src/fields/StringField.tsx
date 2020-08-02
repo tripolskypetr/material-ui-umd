@@ -5,7 +5,7 @@
 namespace form {
 
   const {
-    TextField,
+    TextField: MatTextField,
     makeStyles,
   } = material.core;
 
@@ -115,7 +115,7 @@ namespace form {
         <Group className={classNames(className, classes.root, {
           [classes.hidden]: !visible
         })} {...groupProps}>
-          <TextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
+          <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
             value={value || defaultValue} className={classes.stretch} error={invalid !== null}
             disabled={disabled} onChange={onChange} label={title} />
         </Group>

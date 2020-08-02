@@ -49,7 +49,7 @@ namespace app {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <Scaffold>
-          <One/>
+          <List/>
         </Scaffold>
       </MuiThemeProvider>
     );

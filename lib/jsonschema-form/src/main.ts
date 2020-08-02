@@ -1,7 +1,5 @@
 
-/// <reference path="./common/index.ts"/>
-/// <reference path="./list/List.tsx"/>
-/// <reference path="./one/One.tsx"/>
+/// <reference path="./components/index.ts"/>
 
 namespace form {
 

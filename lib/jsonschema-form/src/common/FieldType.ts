@@ -8,6 +8,8 @@ namespace form {
     Expansion= 'expansion',
     Radio = 'radio',
     Checkbox = 'checkbox',
+    Label = 'label',
+    Text = 'text',
   };
 
 } // namespace form

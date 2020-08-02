@@ -44,6 +44,11 @@ namespace form {
     className?: string;
 
     /**
+     * Стиль корневого элемента для поля (опционально)
+     */
+    style?: React.CSSProperties
+
+    /**
      * Заголовок и описание, если возможен вывод у поля
      */
     title?: string;
