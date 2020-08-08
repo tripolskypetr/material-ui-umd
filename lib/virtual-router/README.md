@@ -4,9 +4,13 @@
 
 ## Как собрать?
 
-Инструмент работает обособленно от material-ui-umd, пример использования можно посмотреть в проекте [form-generator-app](../../packages/form-generator-app)
+Сборка umd дистрибутива не требуется: работает обособленно
 
 ```
 pwd # путь material-ui-umd/lib/virtual-router
 npm run build
 ```
+
+## Пример работы
+
+Посмотрите [form-generator-app](../../packages/form-generator-app), проще всего будет разобраться, как этим пользоваться.
