@@ -27,6 +27,8 @@ namespace app {
       },
     }));
 
+    const b = ({children = null}) => <>&lt;{children}&gt;</>;
+
     export const Brief = () => {
       const go = useRouter();
       const classes = useStyles();
@@ -40,6 +42,9 @@ namespace app {
             инструментами <em>virtual-router</em> и <em>jsonschema-form</em>.
             В качестве объекта изучения будет использоваться
             абстрактная база профилей
+          </Typography>
+          <Typography variant="body" className={classes.line}>
+            Роутер использует поставщик контекста
           </Typography>
           <Typography variant="body">
             Переход между ссылками у роутера может осуществляться через

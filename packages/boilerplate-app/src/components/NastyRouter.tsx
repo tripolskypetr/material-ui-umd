@@ -19,7 +19,7 @@ namespace boilerplate {
   export namespace components {
 
     namespace internal {
-      export const Router = ({type, args}) => {
+      export const NastyRouter = ({type, args}) => {
         if (type === 'briefing') {
           return <BriefingPage {...args} />;
         } else if (type === 'components') {
@@ -35,7 +35,7 @@ namespace boilerplate {
       args: state.route.current.args
     });
 
-    export const Router = connect(mapStateToProps)(internal.Router);
+    export const NastyRouter = connect(mapStateToProps)(internal.NastyRouter);
 
   } // namespace components
 

@@ -22,7 +22,7 @@ namespace boilerplate {
 
   const {
     Scaffold,
-    Router
+    NastyRouter,
   } = components;
 
   const theme = createMuiTheme({
@@ -55,13 +55,18 @@ namespace boilerplate {
     {title: 'Компоненты', icon: 'insert_emoticon', payload: 'components'},
   ];
 
+  /**
+   * Обратите внимание: NastyRouter используется как пример использования
+   * состояния. Я настоятельно рекомендую посмотреть в сторону virtual-router
+   * из form-builder-app
+   */
   const App = () => {
     return (
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline/>
           <Scaffold pages={pages}>
-            <Router/>
+            <NastyRouter/>
           </Scaffold>
         </MuiThemeProvider>
       </Provider>
