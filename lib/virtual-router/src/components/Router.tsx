@@ -63,7 +63,9 @@ namespace router {
           setRoute(createElement(component, params));
         }
         // tslint:disable-next-line: no-string-literal
-        window['routerLastUrl'] = url;
+        window['routerUrl'] = url;
+        // tslint:disable-next-line: no-string-literal
+        window['routerGo'] = (url) => setUrl(url);
       }, [url, routes]);
 
       return (

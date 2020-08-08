@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
 /**
  * Tokenize input string.
  */
@@ -173,14 +173,14 @@ function parse(str, options) {
     }
     return result;
 }
-exports.parse = parse;
+
 /**
  * Compile a string to a template function for the path.
  */
 function compile(str, options) {
     return tokensToFunction(parse(str, options), options);
 }
-exports.compile = compile;
+
 /**
  * Expose a method for transforming tokens into the path function.
  */
@@ -239,7 +239,7 @@ function tokensToFunction(tokens, options) {
         return path;
     };
 }
-exports.tokensToFunction = tokensToFunction;
+
 /**
  * Create path match function from `path-to-regexp` spec.
  */
@@ -248,7 +248,7 @@ function match(str, options) {
     var re = pathToRegexp(str, keys, options);
     return regexpToFunction(re, keys, options);
 }
-exports.match = match;
+
 /**
  * Create a path match function from `path-to-regexp` output.
  */
@@ -281,7 +281,7 @@ function regexpToFunction(re, keys, options) {
         return { path: path, index: index, params: params };
     };
 }
-exports.regexpToFunction = regexpToFunction;
+
 /**
  * Escape a regular expression string.
  */
@@ -387,7 +387,7 @@ function tokensToRegexp(tokens, keys, options) {
     }
     return new RegExp(route, flags(options));
 }
-exports.tokensToRegexp = tokensToRegexp;
+
 /**
  * Normalize the given path string, returning a regular expression.
  *
@@ -402,5 +402,3 @@ function pathToRegexp(path, keys, options) {
         return arrayToRegexp(path, keys, options);
     return stringToRegexp(path, keys, options);
 }
-exports.pathToRegexp = pathToRegexp;
-//# sourceMappingURL=index.js.map
