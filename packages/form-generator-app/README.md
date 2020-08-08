@@ -79,7 +79,7 @@ npm run build
  - После, соберите это приложение
 
 ```
-pwd # путь material-ui-umd/packages/form-builder-app
+pwd # путь material-ui-umd/packages/form-generator-app
 npm run build
 ```
 
