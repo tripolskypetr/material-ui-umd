@@ -30,10 +30,8 @@ namespace router {
           return [url, component];
         }
         return acm;
-      }, null) || {}
-      if (route) {
-        return [...route, params];
-      }
+      }, null);
+      return route === null ? null : [...route, params];
     };
 
     export const Router = ({

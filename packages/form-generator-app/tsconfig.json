@@ -14,6 +14,7 @@
       "../../type",
       "../../dist",
       "../../lib/jsonschema-form/dist",
+      "../../lib/virtual-router/dist",
     ],
   },
   "exclude": [
@@ -25,6 +26,7 @@
     "../../type",
     "../../dist",
     "../../lib/jsonschema-form/dist",
+    "../../lib/virtual-router/dist",
     "./src",
   ],
 }

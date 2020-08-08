@@ -15,9 +15,15 @@ namespace app {
   } = components;
 
   const {
+    Brief,
     List,
     One,
   } = pages;
+
+  const {
+    Router,
+    Route
+  } = router;
 
   const theme = createMuiTheme({
     palette: {
@@ -49,7 +55,11 @@ namespace app {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <Scaffold>
-          <List/>
+          <Router>
+            <Route url="/" component={Brief}/>
+            <Route url="/list" component={List}/>
+            <Route url="/one/:id" component={One}/>
+          </Router>
         </Scaffold>
       </MuiThemeProvider>
     );
