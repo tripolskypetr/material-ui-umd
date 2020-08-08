@@ -60,8 +60,8 @@ namespace app {
           </Typography>
           <Typography variant="body" className={classes.line} component="p">
             Переход между ссылками у роутера может осуществляться через
-            компонент <Link url="/list" style={{color: 'blue'}}>ссылки</Link> или специальный
-            хук <a style={{color: 'blue'}} onClick={() => go('/list')}>useRouter</a>
+            компонент <Link url="/list" style={{color: 'blue', cursor: 'pointer'}}>ссылки</Link> или специальный
+            хук <a style={{color: 'blue', cursor: 'pointer'}} onClick={() => go('/list')}>useRouter</a>
           </Typography>
         </Container>
       );
