@@ -72,7 +72,7 @@ npm run build
  - Соберите [jsonschema-form](../../lib/jsonschema-form)
 
 ```
-pwd # путь material-ui-umd/lib/virtual-router
+pwd # путь material-ui-umd/lib/jsonschema-form
 npm run build
 ```
 
