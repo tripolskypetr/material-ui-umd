@@ -18,7 +18,6 @@ npm run build:types
 ```
 pwd # путь material-ui-umd/packages/boilerplate-app
 npm run build
-npx open index.html # быстрое открытие файла в браузере
 ```
 
  - Для запуска (после сборки) откройте `index.html` в директории приложения
