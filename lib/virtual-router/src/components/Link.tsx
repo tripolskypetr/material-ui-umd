@@ -1,10 +1,23 @@
+
+/// <reference path="./context.ts"/>
+
 namespace router {
+
+  const {
+    useContext,
+  } = React;
 
   export namespace components {
 
-    export const Link = () => {
+    export const Link = ({
+      children = null,
+      url = '',
+    }) => {
+      const go = useContext(RouterContext);
       return (
-        <p>123</p>
+        <a onClick={() => go(url)}>
+          {children}
+        </a>
       );
     };
 

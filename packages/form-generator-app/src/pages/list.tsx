@@ -43,7 +43,7 @@ namespace app {
     {id: 1, a: 'a', b: 'b', c: 'c'},
     {id: 2, a: 'c', b: 'a', c: 'b'},
     {id: 3, a: 'b', b: 'c', c: 'a'},
-  ]);
+  ]));
 
   export namespace pages {
 
