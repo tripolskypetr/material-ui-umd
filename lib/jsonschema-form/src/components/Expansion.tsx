@@ -37,7 +37,7 @@ namespace form {
     },
   }));
 
-  export namespace internal {
+  export namespace components {
 
     export const Expansion = ({
       title = '',
@@ -70,6 +70,6 @@ namespace form {
       );
     };
 
-  } // namespace internal
+  } // namespace components
 
 } // namespace form

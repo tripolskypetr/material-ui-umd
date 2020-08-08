@@ -9,7 +9,11 @@ namespace form {
     Fragment,
   } = React;
 
-  export namespace internal {
+  const {
+    createField
+  } = fields;
+
+  export namespace components {
 
     export const One = ({fields, handler, change, prefix = 'root', LoadPlaceholder = null}: IOneProps) => {
       const [object, setObject] = useResolved(handler);
@@ -50,6 +54,6 @@ namespace form {
       }
     };
 
-  } // namespace internal
+  } // namespace components
 
 } // namespace form

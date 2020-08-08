@@ -6,7 +6,7 @@ namespace form {
   const {
     One: OneDefault,
     List: ListDefault,
-  } = internal;
+  } = components;
 
   export const One = OneDefault;
   export const List = ListDefault;

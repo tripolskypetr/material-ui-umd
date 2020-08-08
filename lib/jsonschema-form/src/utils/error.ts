@@ -1,11 +1,11 @@
 namespace form {
 
-  export namespace internal {
+  export namespace utils {
 
     export const error = (msg) => {
       throw new Error(msg);
     };
 
-  } // namespace internal
+  } // namespace utils
 
 } // namespace form

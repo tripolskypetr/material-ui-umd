@@ -18,7 +18,17 @@ namespace form {
     useRef,
   } = React;
 
-  export namespace internal {
+  const {
+    Group,
+  } = components;
+
+  const {
+    get, set,
+    deepClone,
+    deepCompare
+  } = utils;
+
+  export namespace fields {
 
     const useStyles = makeStyles({
       root: {
@@ -117,6 +127,6 @@ namespace form {
       );
     }
 
-  } // namespace internal
+  } // namespace fields
 
 } // namespace form

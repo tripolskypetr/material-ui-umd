@@ -1,6 +1,6 @@
 namespace form {
 
-  export namespace internal {
+  export namespace utils {
 
     export const set = (object, path, value) => {
       const pathArray = Array.isArray(path) ? path : path.split('.').filter(key => key);
@@ -16,6 +16,6 @@ namespace form {
       }
     };
 
-  } // namespace internal
+  } // namespace utils
 
 } // namespace form

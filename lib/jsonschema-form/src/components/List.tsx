@@ -17,7 +17,15 @@ namespace form {
     makeStyles,
   } = material.core;
 
-  export namespace internal {
+  const {
+    createField,
+  } = fields;
+
+  const {
+    error,
+  } = utils;
+
+  export namespace components {
 
     const useStyles = makeStyles((theme) => ({
       root: {
@@ -92,6 +100,6 @@ namespace form {
       }
     };
 
-  } // namespace internal
+  } // namespace components
 
 } // namespace form

@@ -1,6 +1,6 @@
 namespace form {
 
-  export namespace internal {
+  export namespace utils {
 
     const isObject = (obj) => {
       const type = typeof obj;
@@ -23,6 +23,6 @@ namespace form {
       }
     }
 
-  } // namespace internal
+  } // namespace utils
 
 } // namespace form

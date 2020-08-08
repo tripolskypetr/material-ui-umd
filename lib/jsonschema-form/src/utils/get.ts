@@ -1,6 +1,6 @@
 namespace form {
 
-  export namespace internal {
+  export namespace utils {
 
     export const get = (object, path) => {
       const pathArray = Array.isArray(path) ? path : path.split('.').filter(key => key);
@@ -8,6 +8,6 @@ namespace form {
       return pathArrayFlat.reduce((obj, key) => obj && obj[key], object);
     }
 
-  } // namespace internal
+  } // namespace utils
 
 } // namespace form

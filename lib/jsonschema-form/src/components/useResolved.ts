@@ -5,7 +5,7 @@ namespace form {
     useEffect
   } = React;
 
-  export namespace internal {
+  export namespace components {
 
     export const useResolved = (handler: () => Promise<any> | any): any => {
       const [data, setData] = useState(null);
@@ -24,6 +24,6 @@ namespace form {
       return [data, setData];
     };
 
-  } // namespace internal
+  } // namespace components
 
 } // namespace form

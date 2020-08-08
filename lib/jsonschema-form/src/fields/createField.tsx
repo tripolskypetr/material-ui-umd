@@ -3,7 +3,7 @@
 
 namespace form {
 
-  export namespace internal {
+  export namespace fields {
 
     export const createField = (entity: IEntity, currentPath = '') => {
       const {type} = entity;
@@ -26,6 +26,6 @@ namespace form {
       }
     };
 
-  } // namespace internal
+  } // namespace fields
 
 } // namespace form

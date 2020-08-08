@@ -1,11 +1,11 @@
 namespace form {
 
-  export namespace internal {
+  export namespace utils {
 
     export const isNullOrUndefined = (obj) => {
       return typeof obj === "undefined" || obj === null;
     };
 
-  } // namespace internal
+  } // namespace utils
 
 } // namespace form

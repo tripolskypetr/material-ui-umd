@@ -6,7 +6,7 @@ namespace form {
 
   const n = (v: string) => Number(v);
 
-  export namespace internal {
+  export namespace components {
 
     export const Group = ({
       className = '',
@@ -27,6 +27,6 @@ namespace form {
       </Grid>
     );
 
-  } // namespace internal
+  } // namespace components
 
 } // namespace form

@@ -8,7 +8,7 @@ namespace form {
     Fragment
   } = React;
 
-  export namespace internal {
+  export namespace fields {
 
     export const LabelField = ({title, description}: IEntity) => (
       <Fragment>
@@ -17,6 +17,6 @@ namespace form {
       </Fragment>
     );
 
-  } // namespace internal
+  } // namespace fields
 
 } // namespace form

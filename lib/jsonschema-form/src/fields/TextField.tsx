@@ -9,7 +9,11 @@ namespace form {
     useEffect,
   } = React;
 
-  export namespace internal {
+  const {
+    get
+  } = utils;
+
+  export namespace fields {
 
     export const TextField = ({object, name}: IEntity) => {
 
@@ -26,6 +30,6 @@ namespace form {
       );
     };
 
-  } // namespace internal
+  } // namespace fields
 
 } // namespace form
