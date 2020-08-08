@@ -12,10 +12,11 @@ namespace router {
     export const Link = ({
       children = null,
       url = '',
+      ...otherProps
     }) => {
       const go = useContext(RouterContext);
       return (
-        <a onClick={() => go(url)}>
+        <a onClick={() => go(url)} {...otherProps}>
           {children}
         </a>
       );
