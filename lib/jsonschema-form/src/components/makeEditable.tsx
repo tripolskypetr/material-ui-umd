@@ -37,6 +37,12 @@ namespace form {
       },
     });
 
+    /**
+     *  - Оборачивает IEntity в удобную абстракцию IManaged, где сразу
+     * представлены invalid, disabled, visible и можно задваивать вызов onChange
+     *  - Отличается от makeSelectable наличием вызова isInvalid после изменения,
+     * подразумевается, что в выбираемом поле не может быть ошибки
+     */
     export const makeEditable = (Component: material.Component<IManaged>) => ({
       className = '',
       columns = '',
