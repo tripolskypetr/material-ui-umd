@@ -5,4 +5,4 @@
 /// <reference path="./List.tsx"/>
 /// <reference path="./useResolved.ts"/>
 /// <reference path="./makeEditable.tsx"/>
-/// <reference path="./makeSelectable.ts"/>
+/// <reference path="./makeSelectable.tsx"/>

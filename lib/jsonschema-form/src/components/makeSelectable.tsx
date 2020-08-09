@@ -5,19 +5,19 @@
 namespace form {
 
   const {
-    useRef,
-    useState,
-    useEffect,
-  } = React;
-
-  const {
     makeStyles,
   } = material.core;
 
   const {
+    useState,
+    useEffect,
+    useRef,
+  } = React;
+
+  const {
     get, set,
     deepClone,
-    deepCompare,
+    deepCompare
   } = utils;
 
   export namespace components {
@@ -37,7 +37,7 @@ namespace form {
       },
     });
 
-    export const makeEditable = (Component: material.Component<IManaged>) => ({
+    export const makeSelectable = (Component: material.Component<IManaged>) => ({
       className = '',
       columns = '',
       phoneColumns = '',
@@ -46,7 +46,7 @@ namespace form {
       isDisabled = () => false,
       isVisible = () => true,
       isInvalid = () => null,
-      change = ({v}) => console.log({v}),
+      change = ({ v }) => console.log({ v }),
       object = {},
       name = '',
       readonly = false,
@@ -56,12 +56,11 @@ namespace form {
       const classes = useStyles();
 
       const [disabled, setDisabled] = useState(false);
-      const [invalid, setInvalid] = useState(null);
       const [visible, setVisible] = useState(true);
 
       const inputUpdate = useRef(false);
 
-      const [value, setValue] = useState(null);
+      const [value, setValue] = useState(false);
 
       /**
        * Эффект входящего изменения.
@@ -74,7 +73,6 @@ namespace form {
         }
         setDisabled(isDisabled(object));
         setVisible(isVisible(object));
-        setInvalid(isInvalid(object));
       }, [object]);
 
       /**
@@ -86,12 +84,8 @@ namespace form {
         } else {
           const copy = deepClone(object);
           const check = set(copy, name, value);
-          const invalid = isInvalid(copy);
-          setInvalid(invalid);
           if (!check || !name) {
-            throw new Error(`One error invalid name specified "${name}"`);
-          } else if (invalid !== null) {
-            return;
+            throw new Error(`Switch error invalid name specified "${name}"`);
           } else if (!deepCompare(object, copy)) {
             change(copy);
           }
@@ -105,15 +99,15 @@ namespace form {
         desktopColumns,
       };
 
-      const onChange = (newValue) => {
+      const onChange = () => {
         if (readonly) {
           return;
         }
-        setValue(newValue);
+        setValue((prevValue) => !prevValue);
       };
 
       const managedProps: IManaged = {
-        value, disabled, invalid, onChange,
+        value, disabled, onChange,
         className: classes.stretch,
         ...otherProps
       };
@@ -125,7 +119,9 @@ namespace form {
           <Component {...managedProps} />
         </Group>
       );
-    };
-  };
 
-} // namespace components
+    };
+
+  } // namespace components
+
+} // namespace form
