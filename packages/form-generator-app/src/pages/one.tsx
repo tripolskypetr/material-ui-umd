@@ -103,7 +103,7 @@ namespace app {
 
     const handler = () => ({
       string: {
-        a: 'aaa',
+        a: '',
         b: 'bbb',
       },
       bool: {
