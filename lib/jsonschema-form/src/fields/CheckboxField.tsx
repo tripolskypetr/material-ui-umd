@@ -20,10 +20,10 @@ namespace form {
     }) => (
       <FormGroup>
         <FormControlLabel className={className}
-          control={<Checkbox disabled={disabled} checked={value} onChange={onChange} />}
+          control={<Checkbox disabled={disabled} checked={value} onChange={() => onChange(!value)} />}
           label={title} />
       </FormGroup>
-    ))
+    ));
 
   } // namespace fields
 

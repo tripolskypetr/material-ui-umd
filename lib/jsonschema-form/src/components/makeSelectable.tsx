@@ -99,11 +99,11 @@ namespace form {
         desktopColumns,
       };
 
-      const onChange = () => {
+      const onChange = (newValue) => {
         if (readonly) {
           return;
         }
-        setValue((prevValue) => !prevValue);
+        setValue(newValue);
       };
 
       const managedProps: IManaged = {
