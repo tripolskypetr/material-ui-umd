@@ -1,3 +1,6 @@
+
+/// <reference path="../data/peoples.ts"/>
+
 namespace app {
 
   const {
@@ -18,32 +21,29 @@ namespace app {
 
   const fields = [
     {
-      columns: '6',
-      name: 'a',
+      name: 'id',
       type: FieldType.Text,
-      title: 'First',
+      title: 'Идентификатор',
     },
     {
-      columns: '6',
-      name: 'b',
+      name: 'firstName',
       type: FieldType.Text,
-      title: 'Second',
+      title: 'Имя',
     },
     {
-      columns: '6',
-      name: 'c',
+      name: 'lastName',
       type: FieldType.Text,
-      title: 'Third',
+      title: 'Фамилия',
     },
   ];
 
-  const flat = (arr) => arr.reduce((a, v) => Array.isArray(v) ? a.concat(flat(v)) : a.concat(v), []);
-
-  const handler = () => flat([...new Array(50)].map(() => [
-    {id: 1, a: 'a', b: 'b', c: 'c'},
-    {id: 2, a: 'c', b: 'a', c: 'b'},
-    {id: 3, a: 'b', b: 'c', c: 'a'},
-  ]));
+  const handler = ({
+    limit,
+    offset,
+    order,
+    orderBy,
+    keyword,
+  }) => data.list({limit, offset, order, orderBy, keyword});
 
   export namespace pages {
 

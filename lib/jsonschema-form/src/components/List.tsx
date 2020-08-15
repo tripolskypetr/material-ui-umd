@@ -54,6 +54,7 @@ namespace form {
 
     const useStyles = makeStyles({
       root: {
+        position: 'relative',
         flexDirection: 'column',
         height: '100%',
         width: '100%',
@@ -62,6 +63,10 @@ namespace form {
         display: 'flex',
         alignItems: 'stretch',
         justifyContent: 'stretch',
+      },
+      scroll: {
+        maxHeight: 'calc(100% - 100px)',
+        overflow: 'auto',
       },
       stretch: {
         flexGrow: 1,
@@ -81,32 +86,30 @@ namespace form {
       selection = SelectionMode.None,
       onOrder = (name) => console.log({ name }),
     }) => (
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell padding="checkbox">
-                <ListMark disabled={true} checked={false}
-                  selection={selection} />
+        <TableHead>
+          <TableRow>
+            <TableCell padding="checkbox">
+              <ListMark disabled={true} checked={false}
+                selection={selection} />
+            </TableCell>
+            {fields.map(({ title, name }) => (
+              <TableCell key={name} sortDirection={orderBy === name ? order : false}>
+                <TableSortLabel direction={orderBy === name ? order : 'asc'}
+                  active={orderBy === name && order} onClick={() => onOrder(name)}>
+                  {title}
+                </TableSortLabel>
               </TableCell>
-              {fields.map(({ title, name }) => (
-                <TableCell key={name} sortDirection={orderBy === name ? order : false}>
-                  <TableSortLabel direction={orderBy === name ? order : 'asc'}
-                    active={orderBy === name && order} onClick={() => onOrder(name)}>
-                    {title}
-                  </TableSortLabel>
-                </TableCell>
-              ))}
-              <TableCell align="right">
-                Действия
+            ))}
+            <TableCell align="right">
+              Действия
               </TableCell>
-            </TableRow>
-          </TableHead>
-        </Table>
+          </TableRow>
+        </TableHead>
       );
 
     const ListToolbar = ({
       keyword = '',
-      onKeyword = (keyword) => console.log({keyword}),
+      onKeyword = (keyword) => console.log({ keyword }),
       onUpdate = () => console.log('update'),
     }) => {
       const styles = useStyles();
@@ -119,9 +122,9 @@ namespace form {
       };
       return (
         <Box className={styles.container}>
-          <TextField label="Поиск" placeholder="Введите фразу для поиска" style={{minWidth: 'max(30%, 275px)'}}
-            value={keyword} onChange={({target}) => onKeyword(target.value)} InputProps={inputProps} />
-          <Box className={styles.stretch}/>
+          <TextField label="Поиск" placeholder="Введите фразу для поиска" style={{ minWidth: 'max(30%, 275px)' }}
+            value={keyword} onChange={({ target }) => onKeyword(target.value)} InputProps={inputProps} />
+          <Box className={styles.stretch} />
           <IconButton onClick={onUpdate}>
             <SyncIcon />
           </IconButton>
@@ -135,7 +138,7 @@ namespace form {
       id = '',
       disabled = false,
       checked = false,
-      onSelect = (line) => console.log({line}),
+      onSelect = (line) => console.log({ line }),
     }) => {
       const onChange = useCallback(() => onSelect(line), [line]);
       if (selection === SelectionMode.Multiple) {
@@ -147,13 +150,13 @@ namespace form {
       } else if (selection === SelectionMode.Single) {
         return (
           <FormGroup>
-            <FormControlLabel control={<Checkbox checked={checked} disabled={disabled} onChange={onChange} />}/>
+            <FormControlLabel control={<Checkbox checked={checked} disabled={disabled} onChange={onChange} />} />
           </FormGroup>
         );
       } else if (selection === SelectionMode.None) {
         return (
           <FormGroup>
-            <FormControlLabel control={<Checkbox disabled={true} />}/>
+            <FormControlLabel control={<Checkbox disabled={true} />} />
           </FormGroup>
         );
       } else {
@@ -162,7 +165,6 @@ namespace form {
     };
 
     const ListContent = ({
-      className = '',
       selections = new Set(),
       objects = [],
       fields = [],
@@ -174,59 +176,57 @@ namespace form {
       onClick = (object) => console.log({ object }),
       onSelect = (line) => console.log({ line }),
     }) => (
-        <Table className={className}>
-          <TableBody>
-            {objects.map((object, index) => (
-              <TableRow key={index}>
-                <TableCell padding="checkbox">
-                  <ListMark line={index} checked={selections.has(index)}
-                    id={id} onSelect={onSelect} selection={selection} />
-                </TableCell>
-                {fields.map((field, name) => {
-                  const entity: IEntity = {
-                    ...field, object,
-                    readonly: true,
-                    outlined: true,
-                  };
-                  return (
-                    <TableCell key={name} onClick={() => onClick(object)}>
-                      {createField(entity)}
-                    </TableCell>
-                  );
-                })}
-                <TableCell align="right">
-                  <IconButton disabled={!canDelete} onClick={() => onClick(object)}>
-                    <EditIcon/>
-                  </IconButton>
-                  <IconButton disabled={!canEdit} onClick={() => onDelete(object)}>
-                    <DeleteIcon/>
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <TableBody>
+          {objects?.map((object, index) => (
+            <TableRow key={index}>
+              <TableCell padding="checkbox">
+                <ListMark line={index} checked={selections.has(index)}
+                  id={id} onSelect={onSelect} selection={selection} />
+              </TableCell>
+              {fields?.map((field, name) => {
+                const entity: IEntity = {
+                  ...field, object,
+                  readonly: true,
+                  outlined: true,
+                };
+                return (
+                  <TableCell key={name} onClick={() => onClick(object)}>
+                    {createField(entity)}
+                  </TableCell>
+                );
+              })}
+              <TableCell align="right">
+                <IconButton disabled={!canDelete} onClick={() => onClick(object)}>
+                  <EditIcon />
+                </IconButton>
+                <IconButton disabled={!canEdit} onClick={() => onDelete(object)}>
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       );
 
     const ListFooter = ({
       limit = 10,
-      offset = 50,
+      offset = 0,
       total = 100,
       disabled = true,
-      onChangeLimit = (offset) => console.log({offset}),
-      onChangeOffset = (limit) => console.log({limit}),
+      onChangeLimit = (offset) => console.log({ offset }),
+      onChangeOffset = (limit) => console.log({ limit }),
     }) => {
       const classes = useStyles();
       return (
         <TablePagination
-          className={classNames({[classes.disabled]: disabled})}
+          className={classNames({ [classes.disabled]: disabled })}
           rowsPerPageOptions={[5, 10, 25, 50]}
           component="div"
           count={total}
           rowsPerPage={limit}
           page={offset / limit}
           onChangePage={(e, newPage) => onChangeOffset(limit * newPage)}
-          onChangeRowsPerPage={({target}) => onChangeLimit(target.value)}
+          onChangeRowsPerPage={({ target }) => onChangeLimit(target.value)}
         />
       );
     };
@@ -235,14 +235,14 @@ namespace form {
       className = '',
       fields = [],
       selection = SelectionMode.None,
-      limit = 25,
+      limit = 5,
       offset = 0,
       total = 100,
       canDelete = false,
       canEdit = false,
-      select = (objects) => console.log({objects}),
-      click = (object) => console.log({object}),
-      remove = (object) => console.log({object}),
+      select = (objects) => console.log({ objects }),
+      click = (object) => console.log({ object }),
+      remove = (object) => console.log({ object }),
       handler = () => null,
       ...otherProps
     }: IListProps) => {
@@ -255,17 +255,20 @@ namespace form {
       const [objects, setObjects] = useState([]);
       const [loading, setLoading] = useState(true);
       const [order, setOrder] = useState<order>('');
-      const [pagination, setPagination] = useState({limit, offset, total});
+      const [pagination, setPagination] = useState({ limit, offset, total });
       const [selections, setSelections] = useState(new Set<number>());
 
-      useEffect(() => setPagination({limit, offset, total}), [limit, offset, total]);
+      useEffect(() => setPagination({ limit, offset, total }), [limit, offset, total]);
 
       const onOrder = useCallback((name) => {
-        if (name === orderBy) {
-          setOrder((order) => order === '' ? 'desc' : order === 'desc' ? 'asc' : '');
+        if (name === orderBy && order === 'desc') {
+          setOrder('asc');
+        } else if (name === orderBy && order === 'asc') {
+          setOrderBy('');
+          setOrder('');
         } else {
           setOrderBy(name);
-          setOrder('');
+          setOrder('desc');
         }
       }, [order, orderBy]);
 
@@ -297,20 +300,26 @@ namespace form {
             }
           };
 
-          const data = Object.assign(props, await getData()) as IListHandlerResult;
+          const data: IListHandlerResult = await getData();
 
-          setKeyword(data.keyword);
-          setOrderBy(data.orderBy);
-          setSelections(new Set());
-          setObjects(data.items);
-          setOrder(data.order);
-          setPagination({limit: data.limit, offset: data.offset, total: data.total});
+          if ('items' in data) {
+            setObjects(data.items);
+          }
+
+          if ('limit' in data && 'offset' in data && 'total' in data) {
+            const { limit, offset, total } = data;
+            setPagination({ limit, offset, total });
+          }
+
+          if (selections.size > 0) {
+            setSelections(new Set());
+            select([]);
+          }
 
           setLoading(false);
-          select([]);
         };
         process();
-      }, [handler, keyword, order, orderBy, pagination]);
+      }, [handler, keyword, order, orderBy, pagination, selections]);
 
       const onDelete = async (obj) => {
         if (remove instanceof Promise) {
@@ -323,23 +332,29 @@ namespace form {
         onUpdate();
       };
 
-      useEffect(() => onUpdate(), [handler]);
+      useEffect(() => onUpdate(), [handler, order, orderBy,
+        pagination.offset,
+        pagination.limit,
+      ]);
 
       return (
         <Box className={classNames(className, classes.root, classes.container)} {...otherProps}>
           <ListToolbar onKeyword={(v) => setKeyword(v)}
             keyword={keyword} onUpdate={onUpdate} />
-          <ListHeader onOrder={onOrder} order={order}
-            orderBy={orderBy} fields={fields} />
-          <ListContent
-            fields={fields} className={classes.stretch}
-            selections={selections} objects={objects}
-            canDelete={canDelete} canEdit={canEdit}
-            selection={selection} id={id.current}
-            onClick={click} onSelect={onSelect}
-            onDelete={onDelete} />
-          <ListFooter onChangeOffset={(offset) => setPagination((p) => ({...p, offset}))}
-            onChangeLimit={(limit) => setPagination((p) => ({...p, limit}))}
+          <div className={classNames(classes.container, classes.scroll, classes.stretch)}>
+            <Table>
+              <ListHeader onOrder={onOrder} order={order}
+                orderBy={orderBy} fields={fields} />
+              <ListContent
+                selections={selections} objects={objects}
+                canDelete={canDelete} canEdit={canEdit}
+                selection={selection} id={id.current}
+                onClick={click} onSelect={onSelect}
+                fields={fields} onDelete={onDelete} />
+            </Table>
+          </div>
+          <ListFooter onChangeOffset={(offset) => setPagination((p) => ({ ...p, offset }))}
+            onChangeLimit={(limit) => setPagination((p) => ({ ...p, limit }))}
             disabled={loading || selections.size > 0} {...pagination} />
         </Box>
       );
