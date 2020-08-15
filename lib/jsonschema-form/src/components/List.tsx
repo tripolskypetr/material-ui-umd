@@ -220,8 +220,8 @@ namespace form {
       offset = 0,
       total = 100,
       disabled = true,
-      onChangeLimit = (offset) => console.log({ offset }),
-      onChangeOffset = (limit) => console.log({ limit }),
+      onChangeLimit = (limit) => console.log({ limit }),
+      onChangeOffset = (offset) => console.log({ offset }),
     }) => {
       const classes = useStyles();
       return (
@@ -370,7 +370,7 @@ namespace form {
             </Table>
           </div>
           <ListFooter onChangeOffset={(offset) => setPagination((p) => ({ ...p, offset }))}
-            onChangeLimit={(limit) => setPagination((p) => ({ ...p, limit }))}
+            onChangeLimit={(limit) => setPagination((p) => ({ ...p, limit, offset: 0, }))}
             disabled={loading} {...pagination} />
         </Box>
       );
