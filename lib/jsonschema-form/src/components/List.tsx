@@ -26,6 +26,8 @@ namespace form {
 
   const {
     Sync: SyncIcon,
+    Edit: EditIcon,
+    Delete: DeleteIcon,
     Search: SearchIcon,
   } = material.icons;
 
@@ -94,6 +96,9 @@ namespace form {
                   </TableSortLabel>
                 </TableCell>
               ))}
+              <TableCell align="right">
+                Действия
+              </TableCell>
             </TableRow>
           </TableHead>
         </Table>
@@ -162,7 +167,10 @@ namespace form {
       objects = [],
       fields = [],
       id = '',
+      canDelete = true,
+      canEdit = true,
       selection = SelectionMode.None,
+      onDelete = (object) => console.log({ object }),
       onClick = (object) => console.log({ object }),
       onSelect = (line) => console.log({ line }),
     }) => (
@@ -186,6 +194,14 @@ namespace form {
                     </TableCell>
                   );
                 })}
+                <TableCell align="right">
+                  <IconButton disabled={!canDelete} onClick={() => onClick(object)}>
+                    <EditIcon/>
+                  </IconButton>
+                  <IconButton disabled={!canEdit} onClick={() => onDelete(object)}>
+                    <DeleteIcon/>
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -222,8 +238,11 @@ namespace form {
       limit = 25,
       offset = 0,
       total = 100,
+      canDelete = false,
+      canEdit = false,
       select = (objects) => console.log({objects}),
       click = (object) => console.log({object}),
+      remove = (object) => console.log({object}),
       handler = () => null,
       ...otherProps
     }: IListProps) => {
@@ -280,16 +299,29 @@ namespace form {
 
           const data = Object.assign(props, await getData()) as IListHandlerResult;
 
-          setObjects(data.items);
           setKeyword(data.keyword);
-          setOrder(data.order);
           setOrderBy(data.orderBy);
+          setSelections(new Set());
+          setObjects(data.items);
+          setOrder(data.order);
           setPagination({limit: data.limit, offset: data.offset, total: data.total});
 
           setLoading(false);
+          select([]);
         };
         process();
       }, [handler, keyword, order, orderBy, pagination]);
+
+      const onDelete = async (obj) => {
+        if (remove instanceof Promise) {
+          await remove(obj);
+        } else if (typeof remove === 'function') {
+          remove(obj);
+        } else {
+          throw new Error('List remove not promise not function');
+        }
+        onUpdate();
+      };
 
       useEffect(() => onUpdate(), [handler]);
 
@@ -302,8 +334,10 @@ namespace form {
           <ListContent
             fields={fields} className={classes.stretch}
             selections={selections} objects={objects}
+            canDelete={canDelete} canEdit={canEdit}
             selection={selection} id={id.current}
-            onClick={click} onSelect={onSelect} />
+            onClick={click} onSelect={onSelect}
+            onDelete={onDelete} />
           <ListFooter onChangeOffset={(offset) => setPagination((p) => ({...p, offset}))}
             onChangeLimit={(limit) => setPagination((p) => ({...p, limit}))}
             disabled={loading || selections.size > 0} {...pagination} />

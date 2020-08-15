@@ -31,13 +31,19 @@ namespace form {
      */
     selection: SelectionMode;
     /**
+     * Можно сделать записи не редактируемыми и не
+     * удаляемыми, чтобы был доступен только выбор
+     */
+    canDelete: boolean;
+    canEdit: boolean;
+    /**
      * Коллбек, вызываемый после клика по элементу
      */
     select: (object: any[]) => void;
     /**
      * Коллбек, вызываемый для удаления элемента
      */
-    delete: (object: any) => void;
+    remove: (object: any) => Promise<void> | void;
     /**
      * Значения по-умолчанию для пагинации. Значение
      * total будет переопределяться исходя из доступности
