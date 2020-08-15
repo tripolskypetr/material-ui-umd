@@ -102,6 +102,7 @@ namespace form {
     const ListToolbar = ({
       keyword = '',
       onKeyword = (keyword) => console.log({keyword}),
+      onUpdate = () => console.log('update'),
     }) => {
       const styles = useStyles();
       const inputProps = {
@@ -116,7 +117,7 @@ namespace form {
           <TextField label="Поиск" placeholder="Введите фразу для поиска" style={{minWidth: 'max(30%, 275px)'}}
             value={keyword} onChange={({target}) => onKeyword(target.value)} InputProps={inputProps} />
           <Box className={styles.stretch}/>
-          <IconButton>
+          <IconButton onClick={onUpdate}>
             <SyncIcon />
           </IconButton>
         </Box>
@@ -218,8 +219,12 @@ namespace form {
       className = '',
       fields = [],
       selection = SelectionMode.None,
+      limit = 25,
+      offset = 0,
+      total = 100,
       select = (objects) => console.log({objects}),
       click = (object) => console.log({object}),
+      handler = () => null,
       ...otherProps
     }: IListProps) => {
 
@@ -227,9 +232,14 @@ namespace form {
       const id = useRef(randomId());
 
       const [order, setOrder] = useState('');
+      const [keyword, setKeyword] = useState('');
       const [orderBy, setOrderBy] = useState('');
       const [objects, setObjects] = useState([]);
+      const [navigation, setNavigation] = useState(true);
+      const [pagination, setPagination] = useState({limit, offset, total});
       const [selections, setSelections] = useState(new Set<number>());
+
+      useEffect(() => setPagination({limit, offset, total}), [limit, offset, total]);
 
       const onOrder = useCallback((name) => {
         if (name === orderBy) {
@@ -250,17 +260,26 @@ namespace form {
         select(Array.from(selections).map((i) => objects[i]));
       }, [selections, objects]);
 
+      const onUpdate = () => {
+        //
+      };
+
+      useEffect(() => onUpdate(), [handler]);
+
       return (
         <Box className={classNames(className, classes.root, classes.container)} {...otherProps}>
-          <ListToolbar/>
+          <ListToolbar onKeyword={(v) => setKeyword(v)}
+            keyword={keyword} onUpdate={onUpdate} />
           <ListHeader onOrder={onOrder} order={order}
             orderBy={orderBy} fields={fields} />
           <ListContent
             fields={fields} className={classes.stretch}
             selections={selections} objects={objects}
-            onClick={click} onSelect={onSelect}
-            selection={selection} />
-          <ListFooter />
+            selection={selection} id={id.current}
+            onClick={click} onSelect={onSelect} />
+          <ListFooter onChangeOffset={(offset) => setPagination((p) => ({...p, offset}))}
+            onChangeLimit={(limit) => setPagination((p) => ({...p, limit}))}
+            disabled={navigation} {...pagination} />
         </Box>
       );
     };
