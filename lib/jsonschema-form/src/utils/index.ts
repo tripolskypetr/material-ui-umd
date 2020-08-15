@@ -4,3 +4,4 @@
 /// <reference path="./isNullOrUndefined.ts"/>
 /// <reference path="./deepCompare.ts"/>
 /// <reference path="./deepClone.ts"/>
+/// <reference path="./randomId.ts"/>

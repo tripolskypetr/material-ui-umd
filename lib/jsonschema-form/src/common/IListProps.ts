@@ -1,44 +1,37 @@
 
 /// <reference path="./IField.ts"/>
+/// <reference path="./SelectionMode.ts"/>
 
 namespace form {
-
-  type handlerParams = {
-    order: -1 | 0 | 1,
-    orderBy: string,
-  };
 
   export interface IListProps {
     /**
      * Позволяет загружать данные в компонент
      */
-    handler: (params?: handlerParams) => Promise<any> | Function | any;
+    handler: (params?: any) => Promise<any> | Function | any;
     /**
      * Вызывается после клика по строке. Подразумевается
      * переход на страницу с обработчиком One, получающим
      * параметр id из адресной строки...
      */
-    click: (object) => void;
+    click: (object: any) => void;
     /**
      * Массив полей, выводимый в компоненте
      */
     fields: IField[];
     /**
-     * Префикс для формирования ключей элементов
+     * Класс корневого элемента таблицы
      */
-    prefix?: string;
+    className: string;
     /**
-     * Плейсхолдер, показываемый во время загрузки данных
+     * Возможность выбирать элементы. Доступны опции
+     * single (radio-button), multiple (checkbox), none
      */
-    LoadPlaceholder?: null | material.Element;
+    selection: SelectionMode;
     /**
-     * Стиль таблицы (опционально)
+     * Коллбек, вызываемый после клика по элементу
      */
-    style?: React.CSSProperties;
-    /**
-     * Класс таблицы (опционально)
-     */
-    className?: string;
+    select: (object: any[]) => void;
   };
 
 }
