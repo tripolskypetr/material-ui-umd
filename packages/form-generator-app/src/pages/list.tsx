@@ -65,6 +65,7 @@ namespace app {
             remove={remove} handler={handler}
             select={select}
             selection={SelectionMode.Single}
+            canEdit={false}
             fields={fields}/>
         </div>
       );

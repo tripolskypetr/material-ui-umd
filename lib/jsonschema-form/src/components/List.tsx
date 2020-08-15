@@ -196,16 +196,16 @@ namespace form {
                     outlined: true,
                   };
                   return (
-                    <TableCell key={name} onClick={() => onClick(object)}>
+                    <TableCell key={name} onClick={() => canEdit && onClick(object)}>
                       {createField(entity)}
                     </TableCell>
                   );
                 })}
                 <TableCell align="right">
-                  <IconButton disabled={!canDelete} onClick={() => onClick(object)}>
+                  <IconButton disabled={!canEdit} onClick={() => onClick(object)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton disabled={!canEdit} onClick={() => onDelete(object)}>
+                  <IconButton disabled={!canDelete} onClick={() => onDelete(object)}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
