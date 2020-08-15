@@ -28,9 +28,9 @@ namespace form {
         display: 'flex',
         alignItems: 'stretch',
         justifyContent: 'stretch',
-      },
-      stretch: {
-        flexGrow: 1,
+        '& > *': {
+          flexGrow: 1,
+        }
       },
       hidden: {
         display: 'none',
@@ -120,7 +120,6 @@ namespace form {
 
       const managedProps: IManaged = {
         value, disabled, invalid, onChange,
-        className: classes.stretch,
         ...otherProps
       };
 

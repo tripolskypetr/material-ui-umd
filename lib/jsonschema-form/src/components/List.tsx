@@ -9,10 +9,12 @@ namespace form {
   const {
     Paper,
     Table,
+    Toolbar,
     TableRow,
     TableCell,
     TableBody,
     TableHead,
+    TableSortLabel,
     TableContainer,
     makeStyles,
   } = material.core;
@@ -25,6 +27,11 @@ namespace form {
     error,
   } = utils;
 
+  const {
+    useState,
+    useCallback,
+  } = React;
+
   export namespace components {
 
     const useStyles = makeStyles((theme) => ({
@@ -32,15 +39,21 @@ namespace form {
         display: 'flex',
         alignItems: 'stretch',
         justifyContent: 'stretch',
+        flexDirection: 'column',
         width: '100%',
         height: '100%',
       },
       container: {
         flexGrow: 1,
       },
+      headerCell: {
+        position: 'sticky',
+        background: theme.palette.background.paper,
+        top: '0',
+      }
     }));
 
-    const defaultFieldProps: Partial<IField> & {change: (obj: any) => void} = {
+    const defaultFieldProps: Partial<IEntity> = {
       readonly: true,
       outlined: false,
       columns: '12',
@@ -61,20 +74,37 @@ namespace form {
 
       const classes = useStyles();
 
+      const [order, setOrder] = useState<'' | 'asc' | 'desc'>('');
+      const [orderBy, setOrderBy] = useState('');
+
       const [objects] = useResolved(handler);
+
+      const onOrder = useCallback((name) => {
+        if (name === orderBy) {
+          setOrder((order) => order === '' ? 'desc' : order === 'desc' ? 'asc' : '');
+        } else {
+          setOrderBy(name);
+          setOrder('');
+        }
+      }, [order, orderBy]);
 
       if (objects === null) {
         return LoadPlaceholder;
       } else {
         return (
           <Paper className={classNames(classes.root, className)} {...otherProps}>
+            <Toolbar>
+            </Toolbar>
             <TableContainer className={classes.container}>
               <Table>
                 <TableHead>
                   <TableRow>
                     {fields.map(({title, name}) => (
-                      <TableCell key={name}>
-                        {title}
+                      <TableCell className={classes.headerCell} key={name} sortDirection={orderBy === name ? order : false}>
+                        <TableSortLabel direction={orderBy === name ? order : 'asc'}
+                          active={orderBy === name && order} onClick={() => onOrder(name)}>
+                          {title}
+                        </TableSortLabel>
                       </TableCell>
                     ))}
                   </TableRow>

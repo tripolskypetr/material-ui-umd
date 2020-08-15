@@ -14,7 +14,7 @@ namespace form {
   export namespace fields {
 
     export const StringField = makeEditable(({
-      className, invalid, value, disabled,
+      invalid, value, disabled,
       outlined = true,
       title = '',
       description = '',
@@ -22,8 +22,8 @@ namespace form {
       onChange
     }: IManaged) => (
       <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
-        value={value || defaultValue} className={className} error={invalid !== null}
-        disabled={disabled} onChange={({target}) => onChange(target.value)} label={title} />
+        value={value || defaultValue} error={invalid !== null} disabled={disabled}
+        onChange={({target}) => onChange(target.value)} label={title} />
     ));
 
   } // namespace fields

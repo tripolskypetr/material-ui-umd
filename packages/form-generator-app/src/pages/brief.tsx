@@ -6,7 +6,6 @@ namespace app {
 
   const {
     Typography,
-    Container,
     makeStyles,
   } = material.core;
 
@@ -33,7 +32,7 @@ namespace app {
       const go = useRouter();
       const classes = useStyles();
       return (
-        <Container>
+        <Fragment>
           <Typography className={classes.adjust} variant="h4">
             Form generator app
           </Typography>
@@ -63,7 +62,7 @@ namespace app {
             компонент <Link url="/list" style={{color: 'blue', cursor: 'pointer'}}>ссылки</Link> или специальный
             хук <a style={{color: 'blue', cursor: 'pointer'}} onClick={() => go('/list')}>useRouter</a>
           </Typography>
-        </Container>
+        </Fragment>
       );
     };
 

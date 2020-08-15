@@ -22,12 +22,6 @@ namespace form {
   export interface IManaged extends Omit<IEntity, exclude> {
 
     /**
-     * Нужно указывать в обязательном порядке
-     * для компоновки flexbox
-     */
-    className: string,
-
-    /**
      * Компонент высшего порядка перехватывает управление
      */
     columns?: never;

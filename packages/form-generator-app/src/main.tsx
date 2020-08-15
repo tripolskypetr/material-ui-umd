@@ -8,6 +8,7 @@ namespace app {
     MuiThemeProvider,
     createMuiTheme,
     CssBaseline,
+    Container,
   } = material.core;
 
   const {
@@ -55,11 +56,13 @@ namespace app {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <Scaffold>
-          <Router>
-            <Route url="/" component={Brief}/>
-            <Route url="/list" component={List}/>
-            <Route url="/one/:id" component={One}/>
-          </Router>
+          <Container>
+            <Router>
+              <Route url="/" component={Brief}/>
+              <Route url="/list" component={List}/>
+              <Route url="/one/:id" component={One}/>
+            </Router>
+          </Container>
         </Scaffold>
       </MuiThemeProvider>
     );

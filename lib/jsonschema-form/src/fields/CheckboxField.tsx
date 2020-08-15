@@ -16,10 +16,10 @@ namespace form {
   export namespace fields {
 
     export const CheckboxField = makeSelectable(({
-      className, disabled, value, onChange, title
+      disabled, value, onChange, title
     }) => (
       <FormGroup>
-        <FormControlLabel className={className}
+        <FormControlLabel
           control={<Checkbox disabled={disabled} checked={value} onChange={() => onChange(!value)} />}
           label={title} />
       </FormGroup>
