@@ -9,50 +9,63 @@ namespace app {
 
   const {
     List: ListForm,
+    SelectionMode,
     FieldType,
   } = form;
 
-  const useStyles = makeStyles({
-    root: {
-      width: '100vw - 20px',
-      height: 'calc(100vh - 85px)'
-    }
-  });
-
-  const fields = [
-    {
-      name: 'id',
-      type: FieldType.Text,
-      title: 'Идентификатор',
-    },
-    {
-      name: 'firstName',
-      type: FieldType.Text,
-      title: 'Имя',
-    },
-    {
-      name: 'lastName',
-      type: FieldType.Text,
-      title: 'Фамилия',
-    },
-  ];
-
-  const handler = ({
-    limit,
-    offset,
-    order,
-    orderBy,
-    keyword,
-  }) => data.list({limit, offset, order, orderBy, keyword});
+  const {
+    useRouter,
+  } = router;
 
   export namespace pages {
 
+    const useStyles = makeStyles({
+      root: {
+        width: '100vw - 20px',
+        height: 'calc(100vh - 85px)'
+      }
+    });
+
+    const fields = [
+      {
+        name: 'id',
+        type: FieldType.Text,
+        title: 'Идентификатор',
+      },
+      {
+        name: 'firstName',
+        type: FieldType.Text,
+        title: 'Имя',
+      },
+      {
+        name: 'lastName',
+        type: FieldType.Text,
+        title: 'Фамилия',
+      },
+    ];
+
+    const handler = ({
+      limit,
+      offset,
+      order,
+      orderBy,
+      keyword,
+    }) => data.list({limit, offset, order, orderBy, keyword});
+
+    const remove = ({id}) => data.remove(id);
+
+    const select = (items) => console.log('select', {items});
+
     export const List = ({}) => {
       const classes = useStyles();
+      const go = useRouter();
       return (
         <div className={classes.root}>
-          <ListForm click={(v) => console.log(v)}
-            handler={handler} fields={fields}/>
+          <ListForm click={({id}) => go(`/one/${id}`)}
+            remove={remove} handler={handler}
+            select={select}
+            selection={SelectionMode.Multiple}
+            fields={fields}/>
         </div>
       );
     };

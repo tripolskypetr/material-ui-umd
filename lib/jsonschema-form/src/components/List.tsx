@@ -89,8 +89,7 @@ namespace form {
         <TableHead>
           <TableRow>
             <TableCell padding="checkbox">
-              <ListMark disabled={true} checked={false}
-                selection={selection} />
+              <ListMark disabled={true} selection={selection} />
             </TableCell>
             {fields.map(({ title, name }) => (
               <TableCell key={name} sortDirection={orderBy === name ? order : false}>
@@ -137,27 +136,22 @@ namespace form {
       line = 0,
       id = '',
       disabled = false,
-      checked = false,
       onSelect = (line) => console.log({ line }),
     }) => {
       const onChange = useCallback(() => onSelect(line), [line]);
       if (selection === SelectionMode.Multiple) {
         return (
-          <RadioGroup name={id} onChange={onChange}>
-            <FormControlLabel value={line} control={<Radio disabled={disabled} />} />
+          <RadioGroup name={`list-component-${id}-radiogroup`} value={true}>
+            <Radio disabled={disabled} onClick={onChange} />
           </RadioGroup>
         );
       } else if (selection === SelectionMode.Single) {
         return (
-          <FormGroup>
-            <FormControlLabel control={<Checkbox checked={checked} disabled={disabled} onChange={onChange} />} />
-          </FormGroup>
+          <Checkbox disabled={disabled} onClick={onChange} />
         );
       } else if (selection === SelectionMode.None) {
         return (
-          <FormGroup>
-            <FormControlLabel control={<Checkbox disabled={true} />} />
-          </FormGroup>
+          <Checkbox disabled={true} />
         );
       } else {
         throw new Error('ListMark invalid selection mode');
@@ -171,6 +165,8 @@ namespace form {
       id = '',
       canDelete = true,
       canEdit = true,
+      limit = 0,
+      offset = 0,
       selection = SelectionMode.None,
       onDelete = (object) => console.log({ object }),
       onClick = (object) => console.log({ object }),
@@ -178,9 +174,9 @@ namespace form {
     }) => (
         <TableBody>
           {objects?.map((object, index) => (
-            <TableRow key={index}>
+            <TableRow key={index + (limit * offset)}>
               <TableCell padding="checkbox">
-                <ListMark line={index} checked={selections.has(index)}
+                <ListMark line={index}
                   id={id} onSelect={onSelect} selection={selection} />
               </TableCell>
               {fields?.map((field, name) => {
@@ -238,8 +234,8 @@ namespace form {
       limit = 5,
       offset = 0,
       total = 100,
-      canDelete = false,
-      canEdit = false,
+      canDelete = true,
+      canEdit = true,
       select = (objects) => console.log({ objects }),
       click = (object) => console.log({ object }),
       remove = (object) => console.log({ object }),
@@ -273,7 +269,10 @@ namespace form {
       }, [order, orderBy]);
 
       const onSelect = useCallback((index: number) => {
-        if (selections.has(index)) {
+        if (selection === SelectionMode.Single) {
+          selections.clear();
+          selections.add(index);
+        } else if (selections.has(index)) {
           selections.delete(index);
         } else {
           selections.add(index);
@@ -344,18 +343,20 @@ namespace form {
           <div className={classNames(classes.container, classes.scroll, classes.stretch)}>
             <Table>
               <ListHeader onOrder={onOrder} order={order}
-                orderBy={orderBy} fields={fields} />
+                orderBy={orderBy} fields={fields}
+                selection={selection} />
               <ListContent
+                canDelete={canDelete && !!remove} canEdit={canEdit && !!click}
                 selections={selections} objects={objects}
-                canDelete={canDelete} canEdit={canEdit}
                 selection={selection} id={id.current}
                 onClick={click} onSelect={onSelect}
-                fields={fields} onDelete={onDelete} />
+                fields={fields} onDelete={onDelete}
+                {...pagination} />
             </Table>
           </div>
           <ListFooter onChangeOffset={(offset) => setPagination((p) => ({ ...p, offset }))}
             onChangeLimit={(limit) => setPagination((p) => ({ ...p, limit }))}
-            disabled={loading || selections.size > 0} {...pagination} />
+            disabled={loading} {...pagination} />
         </Box>
       );
     };
