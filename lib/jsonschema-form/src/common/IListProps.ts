@@ -34,6 +34,7 @@ namespace form {
      * Можно сделать записи не редактируемыми и не
      * удаляемыми, чтобы был доступен только выбор
      */
+    canSelect?: boolean;
     canDelete?: boolean;
     canEdit?: boolean;
     /**

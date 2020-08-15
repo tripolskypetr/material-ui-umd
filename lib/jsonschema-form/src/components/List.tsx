@@ -178,6 +178,7 @@ namespace form {
     const ListContent = ({
       objects = [],
       fields = [],
+      canSelect = true,
       canDelete = true,
       canEdit = true,
       limit = 0,
@@ -192,8 +193,8 @@ namespace form {
             {objects?.map((object, index) => (
               <TableRow key={index + (limit * offset)}>
                 <TableCell padding="checkbox">
-                  <ListMark line={index} onSelect={onSelect}
-                    selection={selection} />
+                  <ListMark selection={selection} disabled={canSelect}
+                    line={index} onSelect={onSelect} />
                 </TableCell>
                 {fields?.map((field, name) => {
                   const entity: IEntity = {
@@ -251,6 +252,7 @@ namespace form {
       limit = 5,
       offset = 0,
       total = 100,
+      canSelect = true,
       canDelete = true,
       canEdit = true,
       select = (objects) => console.log({ objects }),
@@ -362,8 +364,8 @@ namespace form {
                 orderBy={orderBy} fields={fields}
                 selection={selection} />
               <ListContent
+                objects={objects} selection={selection} canSelect={canSelect && !!select}
                 canDelete={canDelete && !!remove} canEdit={canEdit && !!click}
-                objects={objects} selection={selection}
                 onClick={click} onSelect={onSelect}
                 fields={fields} onDelete={onDelete}
                 {...pagination} />
