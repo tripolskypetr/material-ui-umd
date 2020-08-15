@@ -1,6 +1,8 @@
 
 /// <reference path="./IField.ts"/>
 /// <reference path="./SelectionMode.ts"/>
+/// <reference path="./IListHandlerInput.ts"/>
+/// <reference path="./IListHandlerResult.ts"/>
 
 namespace form {
 
@@ -8,7 +10,7 @@ namespace form {
     /**
      * Позволяет загружать данные в компонент
      */
-    handler: (params?: any) => Promise<any> | Function | any;
+    handler: (params?: IListHandlerInput) => Promise<IListHandlerResult> | IListHandlerResult;
     /**
      * Вызывается после клика по строке. Подразумевается
      * переход на страницу с обработчиком One, получающим
@@ -32,6 +34,10 @@ namespace form {
      * Коллбек, вызываемый после клика по элементу
      */
     select: (object: any[]) => void;
+    /**
+     * Коллбек, вызываемый для удаления элемента
+     */
+    delete: (object: any) => void;
     /**
      * Значения по-умолчанию для пагинации. Значение
      * total будет переопределяться исходя из доступности

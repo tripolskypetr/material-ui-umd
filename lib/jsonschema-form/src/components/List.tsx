@@ -231,11 +231,11 @@ namespace form {
       const classes = useStyles();
       const id = useRef(randomId());
 
-      const [order, setOrder] = useState('');
       const [keyword, setKeyword] = useState('');
       const [orderBy, setOrderBy] = useState('');
       const [objects, setObjects] = useState([]);
-      const [navigation, setNavigation] = useState(true);
+      const [loading, setLoading] = useState(true);
+      const [order, setOrder] = useState<order>('');
       const [pagination, setPagination] = useState({limit, offset, total});
       const [selections, setSelections] = useState(new Set<number>());
 
@@ -258,11 +258,38 @@ namespace form {
         }
         setSelections(selections);
         select(Array.from(selections).map((i) => objects[i]));
-      }, [selections, objects]);
+      }, [selections, pagination, objects]);
 
-      const onUpdate = () => {
-        //
-      };
+      const onUpdate = useCallback(() => {
+        setLoading(true);
+        const process = async () => {
+
+          const props: IListHandlerInput = {
+            keyword, order, orderBy, ...pagination
+          };
+
+          const getData = async () => {
+            if (handler instanceof Promise) {
+              return await handler(props);
+            } else if (typeof handler === 'function') {
+              return handler(props);
+            } else {
+              throw new Error('List handler not promise not function');
+            }
+          };
+
+          const data = Object.assign(props, await getData()) as IListHandlerResult;
+
+          setObjects(data.items);
+          setKeyword(data.keyword);
+          setOrder(data.order);
+          setOrderBy(data.orderBy);
+          setPagination({limit: data.limit, offset: data.offset, total: data.total});
+
+          setLoading(false);
+        };
+        process();
+      }, [handler, keyword, order, orderBy, pagination]);
 
       useEffect(() => onUpdate(), [handler]);
 
@@ -279,7 +306,7 @@ namespace form {
             onClick={click} onSelect={onSelect} />
           <ListFooter onChangeOffset={(offset) => setPagination((p) => ({...p, offset}))}
             onChangeLimit={(limit) => setPagination((p) => ({...p, limit}))}
-            disabled={navigation} {...pagination} />
+            disabled={loading || selections.size > 0} {...pagination} />
         </Box>
       );
     };
