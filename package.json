@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "http-server",
     "build:umd": "webpack-cli",
     "build:types": "tsc --project ./tsconfig.json"
   },
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/tripolskypetr/material-ui-umd#readme",
   "devDependencies": {
+    "http-server": "^0.12.3",
     "tslint": "^6.1.2",
     "typescript": "^3.8.3",
     "webpack": "^4.43.0",
