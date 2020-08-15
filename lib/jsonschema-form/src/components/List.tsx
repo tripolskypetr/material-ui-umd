@@ -14,14 +14,11 @@ namespace form {
     TableCell,
     TableHead,
     TableBody,
-    FormGroup,
     TextField,
-    RadioGroup,
     IconButton,
     InputAdornment,
     TableSortLabel,
     TablePagination,
-    FormControlLabel,
   } = material.core;
 
   const {
@@ -50,10 +47,6 @@ namespace form {
   const {
     createContext,
   } = React;
-
-  const {
-    randomId,
-  } = utils;
 
   export namespace components {
 
@@ -321,7 +314,6 @@ namespace form {
 
           if ('items' in data) {
             setObjects(data.items);
-            console.log(data.items);
           }
 
           if ('limit' in data && 'offset' in data && 'total' in data) {
