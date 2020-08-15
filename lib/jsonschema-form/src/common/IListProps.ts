@@ -42,4 +42,4 @@ namespace form {
     total: number;
   };
 
-}
+} // namespace form

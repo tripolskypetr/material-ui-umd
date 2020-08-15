@@ -1,10 +1,10 @@
 
-/// <reference path="../components/makeSelectable.tsx"/>
+/// <reference path="../components/makeManaged.tsx"/>
 
 namespace form {
 
   const {
-    makeSelectable,
+    makeManaged,
   } = components;
 
   const {
@@ -15,7 +15,7 @@ namespace form {
 
   export namespace fields {
 
-    export const SwitchField = makeSelectable(({
+    export const SwitchField = makeManaged(({
       disabled, value, onChange, title
     }) => (
       <FormGroup>
@@ -23,7 +23,7 @@ namespace form {
           control={<Switch disabled={disabled} checked={value} onChange={() => onChange(!value)} />}
           label={title} />
       </FormGroup>
-    ));
+    ), false);
 
   } // namespace fields
 

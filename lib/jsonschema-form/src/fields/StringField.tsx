@@ -1,5 +1,5 @@
 
-/// <reference path="../components/makeEditable.tsx"/>
+/// <reference path="../components/makeManaged.tsx"/>
 
 namespace form {
 
@@ -8,12 +8,12 @@ namespace form {
   } = material.core;
 
   const {
-    makeEditable
+    makeManaged
   } = components;
 
   export namespace fields {
 
-    export const StringField = makeEditable(({
+    export const StringField = makeManaged(({
       invalid, value, disabled,
       outlined = true,
       title = '',
@@ -24,7 +24,7 @@ namespace form {
       <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
         value={value || defaultValue} error={invalid !== null} disabled={disabled}
         onChange={({target}) => onChange(target.value)} label={title} />
-    ));
+    ), false);
 
   } // namespace fields
 

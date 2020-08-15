@@ -1,10 +1,10 @@
 
-/// <reference path="../components/makeSelectable.tsx"/>
+/// <reference path="../components/makeManaged.tsx"/>
 
 namespace form {
 
   const {
-    makeSelectable,
+    makeManaged,
   } = components;
 
   const {
@@ -16,7 +16,7 @@ namespace form {
 
   export namespace fields {
 
-    export const RadioField = makeSelectable(({
+    export const RadioField = makeManaged(({
       disabled, value, onChange, title, radioValue
     }) => (
       <FormGroup>
@@ -24,7 +24,7 @@ namespace form {
           <FormControlLabel value={radioValue} control={<Radio />} label={title} />
         </RadioGroup>
       </FormGroup>
-    ));
+    ), false);
 
   } // namespace fields
 
