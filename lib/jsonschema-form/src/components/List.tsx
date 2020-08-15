@@ -39,12 +39,17 @@ namespace form {
     useRef,
     useState,
     useEffect,
+    useContext,
     useCallback,
   } = React;
 
   const {
     createField,
   } = fields;
+
+  const {
+    createContext,
+  } = React;
 
   const {
     randomId,
@@ -78,6 +83,17 @@ namespace form {
         opacity: 0.5,
       },
     });
+
+    const ListRadioContext = createContext([]);
+
+    const ListRadioManager = ({ children = null }) => {
+      const [value, setValue] = useState(-1);
+      return (
+        <ListRadioContext.Provider value={[value, (v) => setValue(v)]}>
+          {children}
+        </ListRadioContext.Provider>
+      );
+    };
 
     const ListHeader = ({
       fields = [],
@@ -134,20 +150,21 @@ namespace form {
     const ListMark = ({
       selection = SelectionMode.None,
       line = 0,
-      id = '',
       disabled = false,
       onSelect = (line) => console.log({ line }),
     }) => {
-      const onChange = useCallback(() => onSelect(line), [line]);
-      if (selection === SelectionMode.Multiple) {
+      const [value, setValue] = useContext(ListRadioContext);
+      if (selection === SelectionMode.Single) {
+        const onChange = (line) => {
+          setValue(line);
+          onSelect(line);
+        };
         return (
-          <RadioGroup name={`list-component-${id}-radiogroup`} value={true}>
-            <Radio disabled={disabled} onClick={onChange} />
-          </RadioGroup>
+          <Radio checked={value === line} disabled={disabled} onClick={() => onChange(line)} />
         );
-      } else if (selection === SelectionMode.Single) {
+      } else if (selection === SelectionMode.Multiple) {
         return (
-          <Checkbox disabled={disabled} onClick={onChange} />
+          <Checkbox disabled={disabled} onClick={() => onSelect(line)} />
         );
       } else if (selection === SelectionMode.None) {
         return (
@@ -159,10 +176,8 @@ namespace form {
     };
 
     const ListContent = ({
-      selections = new Set(),
       objects = [],
       fields = [],
-      id = '',
       canDelete = true,
       canEdit = true,
       limit = 0,
@@ -173,34 +188,36 @@ namespace form {
       onSelect = (line) => console.log({ line }),
     }) => (
         <TableBody>
-          {objects?.map((object, index) => (
-            <TableRow key={index + (limit * offset)}>
-              <TableCell padding="checkbox">
-                <ListMark line={index}
-                  id={id} onSelect={onSelect} selection={selection} />
-              </TableCell>
-              {fields?.map((field, name) => {
-                const entity: IEntity = {
-                  ...field, object,
-                  readonly: true,
-                  outlined: true,
-                };
-                return (
-                  <TableCell key={name} onClick={() => onClick(object)}>
-                    {createField(entity)}
-                  </TableCell>
-                );
-              })}
-              <TableCell align="right">
-                <IconButton disabled={!canDelete} onClick={() => onClick(object)}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton disabled={!canEdit} onClick={() => onDelete(object)}>
-                  <DeleteIcon />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          ))}
+          <ListRadioManager key={`radio-${limit}-${offset}`}>
+            {objects?.map((object, index) => (
+              <TableRow key={index + (limit * offset)}>
+                <TableCell padding="checkbox">
+                  <ListMark line={index} onSelect={onSelect}
+                    selection={selection} />
+                </TableCell>
+                {fields?.map((field, name) => {
+                  const entity: IEntity = {
+                    ...field, object,
+                    readonly: true,
+                    outlined: true,
+                  };
+                  return (
+                    <TableCell key={name} onClick={() => onClick(object)}>
+                      {createField(entity)}
+                    </TableCell>
+                  );
+                })}
+                <TableCell align="right">
+                  <IconButton disabled={!canDelete} onClick={() => onClick(object)}>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton disabled={!canEdit} onClick={() => onDelete(object)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </ListRadioManager>
         </TableBody>
       );
 
@@ -244,7 +261,6 @@ namespace form {
     }: IListProps) => {
 
       const classes = useStyles();
-      const id = useRef(randomId());
 
       const [keyword, setKeyword] = useState('');
       const [orderBy, setOrderBy] = useState('');
@@ -347,8 +363,7 @@ namespace form {
                 selection={selection} />
               <ListContent
                 canDelete={canDelete && !!remove} canEdit={canEdit && !!click}
-                selections={selections} objects={objects}
-                selection={selection} id={id.current}
+                objects={objects} selection={selection}
                 onClick={click} onSelect={onSelect}
                 fields={fields} onDelete={onDelete}
                 {...pagination} />

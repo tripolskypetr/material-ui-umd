@@ -64,7 +64,7 @@ namespace app {
           <ListForm click={({id}) => go(`/one/${id}`)}
             remove={remove} handler={handler}
             select={select}
-            selection={SelectionMode.Multiple}
+            selection={SelectionMode.Single}
             fields={fields}/>
         </div>
       );
