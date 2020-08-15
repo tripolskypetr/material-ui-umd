@@ -193,7 +193,7 @@ namespace form {
             {objects?.map((object, index) => (
               <TableRow key={index + (limit * offset)}>
                 <TableCell padding="checkbox">
-                  <ListMark selection={selection} disabled={canSelect}
+                  <ListMark selection={selection} disabled={!canSelect}
                     line={index} onSelect={onSelect} />
                 </TableCell>
                 {fields?.map((field, name) => {
@@ -321,6 +321,7 @@ namespace form {
 
           if ('items' in data) {
             setObjects(data.items);
+            console.log(data.items);
           }
 
           if ('limit' in data && 'offset' in data && 'total' in data) {
@@ -353,6 +354,11 @@ namespace form {
         pagination.offset,
         pagination.limit,
       ]);
+
+      useEffect(() => {
+        const timeout = setTimeout(() => onUpdate(), 700);
+        return () => clearTimeout(timeout);
+      }, [keyword]);
 
       return (
         <Box className={classNames(className, classes.root, classes.container)} {...otherProps}>

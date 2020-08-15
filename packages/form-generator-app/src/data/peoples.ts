@@ -429,9 +429,7 @@ namespace app {
       keyword = '',
     }) => {
 
-      console.log({limit, offset, order, orderBy, keyword})
-
-      let copy = peoples;
+      let copy = peoples.slice(0);
 
       if (keyword) {
         copy = copy.filter(({firstName, lastName}) => `${firstName}${lastName}`.includes(keyword));
@@ -444,11 +442,17 @@ namespace app {
         }
       }
 
-      return {
-        items: peoples.slice(offset).slice(0, limit),
+      copy = copy.slice(offset).slice(0, limit);
+
+      const result = {
+        items: copy,
         limit, offset,
-        total: copy.length
+        total: peoples.length
       };
+
+      console.log({limit, offset, order, orderBy, keyword, result})
+
+      return result;
     };
     export const remove = (id: string) => peoples = peoples.filter((p) => p.id !== id);
     export const patch = (people: any) => peoples = peoples.map((p) => {
