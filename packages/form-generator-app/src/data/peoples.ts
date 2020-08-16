@@ -455,7 +455,7 @@ namespace app {
       let copy = peoples.slice(0);
 
       if (keyword) {
-        copy = copy.filter(({firstName, lastName}) => `${firstName}${lastName}`.includes(keyword));
+        copy = copy.filter(({firstName, lastName}) => `${firstName}${lastName}`.toLowerCase().indexOf(keyword.toLowerCase()) !== -1);
       }
 
       if (order && orderBy) {

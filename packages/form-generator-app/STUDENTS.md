@@ -16,40 +16,9 @@ SELECT *
 
 ![List компонент](./assets/img/list.png)
 
-```
-  ...
-  
-  return (
-    <div className={classes.root}>
-      <List selection={SelectionMode.Single}
-        remove={remove} handler={handler}
-        fields={fields} click={click}
-        select={select} />
-    </div>
-  );
-```
-
 Если попытаться сверстать подобную форму на таблицах, весьма вероятно, что табуляции заставят отключить правила линтера на ограничение строки в 120 символов. [Используя json шаблон](./src/pages/one.tsx) `One` компонента, вы сможете сделать ваш компонент действительно миниатюрным, кроме того, это нисколько не повлияет на функциональность: используя коллбеки `isInvalid`, `isVisible` и `isDisabled` вы все так же можете валидировать, скрывать и отключать поля.
 
 ![One компонент](./assets/img/one.png)
-
-```
-
-  ...
-
-  return (
-    <Fragment>
-      <Breadcrumbs currentTitle="Профиль"
-        backwardTitle="Список профилей"
-        saveDisabled={!changedObj}
-        save={() => onSave()}
-        back={back} />
-      <One fields={fields}
-        handler={handler}
-        change={change} />
-    </Fragment>
-  );
-```
 
 Особо примечательно, что прозрачный фон позволяет повторно применять компоненты на странице. Например, `List` компонент можно вставить в диалоговое окно и использовать как пикер элементов списка.
 

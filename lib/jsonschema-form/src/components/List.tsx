@@ -184,7 +184,7 @@ namespace form {
         <TableBody>
           <ListRadioManager key={`radio-${limit}-${offset}`}>
             {objects?.map((object, index) => (
-              <TableRow key={index + (limit * offset)}>
+              <TableRow key={index + offset}>
                 <TableCell padding="checkbox">
                   <ListMark selection={selection} disabled={!canSelect}
                     line={index} onSelect={onSelect} />

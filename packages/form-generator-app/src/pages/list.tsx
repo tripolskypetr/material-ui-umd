@@ -44,7 +44,7 @@ namespace app {
       },
     ];
 
-    export const ListPage = ({}) => {
+    export const ListPage = () => {
 
       const classes = useStyles();
       const go = useRouter();
