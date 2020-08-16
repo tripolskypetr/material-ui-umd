@@ -20,6 +20,8 @@ namespace form {
         alignItems: 'center',
         justifyContent: 'stretch',
         flexDirection: 'row',
+        paddingTop: '10px',
+        paddingBottom: '10px',
       },
       stretch: {
         flexGrow: 1,
@@ -47,7 +49,7 @@ namespace form {
               {currentTitle}
             </Typography>
           </MatBreadcrumbs>
-          <Button onClick={save} disabled={saveDisabled} variant="contained">
+          <Button onClick={save} color="primary" disabled={saveDisabled} variant="contained">
             Сохранить
           </Button>
         </Box>

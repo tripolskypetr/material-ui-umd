@@ -10,7 +10,7 @@ namespace form {
   } = React;
 
   const {
-    createField
+    createField,
   } = fields;
 
   export namespace components {

@@ -113,12 +113,71 @@ namespace app {
     const fields: form.IField[] = [
       {
         type: FieldType.Group,
-        columns: '6',
+        columns: '12',
         fields: [
           {
             type: FieldType.Line,
             title: 'Общая информация',
             columns: '12',
+          },
+          {
+            columns: '12',
+            name: 'firstName',
+            type: FieldType.String,
+            title: 'Имя',
+            description: 'Felton',
+          },
+          {
+            columns: '12',
+            name: 'lastName',
+            type: FieldType.String,
+            title: 'Фамилия',
+            description: 'Cruickshank',
+          },
+          {
+            columns: '12',
+            name: 'age',
+            type: FieldType.String,
+            title: 'Возраст',
+            description: '42',
+            isInvalid: (obj) => {
+              const value = Number(obj.age);
+              if (!Number.isInteger(value)) {
+                return 'Возраст должен быть числом';
+              } else if (value < 1) {
+                return 'Возраст должен быть больше 1';
+              } else {
+                return null;
+              }
+            },
+          },
+          {
+            type: FieldType.Expansion,
+            columns: '12',
+            title: 'Подписка',
+            description: 'Подписка на уведомления',
+            fields: [
+              {
+                type: FieldType.Group,
+                columns: '12',
+                fields: [
+                  {
+                    type: FieldType.Switch,
+                    name: 'subscribed',
+                    title: 'Разрешить рассылку',
+                    columns: '12',
+                  },
+                  {
+                    columns: '12',
+                    name: 'email',
+                    type: FieldType.String,
+                    isDisabled: (obj) => !obj.subscribed,
+                    title: 'Почта',
+                    description: 'tripolskypetr@gmail.com',
+                  },
+                ]
+              },
+            ],
           },
         ],
       }
@@ -133,9 +192,12 @@ namespace app {
 
       const back = () => go('/list');
       const handler = () => data.get(id);
-      const change = (obj) => setChangedObj(obj);
+      const change = (obj) => {
+        console.log({obj});
+        setChangedObj(obj);
+      };
 
-      const save = () => useCallback(() => {
+      const onSave = useCallback(() => {
         data.patch(changedObj);
         alert('Сохранено!');
       }, [changedObj]);
@@ -145,7 +207,8 @@ namespace app {
           <Breadcrumbs currentTitle="Профиль"
             backwardTitle="Список профилей"
             saveDisabled={!changedObj}
-            save={save} back={back} />
+            save={() => onSave()}
+            back={back} />
           <One fields={fields}
             handler={handler}
             change={change} />
