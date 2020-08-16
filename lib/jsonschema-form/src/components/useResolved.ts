@@ -1,3 +1,6 @@
+
+/// <reference path="../utils/index.ts"/>
+
 namespace form {
 
   const {
@@ -5,6 +8,10 @@ namespace form {
     useState,
     useEffect,
   } = React;
+
+  const {
+    deepClone,
+  } = utils;
 
   export namespace components {
 
@@ -21,10 +28,12 @@ namespace form {
           if (isRoot.current) {
             return
           } else if (handler instanceof Promise) {
-            setData(await handler());
+            const result = await handler();
+            setData(deepClone(result));
             isRoot.current = true;
           } else if (typeof handler === 'function') {
-            setData(handler());
+            const result = handler();
+            setData(deepClone(result));
             isRoot.current = true;
           } else {
             setData(handler);
