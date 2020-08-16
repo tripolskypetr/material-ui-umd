@@ -1,21 +1,30 @@
+
+/// <reference path="../data/peoples.ts"/>
+
 namespace app {
 
   const {
-    Typography,
-  } = material.core;
-
-  const {
-    One: OneForm,
-    FieldType
+    Breadcrumbs,
+    FieldType,
+    One,
   } = form;
 
   const {
-    Fragment
+    useRouter,
+  } = router;
+
+  const {
+    useState,
+    useCallback,
+  } = React;
+
+  const {
+    Fragment,
   } = React;
 
   export namespace pages {
 
-    const fields: form.IField[] = [
+    /*const fields: form.IField[] = [
       {
         type: FieldType.Expansion,
         columns: '12',
@@ -99,32 +108,47 @@ namespace app {
           },
         ]
       }
+    ];*/
+
+    const fields: form.IField[] = [
+      {
+        type: FieldType.Group,
+        columns: '6',
+        fields: [
+          {
+            type: FieldType.Line,
+            title: 'Общая информация',
+            columns: '12',
+          },
+        ],
+      }
     ];
 
-    const handler = () => ({
-      string: {
-        a: '',
-        b: 'bbb',
-      },
-      bool: {
-        test: true,
-        anotherTest: true,
-      },
-      radio: {
-        field: 'gender43'
-      }
-    });
+    export const OnePage = ({
+      id = '',
+    }) => {
 
-    const change = (v) => console.log({v});
+      const [changedObj, setChangedObj] = useState(null);
+      const go = useRouter();
 
-    export const One = ({}) => {
+      const back = () => go('/list');
+      const handler = () => data.get(id);
+      const change = (obj) => setChangedObj(obj);
+
+      const save = () => useCallback(() => {
+        data.patch(changedObj);
+        alert('Сохранено!');
+      }, [changedObj]);
 
       return (
         <Fragment>
-          <Typography variant="h6">
-            One component sample
-          </Typography>
-          <OneForm fields={fields} handler={handler} change={change}/>
+          <Breadcrumbs currentTitle="Профиль"
+            backwardTitle="Список профилей"
+            saveDisabled={!changedObj}
+            save={save} back={back} />
+          <One fields={fields}
+            handler={handler}
+            change={change} />
         </Fragment>
       );
     };

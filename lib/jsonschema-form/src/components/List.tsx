@@ -242,7 +242,7 @@ namespace form {
       className = '',
       fields = [],
       selection = SelectionMode.None,
-      limit = 5,
+      limit = 25,
       offset = 0,
       total = 100,
       canSelect = true,
@@ -264,8 +264,6 @@ namespace form {
       const [order, setOrder] = useState<order>('');
       const [pagination, setPagination] = useState({ limit, offset, total });
       const [selections, setSelections] = useState(new Set<number>());
-
-      useEffect(() => setPagination({ limit, offset, total }), [limit, offset, total]);
 
       const onOrder = useCallback((name) => {
         if (name === orderBy && order === 'desc') {
@@ -316,9 +314,9 @@ namespace form {
             setObjects(data.items);
           }
 
-          if ('limit' in data && 'offset' in data && 'total' in data) {
-            const { limit, offset, total } = data;
-            setPagination({ limit, offset, total });
+          if ('total' in data) {
+            const { total } = data;
+            setPagination((p) => ({ ...p, total }));
           }
 
           if (selections.size > 0) {
@@ -342,15 +340,13 @@ namespace form {
         onUpdate();
       };
 
-      useEffect(() => onUpdate(), [handler, order, orderBy,
-        pagination.offset,
-        pagination.limit,
-      ]);
-
       useEffect(() => {
         const timeout = setTimeout(() => onUpdate(), 700);
         return () => clearTimeout(timeout);
-      }, [keyword]);
+      }, [keyword, order, orderBy, pagination.limit, pagination.offset]);
+
+      const onChangeLimit = (limit) => setPagination((p) => ({ ...p, limit, offset: 0, }));
+      const onChangeOffset = (offset) => setPagination((p) => ({ ...p, offset }));
 
       return (
         <Box className={classNames(className, classes.root, classes.container)} {...otherProps}>
@@ -369,9 +365,8 @@ namespace form {
                 {...pagination} />
             </Table>
           </div>
-          <ListFooter onChangeOffset={(offset) => setPagination((p) => ({ ...p, offset }))}
-            onChangeLimit={(limit) => setPagination((p) => ({ ...p, limit, offset: 0, }))}
-            disabled={loading} {...pagination} />
+          <ListFooter onChangeOffset={onChangeOffset} disabled={loading}
+            onChangeLimit={onChangeLimit} {...pagination} />
         </Box>
       );
     };

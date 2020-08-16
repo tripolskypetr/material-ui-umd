@@ -16,9 +16,9 @@ namespace app {
   } = components;
 
   const {
-    Brief,
-    List,
-    One,
+    BriefPage,
+    ListPage,
+    OnePage,
   } = pages;
 
   const {
@@ -58,9 +58,9 @@ namespace app {
         <Scaffold>
           <Container>
             <Router>
-              <Route url="/" component={Brief}/>
-              <Route url="/list" component={List}/>
-              <Route url="/one/:id" component={One}/>
+              <Route url="/" component={BriefPage}/>
+              <Route url="/list" component={ListPage}/>
+              <Route url="/one/:id" component={OnePage}/>
             </Router>
           </Container>
         </Scaffold>

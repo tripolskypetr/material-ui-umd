@@ -28,7 +28,7 @@ namespace app {
 
     const b = ({children = null}) => <>&lt;{children}&gt;</>;
 
-    export const Brief = () => {
+    export const BriefPage = () => {
       const go = useRouter();
       const classes = useStyles();
       return (

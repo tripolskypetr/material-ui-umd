@@ -4,14 +4,14 @@
 namespace app {
 
   const {
-    makeStyles,
-  } = material.core;
-
-  const {
-    List: ListForm,
     SelectionMode,
     FieldType,
+    List,
   } = form;
+
+  const {
+    makeStyles,
+  } = material.core;
 
   const {
     useRouter,
@@ -44,29 +44,22 @@ namespace app {
       },
     ];
 
-    const handler = ({
-      limit,
-      offset,
-      order,
-      orderBy,
-      keyword,
-    }) => data.list({limit, offset, order, orderBy, keyword});
+    export const ListPage = ({}) => {
 
-    const remove = ({id}) => data.remove(id);
-
-    const select = (items) => console.log('select', {items});
-
-    export const List = ({}) => {
       const classes = useStyles();
       const go = useRouter();
+
+      const handler = ({limit, offset, order, orderBy, keyword}) => data.list({limit, offset, order, orderBy, keyword});
+      const select = (items) => console.log('select', {items});
+      const remove = ({id}) => data.remove(id);
+      const click = ({id}) => go(`/one/${id}`);
+
       return (
         <div className={classes.root}>
-          <ListForm click={({id}) => go(`/one/${id}`)}
+          <List selection={SelectionMode.Single}
             remove={remove} handler={handler}
-            select={select}
-            selection={SelectionMode.Single}
-            canEdit={false}
-            fields={fields}/>
+            fields={fields} click={click}
+            select={select} />
         </div>
       );
     };

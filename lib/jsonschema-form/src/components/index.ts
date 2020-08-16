@@ -5,3 +5,4 @@
 /// <reference path="./List.tsx"/>
 /// <reference path="./useResolved.ts"/>
 /// <reference path="./makeManaged.tsx"/>
+/// <reference path="./Breadcrumbs.tsx"/>
