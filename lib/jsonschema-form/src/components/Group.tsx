@@ -18,11 +18,11 @@ namespace form {
       ...otherProps
     }) => (
       <Grid container alignItems="flex-start" style={{paddingRight: '5px'}} {...otherProps}
-        xs={n(columns ? columns : phoneColumns)}
-        sm={n(columns ? columns : phoneColumns)}
-        md={n(columns ? columns : (phoneColumns || tabletColumns))}
-        lg={n(columns ? columns : (tabletColumns || desktopColumns))}
-        xl={n(columns ? columns : desktopColumns)} className={className}>
+        xs={n(columns ? columns : phoneColumns ? phoneColumns : '12')}
+        sm={n(columns ? columns : phoneColumns ? phoneColumns : '12')}
+        md={n(columns ? columns : (phoneColumns || tabletColumns) ? (phoneColumns || tabletColumns) : '12')}
+        lg={n(columns ? columns : (tabletColumns || desktopColumns) ? (tabletColumns || desktopColumns) : '12')}
+        xl={n(columns ? columns : desktopColumns ? desktopColumns : '12')} className={className}>
         {children}
       </Grid>
     );
