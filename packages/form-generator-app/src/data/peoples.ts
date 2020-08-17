@@ -443,7 +443,7 @@ namespace app {
       }
     ];
 
-    export const get = (id: string) => peoples.find((p) => p.id === id);
+    export const get = (id: string) => new Promise((res) => setTimeout(() => res(peoples.find((p) => p.id === id)), 500));
     export const list = ({
       limit = 10,
       offset = 0,
