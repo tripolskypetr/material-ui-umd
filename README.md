@@ -1,6 +1,6 @@
 # material-umd
 
-> UMD дистрибутив ui тулкита [material-ui](https://github.com/mui-org/material-ui), поставляемый вместе с файлом описания типов typescript с пространствами имен глобального объекта
+> UMD дистрибутив ui тулкита [material-ui](https://github.com/mui-org/material-ui), поставляемый вместе с файлом описания типов typescript с пространствами имен глобального объекта. В комплекте свой роутер и генератор форм на основе json шаблона. Вы можете посмотреть [демо по ссылке](https://theonekit.github.io/)
 
 ![rkn](assets/img/rkn.png)
 
