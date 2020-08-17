@@ -151,7 +151,7 @@ namespace app {
       const go = useRouter();
 
       const back = () => go('/list');
-      const handler = () => data.get(id);
+      const handler = () => new Promise((res) => setTimeout(() => res(data.get(id)), 500));
       const change = (obj) => setChangedObj(obj);
 
       const onSave = useCallback(() => {

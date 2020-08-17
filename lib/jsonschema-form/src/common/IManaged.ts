@@ -39,7 +39,7 @@ namespace form {
      */
     value: v;
     disabled: boolean;
-    invalid?: string | null;
+    invalid: string | null;
     onChange: (v: v) => void;
   }
 

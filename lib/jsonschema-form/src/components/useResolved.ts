@@ -27,13 +27,13 @@ namespace form {
         const tryResolve = async () => {
           if (isRoot.current) {
             return
-          } else if (handler instanceof Promise) {
-            const result = await handler();
-            setData(deepClone(result));
-            isRoot.current = true;
-          } else if (typeof handler === 'function') {
+          } if (typeof handler === 'function') {
             const result = handler();
-            setData(deepClone(result));
+            if (result instanceof Promise) {
+            setData(deepClone(await result));
+            } else {
+              setData(deepClone(result));
+            }
             isRoot.current = true;
           } else {
             setData(handler);
