@@ -40,10 +40,10 @@ namespace form {
      * Компонент высшего порядка предоставляет удобную
      * абстракцию
      */
-    value: v,
-    disabled: boolean,
-    invalid?: string | null,
-    onChange: (v: v) => void,
+    value: v;
+    disabled: boolean;
+    invalid?: string | null;
+    onChange: (v: v) => void;
   }
 
 } // namespace form
