@@ -15,9 +15,6 @@ namespace form {
 
   /**
    * Свойства сущности, обернутой в компонент высшего порядка
-   * makeEditable() или makeSelectable(). Разница между
-   * ними в наличие проверки isInvalid: если мы выбираем,
-   * она не актуальна
    */
   export interface IManaged extends Omit<IEntity, exclude> {
 
