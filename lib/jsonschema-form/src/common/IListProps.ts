@@ -44,7 +44,7 @@ namespace form {
     /**
      * Коллбек, вызываемый для удаления элемента
      */
-    remove?: (object: any) => Promise<void> | any;
+    remove?: (object: any) => Promise<void> | void;
     /**
      * Значения по-умолчанию для пагинации. Значение
      * total будет переопределяться исходя из доступности

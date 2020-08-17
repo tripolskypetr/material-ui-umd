@@ -450,7 +450,7 @@ namespace app {
       order = 'asc',
       orderBy = '',
       keyword = '',
-    }) => {
+    }) => new Promise<any>((res) => setTimeout(() => {
 
       let copy = peoples.slice(0);
 
@@ -475,9 +475,9 @@ namespace app {
 
       console.log({limit, offset, order, orderBy, keyword, result})
 
-      return result;
-    };
-    export const remove = (id: string) => peoples = peoples.filter((p) => p.id !== id);
+      res(result);
+    }, 500));
+    export const remove = (id: string) => new Promise<any>((res) => setTimeout(() => res(peoples = peoples.filter((p) => p.id !== id)), 500));
     export const patch = (people: any) => peoples = peoples.map((p) => {
       if (p.id === people.id) {
         return people;

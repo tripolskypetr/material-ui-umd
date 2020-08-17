@@ -299,12 +299,15 @@ namespace form {
           };
 
           const getData = async () => {
-            if (handler instanceof Promise) {
-              return await handler(props);
-            } else if (typeof handler === 'function') {
-              return handler(props);
+            if (typeof handler === 'function') {
+              const result = handler(props);
+              if (result instanceof Promise) {
+                return await result;
+              } else {
+                return result;
+              }
             } else {
-              throw new Error('List handler not promise not function');
+              throw new Error('List handler callback not function');
             }
           };
 
@@ -330,12 +333,13 @@ namespace form {
       }, [handler, keyword, order, orderBy, pagination, selections]);
 
       const onDelete = async (obj) => {
-        if (remove instanceof Promise) {
-          await remove(obj);
-        } else if (typeof remove === 'function') {
-          remove(obj);
+        if (typeof remove === 'function') {
+          const result = remove(obj);
+          if (result instanceof Promise) {
+            await result;
+          }
         } else {
-          throw new Error('List remove not promise not function');
+          throw new Error('List remove callback not function');
         }
         onUpdate();
       };

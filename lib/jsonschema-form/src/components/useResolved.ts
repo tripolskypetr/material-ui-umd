@@ -30,7 +30,7 @@ namespace form {
           } if (typeof handler === 'function') {
             const result = handler();
             if (result instanceof Promise) {
-            setData(deepClone(await result));
+              setData(deepClone(await result));
             } else {
               setData(deepClone(result));
             }
