@@ -36,6 +36,7 @@ namespace router {
 
     export const Router = ({
       children = null,
+      guardFallback = '/',
     }) => {
       const [url, setUrl] = useState('/');
       const [routes, setRoutes] = useState([]);
@@ -63,7 +64,7 @@ namespace router {
           let root = null;
           if (guard(url)) {
             setRoute(createElement(component, params));
-          } else if (root = getRoute(routes, '/')) {
+          } else if (root = getRoute(routes, guardFallback)) {
             const [component] = root.slice(1);
             setRoute(createElement(component, params));
           }
