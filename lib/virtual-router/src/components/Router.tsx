@@ -19,7 +19,7 @@ namespace router {
     const getRoute = (routes = [], location = '') => {
       const keys = []
       const params = {}
-      const route = routes.reduce((acm, [url, component]) => {
+      const route = routes.reduce((acm, [url, component, guard]) => {
         const reg = pathToRegexp(url, keys)
         const match = reg.test(location)
         if (match) {
@@ -27,7 +27,7 @@ namespace router {
           keys.forEach((key, i) => {
             params[key.name] = tokens[i + 1]
           })
-          return [url, component];
+          return [url, component, guard];
         }
         return acm;
       }, null);
@@ -49,8 +49,8 @@ namespace router {
           } else if (element.type !== Route) {
             throw new Error('Router invalid children type');
           } else {
-            const { url, component } = element.props;
-            routes.push([url, component]);
+            const { url, component, guard } = element.props;
+            routes.push([url, component, guard ? guard : () => true]);
           }
         });
         setRoutes(routes);
@@ -59,8 +59,14 @@ namespace router {
       useEffect(() => {
         const route = getRoute(routes, url);
         if (route) {
-          const [component, params] = route.slice(1);
-          setRoute(createElement(component, params));
+          const [url, component, guard, params] = route;
+          let root = null;
+          if (guard(url)) {
+            setRoute(createElement(component, params));
+          } else if (root = getRoute(routes, '/')) {
+            const [component] = root.slice(1);
+            setRoute(createElement(component, params));
+          }
         }
         // tslint:disable-next-line: no-string-literal
         window['routerUrl'] = url;

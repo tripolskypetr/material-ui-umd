@@ -4,6 +4,7 @@ namespace router {
 
     export const Route = ({
       component = null,
+      guard = (url?: string) => true,
       url = '',
     }) => <></>;
 
