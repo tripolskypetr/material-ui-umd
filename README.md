@@ -8,7 +8,7 @@
 
 ## Ссылки
 
- - [Шаблон для быстрого старта](packages/boilerplate-app/README.md)
+ - [Шаблон для быстрого старта](./packages/form-generator-app/README.md)
  - [Оффлайн-копия сайта с документацией](packages/offline-docs/README.md)
  - [Создать свой umd дистрибутив](packages/how-it-is-made/README.md)
 
