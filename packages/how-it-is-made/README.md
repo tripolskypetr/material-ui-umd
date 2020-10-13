@@ -1,5 +1,44 @@
 # Создание type definition для umd модуля на основе пространств имен
 
+
+## Метод 1
+
+> Метод использует обратную компиляцию JavaScript программы, что требует наличия файлов типизации внешних библиотек. Можно попробовать применить заглушку следующего вида: `declare var React: any;`
+
+Оригинальное руководство размещено [тут](https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html). Попробуйте применить следующий конфиг для TypeScript Compiler:
+
+```
+{
+  // Change this to match your project
+  include: ["src/**/*"],
+
+  compilerOptions: {
+    // Tells TypeScript to read JS files, as
+    // normally they are ignored as source files
+    allowJs: true,
+    // Generate d.ts files
+    declaration: true,
+    // This compiler run should
+    // only output d.ts files
+    emitDeclarationOnly: true,
+    // Types should go into this directory.
+    // Removing this would place the .d.ts files
+    // next to the .js files
+    outDir: "dist",
+  },
+}
+```
+
+Тот же конфиг можно передать без дополнительного файла напрямую из командной строки:
+
+```
+npx typescript src/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir types
+```
+
+## Метод 2
+
+> Метод основан на получении информации времени исполнения и обработки JavaScript программы как текста, сторонние файлы типизации не требуются
+
 В репозитории в папке /assets/js лежат два скрипта: `generate-closure-externs.js` и `generate-typescript-entries.js`. Они подключаются непосредственно в `index.html`. Первый из них добавляет в глобальный контекст функцию `externs()`, которая имеет один входной параметр позволяет генерировать из umd модуля в глобальном объекте основу для файлов описания типов [Google Closure Compiler](https://developers.google.com/closure/compiler). Они имеют следующее содержание:
 
 ```
