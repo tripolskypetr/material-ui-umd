@@ -11,6 +11,7 @@
  - [Шаблон для быстрого старта](./packages/form-generator-app/README.md)
  - [Офлайн-копия сайта с документацией](packages/offline-docs/README.md)
  - [Создать свой umd дистрибутив](packages/how-it-is-made/README.md)
+ - [Применение вместе с WordPress без бандлеров](packages/wordpress-interop/README.md)
 
 ## Брифинг
 
