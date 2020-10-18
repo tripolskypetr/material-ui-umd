@@ -15,7 +15,7 @@ namespace form {
 
   export namespace components {
 
-    export const One = ({fields, handler, change, prefix = 'root', LoadPlaceholder = null}: IOneProps) => {
+    export const One = ({fields, change, handler = () => ({}), prefix = 'root', LoadPlaceholder = null}: IOneProps) => {
       const [object, setObject] = useResolved(handler);
       const onChange = (v) => {
         setObject(v);

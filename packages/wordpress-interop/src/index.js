@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const ignoreList = new Set(['index.js', '.DS_Store']);
+const ignoreList = new Set(['index.js', 'loader.js', '.DS_Store']);
 
 function printTree(root) {
   printTree.prototype.space = printTree.prototype.space || 0;
@@ -52,15 +52,19 @@ function buildTree(folder) {
 
 function buildOne(tree) {
   const obj = {};
-  obj.title = tree.name;
   if ('length' in tree) {
     return tree
+      .sort((f) => !f.child)
       .map((f) => buildOne(f));
   } else if ('child' in tree) {
     obj.type = 'group';
-    obj.fields = tree.child
-      .map((f) => buildOne(f));
+    obj.fields = [
+      { type: 'line', title: tree.name },
+      ...tree.child.sort((f) => !f.child)
+        .map((f) => buildOne(f))
+    ];
   } else {
+    obj.title = tree.name;
     obj.type = 'string';
     obj.name = tree.name;
   }
