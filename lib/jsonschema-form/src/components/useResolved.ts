@@ -10,17 +10,35 @@ namespace form {
   } = React;
 
   const {
+    initialValue,
     deepClone,
+    flat,
   } = utils;
 
+  const {
+    assign,
+  } = Object;
+
   export namespace components {
+
+    const buildObj = (fields: IField[]) => {
+      const obj = {};
+      if (fields) {
+        flat(fields, "fields").forEach((f) => {
+          if (f.name && f.type) {
+            obj[f.name] = initialValue(f.type);
+          }
+        });
+      }
+      return obj;
+    };
 
     /**
      * Хук разрешает обработчик на корневом уровне, при чем только
      * один раз. Для дочерних One компонентов осуществляется
      * подписка на изменения
      */
-    export const useResolved = (handler: () => Promise<any> | any): any => {
+    export const useResolved = (handler: () => Promise<any> | any, fields: IField[]): any => {
       const [data, setData] = useState(null);
       const isRoot = useRef(false);
       useEffect(() => {
@@ -30,13 +48,13 @@ namespace form {
           } if (typeof handler === 'function') {
             const result = handler();
             if (result instanceof Promise) {
-              setData(deepClone(await result));
+              setData(assign(buildObj(fields), deepClone(await result)));
             } else {
-              setData(deepClone(result));
+              setData(assign(buildObj(fields), deepClone(result)));
             }
             isRoot.current = true;
           } else {
-            setData(handler);
+            setData(assign(buildObj(fields), handler));
           }
         };
         tryResolve();

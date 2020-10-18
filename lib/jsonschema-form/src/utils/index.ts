@@ -5,3 +5,5 @@
 /// <reference path="./deepCompare.ts"/>
 /// <reference path="./deepClone.ts"/>
 /// <reference path="./randomId.ts"/>
+/// <reference path="./flat.ts"/>
+/// <reference path="./initialValue.ts"/>
