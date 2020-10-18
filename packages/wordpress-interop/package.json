@@ -1,0 +1,8 @@
+{
+  "name": "wordpress-interop",
+  "scripts": {
+    "start": "cd src && node index.js",
+    "export": "cd src && node -e \"require('fs').writeFileSync('../dist/export.json',   JSON.stringify(require('./index').buildTree(process.cwd()), null, 2))\"",
+    "generate": "cd src && node -e \"require('fs').writeFileSync('../dist/export.json',   JSON.stringify(require('./index').buildFields(process.cwd()), null, 2))\""
+  }
+}
