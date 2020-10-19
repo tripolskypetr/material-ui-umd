@@ -37,4 +37,3 @@
 
 В папке packages будут размещаться приложения, написанные с этим инструментарием. **Особое внимание** следует уделить [form-generator-app](./packages/form-generator-app/STUDENTS.md), в этом проекте я использую генератор форм на основе *json-схемы* и роутер, разработанный специально для `material-ui-umd`. В этой же папке можно найти офлайн копию документации...
 
- <img src="assets/img/kukamon.png" height="41px" width="60px" align="right" />
