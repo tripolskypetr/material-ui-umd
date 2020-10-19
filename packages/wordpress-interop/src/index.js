@@ -50,17 +50,19 @@ function buildTree(folder) {
     .filter(v => v !== null);
 }
 
+const hasChild = ({child: a}, {child: b}) => a && !b ? 1 : !a &&b ? -1 : 0;
+
 function buildOne(tree) {
   const obj = {};
   if ('length' in tree) {
     return tree
-      .sort((f) => !f.child)
+      .sort(hasChild)
       .map((f) => buildOne(f));
   } else if ('child' in tree) {
     obj.type = 'group';
     obj.fields = [
       { type: 'line', title: tree.name },
-      ...tree.child.sort((f) => !f.child)
+      ...tree.child.sort(hasChild)
         .map((f) => buildOne(f))
     ];
   } else {
