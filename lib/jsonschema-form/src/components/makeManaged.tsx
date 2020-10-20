@@ -20,6 +20,10 @@ namespace form {
     deepCompare,
   } = utils;
 
+  const {
+    useDebounce,
+  } = useDebounceHook;
+
   export namespace components {
 
     const useStyles = makeStyles({
@@ -66,6 +70,7 @@ namespace form {
       const inputUpdate = useRef(false);
 
       const [value, setValue] = useState(defaultValue);
+      const [debouncedValue] = useDebounce(value, 1200);
 
       /**
        * Эффект входящего изменения.
@@ -82,7 +87,9 @@ namespace form {
       }, [object]);
 
       /**
-       * Эффект исходящего изменения.
+       * Эффект исходящего изменения. Привязан на изменение
+       * value, обернутое в хук useDebounce для оптимизации
+       * производительности
        */
       useEffect(() => {
         if (inputUpdate.current) {
@@ -100,7 +107,7 @@ namespace form {
             change(copy);
           }
         }
-      }, [value]);
+      }, [debouncedValue]);
 
       const groupProps = {
         columns,
