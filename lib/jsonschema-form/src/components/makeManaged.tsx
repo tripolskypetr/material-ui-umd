@@ -70,7 +70,7 @@ namespace form {
       const inputUpdate = useRef(false);
 
       const [value, setValue] = useState(defaultValue);
-      const [debouncedValue] = useDebounce(value, 1200);
+      const [debouncedValue] = useDebounce(value, 800);
 
       /**
        * Эффект входящего изменения.
@@ -96,7 +96,7 @@ namespace form {
           inputUpdate.current = false;
         } else {
           const copy = deepClone(object);
-          const check = set(copy, name, value);
+          const check = set(copy, name, debouncedValue);
           const invalid = isInvalid(copy);
           setInvalid(invalid);
           if (!check || !name) {
