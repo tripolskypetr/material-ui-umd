@@ -21,6 +21,12 @@ namespace form {
 
   export namespace components {
 
+    type useResolvedHook = (
+      handler: () => Promise<any> | any,
+      fallback: (e: Error) => void,
+      fields: IField[],
+    ) => [any, (v: any) => void];
+
     const buildObj = (fields: IField[]) => {
       const obj = {};
       if (fields) {
@@ -38,7 +44,7 @@ namespace form {
      * один раз. Для дочерних One компонентов осуществляется
      * подписка на изменения
      */
-    export const useResolved = (handler: () => Promise<any> | any, fields: IField[]): any => {
+    export const useResolved: useResolvedHook = (handler, fallback, fields) => {
       const [data, setData] = useState(null);
       const isRoot = useRef(false);
       useEffect(() => {
@@ -46,13 +52,22 @@ namespace form {
           if (isRoot.current) {
             return
           } if (typeof handler === 'function') {
-            const result = handler();
-            if (result instanceof Promise) {
-              setData(assign(buildObj(fields), deepClone(await result)));
-            } else {
-              setData(assign(buildObj(fields), deepClone(result)));
+            try {
+              const result = handler();
+              if (result instanceof Promise) {
+                setData(assign(buildObj(fields), deepClone(await result)));
+              } else {
+                setData(assign(buildObj(fields), deepClone(result)));
+              }
+            } catch (e) {
+              if (fallback) {
+                fallback(e);
+              } else {
+                throw e;
+              }
+            } finally {
+              isRoot.current = true;
             }
-            isRoot.current = true;
           } else {
             setData(assign(buildObj(fields), handler));
           }

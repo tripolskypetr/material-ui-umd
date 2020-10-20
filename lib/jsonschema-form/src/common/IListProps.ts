@@ -12,6 +12,10 @@ namespace form {
      */
     handler: (params?: IListHandlerInput) => Promise<IListHandlerResult> | IListHandlerResult;
     /**
+     * Вызывается при ошибке в handler
+     */
+    fallback?: (e: Error) => void;
+    /**
      * Вызывается после клика по строке. Подразумевается
      * переход на страницу с обработчиком One, получающим
      * параметр id из адресной строки...

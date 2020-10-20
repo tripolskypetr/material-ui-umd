@@ -252,6 +252,7 @@ namespace form {
       click = (object) => console.log({ object }),
       remove = (object) => console.log({ object }),
       handler = () => null,
+      fallback = null,
       ...otherProps
     }: IListProps) => {
 
@@ -300,11 +301,19 @@ namespace form {
 
           const getData = async () => {
             if (typeof handler === 'function') {
-              const result = handler(props);
-              if (result instanceof Promise) {
-                return await result;
-              } else {
-                return result;
+              try {
+                const result = handler(props);
+                if (result instanceof Promise) {
+                  return await result;
+                } else {
+                  return result;
+                }
+              } catch (e) {
+                if (fallback) {
+                  fallback(e);
+                } else {
+                  throw e;
+                }
               }
             } else {
               throw new Error('List handler callback not function');
@@ -334,9 +343,17 @@ namespace form {
 
       const onDelete = async (obj) => {
         if (typeof remove === 'function') {
-          const result = remove(obj);
-          if (result instanceof Promise) {
-            await result;
+          try {
+            const result = remove(obj);
+            if (result instanceof Promise) {
+              await result;
+            }
+          } catch (e) {
+            if (fallback) {
+              fallback(e);
+            } else {
+              throw e;
+            }
           }
         } else {
           throw new Error('List remove callback not function');
