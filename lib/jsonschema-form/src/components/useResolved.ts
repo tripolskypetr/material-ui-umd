@@ -12,7 +12,7 @@ namespace form {
   const {
     initialValue,
     deepClone,
-    flat,
+    deepFlat,
   } = utils;
 
   const {
@@ -24,7 +24,7 @@ namespace form {
     const buildObj = (fields: IField[]) => {
       const obj = {};
       if (fields) {
-        flat(fields, "fields").forEach((f) => {
+        deepFlat(fields, "fields").forEach((f) => {
           if (f.name && f.type) {
             obj[f.name] = initialValue(f.type);
           }
