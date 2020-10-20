@@ -25,7 +25,7 @@ namespace form {
         value={value || defaultValue} error={invalid !== null} disabled={disabled}
         onChange={({target}) => onChange(target.value)} label={title}
         style={{paddingBottom: '10px'}} />
-    ), false);
+    ), false, false);
 
   } // namespace fields
 

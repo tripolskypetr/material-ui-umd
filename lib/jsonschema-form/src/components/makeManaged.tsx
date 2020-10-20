@@ -45,7 +45,7 @@ namespace form {
      *  - Оборачивает IEntity в удобную абстракцию IManaged, где сразу
      * представлены invalid, disabled, visible и можно задваивать вызов onChange
      */
-    export const makeManaged = (Component: material.Component<IManaged>, defaultValue = null) => ({
+    export const makeManaged = (Component: material.Component<IManaged>, skipDebounce = false, defaultValue = null) => ({
       className = '',
       columns = '',
       phoneColumns = '',
@@ -70,7 +70,7 @@ namespace form {
       const inputUpdate = useRef(false);
 
       const [value, setValue] = useState(defaultValue);
-      const [debouncedValue] = useDebounce(value, 800);
+      const [debouncedValue] = useDebounce(value, skipDebounce ? 0 : 800);
 
       /**
        * Эффект входящего изменения.
