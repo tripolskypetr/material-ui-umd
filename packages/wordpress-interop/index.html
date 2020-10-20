@@ -170,15 +170,16 @@
             title: "Способ доставки"
           },
           {
-            title: "Доставка",
-            type: "string",
-            name: "Доставка"
+            title: "Самовывоз",
+            type: "switch",
+            name: "Самовывоз",
           },
           {
-            title: "Самовывоз",
+            title: "Адрес",
             type: "string",
-            name: "Самовывоз"
-          }
+            name: "Адрес",
+            isDisabled: (obj) => obj["Самовывоз"]
+          },
         ]
       },
     ];
