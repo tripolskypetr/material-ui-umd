@@ -1,6 +1,6 @@
 # wordpress-interop
 
-> Применяем генератор форм на [React](https://reactjs.org/) при создании калькулятора стоимости услуг для сайта на Wordpress
+> Применяем генератор форм на [React](https://reactjs.org/) при создании калькулятора стоимости услуг для сайта на Wordpress. Посмотреть онлайн демо можно [по ссылке](https://theonekit.github.io/wordpress-interop/).
 
 ## Введение
 
