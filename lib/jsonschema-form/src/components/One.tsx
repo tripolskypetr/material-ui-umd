@@ -16,8 +16,11 @@ namespace form {
   export namespace components {
 
     export const One = ({
-      fields, change, fallback = null, LoadPlaceholder = null,
-      handler = () => ({}), prefix = 'root'
+      fields, change,
+      prefix = 'root',
+      fallback = null,
+      handler = () => ({}),
+      LoadPlaceholder = null,
     }: IOneProps) => {
       const [object, setObject] = useResolved(handler, fallback, fields);
       const onChange = (v) => {
