@@ -9,11 +9,25 @@ namespace app {
   } = material.core;
 
   const {
-    GitHub
+    List,
+    Drawer,
+    ListItem,
+    ListItemText,
+    ListItemIcon,
+  } = material.core;
+
+  const {
+    GitHub,
+    Menu,
   } = material.icons;
 
   const {
-    Fragment
+    Fragment,
+    createElement: h,
+  } = React;
+
+  const {
+    useState,
   } = React;
 
   export namespace components {
@@ -42,13 +56,35 @@ namespace app {
     export const Scaffold = ({
       children = null,
       className = '',
+      pages = [],
+      go = (url) => console.log({url}),
       ...otherProps
     }) => {
       const classes = useStyles();
+      const [opened, setOpened] = useState(false);
+      const onGo = (url) => {
+        setOpened(false);
+        go(url);
+      };
       return (
         <Fragment>
+          <Drawer open={opened} onClose={() => setOpened(false)}>
+            <List style={{minWidth: "240px"}}>
+              {pages.map(({icon = null, title, url}, index) => (
+                <ListItem button onClick={() => onGo(url)} key={index}>
+                  <ListItemIcon>
+                    {icon && h(icon)}
+                  </ListItemIcon>
+                  <ListItemText primary={title} />
+                </ListItem>
+              ))}
+            </List>
+          </Drawer>
           <AppBar position="fixed" className={classNames(classes.appBar, className)} {...otherProps}>
             <Toolbar>
+              <IconButton onClick={() => setOpened(true)} color="inherit">
+                <Menu />
+              </IconButton>
               <Typography variant="h6" className={classes.title}>
                 JSON form sample
               </Typography>

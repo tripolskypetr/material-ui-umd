@@ -23,8 +23,16 @@ namespace app {
 
   const {
     Router,
-    Route
+    Route,
   } = router;
+
+  const {
+    LooksOne,
+  } = material.icons;
+
+  const {
+    useRef,
+  } = React;
 
   const theme = createMuiTheme({
     palette: {
@@ -52,12 +60,16 @@ namespace app {
   });
 
   const App = () => {
+    const router = useRef(null);
+    const pages = [
+      {icon: LooksOne, title: "Документ со Справочником", url: "/list"}
+    ];
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <Scaffold>
+        <Scaffold pages={pages} go={(url) => router.current(url)}>
           <Container>
-            <Router>
+            <Router ref={router}>
               <Route url="/" component={BriefPage}/>
               <Route url="/list" component={ListPage}/>
               <Route url="/one/:id" component={OnePage}/>

@@ -7,6 +7,7 @@ namespace router {
     Children,
     useState,
     useEffect,
+    forwardRef,
   } = React;
 
   const {
@@ -34,53 +35,66 @@ namespace router {
       return route === null ? null : [...route, params];
     };
 
-    export const Router = ({
-      children = null,
-      guardFallback = '/',
-    }) => {
-      const [url, setUrl] = useState('/');
-      const [routes, setRoutes] = useState([]);
-      const [route, setRoute] = useState(null);
+    namespace internal {
 
-      useEffect(() => {
-        const routes = [];
-        Children.forEach(children, (element: React.ReactElement<RouteProps>) => {
-          if (!isValidElement(element)) {
-            throw new Error('Router invalid element');
-          } else if (element.type !== Route) {
-            throw new Error('Router invalid children type');
-          } else {
-            const { url, component, guard } = element.props;
-            routes.push([url, component, guard ? guard : () => true]);
-          }
-        });
-        setRoutes(routes);
-      }, []);
+      export const Router = ({
+        children = null,
+        guardFallback = '/',
+      }, ref) => {
 
-      useEffect(() => {
-        const route = getRoute(routes, url);
-        if (route) {
-          const [url, component, guard, params] = route;
-          let root = null;
-          if (guard(url)) {
-            setRoute(createElement(component, params));
-          } else if (root = getRoute(routes, guardFallback)) {
-            const [component] = root.slice(1);
-            setRoute(createElement(component, params));
+        const [url, setUrl] = useState('/');
+        const [routes, setRoutes] = useState([]);
+        const [route, setRoute] = useState(null);
+
+        const go = (url) => setUrl(url);
+
+        useEffect(() => {
+          const routes = [];
+          Children.forEach(children, (element: React.ReactElement<RouteProps>) => {
+            if (!isValidElement(element)) {
+              throw new Error('Router invalid element');
+            } else if (element.type !== Route) {
+              throw new Error('Router invalid children type');
+            } else {
+              const { url, component, guard } = element.props;
+              routes.push([url, component, guard ? guard : () => true]);
+            }
+          });
+          setRoutes(routes);
+        }, []);
+
+        useEffect(() => {
+          const route = getRoute(routes, url);
+          if (route) {
+            const [url, component, guard, params] = route;
+            let root = null;
+            if (guard(url)) {
+              setRoute(createElement(component, params));
+            } else if (root = getRoute(routes, guardFallback)) {
+              const [component] = root.slice(1);
+              setRoute(createElement(component, params));
+            }
           }
+          // tslint:disable-next-line: no-string-literal
+          window['routerUrl'] = url;
+          // tslint:disable-next-line: no-string-literal
+          window['routerGo'] = go;
+        }, [url, routes]);
+
+        if (ref) {
+          ref.current = go;
         }
-        // tslint:disable-next-line: no-string-literal
-        window['routerUrl'] = url;
-        // tslint:disable-next-line: no-string-literal
-        window['routerGo'] = (url) => setUrl(url);
-      }, [url, routes]);
 
-      return (
-        <RouterContext.Provider value={(url) => setUrl(url)}>
-          {route}
-        </RouterContext.Provider>
-      );
-    };
+        return (
+          <RouterContext.Provider value={go}>
+            {route}
+          </RouterContext.Provider>
+        );
+      };
+
+    } // namespace internal
+
+    export const Router = forwardRef(internal.Router);
 
   } // namespace components
 
