@@ -12,6 +12,7 @@
  - [Офлайн-копия сайта с документацией](packages/offline-docs/README.md)
  - [Создать свой umd дистрибутив](packages/how-it-is-made/README.md)
  - [Применение вместе с WordPress на ванильном JavaScript](packages/wordpress-interop/README.md)
+ - [Заметки по курсу лекций](packages/react-lessons-notes/README.md)
 
 ## Брифинг
 
