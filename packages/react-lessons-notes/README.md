@@ -4,7 +4,7 @@
 
 ## Содержание
 
- - [Урок 1. JSX](./lesson1/README.md)
+ - [Урок 1. JSX](./lessons/lesson1/README.md)
 
 ## Минимальная подготовка
 
