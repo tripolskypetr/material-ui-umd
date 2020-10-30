@@ -1,7 +1,7 @@
 {
   "name": "react-lessons-notes",
   "scripts": {
-    "lint": "yaspeller ./lessons -e .md"
+    "lint": "(yaspeller ./lessons -e .md &)"
   },
   "devDependencies": {
     "yaspeller": "^7.0.0"
