@@ -36,10 +36,10 @@ React регламентирует минимальное множество в�
 
   const h = 10;
 
-	(function() {
+  (function() {
   
     // На прошлом уроке мы проходили подключение без деструктуризации
-  	const {
+    const {
       createElement: h,
     } = React;
 
@@ -66,7 +66,7 @@ React регламентирует минимальное множество в�
       }
     }
 
-		const mountPoint = document.querySelector('#mount-point');
+    const mountPoint = document.querySelector('#mount-point');
     ReactDOM.render(h(Clicker, {initialValue: 10}), mountPoint);
   
   })();
@@ -87,9 +87,9 @@ React регламентирует минимальное множество в�
 
 <script>
 
-	(function() {
+  (function() {
   
-  	const {
+    const {
       createElement: h,
       Fragment,
     } = React;
@@ -111,7 +111,7 @@ React регламентирует минимальное множество в�
       componentWillUnmount() {
       	//clearInterval(this.interval);
       }
-    	render() {
+      render() {
       	return h('p', null, `Итерация: ${this.state.v}`);
       }
     }
@@ -141,7 +141,7 @@ React регламентирует минимальное множество в�
       }
     }
 
-		const mountPoint = document.querySelector('#mount-point');
+    const mountPoint = document.querySelector('#mount-point');
     ReactDOM.render(h(App), mountPoint);
   
   })();
@@ -160,7 +160,7 @@ React регламентирует минимальное множество в�
 
 <script>
 
-	(function() {
+  (function() {
   
   	const {
       createElement: h,
@@ -171,7 +171,7 @@ React регламентирует минимальное множество в�
       Button,
     } = material.core;
 
-		class TodoList extends React.Component {
+    class TodoList extends React.Component {
     
     	constructor(props) {
       	super(props);
@@ -204,10 +204,10 @@ React регламентирует минимальное множество в�
     
     }
     
-   	const mountPoint = document.querySelector('#mount-point');
+    const mountPoint = document.querySelector('#mount-point');
     ReactDOM.render(h(TodoList), mountPoint);
 
-	})();
+  })();
 
 </script>
 ```
