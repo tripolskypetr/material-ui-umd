@@ -40,9 +40,10 @@ namespace router {
       export const Router = ({
         children = null,
         guardFallback = '/',
+        currentUrl = '/',
       }, ref) => {
 
-        const [url, setUrl] = useState('/');
+        const [url, setUrl] = useState(currentUrl);
         const [routes, setRoutes] = useState([]);
         const [route, setRoute] = useState(null);
 
@@ -80,6 +81,8 @@ namespace router {
           // tslint:disable-next-line: no-string-literal
           window['routerGo'] = go;
         }, [url, routes]);
+
+        useEffect(() => setUrl(currentUrl), [currentUrl]);
 
         if (ref) {
           ref.current = go;

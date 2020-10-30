@@ -1,10 +1,12 @@
 # react-lessons-notes
 
-> Опенсорс курсы переподготовки разработчика [jQuery](https://jquery.com/) на [React](https://reactjs.org/)... Если вы плывете в jQuery, пошерстите интернет на предмет [лекции от WebForMyself](https://webformyself.com/category/premium/javascript-premium/jquerypremium/)...
+> Авторская учебная программа. Опенсорс курсы переподготовки разработчика [jQuery](https://jquery.com/) на [React](https://reactjs.org/)... Если вы плывете в jQuery, пошерстите интернет на предмет [лекции от WebForMyself](https://webformyself.com/category/premium/javascript-premium/jquerypremium/)...
 
 ## Содержание
 
  - [Урок 1. JSX](./lessons/lesson1/README.md)
+
+  - [Урок 2. Инкрементальная игра](./lessons/lesson2/README.md)
 
 ## Минимальная подготовка
 
