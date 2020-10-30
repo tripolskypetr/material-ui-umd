@@ -6,7 +6,9 @@
 
  - [Урок 1. JSX](./lessons/lesson1/README.md)
 
-  - [Урок 2. Инкрементальная игра](./lessons/lesson2/README.md)
+ - [Урок 2. Инкрементальная игра](./lessons/lesson2/README.md)
+
+ - [Урок 3. Введение в flexbox](./lessons/lesson3/README.md)
 
 ## Минимальная подготовка
 

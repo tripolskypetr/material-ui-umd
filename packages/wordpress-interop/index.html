@@ -1,53 +1,196 @@
+
+<script src="./src/loader.js"></script>
+
 <div id="mount-point"></div>
 
-<script src="https://theonekit.github.io/index.js"></script>
-
 <script>
+  (function () {
 
-	(function() {
-  
-  	const {
-      createElement: h,
-      Fragment,
-    } = React;
-    
     const {
-      Button,
-    } = material.core;
+      createElement: h,
+    } = React;
 
-		class TodoList extends React.Component {
-    
-    	constructor(props) {
-      	super(props);
-        this.state = { items: [], };
-      }
-      
-      addItem() {
-      	const {items} = this.state;
-        items.push(prompt('Название пункта:'));
-        this.setState({items});
-      }
-      
-      renderList() {
-      	const list = [];
-        for (let i = 0; i !== this.state.items.length; i++) {
-        	const item = this.state.items[i];
-          list.push(h('li', null, item));
-        }
-      }
-      
-      render() {
-      	return h(Fragment, null,
-        	h(Button, {onClick: this.addItem}, 'Добавить пункт'),
-        	h('ul', null, this.renderList()),
-        );
-      }
-    
-    }
-    
-   	const mountPoint = document.querySelector('#mount-point');
-    ReactDOM.render(h(TodoList), mountPoint);
+    const {
+      One,
+    } = form;
 
-	})();
+    const fields = [
+      {
+        type: "group",
+        fields: [
+          {
+            type: "line",
+            title: "Вид стекла"
+          },
+          {
+            title: "Бронза",
+            type: "checkbox",
+            name: "Бронза"
+          },
+          {
+            title: "Матовое",
+            type: "checkbox",
+            name: "Матовое"
+          },
+          {
+            title: "Осветленное",
+            type: "checkbox",
+            name: "Осветленное"
+          },
+          {
+            title: "Прозрачное",
+            type: "checkbox",
+            name: "Прозрачное"
+          },
+          {
+            title: "Серое",
+            type: "checkbox",
+            name: "Серое"
+          },
+          {
+            type: "group",
+            fields: [
+              {
+                type: "line",
+                title: "Толщина стекла"
+              },
+              {
+                title: "10 мм",
+                type: "radio",
+                name: "Толщина стекла",
+                radioValue: "10 мм"
+              },
+              {
+                title: "12 мм",
+                type: "radio",
+                name: "Толщина стекла",
+                radioValue: "12 мм"
+              },
+              {
+                title: "3 мм",
+                type: "radio",
+                name: "Толщина стекла",
+                radioValue: "3 мм"
+              },
+              {
+                title: "4 мм",
+                type: "radio",
+                name: "Толщина стекла",
+                radioValue: "4 мм"
+              },
+              {
+                title: "5 мм",
+                type: "radio",
+                name: "Толщина стекла",
+                radioValue: "5 мм"
+              },
+              {
+                title: "6 мм",
+                type: "radio",
+                name: "Толщина стекла",
+                radioValue: "6 мм"
+              },
+              {
+                title: "8 мм",
+                type: "radio",
+                name: "Толщина стекла",
+                radioValue: "8 мм"
+              },
+              {
+                type: "group",
+                fields: [
+                  {
+                    type: "line",
+                    title: "Форма изделия"
+                  },
+                  {
+                    type: "group",
+                    columns: "6",
+                    fields: [
+                      {
+                        type: "line",
+                        title: "Круг"
+                      },
+                      {
+                        title: "Диаметр",
+                        type: "string",
+                        name: "Диаметр"
+                      },
+                      {
+                        type: "group",
+                        fields: [
+                          {
+                            type: "line",
+                            title: "Обработка (круг)"
+                          },
+                          {
+                            title: "Полировка",
+                            type: "string",
+                            name: "Полировка"
+                          },
+                          {
+                            title: "Резка",
+                            type: "string",
+                            name: "Резка"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    type: "group",
+                    columns: "6",
+                    fields: [
+                      {
+                        type: "line",
+                        title: "Прямоугольник"
+                      },
+                      {
+                        title: "Длинна",
+                        type: "string",
+                        name: "Длинна"
+                      },
+                      {
+                        title: "Ширина",
+                        type: "string",
+                        name: "Ширина"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        type: "group",
+        fields: [
+          {
+            type: "line",
+            title: "Способ доставки"
+          },
+          {
+            title: "Самовывоз",
+            type: "switch",
+            name: "Самовывоз",
+          },
+          {
+            title: "Адрес",
+            type: "string",
+            name: "Адрес",
+            isDisabled: (obj) => obj["Самовывоз"]
+          },
+        ]
+      },
+    ];
+
+    const change = (obj) => console.log({ obj });
+
+    const App = () => h(One, { fields, change });
+
+    ReactDOM.render(h(App), document.getElementById('mount-point'));
+
+  })();
 
 </script>
