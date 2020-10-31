@@ -1,6 +1,6 @@
 # Урок 3.
 
-> Изучаем flexbox. Flexbox - отстрие инструментария, созданного для компоновки пользовательских интерфейсов. Верстка
+> Изучаем flexbox. Flexbox - острие инструментария, созданного для компоновки пользовательских интерфейсов. Верстка
 
 ## Начать пользоваться flexbox
 
@@ -184,7 +184,7 @@
 // |_____________________________________________________|
 ```
 
-**ВСЁ**. Остальное с практикой
+**ВСЁ**. Остальное с практикой. 90% результата дается в 10% времени
 
 ## Верстка по макету
 
@@ -292,6 +292,9 @@
       }
     };
 
+    /**
+     * Если нужен только render, класс можно не писать
+     */
     const App = () => h(Fragment, null,
       h("div", { style: rootStyle },
         h("div", { style: containerStyle },
@@ -313,9 +316,57 @@
 </script>
 ```
 
+## Как работает компонент `div`
+
+Внутри div можно выводить другие компоненты
+
+```
+const App = () => (
+  <div>
+    <p>Hello, world!</p>
+  </div>
+);
+```
+
+Для вывода потомков существует специальное свойство `children`. Рассмотрим его использование на примере [fieldset](http://htmlbook.ru/html/fieldset)
+
+```
+<div id="mount-point"></div>
+
+<script src="https://theonekit.github.io/index.js"></script>
+
+<script>
+	(function() {
+  	
+    const {
+    	createElement: h,
+    } = React;
+    
+    const {
+    	Button
+    } = material.core;
+    
+    const Hero = (props) => h('fieldset', null,
+    	h('legend', null, props.title),
+      props.children,
+    );
+    
+    const App = () => h(Hero, {
+    	title: "Кнопка Button в стиле Material"
+    }, h(Button, {variant: "contained"}, 'Hello there'));
+    
+    const mountPoint = document.querySelector("#mount-point");
+    ReactDOM.render(h(App), mountPoint);
+    
+  })();
+</script>
+```
+
 ## Самостоятельная работа
 
-> Сверстать на JSX разноцветную лесенку
+### Задача 1
+
+> Сверстать на JSX разноцветную лесенку c flexbox-центровкой
 
 ```
 //  _____________________________________________________
@@ -342,3 +393,21 @@
 //  |        div                                        |
 //  |___________________________________________________|
 ```
+
+Подсказка
+
+```
+const App = () => (
+  <Box>
+    <Box>
+      <Box>
+        ...
+      </Box>
+    </Box>
+  </Box>
+);
+```
+
+### Задача 2
+
+> Уметь повторить верстку с макета
