@@ -10,6 +10,7 @@ namespace form {
     Checkbox = 'checkbox',
     Label = 'label',
     Text = 'text',
+    Progress = 'progress',
   };
 
 } // namespace form

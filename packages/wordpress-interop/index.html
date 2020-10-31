@@ -148,13 +148,32 @@
                       {
                         title: "Длинна",
                         type: "string",
-                        name: "Длинна"
+                        name: "Длинна",
+                        defaultValue: 10,
+                        inputType: 'number',
                       },
                       {
                         title: "Ширина",
                         type: "string",
-                        name: "Ширина"
-                      }
+                        name: "Ширина",
+                        defaultValue: 20,
+                        inputType: 'number',
+                      },
+                      {
+                        title: "Площадь",
+                        type: "string",
+                        compute: (obj) => obj["Длинна"] * obj["Ширина"],
+                        inputType: 'number',
+                      },
+                      {
+                        type: "line",
+                        title: "Доступно 500 единиц объема"
+                      },
+                      {
+                        type: "progress",
+                        compute: (obj) => obj["Длинна"] * obj["Ширина"],
+                        maxPercent: 500,
+                      },
                     ]
                   }
                 ]

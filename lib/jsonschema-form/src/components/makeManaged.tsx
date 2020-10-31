@@ -45,7 +45,7 @@ namespace form {
      *  - Оборачивает IEntity в удобную абстракцию IManaged, где сразу
      * представлены invalid, disabled, visible и можно задваивать вызов onChange
      */
-    export const makeManaged = (Component: material.Component<IManaged>, skipDebounce = false, defaultValue = null) => ({
+    export const makeManaged = (Component: material.Component<IManaged>, skipDebounce = false) => ({
       className = '',
       columns = '',
       phoneColumns = '',
@@ -54,7 +54,8 @@ namespace form {
       isDisabled = () => false,
       isVisible = () => true,
       isInvalid = () => null,
-      change = ({v}) => console.log({v}),
+      change = (v) => console.log({v}),
+      compute = null,
       object = {},
       name = '',
       readonly = false,
@@ -69,21 +70,28 @@ namespace form {
 
       const inputUpdate = useRef(false);
 
-      const [value, setValue] = useState(defaultValue);
+      /**
+       * Чтобы поле было управляемым, нельзя передавать в свойство value значение null
+       */
+      const [value, setValue] = useState(false);
       const [debouncedValue] = useDebounce(value, skipDebounce ? 0 : 800);
 
       /**
        * Эффект входящего изменения.
        */
       useEffect(() => {
-        const newValue = get(object, name);
-        if (newValue !== value) {
-          inputUpdate.current = true;
-          setValue(newValue);
+        if (compute) {
+          setValue(compute(object));
+        } else {
+          const newValue = get(object, name);
+          if (newValue !== value) {
+            inputUpdate.current = true;
+            setValue(newValue);
+          }
+          setDisabled(isDisabled(object));
+          setVisible(isVisible(object));
+          setInvalid(isInvalid(object));
         }
-        setDisabled(isDisabled(object));
-        setVisible(isVisible(object));
-        setInvalid(isInvalid(object));
       }, [object]);
 
       /**
@@ -94,6 +102,8 @@ namespace form {
       useEffect(() => {
         if (inputUpdate.current) {
           inputUpdate.current = false;
+        } else if (compute) {
+          return;
         } else {
           const copy = deepClone(object);
           const check = set(copy, name, debouncedValue);
@@ -117,14 +127,13 @@ namespace form {
       };
 
       const onChange = (newValue) => {
-        if (readonly) {
-          return;
-        }
+        if (readonly) { return; }
+        if (compute) { return; }
         setValue(newValue);
       };
 
       const managedProps: IManaged = {
-        value: value || defaultValue, disabled, invalid, onChange,
+        value, disabled, invalid, onChange,
         ...otherProps
       };
 

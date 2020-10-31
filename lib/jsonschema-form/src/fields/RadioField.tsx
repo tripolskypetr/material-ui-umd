@@ -24,7 +24,7 @@ namespace form {
           <FormControlLabel value={radioValue} control={<Radio />} label={title} />
         </RadioGroup>
       </FormGroup>
-    ), true, false);
+    ), true);
 
   } // namespace fields
 

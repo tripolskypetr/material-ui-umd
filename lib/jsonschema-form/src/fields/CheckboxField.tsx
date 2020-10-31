@@ -23,7 +23,7 @@ namespace form {
           control={<Checkbox disabled={disabled} checked={value} onChange={() => onChange(!value)} />}
           label={title} />
       </FormGroup>
-    ), true, false);
+    ), true);
 
   } // namespace fields
 

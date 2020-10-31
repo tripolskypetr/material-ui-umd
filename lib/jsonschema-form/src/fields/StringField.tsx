@@ -18,14 +18,14 @@ namespace form {
       outlined = true,
       title = '',
       description = '',
-      defaultValue = '',
+      inputType = 'text',
       onChange
     }: IManaged) => (
       <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
-        value={value || defaultValue} error={invalid !== null} disabled={disabled}
+        value={value} error={invalid !== null} disabled={disabled} type={inputType}
         onChange={({target}) => onChange(target.value)} label={title}
         style={{paddingBottom: '10px'}} />
-    ), false, false);
+    ), false);
 
   } // namespace fields
 

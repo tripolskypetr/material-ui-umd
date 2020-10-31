@@ -21,6 +21,8 @@ namespace form {
         return <LabelField {...entity} key={currentPath} />
       } else if (type === FieldType.Text) {
         return <TextField {...entity} key={currentPath} />
+      } else if (type === FieldType.Progress) {
+        return <ProgressField {...entity} key={currentPath} />
       } else {
         throw new Error('FieldFactory unknown key type')
       }

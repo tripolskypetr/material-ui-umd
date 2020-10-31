@@ -3,6 +3,19 @@
 
 namespace form {
 
+  type inputType = "text"
+    | "color"
+    | "date"
+    | "email"
+    | "month"
+    | "number"
+    | "password"
+    | "search"
+    | "tel"
+    | "time"
+    | "url"
+    | "week";
+
   /**
    * Объект поля для прикладного программиста
    */
@@ -32,6 +45,16 @@ namespace form {
      * задать значение при выборе элемента кликом
      */
     radioValue?: string;
+
+    /**
+     * Поле type для MatTextField
+     */
+    inputType?: inputType;
+
+    /**
+     * Максимальное число для высчитывания процента
+     */
+    maxPercent?: number;
 
     /**
      * Тип поля для логического ветвления при рендеринге
@@ -89,7 +112,13 @@ namespace form {
     isDisabled?: (v) => boolean;
 
     /**
-     * Значение по-умолчанию для выпадающего списка и строки
+     * Коллбек, если значение поля вычисляется динамически. Автоматически
+     * включает readonly
+     */
+    compute?: (v) => any;
+
+    /**
+     * Значение по-умолчанию для поля
      */
     defaultValue?: string | number | boolean;
 

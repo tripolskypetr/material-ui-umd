@@ -32,7 +32,7 @@ namespace form {
       if (fields) {
         deepFlat(fields, "fields").forEach((f) => {
           if (f.name && f.type) {
-            obj[f.name] = initialValue(f.type);
+            obj[f.name] = f.defaultValue || initialValue(f.type);
           }
         });
       }
