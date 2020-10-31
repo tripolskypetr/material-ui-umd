@@ -316,6 +316,115 @@
 </script>
 ```
 
+## Умные слова, которые надо выучить
+
+Ключевые слова для гугления
+
+### Clearfix
+
+> Позволяет предотвратить заезды при `float`, полезный сниппет
+
+```
+<div class="parent clearfix">
+  <div class="child">child 1</div>
+  <div class="child">child 2</div>
+  <div class="child">child 3</div>
+  <div class="child">child 4</div>
+</div>
+
+<style>
+.parent {
+  width: 416px;
+  padding: 20px;
+  background-color: tan;
+ }
+.child  { 
+  width: 200px;
+  height: 100px;
+  float: left;
+  border: 1px solid #000;
+  margin:2px;
+  background-color: green;
+ }
+
+/* Хак, позволяющий выправить устаревшую верстку */
+.clearfix:before,
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.clearfix:after {
+  clear: both;
+}
+</style>
+```
+
+### Offset adjust
+
+> Если нужно реализовать [AppBar](https://material-ui.com/components/app-bar/#app-bar) c фиксированной позицией, поможет следующий сниппет
+
+```
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: whitesmoke;
+    height: 100vh;
+    font-family: sans-serif;
+  }
+  .appBar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 60px;
+    width: 100vw;
+    background: white;
+    box-shadow: 0 1.5px 2px -2px gray;
+  }
+  .offset-adjust {
+    padding-top: 60px;
+  }
+</style>
+
+<div class="appBar"><h2>MyAmazingApp</h2></div>
+<div class="offset-adjust"></div>
+<p>Content</p>
+```
+
+### Square padding bottom
+
+> Трюк, позволяющий сделать квадрат нефиксированного размера без применения `vmin`, `vmax`, `vw`, `vw`. Основан на том, что `padding-bottom` высчитывается от ширины...
+
+```
+<style>
+  #box {
+    width: 25%;
+    padding-bottom: 25%;
+    position: relative;
+    overflow: hidden;
+  }
+  #box > div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: cyan;
+  }
+  html, body {
+    height: 100%;
+  }
+</style>
+<div id="box">
+  <div>
+    <p>Hello, world!</p>
+  </div>
+</div>
+```
+
 ## Как работает компонент `div`
 
 Внутри div можно выводить другие компоненты
