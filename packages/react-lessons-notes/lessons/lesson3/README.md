@@ -425,6 +425,64 @@
 </div>
 ```
 
+## Negative margin
+
+> Отрицательный отступ позволяет наложить теги друг на друга
+
+Добавляем поля ввода логина и пароля и получаем готовую форму авторизации
+
+```
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: sans-serif;
+    background-color: #212121;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .form {
+    width: 325px;
+    min-height: 345px;
+    background-color: #333333;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .button {
+    padding: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: rgb(255,65,108);
+    background: linear-gradient(145deg, rgba(255,65,108,1) 0%, rgba(255,75,43,1) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button {
+    margin-bottom: -30px;
+  }
+</style>
+
+
+<div class="form">
+  <div style="flex: 1;"></div>
+  <div class="button">
+    <div class="material-icons">
+      arrow_forward
+    </div>
+   </div>
+</div>
+```
+
 ## Как работает компонент `div`
 
 Внутри div можно выводить другие компоненты

@@ -58,7 +58,7 @@
 </script>
 ```
 
-## Как работает Object.assign
+## Как работает `Object.assign()`
 
 > Object.assign позволяет создавать копии объектов, а так же сливать множества входных параметров.
 
@@ -184,7 +184,7 @@ const App = () => h('div', null, 'Hello, world!')
 
 ## Перед уроком 5
 
-> Перед уроком 5 следует выполнить несколько работ с мастером. Задания легко можно выцепить по запросу `flutter ui challenges` или в [соответствующем приложении](https://github.com/lohanidamodar/flutter_ui_challenges). На всякий случай, я забекапил скриншоты макетов в [app-list.pdf](./app-list.pdf)
+> Перед уроком 5 следует выполнить несколько работ с мастером. Задания легко можно выцепить по запросу `flutter ui challenges` или в приложении [Kitten tricks](https://github.com/akveo/kittenTricks). На всякий случай, я забекапил скриншоты макетов в [app-list.pdf](./app-list.pdf) из [этого](https://github.com/lohanidamodar/flutter_ui_challenges) репозитория.
 
 ## Самостоятельная работа
 
