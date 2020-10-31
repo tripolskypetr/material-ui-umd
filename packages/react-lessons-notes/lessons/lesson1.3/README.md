@@ -459,7 +459,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    background: rgb(255,65,108);
+    background-color: rgb(255,65,108);
     background: linear-gradient(145deg, rgba(255,65,108,1) 0%, rgba(255,75,43,1) 100%);
     color: white;
     display: flex;

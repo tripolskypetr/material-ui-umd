@@ -22,7 +22,8 @@
   window.form || document.write(template("https://theonekit.github.io/lib/jsonschema-form/dist/jsonschema-form.js"));
   window.router || document.write(template("https://theonekit.github.io/lib/virtual-router/dist/virtual-router.js"));
   window.ReactRedux || document.write(template("https://theonekit.github.io/3rdparty/react-redux@7.2.0/react-redux.min.js"));
-  window.Redux || document.write(template("https://theonekit.github.io/3rdparty/redux@v4.0.5/redux.min.js"))
+  window.Redux || document.write(template("https://theonekit.github.io/3rdparty/redux@v4.0.5/redux.min.js"));
+  window.Babel || document.write(template("https://theonekit.github.io/3rdparty/@babel/standalone@7.12.4/babel.min.js"));
 })();
 
 ```

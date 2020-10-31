@@ -10,7 +10,9 @@
 
  - [Урок 3. Введение в flexbox](./lessons/lesson3/README.md)
 
- - [Урок 4. HOC, Redux, ES6 модули](./lessons/lesson3/README.md)
+ - [Урок 4. HOC, with, window, верстка компонентов](./lessons/lesson4/README.md)
+
+ - [Урок 5. Декомпозиция на es6 модули. Подключение Redux](./lessons/lesson5/README.md)
 
 ## Минимальная подготовка
 
