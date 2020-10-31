@@ -9,6 +9,7 @@ namespace form {
   const {
     round,
     min,
+    max,
   } = Math;
 
   const {
@@ -17,7 +18,7 @@ namespace form {
 
   export namespace fields {
 
-    const percent = (v, max) => min(100, round((Number(v) / max) * 100))
+    const percent = (v, m) => min(100, round((max(Number(v), 0) / m) * 100))
 
     export const ProgressField = makeManaged(({value, maxPercent = 1.0}) => (
       <Box display="flex" alignItems="center">

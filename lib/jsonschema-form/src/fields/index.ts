@@ -6,4 +6,5 @@
 /// <reference path="./LabelField.tsx"/>
 /// <reference path="./TextField.tsx"/>
 /// <reference path="./ProgressField.tsx"/>
+/// <reference path="./ComponentField.tsx"/>
 /// <reference path="./createField.tsx"/>

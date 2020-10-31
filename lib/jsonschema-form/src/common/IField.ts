@@ -113,7 +113,7 @@ namespace form {
 
     /**
      * Коллбек, если значение поля вычисляется динамически. Автоматически
-     * включает readonly
+     * включает readonly. Для ComponentField может возвращать JSX.
      */
     compute?: (v) => any;
 

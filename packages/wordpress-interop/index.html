@@ -14,6 +14,12 @@
       One,
     } = form;
 
+    const Logger = (props) => h('i', null, 
+      h('pre', null, 
+        JSON.stringify(props, Object.keys(props).sort(), 2)
+      )
+    );
+
     const fields = [
       {
         type: "group",
@@ -202,6 +208,14 @@
           },
         ]
       },
+      {
+        type: "line",
+        title: "Пользовательский компонент"
+      },
+      {
+        type: "component",
+        compute: Logger,
+      }
     ];
 
     const change = (obj) => console.log({ obj });

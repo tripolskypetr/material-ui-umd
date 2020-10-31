@@ -11,6 +11,7 @@ namespace form {
     Label = 'label',
     Text = 'text',
     Progress = 'progress',
+    Component = 'component',
   };
 
 } // namespace form
