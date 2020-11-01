@@ -23,7 +23,7 @@ namespace form {
     }: IManaged) => (
       <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
         value={value} error={invalid !== null} disabled={disabled} type={inputType}
-        onChange={({target}) => onChange(target.value)} label={title}
+        onChange={({target}) => onChange(target.value.toString())} label={title}
         style={{paddingBottom: '10px'}} />
     ), false);
 

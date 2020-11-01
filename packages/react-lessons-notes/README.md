@@ -16,7 +16,7 @@
 
  - [Урок 6. Хуки useState, useRef, useEffect, useCallback](./lessons/lesson2.1/README.md)
 
- - [Урок 7. Генератор гридов, роутинг](./lessons/lesson2.2/README.md)
+ - [Урок 7. Генератор гридов, useContext, роутинг](./lessons/lesson2.2/README.md)
 
 ## Минимальная подготовка
 

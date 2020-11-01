@@ -120,30 +120,31 @@ const App = () => h('div', null, 'Hello, world!')
       Lock,
     } = material.icons;
 
-    const buttonStyle = {
-      position: 'absolute',
-      left: 'calc(50% - 20px - 10px)',
-      marginBottom: '-25px',
-      bottom: '0px',
-      padding: '10px',
-      height: '40px',
-      width: '40px',
-      borderRadius: '50%',
-      backgroundColor: 'rgb(255,65,108)',
-      background: 'linear-gradient(145deg, rgba(255,65,108,1) 0%, rgba(255,75,43,1) 100%)',
-      color: 'white',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    };
-
-    const Button = (props) => (
-      <div style={buttonStyle} onClick={props.onClick}>
-        <div className="material-icons">
-          arrow_forward
+    const Button = (props) => {
+      const buttonStyle = {
+        position: 'absolute',
+        left: 'calc(50% - 20px - 10px)',
+        marginBottom: '-25px',
+        bottom: '0px',
+        padding: '10px',
+        height: '40px',
+        width: '40px',
+        borderRadius: '50%',
+        backgroundColor: 'rgb(255,65,108)',
+        background: 'linear-gradient(145deg, rgba(255,65,108,1) 0%, rgba(255,75,43,1) 100%)',
+        color: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      };
+      return (
+        <div style={buttonStyle} onClick={props.onClick}>
+          <div className="material-icons">
+            arrow_forward
+          </div>
         </div>
-      </div>
-    );
+      );
+    };
 
     global.BeforeLoginPage = class extends React.Component {
 
