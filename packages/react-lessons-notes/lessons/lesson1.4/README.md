@@ -71,6 +71,8 @@
 
   console.log(Object.assign({}, obj1, obj2, obj3, obj4)) // {a: 'a', b: 2, c: 3}
 
+  console.log(Object.assign({}, obj1) === obj1) // false
+
 })();
 ```
 
@@ -85,98 +87,6 @@ const App = () => h('div', null, 'Hello, world!')
 ```
 
 Подобную функцию можно высчитать, вернув её из другой функции
-
-```
-<div id="mount-pount"></div>
-
-<script src="https://theonekit.github.io/index.js"></script>
-
-<script>
-	(function() {
-  	const {
-    	createElement: h,
-    } = React;
-    function createA() {
-      return function() {
-        return h('div', null, 'Hello, world!');
-      }
-    }
-    const A = createA();
-    ReactDOM.render(h(A), document.querySelector('#mount-pount'));
-  })();
-</script>
-```
-
-Функции, которая высчитывает функцию компонента, можно передать параметры.
-
-> По сути, компонент высшего порядка реализует следующую логику: мы создаем *НОВЫЙ* компонент, используя *старый* и *функцию-конструктор*...
-
-```
-<style>
-  html, body {
-    magrin: 0;
-    padding: 0;
-    background: whitesmoke;
-    height: 100vw;
-  }
-</style>
-
-<div id="mount-point"></div>
-
-<script src="https://theonekit.github.io/index.js"></script>
-
-<script>
-	(function() {
-  
-  	const {
-    	createElement: h,
-    } = React;
-    
-    const {
-    	Paper,
-    	List,
-    	ListItem,
-      ListItemText,
-   	} = material.core;
-    
-    const ItemInternal = (props) => h(ListItem, null, 
-    	h(ListItemText, {primary: props.children})
-    );
-    
-    const applyUpperCase = (component) => (props) => {
-    	if (typeof props.children === 'string') {
-      	const children = props.children.toUpperCase()
-      	const newProps = Object.assign({}, props, {children});
-        return h(component, newProps);
-      } else {
-      	return h(component, props);
-      }
-    };
-    
-    /**
-     * Изначально псевдоним старой, в последующем переписываемый 
-     * на новую функцию
-     */
-    const ItemConnected = ItemInternal // applyUpperCase(ItemInternal);
-    
-    const App = () => h(Paper, null,
-      h(List, null, 
-        h(ItemConnected, null, 'Item 1'),
-        h(ItemConnected, null, 'Item 2'),
-        h(ItemConnected, null, 'Item 3'),
-      ),
-    );
-
-    const mountPoint = document.querySelector('#mount-point');
-    ReactDOM.render(h(App), mountPoint);
-
-  })();
-</script>
-```
-
-## Пишем приложение с авторизацией (верстка)
-
-> В этом уроке мы успеем только сверстать страницы. **Важно**: начинаем писать в *VS Core*
 
 ```
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -238,7 +148,9 @@ const App = () => h('div', null, 'Hello, world!')
     global.BeforeLoginPage = class extends React.Component {
 
       static defaultProps = {
-        onLogin: (email, password) => console.log({ email, password })
+        onLogin: (email, password) => console.log({ email, password }),
+        initialEmail: '',
+        initialPassword: '', 
       };
 
       constructor(props) {
@@ -322,11 +234,13 @@ const App = () => h('div', null, 'Hello, world!')
               </div>
               <TextField helperText='Введите почту'
                 onChange={this.emailChanged}
+                value={this.state.email}
                 variant='filled'
                 label='Почта'
                 type='email' />
               <TextField helperText='Введите пароль'
                 onChange={this.passwordChanged}
+                value={this.state.password}
                 variant='filled'
                 type='password'
                 label='Почта' />
@@ -344,7 +258,7 @@ const App = () => h('div', null, 'Hello, world!')
 </script>
 
 <script type="text/babel">
-  (function(global) {
+  (function (global) {
 
     const {
       AppBar,
@@ -357,11 +271,11 @@ const App = () => h('div', null, 'Hello, world!')
       Fragment,
     } = React;
 
-    global.AfterLoginPage = ({onLogout = () => console.log('logout')}) => (
+    global.AfterLoginPage = ({ onLogout = () => console.log('logout') }) => (
       <Fragment>
         <AppBar position="fixed">
           <Toolbar>
-            <Typography style={{flex: 1}} variant="h6">
+            <Typography style={{ flex: 1 }} variant="h6">
               MyAmazingApp
             </Typography>
             <Button onClick={onLogout} color="inherit">
@@ -369,7 +283,7 @@ const App = () => h('div', null, 'Hello, world!')
             </Button>
           </Toolbar>
         </AppBar>
-        <div style={{paddingBottom: '64px'}}></div>
+        <div style={{ paddingBottom: '64px' }}></div>
         <p>Вы вошли!</p>
       </Fragment>
     );
@@ -384,7 +298,7 @@ const App = () => h('div', null, 'Hello, world!')
 
 ### Задача 1
 
-> Создайте функцию высшего порядка `applyColor`, которая передает компоненту ниже стиль `backgrounColor: 'magenta'`
+> Создайте компонент высшего порядка `applyColor`, которая передает компоненту ниже стиль `backgrounColor: 'magenta'`
 
 ```
 const Box = (props) => h('div', props);

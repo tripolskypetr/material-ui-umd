@@ -4,15 +4,19 @@
 
 ## Содержание
 
- - [Урок 1. JSX](./lessons/lesson1/README.md)
+ - [Урок 1. JSX](./lessons/lesson1.1/README.md)
 
- - [Урок 2. Инкрементальная игра](./lessons/lesson2/README.md)
+ - [Урок 2. Инкрементальная игра](./lessons/lesson1.2/README.md)
 
- - [Урок 3. Введение в flexbox](./lessons/lesson3/README.md)
+ - [Урок 3. Введение в flexbox](./lessons/lesson1.3/README.md)
 
- - [Урок 4. HOC, with, window, верстка компонентов](./lessons/lesson4/README.md)
+ - [Урок 4. HOC, with, window, верстка компонентов](./lessons/lesson1.4/README.md)
 
- - [Урок 5. Декомпозиция на ES6 модули. Подключение Redux](./lessons/lesson5/README.md)
+ - [Урок 5. Декомпозиция на ES6 модули. Подключение Redux](./lessons/lesson1.5/README.md)
+
+ - [Урок 6. Хуки. Контекст. Роутинг](./lessons/lesson2.1/README.md)
+
+ - [Урок 7. Генератор гридов - велосипед](./lessons/lesson2.2/README.md)
 
 ## Минимальная подготовка
 
@@ -27,6 +31,8 @@
 ```
 В этой жизни не провалилось ни одного стартапа: каждое последующее начинание было лучше, так как основывалось на предидущих.
 ```
+
+Воспринимайте следующие пункты как домашнюю работу: **это нужно поютюбить**...
 
 **Сделайте себе источник копипасты!** Это может быть [gist](https://gist.github.com/) или [github](https://github.com/).
 
@@ -338,4 +344,43 @@ const logA = ({a}) => console.log(a)
 const logFirst = ([first]) => console.log(first)
 logA({a: 'a', b: 'b', c: 'c'}) // 'a'
 logFirst([1,2,3,4,5]) // 1
+```
+
+### 11. Понимание Promise, async - await
+
+> Вы должны понимать, как сделать функцию задержки и как это работает. Промис - инструмент стандартизации коллбеков, снабженный синтаксическим сахаром async - await
+
+Без async - await
+
+```
+const sleep = (timeout = 1000) => new Promise((res) => 
+  setTimeout(() => res(), timeout)
+);
+
+const test = () => {
+  console.log('before');
+  sleep().then(() =>
+    sleep().then(() => 
+      sleep().then(() => 
+        console.log('after')
+      )
+    )
+  );
+};
+```
+
+С async - await
+
+```
+const sleep = (timeout = 1000) => new Promise((res) => 
+  setTimeout(() => res(), timeout)
+);
+
+const test = async () => {
+  console.log('before');
+  await sleep()
+  await sleep()
+  await sleep()
+  console.log('after')
+};
 ```

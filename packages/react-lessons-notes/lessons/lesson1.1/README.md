@@ -91,6 +91,8 @@ ReactDOM.render(h(App), document.querySelector('#mount-point'))
 
 ## Самостоятельная работа
 
+### Задача 1
+
 > Сверстайте через `createElement` следующий html код
 
 ```
@@ -109,3 +111,7 @@ support@yourcompany.com</a>.
 <HR>
 </BODY>
 ```
+
+### Задача 2
+
+> По каждому пункту из брифинга найдите видео на YouTube. Соберите ссылки в `txt` файл и покажите, брошу кости на [random.org](https://random.org/) и проверю! Если что-то не гуглится, напиши, я уточню.
