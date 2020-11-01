@@ -194,39 +194,39 @@ const App = () => h('div', null, 'Hello, world!')
         });
       }
 
+      rootStyle = {
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      };
+
+      containerStyle = {
+        position: 'relative',
+        backgroundColor: '#fff',
+        borderRadius: '25px',
+        minHeight: '345px',
+        width: '275px',
+        display: 'flex',
+        alignItems: 'stretch',
+        flexDirection: 'column',
+        padding: '10px',
+      };
+
+      logoStyle = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '75px',
+        color: '#ed393d',
+      };
+
       render() {
 
-        const rootStyle = {
-          height: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        };
-
-        const containerStyle = {
-          position: 'relative',
-          backgroundColor: '#fff',
-          borderRadius: '25px',
-          minHeight: '345px',
-          width: '275px',
-          display: 'flex',
-          alignItems: 'stretch',
-          flexDirection: 'column',
-          padding: '10px',
-        };
-
-        const logoStyle = {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '75px',
-          color: '#ed393d',
-        };
-
         return (
-          <div style={rootStyle}>
-            <div style={containerStyle}>
-              <div style={logoStyle}>
+          <div style={this.rootStyle}>
+            <div style={this.containerStyle}>
+              <div style={this.logoStyle}>
                 <Dashboard style={{ fontSize: '36' }} />
                 <Typography variant="h6">
                   MyAmazingApp

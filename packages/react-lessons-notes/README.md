@@ -14,9 +14,9 @@
 
  - [Урок 5. Декомпозиция на ES6 модули. Подключение Redux](./lessons/lesson1.5/README.md)
 
- - [Урок 6. Хуки. Контекст. Роутинг](./lessons/lesson2.1/README.md)
+ - [Урок 6. Хуки useState, useRef, useEffect, useCallback](./lessons/lesson2.1/README.md)
 
- - [Урок 7. Генератор гридов - велосипед](./lessons/lesson2.2/README.md)
+ - [Урок 7. Генератор гридов, роутинг](./lessons/lesson2.2/README.md)
 
 ## Минимальная подготовка
 
