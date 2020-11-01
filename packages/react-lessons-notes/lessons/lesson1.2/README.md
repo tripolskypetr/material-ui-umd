@@ -52,13 +52,13 @@ React регламентирует минимальное множество в�
 
     class Clicker extends React.Component {
       constructor(props) {
-      	super(props);
+        super(props);
         this.state = {value: props.initialValue};
         // Привязка пользовательской функции к классу
         this.increment = this.increment.bind(this);
       }
       increment() {
-      	this.setState({value: this.state.value + 1});
+        this.setState({value: this.state.value + 1});
       }
       render() {
         return h(Button, {
@@ -103,45 +103,45 @@ React регламентирует минимальное множество в�
     } = material.core;
     
     class AutoClicker extends React.Component {
-    	interval = null;
+      interval = null;
       static defaultProps = {
         initialValue: 5000,
       }
-    	constructor(props) {
-      	super(props);
+      constructor(props) {
+        super(props);
         this.state = {v: props.initialValue};
       }
       componentDidMount() {
-      	this.interval = setInterval(() => this.setState(({v}) => ({v: v + 1})));
+        this.interval = setInterval(() => this.setState(({v}) => ({v: v + 1})));
       }
       componentWillUnmount() {
-      	//clearInterval(this.interval);
+        //clearInterval(this.interval);
       }
       render() {
-      	return h('p', null, `Итерация: ${this.state.v}`);
+        return h('p', null, `Итерация: ${this.state.v}`);
       }
     }
 
     class App extends React.Component {
       constructor() {
-      	super();
+        super();
         this.state = {enabled: true};
         this.toggle = this.toggle.bind(this);
         this.renderClicker = this.renderClicker.bind(this);
       }
       toggle() {
-      	this.setState((prev) => ({enabled: !prev.enabled}));
+        this.setState((prev) => ({enabled: !prev.enabled}));
       }
       renderClicker() {
         if (this.state.enabled) {
-        	return h(AutoClicker);
-        }	else {
-        	return null;
+          return h(AutoClicker);
+        } else {
+          return null;
         }
       }
       render() {
         return h(Fragment, null,
-        	h(Checkbox, {checked: this.state.enabled, onChange: this.toggle}),
+          h(Checkbox, {checked: this.state.enabled, onChange: this.toggle}),
           this.renderClicker(),
         );
       }
@@ -179,32 +179,32 @@ React регламентирует минимальное множество в�
 
     class TodoList extends React.Component {
     
-    	constructor(props) {
-      	super(props);
+      constructor(props) {
+        super(props);
         this.state = { items: [], };
         this.addItem = this.addItem.bind(this);
         this.renderList = this.renderList.bind(this);
       }
       
       addItem() {
-      	const {items} = this.state;
+        const {items} = this.state;
         items.push(prompt('Название пункта:'));
         this.setState({items});
       }
       
       renderList() {
-      	const list = [];
+        const list = [];
         for (let i = 0; i !== this.state.items.length; i++) {
-        	const item = this.state.items[i];
+          const item = this.state.items[i];
           list.push(h('li', {key: list.length}, item));
         }
         return list;
       }
       
       render() {
-      	return h(Fragment, null,
-        	h(Button, {onClick: this.addItem}, 'Добавить пункт'),
-        	h('ul', null, this.renderList()),
+        return h(Fragment, null,
+          h(Button, {onClick: this.addItem}, 'Добавить пункт'),
+          h('ul', null, this.renderList()),
         );
       }
     

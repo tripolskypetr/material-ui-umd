@@ -64,14 +64,14 @@
 <script src="https://theonekit.github.io/index.js"></script>
 
 <script type="text/babel">
-	(function() {
+  (function() {
 
     const sleep = (timeout = 1000) => new Promise((res) => 
       setTimeout(() => res(), timeout)
     );
  
-  	const {
-    	useEffect,
+    const {
+      useEffect,
     } = React;
   
     const Component = (props) => {
@@ -159,7 +159,7 @@ const App = () => {
     return () => clearInterval(interval); // Сборка мусора
   }, [rects]);*/
   const addRect = useCallback(() => {
-  	setRects(rects.concat(createRect()))
+    setRects(rects.concat(createRect()))
   }, [rects]);
   return (
     <div onClick={addRect}>

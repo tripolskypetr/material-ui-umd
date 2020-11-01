@@ -16,11 +16,11 @@
 <script src="https://theonekit.github.io/index.js"></script>
 
 <script type="text/babel">
-	(function() {
+  (function() {
   
-  	const {
-    	useState,
-			useContext,
+    const {
+      useState,
+      useContext,
     } = React;
 
     const {
@@ -31,7 +31,7 @@
     const A = ({id = 'unset'}) => <p>A: {id}</p>;
     const B = ({id = 'unset'}) => <p>B: {id}</p>;
 
-		const App = () => (
+    const App = () => (
       /**
        * vk.com/id1
        */

@@ -503,23 +503,23 @@ const App = () => (
 <script src="https://theonekit.github.io/index.js"></script>
 
 <script>
-	(function() {
-  	
+  (function() {
+    
     const {
-    	createElement: h,
+      createElement: h,
     } = React;
     
     const {
-    	Button
+      Button
     } = material.core;
     
     const Hero = (props) => h('fieldset', null,
-    	h('legend', null, props.title),
+      h('legend', null, props.title),
       props.children,
     );
     
     const App = () => h(Hero, {
-    	title: "Кнопка Button в стиле Material"
+      title: "Кнопка Button в стиле Material"
     }, h(Button, {variant: "contained"}, 'Hello there'));
     
     const mountPoint = document.querySelector("#mount-point");

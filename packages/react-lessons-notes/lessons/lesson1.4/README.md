@@ -22,7 +22,7 @@
 
 /* Эквивалентен этому */
 {
-	const body = document.querySelector('body');
+  const body = document.querySelector('body');
   with (body.style) {
     backgroundColor = 'green';
     height = '100vh';

@@ -127,8 +127,8 @@ null
 var namespace;
 (function(namespace) {
 
-	namespace.a = 1;
-	console.log(namespace)
+  namespace.a = 1;
+  console.log(namespace)
 
 })(namespace || (namespace = {}));
 </script>
@@ -137,8 +137,8 @@ var namespace;
 var namespace;
 (function(namespace) {
 
-	namespace.b = 1;
-	console.log(namespace)
+  namespace.b = 1;
+  console.log(namespace)
 
 })(namespace || (namespace = {}));
 </script>
@@ -147,8 +147,8 @@ var namespace;
 var namespace;
 (function(namespace) {
 
-	namespace.c = 1;
-	console.log(namespace)
+  namespace.c = 1;
+  console.log(namespace)
 
 })(namespace || (namespace = {}));
 </script>
