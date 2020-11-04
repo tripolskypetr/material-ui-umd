@@ -52,6 +52,12 @@ namespace form {
     inputType?: inputType;
 
     /**
+     * Иконки для MatTextField
+     */
+    leadingIcon?: any;
+    trailingIcon?: any;
+
+    /**
      * Максимальное число для высчитывания процента
      */
     maxPercent?: number;

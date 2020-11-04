@@ -12,7 +12,7 @@
 
 > В очередь поступило три команды. Одна из них асинхронная. Асинхронная выполнятся последней
 
-Картинка жизненная, ведь однажды я [писал свой JavaScript интерпретатор](https://github.com/tripolskypetr/quite). Для лучшего понимания, можно рассмотреть API [perfomance.now()](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now)
+Картинка жизненная, ведь однажды я [писал свой JavaScript интерпретатор](https://github.com/tripolskypetr/quite). Для лучшего понимания, можно рассмотреть API [performance.now()](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now)
 
 ```
 //                               |                               |                               |

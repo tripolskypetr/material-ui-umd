@@ -14,6 +14,11 @@
       One,
     } = form;
 
+    const {
+      SquareFoot,
+      LensOutlined,
+    } = material.icons;
+
     const Logger = (props) => h('i', null, 
       h('pre', null, 
         JSON.stringify(props, Object.keys(props).sort(), 2)
@@ -120,7 +125,9 @@
                       {
                         title: "Диаметр",
                         type: "string",
-                        name: "Диаметр"
+                        name: "Диаметр",
+                        defaultValue: 5,
+                        leadingIcon: LensOutlined,
                       },
                       {
                         type: "group",
@@ -157,6 +164,7 @@
                         name: "Длинна",
                         defaultValue: 10,
                         inputType: 'number',
+                        trailingIcon: SquareFoot,
                       },
                       {
                         title: "Ширина",
@@ -164,6 +172,7 @@
                         name: "Ширина",
                         defaultValue: 20,
                         inputType: 'number',
+                        trailingIcon: SquareFoot,
                       },
                       {
                         title: "Площадь",
