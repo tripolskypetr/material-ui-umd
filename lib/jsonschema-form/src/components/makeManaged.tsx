@@ -1,6 +1,7 @@
 
 /// <reference path="./Group.tsx"/>
 /// <reference path="../utils/get.ts"/>
+/// <reference path="../utils/wairForBlur.ts"/>
 
 namespace form {
 
@@ -18,6 +19,7 @@ namespace form {
     get, set,
     deepClone,
     deepCompare,
+    waitForBlur,
   } = utils;
 
   const {
@@ -43,7 +45,8 @@ namespace form {
 
     /**
      *  - Оборачивает IEntity в удобную абстракцию IManaged, где сразу
-     * представлены invalid, disabled, visible и можно задваивать вызов onChange
+     *    представлены invalid, disabled, visible и можно задваивать вызов onChange
+     *  - Управляет фокусировкой, мануально ожидая потерю фокуса, эмулируя onBlur
      */
     export const makeManaged = (Component: material.Component<IManaged>, skipDebounce = false) => ({
       className = '',
@@ -58,9 +61,13 @@ namespace form {
       compute = null,
       object = {},
       name = '',
+      focus = null,
+      blur = null,
       readonly = false,
       ...otherProps
     }: IEntity) => {
+
+      const groupRef = useRef(null);
 
       const classes = useStyles();
 
@@ -126,10 +133,30 @@ namespace form {
         desktopColumns,
       };
 
+      /**
+       * Блокирует применение изменений,
+       * если поле вычисляемое или только
+       * на чтение
+       */
       const onChange = (newValue) => {
         if (readonly) { return; }
         if (compute) { return; }
         setValue(newValue);
+      };
+
+      /**
+       * Запускает механизм вещания фокусировки,
+       * использует полифил для ожидания потери
+       * фокуса
+       */
+      const onFocus = () => {
+        if (blur) {
+          waitForBlur(groupRef.current)
+            .then(blur);
+        }
+        if (focus) {
+          focus();
+        }
       };
 
       const managedProps: IManaged = {
@@ -137,10 +164,13 @@ namespace form {
         ...otherProps
       };
 
+      const hidden = {
+        [classes.hidden]: !visible
+      };
+
       return (
-        <Group className={classNames(className, classes.root, {
-          [classes.hidden]: !visible
-        })} {...groupProps}>
+        <Group className={classNames(className, classes.root, hidden)}
+          {...groupProps} onFocus={onFocus} ref={groupRef}>
           <Component {...managedProps} />
         </Group>
       );

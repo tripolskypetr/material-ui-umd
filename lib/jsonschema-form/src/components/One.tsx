@@ -20,6 +20,8 @@ namespace form {
       prefix = 'root',
       fallback = null,
       handler = () => ({}),
+      focus = null,
+      blur = null,
       LoadPlaceholder = null,
     }: IOneProps) => {
       const [object, setObject] = useResolved(handler, fallback, fields);
@@ -33,22 +35,22 @@ namespace form {
         return (
           <Fragment>
             {fields?.map((field, index) => {
-              const entity: IEntity = {...field, object, change: onChange};
+              const entity: IEntity = {focus, blur, ...field, object, change: onChange};
               const currentPath = `${prefix}.${field.type}[${index}]`;
               if (field.type === FieldType.Expansion) {
                 return (
                   <Expansion {...field} key={currentPath}>
-                    <One LoadPlaceholder={LoadPlaceholder}
-                      fields={field.fields} prefix={currentPath}
-                      handler={object} change={onChange}/>
+                    <One LoadPlaceholder={LoadPlaceholder} fields={field.fields}
+                      focus={focus} blur={blur} prefix={currentPath}
+                      handler={object} change={onChange} />
                   </Expansion>
                 );
               } else if (field.type === FieldType.Group) {
                 return (
                   <Group {...field} key={currentPath}>
-                    <One LoadPlaceholder={LoadPlaceholder}
-                      fields={field.fields} prefix={currentPath}
-                      handler={object} change={onChange}/>
+                    <One LoadPlaceholder={LoadPlaceholder} fields={field.fields}
+                      focus={focus} blur={blur} prefix={currentPath}
+                      handler={object} change={onChange} />
                   </Group>
                 );
               } else {

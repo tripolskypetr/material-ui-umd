@@ -11,6 +11,8 @@ namespace form {
         return "";
       } else if (type === FieldType.Switch) {
         return false;
+      } else if (type === FieldType.Progress) {
+        return 1.0;
       } else {
         console.warn('jsonschema-form initialValue unknown type');
         return "";

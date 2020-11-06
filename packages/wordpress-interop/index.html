@@ -25,6 +25,9 @@
       )
     );
 
+    const focus = () => console.log('focus');
+    const blur = () => console.log('blur');
+
     const fields = [
       {
         type: "group",
@@ -213,6 +216,7 @@
             title: "Адрес",
             type: "string",
             name: "Адрес",
+            focus, blur,
             isDisabled: (obj) => obj["Самовывоз"]
           },
         ]
