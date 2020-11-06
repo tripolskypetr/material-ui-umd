@@ -40,12 +40,13 @@ namespace form {
       title = '',
       leadingIcon = null,
       trailingIcon = null,
+      placeholder = '',
       onChange
     }: IManaged) => (
       <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
         InputProps={icons(leadingIcon, trailingIcon)} value={value} error={invalid !== null}
-        onChange={({target}) => onChange(target.value.toString())} label={title}
-        disabled={disabled} type={inputType} style={{paddingBottom: '10px'}} />
+        onChange={({target}) => onChange(target.value.toString())} placeholder={placeholder}
+        label={title} disabled={disabled} type={inputType} style={{paddingBottom: '10px'}} />
     ), false);
 
   } // namespace fields

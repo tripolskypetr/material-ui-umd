@@ -22,27 +22,24 @@ namespace form {
       trailingIcon = null,
       minSlider = 0,
       maxSlider = 100,
-      stepSlider = 10,
-      marksSlider = true,
+      stepSlider,
       onChange,
     }) => (
-      <Grid container spacing={2}>
-        {leadingIcon && <Grid item>
-          {createIcon(leadingIcon)}
-        </Grid>}
-        <Grid item xs>
-          <Box ml={1} mr={1} display="flex" justifyContent="flex-start">
-            <Box flexGrow="1" flexShrink="1" maxWidth="calc(100% - 15px)">
-              <Slider step={stepSlider} marks={marksSlider} min={minSlider} max={maxSlider}
-                aria-labelledby="discrete-slider" valueLabelDisplay="auto"
-                value={value} onChange={(e, v) => onChange(v)} />
-            </Box>
-          </Box>
+      <Box mr={1}>
+        <Grid container spacing={2}>
+          <Grid item>
+            {leadingIcon && createIcon(leadingIcon)}
+          </Grid>
+          <Grid item xs>
+            <Slider step={stepSlider} marks={!!stepSlider} min={minSlider} max={maxSlider}
+              aria-labelledby="discrete-slider" valueLabelDisplay="auto"
+              value={value} onChange={(e, v) => onChange(v)} />
+          </Grid>
+          <Grid item>
+            {trailingIcon && createIcon(trailingIcon)}
+          </Grid>
         </Grid>
-        {trailingIcon && <Grid item>
-          {createIcon(trailingIcon)}
-        </Grid>}
-      </Grid>
+      </Box>
     ));
 
   } // namespace fields

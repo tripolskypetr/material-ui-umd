@@ -15,6 +15,10 @@ namespace form {
         return 1.0;
       } else if  (type === FieldType.Slider) {
         return 0;
+      } else if (type === FieldType.Combo) {
+        return null;
+      } else if (type === FieldType.Items) {
+        return [];
       } else {
         console.warn('jsonschema-form initialValue unknown type');
         return "";

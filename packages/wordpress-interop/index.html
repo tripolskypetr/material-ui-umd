@@ -17,6 +17,8 @@
     const {
       SquareFoot,
       LensOutlined,
+      VolumeDown,
+      VolumeUp,
     } = material.icons;
 
     const Logger = (props) => h('i', null, 
@@ -211,6 +213,7 @@
             title: "Самовывоз",
             type: "switch",
             name: "Самовывоз",
+            inputType: 'date',
           },
           {
             title: "Адрес",
@@ -223,20 +226,57 @@
       },
       {
         type: "line",
+        title: "Слайдер",
+      },
+      {
+        type: "slider",
+        name: "Слайдер",
+        leadingIcon: VolumeDown,
+        trailingIcon: VolumeUp,
+      },
+      {
+        type: "line",
+        title: "Списки",
+      },
+      {
+        type: "group",
+        fields: [
+          {
+            type: "group",
+            columns: "6",
+            fields: [
+              {
+                type: "combo",
+                title: "Выбор Элемента",
+                description: "Выбор одного элемента",
+                name: "Выбор Элемента",
+                itemList: ["Элемент 1", "Элемент 2", "Элемент 3"]
+              },
+            ]
+          },
+          {
+            type: "group",
+            columns: "6",
+            fields: [
+              {
+                type: "items",
+                title: "Выбор Элементов",
+                description: "Выбор нескольких элементов",
+                name: "Выбор Элементов",
+                itemList: ["Элемент 1", "Элемент 2", "Элемент 3"]
+              },
+            ]
+          },
+        ]
+      },
+      {
+        type: "line",
         title: "Пользовательский компонент"
       },
       {
         type: "component",
         compute: Logger,
       },
-      {
-        type: "line",
-        title: "Слайдер",
-      },
-      {
-        type: "slider",
-        name: "Слайдер",
-      }
     ];
 
     const change = (obj) => console.log({ obj });

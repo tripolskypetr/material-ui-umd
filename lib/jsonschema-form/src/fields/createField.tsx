@@ -23,6 +23,10 @@ namespace form {
         return <ComponentField {...entity} key={currentPath} />
       } else if (type === FieldType.Slider) {
         return <SliderField {...entity} key={currentPath} />
+      } else if (type === FieldType.Combo) {
+        return <ComboField {...entity} key={currentPath} />
+      } else if (type === FieldType.Items) {
+        return <ItemsField {...entity} key={currentPath} />
       } else {
         throw new Error('FieldFactory unknown key type')
       }

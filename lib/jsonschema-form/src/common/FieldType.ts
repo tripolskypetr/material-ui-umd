@@ -11,6 +11,8 @@ namespace form {
     Progress = 'progress',
     Component = 'component',
     Slider = 'slider',
+    Combo = 'combo',
+    Items = 'items',
   };
 
 } // namespace form

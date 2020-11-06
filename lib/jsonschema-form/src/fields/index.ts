@@ -6,4 +6,6 @@
 /// <reference path="./ProgressField.tsx"/>
 /// <reference path="./ComponentField.tsx"/>
 /// <reference path="./SliderField.tsx"/>
+/// <reference path="./ComboField.tsx"/>
+/// <reference path="./ItemsField.tsx"/>
 /// <reference path="./createField.tsx"/>

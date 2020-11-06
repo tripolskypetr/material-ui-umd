@@ -75,7 +75,11 @@ namespace form {
     minSlider?: number;
     maxSlider?: number;
     stepSlider?: number;
-    marksSlider?: boolean;
+
+    /**
+     * Варианты выбора для ComboField и ItemsField
+     */
+    itemList?: string[],
 
     /**
      * Тип поля для логического ветвления при рендеринге
@@ -97,6 +101,11 @@ namespace form {
      */
     title?: string;
     description?: string;
+
+    /**
+     * placeholder для TextField, ComboField, ItemsField
+     */
+    placeholder?: string;
 
     /**
      * Колонки для One. Не используются в List (кроме фильтров).
