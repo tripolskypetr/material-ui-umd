@@ -8,4 +8,5 @@
 /// <reference path="./SliderField.tsx"/>
 /// <reference path="./ComboField.tsx"/>
 /// <reference path="./ItemsField.tsx"/>
+/// <reference path="./RatingField.tsx"/>
 /// <reference path="./createField.tsx"/>

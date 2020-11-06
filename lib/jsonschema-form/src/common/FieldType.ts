@@ -13,6 +13,7 @@ namespace form {
     Slider = 'slider',
     Combo = 'combo',
     Items = 'items',
+    Rating = 'rating',
   };
 
 } // namespace form

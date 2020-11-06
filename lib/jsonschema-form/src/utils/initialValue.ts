@@ -19,6 +19,8 @@ namespace form {
         return null;
       } else if (type === FieldType.Items) {
         return [];
+      } else if (type === FieldType.Rating) {
+        return 3;
       } else {
         console.warn('jsonschema-form initialValue unknown type');
         return "";
