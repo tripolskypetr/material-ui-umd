@@ -67,7 +67,7 @@ function buildOne(tree) {
     ];
   } else {
     obj.title = tree.name;
-    obj.type = 'string';
+    obj.type = 'text';
     obj.name = tree.name;
   }
   return obj;

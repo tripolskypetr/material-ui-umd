@@ -8,3 +8,4 @@
 /// <reference path="./flat.ts"/>
 /// <reference path="./initialValue.ts"/>
 /// <reference path="./wairForBlur.ts"/>
+/// <reference path="./createIcon.ts"/>

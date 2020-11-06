@@ -19,6 +19,8 @@ namespace form {
       root: {
         height: 56,
         display: 'flex',
+        flexWrap: 'nowrap',
+        whiteSpace: 'nowrap',
         alignItems: 'center',
         justifyContent: 'stretch',
       },
@@ -27,7 +29,7 @@ namespace form {
         flexGrow: 1,
         margin: 15,
         height: 1,
-      },
+      }
     }));
 
     export const LineField = ({

@@ -127,7 +127,7 @@
                       },
                       {
                         title: "Диаметр",
-                        type: "string",
+                        type: "text",
                         name: "Диаметр",
                         defaultValue: 5,
                         leadingIcon: LensOutlined,
@@ -141,12 +141,12 @@
                           },
                           {
                             title: "Полировка",
-                            type: "string",
+                            type: "text",
                             name: "Полировка"
                           },
                           {
                             title: "Резка",
-                            type: "string",
+                            type: "text",
                             name: "Резка"
                           }
                         ]
@@ -163,7 +163,7 @@
                       },
                       {
                         title: "Длинна",
-                        type: "string",
+                        type: "text",
                         name: "Длинна",
                         defaultValue: 10,
                         inputType: 'number',
@@ -171,7 +171,7 @@
                       },
                       {
                         title: "Ширина",
-                        type: "string",
+                        type: "text",
                         name: "Ширина",
                         defaultValue: 20,
                         inputType: 'number',
@@ -179,7 +179,7 @@
                       },
                       {
                         title: "Площадь",
-                        type: "string",
+                        type: "text",
                         compute: (obj) => obj["Длинна"] * obj["Ширина"],
                         inputType: 'number',
                       },
@@ -214,7 +214,7 @@
           },
           {
             title: "Адрес",
-            type: "string",
+            type: "text",
             name: "Адрес",
             focus, blur,
             isDisabled: (obj) => obj["Самовывоз"]
@@ -228,6 +228,14 @@
       {
         type: "component",
         compute: Logger,
+      },
+      {
+        type: "line",
+        title: "Слайдер",
+      },
+      {
+        type: "slider",
+        name: "Слайдер",
       }
     ];
 

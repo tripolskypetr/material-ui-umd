@@ -7,8 +7,8 @@ namespace form {
 
     export const createField = (entity: IEntity, currentPath = '') => {
       const {type} = entity;
-      if (type === FieldType.String) {
-        return <StringField {...entity} key={currentPath} />
+      if (type === FieldType.Text) {
+        return <TextField {...entity} key={currentPath} />
       } else if (type === FieldType.Line) {
         return <LineField {...entity} key={currentPath} />
       } else if (type === FieldType.Radio) {
@@ -17,14 +17,12 @@ namespace form {
         return <SwitchField {...entity} key={currentPath} />
       } else if (type === FieldType.Checkbox) {
         return <CheckboxField {...entity} key={currentPath} />
-      } else if (type === FieldType.Label) {
-        return <LabelField {...entity} key={currentPath} />
-      } else if (type === FieldType.Text) {
-        return <TextField {...entity} key={currentPath} />
       } else if (type === FieldType.Progress) {
         return <ProgressField {...entity} key={currentPath} />
       } else if (type === FieldType.Component) {
         return <ComponentField {...entity} key={currentPath} />
+      } else if (type === FieldType.Slider) {
+        return <SliderField {...entity} key={currentPath} />
       } else {
         throw new Error('FieldFactory unknown key type')
       }

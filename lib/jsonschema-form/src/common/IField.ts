@@ -70,6 +70,14 @@ namespace form {
     maxPercent?: number;
 
     /**
+     * Поля, специфичные для SliderField
+     */
+    minSlider?: number;
+    maxSlider?: number;
+    stepSlider?: number;
+    marksSlider?: boolean;
+
+    /**
      * Тип поля для логического ветвления при рендеринге
      */
     type: FieldType;

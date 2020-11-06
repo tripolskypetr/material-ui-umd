@@ -78,7 +78,8 @@ namespace form {
       const inputUpdate = useRef(false);
 
       /**
-       * Чтобы поле было управляемым, нельзя передавать в свойство value значение null
+       * Чтобы поле input было React-управляемым, нельзя
+       * передавать в свойство value значение null
        */
       const [value, setValue] = useState(false);
       const [debouncedValue] = useDebounce(value, skipDebounce ? 0 : 800);

@@ -1,34 +1,52 @@
 
-/// <reference path="../utils/get.ts"/>
+/// <reference path="../components/makeManaged.tsx"/>
+/// <reference path="../utils/createIcon.ts"/>
 
 namespace form {
 
   const {
-    Fragment,
-    useState,
-    useEffect,
-  } = React;
+    TextField: MatTextField,
+    InputAdornment,
+  } = material.core;
 
   const {
-    get
+    makeManaged,
+  } = components;
+
+  const {
+    createIcon: icon,
   } = utils;
 
   export namespace fields {
 
-    export const TextField = ({object, name}: IEntity) => {
+    const icons = (leadingIcon, trailingIcon) => ({
+      ...leadingIcon ? {startAdornment: (
+        <InputAdornment position="start">
+          { icon(leadingIcon) }
+        </InputAdornment>
+      )} : {},
+      ...trailingIcon ? {endAdornment: (
+        <InputAdornment position="end">
+          { icon(trailingIcon) }
+        </InputAdornment>
+      )} : {},
+    });
 
-      const [text, setText] = useState('');
-
-      useEffect(() => {
-        setText(get(object, name));
-      }, [object]);
-
-      return (
-        <Fragment>
-          {text}
-        </Fragment>
-      );
-    };
+    export const TextField = makeManaged(({
+      invalid, value, disabled,
+      inputType = 'text',
+      description = '',
+      outlined = true,
+      title = '',
+      leadingIcon = null,
+      trailingIcon = null,
+      onChange
+    }: IManaged) => (
+      <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
+        InputProps={icons(leadingIcon, trailingIcon)} value={value} error={invalid !== null}
+        onChange={({target}) => onChange(target.value.toString())} label={title}
+        disabled={disabled} type={inputType} style={{paddingBottom: '10px'}} />
+    ), false);
 
   } // namespace fields
 

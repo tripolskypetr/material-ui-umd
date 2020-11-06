@@ -7,12 +7,14 @@ namespace form {
         return false;
       } else if (type === FieldType.Radio) {
         return "";
-      } else if (type === FieldType.String) {
+      } else if (type === FieldType.Text) {
         return "";
       } else if (type === FieldType.Switch) {
         return false;
       } else if (type === FieldType.Progress) {
         return 1.0;
+      } else if  (type === FieldType.Slider) {
+        return 0;
       } else {
         console.warn('jsonschema-form initialValue unknown type');
         return "";
