@@ -384,3 +384,12 @@ const test = async () => {
   console.log('after')
 };
 ```
+
+### Урок 12. Контекст исполнения - отличия лямбды
+
+```
+const test = new class { foo = 'bar'; omg() { console.log(this) } }
+setTimeout(test.omg) 
+const test1 = new class { foo = 'bar'; omg = () => { console.log(this) } }
+setTimeout(test1.omg) 
+```
