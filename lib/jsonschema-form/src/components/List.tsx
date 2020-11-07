@@ -193,7 +193,7 @@ namespace form {
                   const entity: IEntity = {
                     ...field, object,
                     readonly: true,
-                    outlined: true,
+                    outlined: false,
                   };
                   return (
                     <TableCell key={name} onClick={() => canEdit && onClick(object)}>

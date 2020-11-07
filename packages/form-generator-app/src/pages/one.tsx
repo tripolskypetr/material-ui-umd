@@ -34,19 +34,19 @@ namespace app {
           },
           {
             name: 'firstName',
-            type: FieldType.String,
+            type: FieldType.Text,
             title: 'Имя',
             description: 'Felton',
           },
           {
             name: 'lastName',
-            type: FieldType.String,
+            type: FieldType.Text,
             title: 'Фамилия',
             description: 'Cruickshank',
           },
           {
             name: 'age',
-            type: FieldType.String,
+            type: FieldType.Text,
             title: 'Возраст',
             description: '42',
             isInvalid: (obj) => {
@@ -75,7 +75,7 @@ namespace app {
                   },
                   {
                     name: 'email',
-                    type: FieldType.String,
+                    type: FieldType.Text,
                     isDisabled: (obj) => !obj.subscribed,
                     title: 'Почта',
                     description: 'tripolskypetr@gmail.com',
@@ -97,12 +97,12 @@ namespace app {
                   },
                   {
                     name: 'jobTitle',
-                    type: FieldType.String,
+                    type: FieldType.Text,
                     title: 'Должность',
                   },
                   {
                     name: 'jobArea',
-                    type: FieldType.String,
+                    type: FieldType.Text,
                     title: 'Место работы',
                   },
                 ]
@@ -117,22 +117,22 @@ namespace app {
                   },
                   {
                     name: 'country',
-                    type: FieldType.String,
+                    type: FieldType.Text,
                     title: 'Страна',
                   },
                   {
                     name: 'city',
-                    type: FieldType.String,
+                    type: FieldType.Text,
                     title: 'Город',
                   },
                   {
                     name: 'state',
-                    type: FieldType.String,
+                    type: FieldType.Text,
                     title: 'Область',
                   },
                   {
                     name: 'address',
-                    type: FieldType.String,
+                    type: FieldType.Text,
                     title: 'Адрес',
                   },
                 ]
