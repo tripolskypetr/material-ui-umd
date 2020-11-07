@@ -20,7 +20,8 @@ namespace form {
       readonly, title,
       onChange
     }) => (
-      <Box component="fieldset" mb={3} mr={1} borderColor="transparent">
+      <Box display="flex" justifyContent="center"
+        component="fieldset" borderColor="transparent">
         <Typography component="legend">{title}</Typography>
         <Rating onChange={({}, v) => onChange(v)}
           disabled={disabled} value={value}

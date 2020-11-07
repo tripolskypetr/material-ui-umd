@@ -10,6 +10,10 @@ namespace app {
   } = form;
 
   const {
+    Box
+  } = material.core;
+
+  const {
     useRouter,
   } = router;
 
@@ -28,6 +32,87 @@ namespace app {
       {
         type: FieldType.Group,
         fields: [
+          {
+            type: FieldType.Group,
+            fields: [
+              {
+                type: FieldType.Group,
+                columns: "2",
+                fields: [
+                  {
+                    type: FieldType.Component,
+                    compute: () => (
+                      <Box display="flex" justifyContent="center">
+                        <Box style={{
+                          background: "#54545447",
+                          height: '200px',
+                          width: '100%',
+                        }}/>
+                      </Box>
+                    ),
+                  },
+                  {
+                    type: FieldType.Rating,
+                    name: 'rate',
+                  }
+                ]
+              },
+              {
+                type: FieldType.Group,
+                columns: "10",
+                fields: [
+                  {
+                    type: FieldType.Line,
+                    title: 'Профиль'
+                  },
+                  {
+                    type: FieldType.Combo,
+                    title: 'Пол',
+                    placeholder: 'Выберите один',
+                    name: 'gender',
+                    itemList: ['Male', 'Female', 'Other']
+                  },
+                  {
+                    type: FieldType.Items,
+                    title: 'Списки',
+                    placeholder: 'Выберите несколько',
+                    name: 'list',
+                    itemList: ['Blocklist', 'VIP', 'Other people']
+                  },
+                  {
+                    type: FieldType.Group,
+                    fields: [
+                      {
+                        type: FieldType.Group,
+                        columns: "9",
+                        fields: [
+                          {
+                            type: FieldType.Text,
+                            outlined: false,
+                            title: 'Кодовая фраза',
+                            name: 'keyword',
+                            placeholder: 'September',
+                            isDisabled: (obj) => !obj.keywordEnabled,
+                          },
+                        ]
+                      },
+                      {
+                        type: FieldType.Group,
+                        columns: "3",
+                        fields: [
+                          {
+                            type: FieldType.Checkbox,
+                            title: 'Кодовая фраза',
+                            name: 'keywordEnabled',
+                          },
+                        ]
+                      },
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             type: FieldType.Line,
             title: 'Общая информация',
