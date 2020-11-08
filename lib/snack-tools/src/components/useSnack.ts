@@ -7,7 +7,7 @@ namespace snack {
 
   export namespace components {
 
-    type useSnackHook = (obj: ISnack) => void;
+    type useSnackHook = (message: string, obj?: ISnack) => void;
 
     export const SnackContext = createContext<useSnackHook>(null);
 

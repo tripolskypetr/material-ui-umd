@@ -12,6 +12,7 @@ namespace app {
     TransitionType,
     VerticalAlign,
     HorizontalAlign,
+    TransitionDirection,
   } = snack;
 
   const {
@@ -71,8 +72,19 @@ namespace app {
       {
         type: FieldType.Combo,
         itemList: [
-          VerticalAlign.Left,
-          VerticalAlign.Right,
+          TransitionDirection.Up,
+          TransitionDirection.Down,
+          TransitionDirection.Left,
+          TransitionDirection.Right,
+        ],
+        name: 'transitionDirection',
+        title: 'Направление появления',
+      },
+      {
+        type: FieldType.Combo,
+        itemList: [
+          VerticalAlign.Top,
+          VerticalAlign.Bottom,
         ],
         name: 'anchorVertical',
         title: 'Вертикальный якорь',
@@ -106,19 +118,23 @@ namespace app {
         type: FieldType.Text,
         name: 'message',
         title: 'Сообщение',
+        defaultValue: 'Привет, мир!',
       },
     ];
 
     export const SnackPage = () => {
       const [object, setObject] = useState<snack.ISnack>(null);
       const snack = useSnack();
-      const onClick = useCallback(() => snack(object), [object]);
+      const onClose = () => console.log('close');
+      const onAction = () => console.log('action');
+      const onClick = useCallback(() => snack(object.message, {...object, onClose, onAction}), [object]);
       return (
         <Fragment>
           <Breadcrumbs currentTitle="Snack" backwardTitle="Главная"
             saveDisabled={!object} save={() => onClick()}
             saveLabel="Показать" />
-          <One fields={fields} change={(s) => setObject(s)}/>
+          <One change={(s) => setObject(s)}
+            fields={fields} />
         </Fragment>
       );
     }

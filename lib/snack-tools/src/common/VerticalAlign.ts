@@ -1,8 +1,8 @@
 namespace snack {
 
   export enum VerticalAlign {
-    Left = 'left',
-    Right = 'right',
+    Top = 'top',
+    Bottom = 'bottom',
   }
 
 } // namespace snack

@@ -15,11 +15,13 @@ namespace snack {
 
   export namespace components {
 
-    const applyCloseMiddleware = (s: ISnack, onClose: CallableFunction): ISnack => ({
-      ...s, onClose: () => {
-        if (s.onClose) {
-          s.onClose();
-        }
+    const applyCloseMiddleware = (
+      s: ISnack,
+      message: string,
+      onClose: CallableFunction,
+    ): ISnack => ({
+      ...s, message, onClose() {
+        if (s.onClose) { setTimeout(() => s.onClose()); }
         onClose();
       }
     });
@@ -36,20 +38,20 @@ namespace snack {
        * одновременно...
        */
       useLayoutEffect(() => {
-        if (snack === null) {
+        if (snack === null && queue.length) {
           const [snack] = queue;
           setSnack(h(SnackViewer, snack));
           setQueue(queue.slice(1));
         }
-      }, [snack, queue]);
+      }, [queue]);
 
       /**
        * Помимо уведомления кода прикладного программиста,
        * при закрытии очищаем выбранный snack для
        * перерисовки DOM древа...
        */
-      const onSnack = (s: ISnack) => setQueue((q) => q.concat(
-        applyCloseMiddleware(s, () => setSnack(null)),
+      const onSnack = (msg:string, s?: ISnack) => setQueue((q) => q.concat(
+        applyCloseMiddleware(s || {}, msg, () => setSnack(null)),
       ));
 
       return (

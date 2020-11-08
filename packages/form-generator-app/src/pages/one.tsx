@@ -10,6 +10,10 @@ namespace app {
   } = form;
 
   const {
+    useSnack,
+  } = snack;
+
+  const {
     Box
   } = material.core;
 
@@ -233,6 +237,7 @@ namespace app {
     }) => {
 
       const [changedObj, setChangedObj] = useState(null);
+      const snack = useSnack();
       const go = useRouter();
 
       const back = () => go('/list');
@@ -241,7 +246,7 @@ namespace app {
 
       const onSave = useCallback(() => {
         data.patch(changedObj);
-        alert('Сохранено!');
+        snack('Сохранено!');
         setChangedObj(null);
       }, [changedObj]);
 
