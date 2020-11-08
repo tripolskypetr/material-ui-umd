@@ -43,7 +43,7 @@ namespace snack {
           setSnack(h(SnackViewer, snack));
           setQueue(queue.slice(1));
         }
-      }, [queue]);
+      }, [snack, queue]);
 
       /**
        * Помимо уведомления кода прикладного программиста,
