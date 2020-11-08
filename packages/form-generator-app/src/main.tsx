@@ -17,9 +17,14 @@ namespace app {
 
   const {
     BriefPage,
+    SnackPage,
     ListPage,
     OnePage,
   } = pages;
+
+  const {
+    SnackProvider,
+  } = snack;
 
   const {
     Router,
@@ -28,6 +33,7 @@ namespace app {
 
   const {
     LooksOne,
+    LooksTwo,
   } = material.icons;
 
   const {
@@ -62,20 +68,24 @@ namespace app {
   const App = () => {
     const router = useRef(null);
     const pages = [
-      {icon: LooksOne, title: "Документ со Справочником", url: "/list"}
+      {icon: LooksOne, title: "Документ со Справочником", url: "/list"},
+      {icon: LooksTwo, title: "Использование Snackbar", url: "/snack"}
     ];
     return (
       <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Scaffold pages={pages} go={(url) => router.current(url)}>
-          <Container>
-            <Router ref={router}>
-              <Route url="/" component={BriefPage}/>
-              <Route url="/list" component={ListPage}/>
-              <Route url="/one/:id" component={OnePage}/>
-            </Router>
-          </Container>
-        </Scaffold>
+        <SnackProvider>
+          <CssBaseline />
+          <Scaffold pages={pages} go={(url) => router.current(url)}>
+            <Container>
+              <Router ref={router}>
+                <Route url="/" component={BriefPage}/>
+                <Route url="/list" component={ListPage}/>
+                <Route url="/one/:id" component={OnePage}/>
+                <Route url="/snack" component={SnackPage}/>
+              </Router>
+            </Container>
+          </Scaffold>
+        </SnackProvider>
       </MuiThemeProvider>
     );
   }

@@ -1,3 +1,4 @@
 /// <reference path="./one.tsx"/>
 /// <reference path="./list.tsx"/>
 /// <reference path="./brief.tsx"/>
+/// <reference path="./snack.tsx"/>

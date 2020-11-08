@@ -1,0 +1,15 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "rules": {
+    "no-conditional-assignment": false,
+    "no-shadowed-variable": false,
+    "no-var-requires": false,
+    "interface-name": false,
+    "variable-name": false,
+    "no-namespace": false,
+    "no-reference": false,
+    "no-console": false,
+    "ban-types": false
+  }
+}

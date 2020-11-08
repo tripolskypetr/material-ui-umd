@@ -4,18 +4,15 @@
     "moduleResolution": "classic",
     "jsx": "react",
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "lib": ["es2015", "dom"],
-    "outFile": "./dist/form-generator-app.js",
+    "outFile": "./dist/snack-tools.js",
     "rootDir": "./src/",
     "baseUrl": "./",
     "types": [],
     "typeRoots": [
       "../../type",
       "../../dist",
-      "../../lib/jsonschema-form/dist",
-      "../../lib/virtual-router/dist",
-      "../../lib/snack-tools/dist",
     ],
   },
   "exclude": [
@@ -26,9 +23,6 @@
   "include": [
     "../../type",
     "../../dist",
-    "../../lib/jsonschema-form/dist",
-    "../../lib/virtual-router/dist",
-    "../../lib/snack-tools/dist",
     "./src",
   ],
 }

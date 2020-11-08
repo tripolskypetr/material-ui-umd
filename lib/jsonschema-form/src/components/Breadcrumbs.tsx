@@ -34,6 +34,7 @@ namespace form {
       save = () => console.log('save'),
       currentTitle = 'Справочник',
       backwardTitle = 'Документ',
+      saveLabel = 'Сохранить',
       saveDisabled = true,
       className = '',
       ...otherProps
@@ -50,7 +51,7 @@ namespace form {
             </Typography>
           </MatBreadcrumbs>
           <Button onClick={save} color="primary" disabled={saveDisabled} variant="contained">
-            Сохранить
+            {saveLabel}
           </Button>
         </Box>
       );

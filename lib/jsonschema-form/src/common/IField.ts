@@ -82,6 +82,13 @@ namespace form {
     itemList?: string[],
 
     /**
+     * Позволяет перевести значения у ComboField и ItemsField
+     * из поле itemList на человеческий, если
+     * используются константы
+     */
+    tr?: (s: any) => any,
+
+    /**
      * Тип поля для логического ветвления при рендеринге
      */
     type: FieldType;

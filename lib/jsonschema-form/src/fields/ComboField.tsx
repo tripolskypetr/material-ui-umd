@@ -21,12 +21,15 @@ namespace form {
       outlined = true,
       itemList = [],
       title = '',
+      tr = (s) => s,
       onChange
     }: IManaged) => (
       <Autocomplete value={value} onChange={({}, v) => onChange(v)}
-        options={itemList} disabled={disabled} renderInput={(params) => (
+        getOptionLabel={(s) => tr(s)} options={itemList} disabled={disabled}
+        renderInput={(params) => (
           <MatTextField {...params} variant={outlined ? "outlined" : "standard"}
-            helperText={description} label={title} placeholder={placeholder} />
+            helperText={description} label={title} placeholder={placeholder}
+            style={{paddingBottom: '10px'}} />
         )}
       />
     ), true);
