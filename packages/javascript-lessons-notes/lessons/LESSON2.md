@@ -43,6 +43,30 @@ const createTicTackToe = () => {
     console.log(last);
   }
 }
+const ticTackToe = createTicTackToe();
+ticTackToe()
+ticTackToe()
+ticTackToe()
+```
+
+**Запомнить:** Вариант замыкания, не требующий дополнительного вызова функции
+
+```
+(function(global) {
+
+  let last = 'tick'
+  global.ticTackToe = () => {
+    if (last === 'tick') {
+      last = 'tack';
+    } else if (last === 'tack') {
+      last = 'toe';
+    } else if (last === 'toe') {
+      last = 'tick';
+    }
+    console.log(last);
+  }
+
+})(window)
 ```
 
 ## Рекурсия
