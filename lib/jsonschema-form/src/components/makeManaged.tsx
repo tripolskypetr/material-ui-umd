@@ -28,13 +28,20 @@ namespace form {
 
   export namespace components {
 
+    const stretch = {
+      display: 'flex',
+      alignItems: 'stretch',
+      justifyContent: 'stretch',
+    };
+
     const useStyles = makeStyles({
       root: {
-        margin: 5,
-        display: 'flex',
-        alignItems: 'stretch',
-        justifyContent: 'stretch',
+        ...stretch,
         '& > *': {
+          ...stretch,
+          flexGrow: 1,
+        },
+        '& > * > *': {
           flexGrow: 1,
         }
       },
@@ -170,7 +177,7 @@ namespace form {
       };
 
       return (
-        <Group className={classNames(className, classes.root, hidden)}
+        <Group isItem={true} className={classNames(className, classes.root, hidden)}
           {...groupProps} onFocus={onFocus} ref={groupRef}>
           <Component {...managedProps} />
         </Group>

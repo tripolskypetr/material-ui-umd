@@ -1,11 +1,13 @@
 namespace form {
 
   const {
+    createElement: h,
     forwardRef,
   } = React;
 
   const {
     Grid,
+    Box,
   } = material.core;
 
   const n = (v: string) => Number(v);
@@ -14,6 +16,22 @@ namespace form {
 
     namespace internal {
 
+      const gridProps = (isItem) => {
+        if (isItem) {
+          return { spacing: 3, item: true }
+        } else {
+          return { container: true };
+        }
+      };
+
+      const renderItem = (isItem, children) => {
+        if (isItem) {
+          return h(Box, {mr: 1}, children);
+        } else {
+          return children;
+        }
+      };
+
       export const Group = ({
         className = '',
         columns = '',
@@ -21,15 +39,16 @@ namespace form {
         tabletColumns = '',
         desktopColumns = '',
         children = null,
+        isItem = false,
         ...otherProps
       }, ref) => (
-        <Grid ref={ref} container alignItems="flex-start" style={{paddingRight: '5px'}} {...otherProps}
+        <Grid ref={ref} alignItems="flex-start"  {...otherProps} {...gridProps(isItem)}
           xs={n(columns ? columns : phoneColumns ? phoneColumns : '12')}
           sm={n(columns ? columns : phoneColumns ? phoneColumns : '12')}
           md={n(columns ? columns : (phoneColumns || tabletColumns) ? (phoneColumns || tabletColumns) : '12')}
           lg={n(columns ? columns : (tabletColumns || desktopColumns) ? (tabletColumns || desktopColumns) : '12')}
           xl={n(columns ? columns : desktopColumns ? desktopColumns : '12')} className={className}>
-          {children}
+          { renderItem(isItem, children) }
         </Grid>
       );
 
