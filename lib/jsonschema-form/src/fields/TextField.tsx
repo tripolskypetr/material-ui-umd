@@ -46,7 +46,7 @@ namespace form {
       <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
         InputProps={icons(leadingIcon, trailingIcon)} value={value} error={invalid !== null}
         onChange={({target}) => onChange(target.value.toString())} placeholder={placeholder}
-        label={title} disabled={disabled} type={inputType} style={{paddingBottom: '10px'}} />
+        label={title} disabled={disabled} type={inputType} />
     ), false);
 
   } // namespace fields

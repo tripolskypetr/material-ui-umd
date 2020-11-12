@@ -26,7 +26,7 @@ namespace form {
 
       const renderItem = (isItem, children) => {
         if (isItem) {
-          return h(Box, {mr: 1}, children);
+          return h(Box, {mr: 1, mb: 2}, children);
         } else {
           return children;
         }

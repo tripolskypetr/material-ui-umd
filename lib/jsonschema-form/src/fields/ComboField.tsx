@@ -28,8 +28,7 @@ namespace form {
         getOptionLabel={(s) => tr(s)} options={itemList} disabled={disabled}
         renderInput={(params) => (
           <MatTextField {...params} variant={outlined ? "outlined" : "standard"}
-            helperText={description} label={title} placeholder={placeholder}
-            style={{paddingBottom: '10px'}} />
+            helperText={description} label={title} placeholder={placeholder} />
         )}
       />
     ), true);

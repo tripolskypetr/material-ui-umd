@@ -34,8 +34,8 @@ namespace form {
         ))}
         renderInput={(params) => (
           <MatTextField variant={outlined ? "outlined" : "standard"}
-            {...params} style={{paddingBottom: '10px'}} label={title}
-            placeholder={placeholder} helperText={description} />
+            {...params}  label={title} placeholder={placeholder}
+            helperText={description} />
         )}
       />
     ), true);
