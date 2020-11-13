@@ -41,7 +41,7 @@ namespace form {
       <Box mr={1}>
         <Grid alignItems="center" container spacing={2}>
           <Grid item>
-            { li && createIcon(li, value, onChange, lic, 'end')}
+            { li && createIcon(li, value, onChange, lic, 'end') }
           </Grid>
           <Grid item xs>
             <Slider step={stepSlider} marks={!!stepSlider} min={minSlider} max={maxSlider}
@@ -49,7 +49,7 @@ namespace form {
               value={value} onChange={({}, v) => onChange(v)} />
           </Grid>
           <Grid item>
-            { ti && createIcon(ti, value, onChange, tic, 'start')}
+            { ti && createIcon(ti, value, onChange, tic, 'start') }
           </Grid>
         </Grid>
       </Box>

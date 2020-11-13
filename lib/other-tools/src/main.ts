@@ -9,9 +9,21 @@ namespace other {
     useSnack: useSnackDefault,
   } = components;
 
+  const {
+    DispatchProvider: DispatchProviderDefault,
+    connectState: connectStateDefault,
+    useDispatch: useDispatchDefault,
+  } = components;
+
   export namespace snack {
     export const SnackProvider = SnackProviderDefault;
     export const useSnack = useSnackDefault;
   } // namespace snack
+
+  export namespace state {
+    export const DispatchProvider = DispatchProviderDefault;
+    export const useDispatch = useDispatchDefault;
+    export const connect = connectStateDefault;
+  } // namespace state
 
 } // namespace other
