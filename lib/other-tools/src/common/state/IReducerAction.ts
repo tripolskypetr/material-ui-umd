@@ -2,9 +2,9 @@ namespace other {
 
   export namespace state {
 
-    export interface IReducerAction {
+    export interface IReducerAction<P = any> {
       type: string;
-      payload: any;
+      payload: P;
     }
 
   } // namespace state
