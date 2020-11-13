@@ -22,13 +22,9 @@ namespace form {
     ) => {
       const [value, setValue] = useState(null);
       useLayoutEffect(() => {
-        const compute = calculate();
-        if (deepCompare(value, compute)) {
-          return;
-        } else {
-          const timeout = setTimeout((v) => setValue(delay(v)), 1_000, compute);
-          return () => clearTimeout(timeout);
-        }
+        const computed = calculate();
+        const timeout = setTimeout((v) => setValue(delay(v)), 1_000, computed);
+        return () => clearTimeout(timeout);
       }, deps);
       return value;
     };
