@@ -7,6 +7,7 @@ namespace form {
   const {
     TextField: MatTextField,
     InputAdornment,
+    IconButton,
   } = material.core;
 
   const {
@@ -19,17 +20,34 @@ namespace form {
 
   export namespace fields {
 
-    const icons = (leadingIcon, trailingIcon) => ({
+    const icons = (leadingIcon, trailingIcon, leadingIconClick, trailingIconClick, v, c) => ({
       ...leadingIcon ? {startAdornment: (
         <InputAdornment position="start">
-          { icon(leadingIcon) }
+          <IconButton edge="start" onClick={() => {
+            if (leadingIconClick) {
+              leadingIconClick(v, c);
+            }
+          }}>
+            { icon(leadingIcon) }
+          </IconButton>
         </InputAdornment>
       )} : {},
       ...trailingIcon ? {endAdornment: (
         <InputAdornment position="end">
-          { icon(trailingIcon) }
+          <IconButton edge="end" onClick={() => {
+            if (trailingIconClick) {
+              trailingIconClick(v, c);
+            }
+          }}>
+            { icon(trailingIcon) }
+          </IconButton>
         </InputAdornment>
       )} : {},
+    });
+
+    const multiline = (inputRows) => ({
+      multiline: inputRows > 1,
+      rows: inputRows,
     });
 
     export const TextField = makeManaged(({
@@ -38,15 +56,19 @@ namespace form {
       description = '',
       outlined = true,
       title = '',
-      leadingIcon = null,
-      trailingIcon = null,
+      leadingIcon: li = null,
+      trailingIcon: ti = null,
+      leadingIconClick: lic = null,
+      trailingIconClick: tic = null,
+      inputRows: rows = 1,
       placeholder = '',
       onChange
     }: IManaged) => (
       <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
-        InputProps={icons(leadingIcon, trailingIcon)} value={value} error={invalid !== null}
-        onChange={({target}) => onChange(target.value.toString())} placeholder={placeholder}
-        label={title} disabled={disabled} type={inputType} />
+        InputProps={icons(li, ti, lic, tic, value, onChange)} type={inputType}
+        value={value} error={invalid !== null} placeholder={placeholder}
+        onChange={({target}) => onChange(target.value.toString())}
+        label={title} disabled={disabled} {...multiline(rows)}/>
     ), false);
 
   } // namespace fields

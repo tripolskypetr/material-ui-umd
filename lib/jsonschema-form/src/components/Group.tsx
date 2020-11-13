@@ -40,6 +40,7 @@ namespace form {
         desktopColumns = '',
         children = null,
         isItem = false,
+        style = null,
         ...otherProps
       }, ref) => (
         <Grid ref={ref} alignItems="flex-start"  {...otherProps} {...gridProps(isItem)}
@@ -47,7 +48,7 @@ namespace form {
           sm={n(columns ? columns : phoneColumns ? phoneColumns : '12')}
           md={n(columns ? columns : (phoneColumns || tabletColumns) ? (phoneColumns || tabletColumns) : '12')}
           lg={n(columns ? columns : (tabletColumns || desktopColumns) ? (tabletColumns || desktopColumns) : '12')}
-          xl={n(columns ? columns : desktopColumns ? desktopColumns : '12')} className={className}>
+          xl={n(columns ? columns : desktopColumns ? desktopColumns : '12')} className={className} style={style}>
           { renderItem(isItem, children) }
         </Grid>
       );

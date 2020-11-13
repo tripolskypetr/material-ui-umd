@@ -17,7 +17,7 @@ namespace form {
 
     const useStyles = makeStyles((theme) => ({
       root: {
-        height: 56,
+        height: 72,
         display: 'flex',
         flexWrap: 'nowrap',
         whiteSpace: 'nowrap',
@@ -39,15 +39,16 @@ namespace form {
       phoneColumns = '',
       tabletColumns = '',
       desktopColumns = '',
+      styles = null,
     }) => {
 
       const classes = useStyles();
 
       const groupProps = {
-        columns,
-        phoneColumns,
-        tabletColumns,
+        styles, columns,
         desktopColumns,
+        tabletColumns,
+        phoneColumns,
       };
 
       return (

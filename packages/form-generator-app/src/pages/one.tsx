@@ -155,21 +155,16 @@ namespace app {
             description: 'Подписка на уведомления',
             fields: [
               {
-                type: FieldType.Group,
-                fields: [
-                  {
-                    type: FieldType.Switch,
-                    name: 'subscribed',
-                    title: 'Разрешить рассылку',
-                  },
-                  {
-                    name: 'email',
-                    type: FieldType.Text,
-                    isDisabled: (obj) => !obj.subscribed,
-                    title: 'Почта',
-                    description: 'tripolskypetr@gmail.com',
-                  },
-                ]
+                type: FieldType.Switch,
+                name: 'subscribed',
+                title: 'Разрешить рассылку',
+              },
+              {
+                name: 'email',
+                type: FieldType.Text,
+                isDisabled: (obj) => !obj.subscribed,
+                title: 'Почта',
+                description: 'tripolskypetr@gmail.com',
               },
             ],
           },

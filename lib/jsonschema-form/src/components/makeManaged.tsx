@@ -71,6 +71,7 @@ namespace form {
       focus = null,
       blur = null,
       readonly = false,
+      style = null,
       ...otherProps
     }: IEntity) => {
 
@@ -177,7 +178,7 @@ namespace form {
       };
 
       return (
-        <Group isItem={true} className={classNames(className, classes.root, hidden)}
+        <Group isItem={true} style={style} className={classNames(className, classes.root, hidden)}
           {...groupProps} onFocus={onFocus} ref={groupRef}>
           <Component {...managedProps} />
         </Group>

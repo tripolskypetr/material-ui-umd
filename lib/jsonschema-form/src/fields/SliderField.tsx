@@ -4,6 +4,7 @@ namespace form {
     Box,
     Grid,
     Slider,
+    IconButton,
   } = material.core;
 
   const {
@@ -11,32 +12,44 @@ namespace form {
   } = components;
 
   const {
-    createIcon,
+    createIcon: icon,
   } = utils;
 
   export namespace fields {
 
+    const createIcon = (icn, value, onChange, click, edge) => (
+      <IconButton onClick={() => {
+        if (click) {
+          click(value, onChange)
+        }
+      }} edge={edge}>
+        { icon(icn) }
+      </IconButton>
+    );
+
     export const SliderField = makeManaged(({
       value,
-      leadingIcon = null,
-      trailingIcon = null,
+      leadingIcon: li = null,
+      trailingIcon: ti = null,
+      leadingIconClick: lic = null,
+      trailingIconClick: tic = null,
       minSlider = 0,
       maxSlider = 100,
       stepSlider,
       onChange,
     }) => (
       <Box mr={1}>
-        <Grid container spacing={2}>
+        <Grid alignItems="center" container spacing={2}>
           <Grid item>
-            {leadingIcon && createIcon(leadingIcon)}
+            { li && createIcon(li, value, onChange, lic, 'end')}
           </Grid>
           <Grid item xs>
             <Slider step={stepSlider} marks={!!stepSlider} min={minSlider} max={maxSlider}
               aria-labelledby="discrete-slider" valueLabelDisplay="auto"
-              value={value} onChange={(e, v) => onChange(v)} />
+              value={value} onChange={({}, v) => onChange(v)} />
           </Grid>
           <Grid item>
-            {trailingIcon && createIcon(trailingIcon)}
+            { ti && createIcon(ti, value, onChange, tic, 'start')}
           </Grid>
         </Grid>
       </Box>

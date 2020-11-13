@@ -63,7 +63,9 @@ namespace form {
               <Typography className={classes.secondaryHeading}>{description}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              {children}
+              <Group>
+                {children}
+              </Group>
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Group>

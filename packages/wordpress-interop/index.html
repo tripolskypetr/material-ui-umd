@@ -175,6 +175,7 @@
                         defaultValue: 10,
                         inputType: 'number',
                         trailingIcon: SquareFoot,
+                        trailingIconClick(v, onChange) { alert(v) }
                       },
                       {
                         title: "Ширина",
@@ -212,6 +213,21 @@
         fields: [
           {
             type: "line",
+            title: "Комментарий"
+          },
+          {
+            title: "Комментарий",
+            type: "text",
+            name: "Комментарий",
+            inputRows: 5,
+          },
+        ]
+      },
+      {
+        type: "group",
+        fields: [
+          {
+            type: "line",
             title: "Способ доставки"
           },
           {
@@ -238,6 +254,8 @@
         name: "Слайдер",
         leadingIcon: VolumeDown,
         trailingIcon: VolumeUp,
+        leadingIconClick(v, onChange) { onChange(v - 1) },
+        trailingIconClick(v, onChange) { onChange(v + 1) }
       },
       {
         type: "line",
