@@ -87,6 +87,25 @@ namespace form {
     maxPercent?: number;
 
     /**
+     * - Коллбеки, позволяющий перекрасить SliderField.
+     * Работают только если заданы все вместе
+     * - ВНИМАНИЕ! Потенциально возможна просадка производительности,
+     * так как осуществляет рекомпиляцию стилей material-ui
+     */
+    sliderThumbColor?: (v: number) => string,
+    sliderTrackColor?: (v: number) => string,
+    sliderRailColor?: (v: number) => string,
+
+    /**
+     *  - Коллбеки, позволяющие перекрасить ProgressField.
+     * Работают только если заданы все вместе
+     *  - ВНИМАНИЕ! Потенциально возможна просадка производительности,
+     * так как осуществляет рекомпиляцию стилей material-ui
+     */
+    progressColor?: (v: number) => string,
+    progressBarColor?: (v: number) => string,
+
+    /**
      * Поля, специфичные для SliderField
      */
     minSlider?: number;

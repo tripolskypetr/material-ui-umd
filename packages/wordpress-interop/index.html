@@ -198,6 +198,32 @@
                       {
                         type: "progress",
                         compute: (obj) => obj["Длинна"] * obj["Ширина"],
+                        progressBarColor(percent) {
+                          if (percent < 10) {
+                            return 'maroon';
+                          } else if (percent < 30) {
+                            return 'red';
+                          } else if (percent < 60) {
+                            return 'orange';
+                          } else if (percent < 80) {
+                            return 'lime';
+                          } else {
+                            return 'green';
+                          }
+                        },
+                        progressColor(percent) {
+                          if (percent < 10) {
+                            return '#8000008c';
+                          } else if (percent < 30) {
+                            return '#ff00006b';
+                          } else if (percent < 60) {
+                            return '#ffa50070';
+                          } else if (percent < 80) {
+                            return '#00ff006b';
+                          } else {
+                            return '#00800061';
+                          }
+                        },
                         maxPercent: 500,
                       },
                     ]
