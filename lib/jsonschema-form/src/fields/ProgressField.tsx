@@ -18,10 +18,12 @@ namespace form {
   } = Math;
 
   const {
-    useState,
-    useLayoutEffect,
     createElement: h,
   } = React;
+
+  const {
+    useDelayed,
+  } = components;
 
   const {
     makeManaged,
@@ -40,9 +42,8 @@ namespace form {
         variant: "determinate"
       });
       if (progressColor && progressBarColor) {
-        const [patched, setPatched] = useState(null);
-        useLayoutEffect(() => {
-          const theme = createMuiTheme({
+        return useDelayed(
+          () => createMuiTheme({
             overrides: {
               MuiLinearProgress: {
                 colorPrimary: {
@@ -53,15 +54,14 @@ namespace form {
                 },
               }
             }
-          });
-          /**
-           * Конструкция позволяет дождаться применения всех эффектов, а затем дополнительно
-           * запустить таймер - операция дорогая по производительности!
-           */
-          const timeout = setTimeout(() => setPatched(h(ThemeProvider, {theme}, progress)), 450);
-          return () => clearTimeout(timeout);
-        }, [value]);
-        return patched;
+          }),
+          (theme) => h(
+            ThemeProvider,
+            {theme},
+            progress
+          ),
+          [value]
+        );
       } else {
         return progress;
       }
@@ -70,8 +70,8 @@ namespace form {
     export const ProgressField = makeManaged(({
       progressBarColor = null,
       progressColor = null,
-      description = '',
       maxPercent = 1.0,
+      showPercentLabel,
       value,
     }) => (
       <Box display="flex" alignItems="center">
@@ -80,11 +80,11 @@ namespace form {
             progressBarColor={progressBarColor}
             progressColor={progressColor} />
         </Box>
-        <Box minWidth={35}>
+        { showPercentLabel && <Box minWidth={35}>
           <Typography variant="body2" color="textSecondary">
-            {description || `${percent(value, maxPercent)}%`}
+            {`${percent(value, maxPercent)}%`}
           </Typography>
-        </Box>
+        </Box> }
       </Box>
     ));
 

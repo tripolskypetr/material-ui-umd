@@ -9,13 +9,15 @@ namespace form {
 
   const {
     createElement: h,
-    useLayoutEffect,
-    useState,
   } = React;
 
   const {
     createMuiTheme,
   } = material.core;
+
+  const {
+    useDelayed
+  } = components;
 
   const {
     makeManaged,
@@ -57,9 +59,8 @@ namespace form {
       value,
     }) => {
       if (thumbColor && trackColor && railColor) {
-        const [patched, setPatched] = useState(null);
-        useLayoutEffect(() => {
-          const theme = createMuiTheme({
+        return useDelayed(
+          () => createMuiTheme({
             overrides: {
               MuiSlider: {
                 thumb: { color: thumbColor(value) },
@@ -67,15 +68,14 @@ namespace form {
                 rail: { color: railColor(value) },
               }
             }
-          });
-          /**
-           * Конструкция позволяет дождаться применения всех эффектов, а затем дополнительно
-           * запустить таймер - операция дорогая по производительности!
-           */
-          const timeout = setTimeout(() => setPatched(h(ThemeProvider, {theme}, children)), 450);
-          return () => clearTimeout(timeout);
-        }, [value]);
-        return patched;
+          }),
+          (theme) => h(
+            ThemeProvider,
+            {theme},
+            children
+          ),
+          [value]
+        );
       } else {
         return children;
       }
