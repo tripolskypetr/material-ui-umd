@@ -2,14 +2,20 @@ namespace other {
 
   const {
     SnackbarContent,
+    IconButton,
     Snackbar,
     Button,
+    makeStyles,
   } = material.core;
 
   const {
     Slide,
     Grow,
   } = material.core;
+
+  const {
+    Close,
+  } = material.icons;
 
   const {
     Alert,
@@ -21,11 +27,30 @@ namespace other {
 
   export namespace components {
 
-    const SnackAction = ({action, onAction}) => (
-      <Button onClick={onAction} color="secondary" size="small">
-        {action}
-      </Button>
-    );
+    const useStyles = makeStyles({
+      closeButton: {
+        color: '#808080a1',
+      },
+    });
+
+    const SnackAction = ({action, actionMode, onAction, onClose}) => {
+      const classes = useStyles();
+      if (actionMode === ActionMode.Button) {
+        return (
+          <Button onClick={onAction} color="secondary" size="small">
+            {action}
+          </Button>
+        );
+      } else if (actionMode === ActionMode.Close) {
+        return (
+          <IconButton onClick={onClose} className={classes.closeButton}>
+            <Close/>
+          </IconButton>
+        );
+      } else {
+        return null;
+      }
+    };
 
     const createTransition = (type: snack.TransitionType, direction: snack.TransitionDirection) => {
       if (type === snack.TransitionType.Grow) {
@@ -39,11 +64,18 @@ namespace other {
 
     type func = CallableFunction;
 
+    enum ActionMode {
+      Button = 'button',
+      Close = 'close',
+      None = 'none',
+    }
+
     interface IExtendedSnack extends snack.ISnack {
       anchorOrigin: {
         horizontal: snack.HorizontalAlign,
         vertical: snack.VerticalAlign,
-      }
+      },
+      actionMode?: ActionMode,
     };
 
     const defaultProps = (s: snack.ISnack, onClose: func): IExtendedSnack => ({
@@ -57,6 +89,9 @@ namespace other {
       type: s.type || snack.SnackType.Normal,
       timeout: s.timeout || 5000,
       transitionDirection: s.transitionDirection || snack.TransitionDirection.Up,
+      actionMode: (s.action && ActionMode.Button)
+        || (s.message && s.message.length > 25 && ActionMode.None)
+        || ActionMode.Close,
       onClose() {
         if (s.onClose) { setTimeout(() => s.onClose()); }
         onClose();
@@ -74,6 +109,7 @@ namespace other {
         transition: tr, transitionDirection,
         anchorOrigin, onClose, onAction,
         timeout, message, type, action,
+        actionMode,
       } = defaultProps(props, () => setOpen(false));
       const renderContent = () => {
         if (type === snack.SnackType.Normal) {
@@ -81,7 +117,9 @@ namespace other {
             <SnackbarContent message={message}
               action={
                 <SnackAction
+                  actionMode={actionMode}
                   onAction={onAction}
+                  onClose={onClose}
                   action={action} />
               }
               onClose={onClose} />
