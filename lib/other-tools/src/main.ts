@@ -15,6 +15,11 @@ namespace other {
     useDispatch: useDispatchDefault,
   } = components;
 
+  const {
+    FetchProvider: FetchProviderDefault,
+    useFetch: useFetchDefault,
+  } = components;
+
   export namespace snack {
     export const SnackProvider = SnackProviderDefault;
     export const useSnack = useSnackDefault;
@@ -25,5 +30,10 @@ namespace other {
     export const useDispatch = useDispatchDefault;
     export const connect = connectStateDefault;
   } // namespace state
+
+  export namespace fetch {
+    export const FetchProvider = FetchProviderDefault;
+    export const useFetch = useFetchDefault;
+  } // namespace fetch
 
 } // namespace other

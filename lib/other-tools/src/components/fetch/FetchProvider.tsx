@@ -27,9 +27,9 @@ namespace other {
       searchParams: string | ((s: any) => string) | ((s: any) => Promise<string>);
     }
 
-    const resolve = async (handler: any) => {
+    const resolve = async (handler: any, state: any) => {
       if (typeof handler === 'function') {
-        const result = handler();
+        const result = handler(state);
         if (result instanceof Promise) {
           return await result;
         } else {
@@ -61,8 +61,8 @@ namespace other {
 
       useEffect(() => {
         const process = async () => {
-          setResolvedHeaders(await resolve(headers));
-          setResolvedSearchParams(await resolve(searchParams));
+          setResolvedHeaders(await resolve(headers, state));
+          setResolvedSearchParams(await resolve(searchParams, state));
         };
         setResolvedHeaders(null);
         setResolvedSearchParams(null);
