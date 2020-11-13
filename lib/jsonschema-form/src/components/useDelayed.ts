@@ -5,6 +5,10 @@ namespace form {
     useLayoutEffect,
   } = React;
 
+  const {
+    deepCompare,
+  } = utils;
+
   export namespace components {
 
     /**
@@ -18,8 +22,13 @@ namespace form {
     ) => {
       const [value, setValue] = useState(null);
       useLayoutEffect(() => {
-        const timeout = setTimeout((v) => setValue(delay(v)), 500, calculate());
-        return () => clearTimeout(timeout);
+        const compute = calculate();
+        if (deepCompare(value, compute)) {
+          return;
+        } else {
+          const timeout = setTimeout((v) => setValue(delay(v)), 1_000, compute);
+          return () => clearTimeout(timeout);
+        }
       }, deps);
       return value;
     };
