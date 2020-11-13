@@ -24,7 +24,7 @@ namespace app {
 
   const {
     SnackProvider,
-  } = snack;
+  } = other.snack;
 
   const {
     Router,

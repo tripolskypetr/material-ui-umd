@@ -13,7 +13,7 @@ namespace app {
     VerticalAlign,
     HorizontalAlign,
     TransitionDirection,
-  } = snack;
+  } = other.snack;
 
   const {
     useState,
@@ -123,7 +123,7 @@ namespace app {
     ];
 
     export const SnackPage = () => {
-      const [object, setObject] = useState<snack.ISnack>(null);
+      const [object, setObject] = useState(null);
       const snack = useSnack();
       const onClose = () => console.log('close');
       const onAction = () => console.log('action');

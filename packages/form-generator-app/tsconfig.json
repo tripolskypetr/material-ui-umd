@@ -15,7 +15,7 @@
       "../../dist",
       "../../lib/jsonschema-form/dist",
       "../../lib/virtual-router/dist",
-      "../../lib/snack-tools/dist",
+      "../../lib/other-tools/dist",
     ],
   },
   "exclude": [
@@ -28,7 +28,7 @@
     "../../dist",
     "../../lib/jsonschema-form/dist",
     "../../lib/virtual-router/dist",
-    "../../lib/snack-tools/dist",
+    "../../lib/other-tools/dist",
     "./src",
   ],
 }

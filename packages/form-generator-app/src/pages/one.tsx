@@ -11,10 +11,10 @@ namespace app {
 
   const {
     useSnack,
-  } = snack;
+  } = other.snack;
 
   const {
-    Box
+    Box,
   } = material.core;
 
   const {

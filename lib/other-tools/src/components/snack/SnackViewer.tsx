@@ -1,4 +1,4 @@
-namespace snack {
+namespace other {
 
   const {
     SnackbarContent,
@@ -27,10 +27,10 @@ namespace snack {
       </Button>
     );
 
-    const createTransition = (type: TransitionType, direction: TransitionDirection) => {
-      if (type === TransitionType.Grow) {
+    const createTransition = (type: snack.TransitionType, direction: snack.TransitionDirection) => {
+      if (type === snack.TransitionType.Grow) {
         return (props) => <Grow {...props} />;
-      } else if (type === TransitionType.Slide) {
+      } else if (type === snack.TransitionType.Slide) {
         return (props) => <Slide {...props} direction={direction} />;
       } else {
         return null;
@@ -39,24 +39,24 @@ namespace snack {
 
     type func = CallableFunction;
 
-    interface IExtendedSnack extends ISnack {
+    interface IExtendedSnack extends snack.ISnack {
       anchorOrigin: {
-        horizontal: HorizontalAlign,
-        vertical: VerticalAlign,
+        horizontal: snack.HorizontalAlign,
+        vertical: snack.VerticalAlign,
       }
     };
 
-    const defaultProps = (s: ISnack, onClose: func): IExtendedSnack => ({
+    const defaultProps = (s: snack.ISnack, onClose: func): IExtendedSnack => ({
       anchorOrigin: {
-        vertical: s.anchorVertical || VerticalAlign.Bottom,
-        horizontal: s.anchorHorizontal || HorizontalAlign.Center,
+        vertical: s.anchorVertical || snack.VerticalAlign.Bottom,
+        horizontal: s.anchorHorizontal || snack.HorizontalAlign.Center,
       },
       message: s.message || 'Message unset',
       action: s.action,
-      transition: s.transition || TransitionType.Grow,
-      type: s.type || SnackType.Normal,
+      transition: s.transition || snack.TransitionType.Grow,
+      type: s.type || snack.SnackType.Normal,
       timeout: s.timeout || 5000,
-      transitionDirection: s.transitionDirection || TransitionDirection.Up,
+      transitionDirection: s.transitionDirection || snack.TransitionDirection.Up,
       onClose() {
         if (s.onClose) { setTimeout(() => s.onClose()); }
         onClose();
@@ -68,7 +68,7 @@ namespace snack {
       }
     });
 
-    export const SnackViewer = (props: ISnack) => {
+    export const SnackViewer = (props: snack.ISnack) => {
       const [open, setOpen] = useState(true);
       const {
         transition: tr, transitionDirection,
@@ -76,7 +76,7 @@ namespace snack {
         timeout, message, type, action,
       } = defaultProps(props, () => setOpen(false));
       const renderContent = () => {
-        if (type === SnackType.Normal) {
+        if (type === snack.SnackType.Normal) {
           return (
             <SnackbarContent message={message}
               action={
