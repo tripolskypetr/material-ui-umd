@@ -25,7 +25,7 @@ namespace pickers {
       };
 
       state = {
-        open: false,
+        open: true,
       };
 
       show = () => {

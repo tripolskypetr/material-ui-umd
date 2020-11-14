@@ -9,6 +9,10 @@ namespace pickers {
     ArrowLeft,
   } = material.icons;
 
+  const {
+    createElement: h,
+  } = React;
+
   export namespace components {
 
     const styles = {
@@ -57,8 +61,8 @@ namespace pickers {
           year: 'numeric',
         }).format(displayDate);
 
-        const nextButtonIcon = ArrowRight;
-        const prevButtonIcon = ArrowLeft;
+        const nextButtonIcon = h(ArrowRight);
+        const prevButtonIcon = h(ArrowLeft);
 
         return (
           <div style={styles.root}>
