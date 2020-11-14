@@ -1,0 +1,7 @@
+{
+  "name": "material-pickers",
+  "scripts": {
+    "dev": "tsc --project ./tsconfig.json -w",
+    "build": "tsc --project ./tsconfig.json"
+  }
+}

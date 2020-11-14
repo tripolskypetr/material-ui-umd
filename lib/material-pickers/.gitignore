@@ -1,0 +1,3 @@
+dist/*.js
+dist/*.map
+dist/*.d.ts
