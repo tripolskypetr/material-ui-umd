@@ -8,11 +8,15 @@
 
 ## Ссылки
 
+**Документация инструмента**
+
  - [Шаблон для быстрого старта](./packages/form-generator-app/README.md)
  - [Офлайн-копия сайта с документацией](packages/offline-docs/README.md)
  - [Создать свой umd дистрибутив](packages/how-it-is-made/README.md)
  - [Применение вместе с WordPress на ванильном JavaScript](packages/wordpress-interop/README.md)
  - [Пикеры даты и времени](packages/amazing-pickers/README.md)
+
+**Лекции для новичков**
 
  - [Заметки по курсу лекций React](packages/react-lessons-notes/README.md)
  - [Заметки по курсу лекций JavaScript](packages/javascript-lessons-notes/README.md)
