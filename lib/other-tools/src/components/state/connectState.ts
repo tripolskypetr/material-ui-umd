@@ -6,10 +6,10 @@ namespace other {
 
   export namespace components {
 
-    export const connectState = (component) => () => {
-      const [state] = useDispatch();
+    export const connectState = (component, mapStateToProps = (state) => state, mapDispatchToProps = ({}) => ({})) => () => {
+      const [state, dispatch] = useDispatch();
       if (state) {
-        return h(component, state);
+        return h(component, {...mapStateToProps(state), ...mapDispatchToProps(dispatch)});
       } else {
         return null;
       }
