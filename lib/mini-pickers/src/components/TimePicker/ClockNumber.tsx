@@ -36,7 +36,7 @@ namespace pickers {
           : theme.palette.text.hint
       },
       selected: {
-        color: 'white',
+        color: theme.palette.getContrastText(theme.palette.text.primary)
       },
     }));
 
