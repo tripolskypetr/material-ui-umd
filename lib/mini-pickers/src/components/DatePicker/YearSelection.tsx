@@ -42,7 +42,7 @@ namespace pickers {
       const total = maxDate.diff(minDate, 'years');
       const years: moment.Moment[] = [];
       for (let i = 0; i !== total; i++) {
-        years.push(minDate.clone().subtract(i, 'years'));
+        years.push(minDate.clone().add(i, 'years'));
       }
       return years;
     };
