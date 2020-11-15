@@ -13,10 +13,10 @@ namespace pickers {
     const useStyles = makeStyles((theme) => ({
       toolbarBtn: {
         cursor: 'pointer',
-        color: theme.palette.common.lightWhite,
+        color: theme.palette.text.secondary,
       },
       toolbarBtnSelected: {
-        color: theme.palette.common.white,
+        color: theme.palette.text.primary,
       },
     }));
 

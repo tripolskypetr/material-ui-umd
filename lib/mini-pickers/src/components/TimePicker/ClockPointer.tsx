@@ -13,7 +13,7 @@ namespace pickers {
     const useStyles = makeStyles((theme) => ({
       pointer: {
         width: 2,
-        backgroundColor: theme.palette.primary[500],
+        backgroundColor: theme.palette.primary.main,
         height: '40%',
         position: 'absolute',
         left: 'calc(50% - 1px)',
@@ -23,16 +23,16 @@ namespace pickers {
       thumb: {
         width: 4,
         height: 4,
-        backgroundColor: theme.palette.common.white,
+        backgroundColor: theme.palette.primary.main,
         borderRadius: '100%',
         position: 'absolute',
         top: -21,
         left: -15,
-        border: `14px solid ${theme.palette.primary[500]}`,
+        border: `14px solid ${theme.palette.primary.main}`,
         boxSizing: 'content-box',
       },
       noPoint: {
-        backgroundColor: theme.palette.primary[500],
+        backgroundColor: theme.palette.primary.main,
       },
     }));
 

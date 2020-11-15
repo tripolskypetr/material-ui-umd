@@ -12,7 +12,7 @@ namespace pickers {
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        backgroundColor: theme.palette.primary[500],
+        backgroundColor: theme.palette.primary,
         height: 100,
       },
     });
