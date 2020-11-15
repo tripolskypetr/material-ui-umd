@@ -2,18 +2,20 @@ namespace pickers {
 
   const {
     useState,
-    useCallback,
   } = React;
 
   export namespace components {
 
-    export const TimePickerModal = ({
+    export const DatePickerModal = ({
       onChange = (change) => console.log({change}),
+      animateYearScrolling = false,
+      openToYearSelection = false,
+      disableFuture = false,
       now = moment(),
     }) => {
-      const [time, setTime] = useState(now);
-      const handleChange = (time) => setTime(time);
-      const handleAccept = useCallback(() => onChange(time), [time]);
+      const [date, setDate] = useState(moment(now));
+      const handleChange = (date) => setDate(date);
+      const handleAccept = () => onChange(date);
       const handleDismiss = () => onChange(null);
       return (
         <ModalDialog
@@ -21,9 +23,12 @@ namespace pickers {
           onAccept={handleAccept}
           onDismiss={handleDismiss}
         >
-          <TimePicker
-            date={time}
+          <DatePicker
+            date={date}
             onChange={handleChange}
+            disableFuture={disableFuture}
+            animateYearScrolling={animateYearScrolling}
+            openToYearSelection={openToYearSelection}
           />
         </ModalDialog>
       );

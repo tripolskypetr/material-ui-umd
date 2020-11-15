@@ -1,6 +1,6 @@
 # amazing-pickers
 
-> Пикеры даты и времени, портированные из [v0.material-ui.com](https://v0.material-ui.com)
+> Пикеры даты и времени, прочие пикеры
 
 ## Как запустить?
 
@@ -13,16 +13,9 @@ npm run build:umd
 npm run build:types
 ```
 
- - Соберите [jsonschema-form](../../lib/jsonschema-form)
+ - Собирите [mini-pickers](../../lib/mini-pickers)
 
 ```
-pwd # путь material-ui-umd/lib/jsonschema-form
-npm run build
-```
-
- - Собирите [material-pickers](../../lib/material-pickers)
-
-```
-pwd # путь material-ui-umd/lib/material-pickers
+pwd # путь material-ui-umd/lib/mini-pickers
 npm run build
 ```

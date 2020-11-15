@@ -1,10 +1,8 @@
 <script src="../../3rdparty/react@16.13.1/react.development.js"></script>
 <script src="../../3rdparty/react-dom@16.13.1/react-dom.development.js"></script>
-<script src="../../3rdparty/use-debounce@5.0.1/use-debounce.min.js"></script>
 <script src="../../3rdparty/classnames@2.2.6/classnames.js"></script>
 <script src="../../3rdparty/moment@2.29.1/moment.min.js"></script>
 <script src="../../dist/material-ui.min.js"></script>
-<script src="../../lib/jsonschema-form/dist/jsonschema-form.js"></script>
 <script src="../../lib/mini-pickers/dist/mini-pickers.js"></script>
 
 <div id="mount-point"></div>
@@ -17,11 +15,13 @@
   } = React;
 
   const {
+    DateProvider,
+    useDate,
     TimeProvider,
     useTime,
   } = pickers;
 
-  const View = () => {
+  const Time = () => {
     const time = useTime();
     const onClick = () => time().then((m) => {
       if (m) {
@@ -30,10 +30,27 @@
         alert('rejected');
       }
     })
-    return h('button', {onClick}, 'omg');
+    return h('button', {onClick}, 'Pick time');
   };
 
-  const App = () => h(TimeProvider, null, h(View));
+  const Date = () => {
+    const date = useDate();
+    const onClick = () => date().then((m) => {
+      if (m) {
+        alert(m.format('MM-DD-YYYY'));
+      } else {
+        alert('rejected');
+      }
+    })
+    return h('button', {onClick}, 'Pick date');
+  }
+
+  const App = () => h(TimeProvider, null, 
+    h(DateProvider, null,
+      h(Time),
+      h(Date),
+    )
+  );
 
   ReactDOM.render(h(App), document.querySelector('#mount-point'));
 
