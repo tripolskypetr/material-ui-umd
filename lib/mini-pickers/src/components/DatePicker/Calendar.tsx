@@ -10,6 +10,10 @@ namespace pickers {
   } = React;
 
   const {
+    Fragment,
+  } = React;
+
+  const {
     IconButton,
   } = material.core;
 
@@ -18,6 +22,8 @@ namespace pickers {
     const useStyles = makeStyles((theme) => ({
       calendar: {
         marginTop: 10,
+        display: 'grid',
+        gridTemplateColumns: '1fr repeat(5, 2fr) 1fr',
       },
       hidden: {
         opacity: 0,
@@ -38,9 +44,16 @@ namespace pickers {
         pointerEvents: 'none',
         color: theme.palette.text.hint,
       },
-      week: {
+      cell: {
         display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
+        '& :nth-child(7n)': {
+          justifyContent: 'flex-end',
+        },
+        '& :nth-child(7n + 1)': {
+          justifyContent: 'flex-start',
+        },
       },
     }));
 
@@ -76,7 +89,7 @@ namespace pickers {
         const currentMonthNumber = currentMonth.get('month');
         return getDays(week, end)
           .map((day: moment.Moment) => {
-            const dayClass = classNames(classes.day, {
+            const dayClass = classNames(classes.day, classes.cell, {
               [classes.hidden]: day.get('month') !== currentMonthNumber,
               [classes.selected]: day.toString() === date.toString(),
               [classes.disabled]: disableFuture && day.isAfter(moment()),
@@ -97,9 +110,9 @@ namespace pickers {
         const end = currentMonth.clone().endOf('month').endOf('week');
         return getWeeks(start, end)
           .map(week => (
-            <div key={`week-${week.toString()}`} className={classes.week}>
+            <Fragment key={`week-${week.toString()}`}>
               { renderDays(week) }
-            </div>
+            </Fragment>
           ));
       }, [currentMonth]);
       const onDateSelect = (day) => onChange(day);

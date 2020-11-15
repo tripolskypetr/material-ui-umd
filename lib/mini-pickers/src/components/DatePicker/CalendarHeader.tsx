@@ -24,15 +24,21 @@ namespace pickers {
       },
       daysHeader: {
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'stretch',
+        alignItems: 'stretch',
       },
       dayLabel: {
-        width: 36,
-        margin: '0 2px',
+        flex: 1,
+        margin: '0 12px 0 12px',
         fontSize: 13,
         textAlign: 'center',
         color: theme.palette.text.secondary,
+      },
+      dayLabelStart: {
+        textAlign: 'start',
+      },
+      dayLabelEnd: {
+        textAlign: 'end',
       },
       monthName: {
         color: theme.palette.text.primary,
@@ -60,8 +66,11 @@ namespace pickers {
             </IconButton>
           </div>
           <div className={classes.daysHeader}>
-            { moment.weekdaysMin().map(day => (
-              <div key={day} className={classes.dayLabel}> { day } </div>
+            { moment.weekdaysMin().map((day, index) => (
+              <div key={day} className={classNames(classes.dayLabel, {
+                [classes.dayLabelStart]: index === 0,
+                [classes.dayLabelEnd]: index === 6,
+              })}> { day } </div>
             ))}
           </div>
         </div>
