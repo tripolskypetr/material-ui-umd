@@ -1,4 +1,4 @@
-# material-pickers
+# mini-pickers
 
 > Пикеры даты и времени, портированные из [material-ui-pickers@1.0.0-alpha.1](https://www.npmjs.com/package/material-ui-pickers/v/1.0.0-alpha.1). Минимальные по размеру относительно альтернатив
 

@@ -58,7 +58,7 @@ namespace pickers {
     }));
 
     const getDays = (minDate: moment.Moment, maxDate: moment.Moment) => {
-      const total = maxDate.diff(minDate, 'days');
+      const total = maxDate.diff(minDate, 'days') + 1;
       const days: moment.Moment[] = [];
       for (let i = 0; i !== total; i++) {
         days.push(minDate.clone().add(i, 'days'));
@@ -67,7 +67,7 @@ namespace pickers {
     };
 
     const getWeeks = (minDate: moment.Moment, maxDate: moment.Moment) => {
-      const total = maxDate.diff(minDate, 'weeks');
+      const total = maxDate.diff(minDate, 'weeks') + 1;
       const weeks: moment.Moment[] = [];
       for (let i = 0; i !== total; i++) {
         weeks.push(minDate.clone().add(i, 'weeks'));

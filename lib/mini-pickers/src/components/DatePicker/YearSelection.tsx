@@ -39,7 +39,7 @@ namespace pickers {
     }));
 
     const getYears = (minDate: moment.Moment, maxDate: moment.Moment) => {
-      const total = maxDate.diff(minDate, 'years');
+      const total = maxDate.diff(minDate, 'years') + 1;
       const years: moment.Moment[] = [];
       for (let i = 0; i !== total; i++) {
         years.push(minDate.clone().add(i, 'years'));
