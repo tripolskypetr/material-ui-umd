@@ -23,9 +23,11 @@
 
   const View = () => {
     const time = useTime();
-    const onClick = () => time({
-      onChange(moment) {
-        console.log({moment})
+    const onClick = () => time().then((m) => {
+      if (m) {
+        alert(m.format('HH:MM:SS'));
+      } else {
+        alert('rejected');
       }
     })
     return h('button', {onClick}, 'omg');

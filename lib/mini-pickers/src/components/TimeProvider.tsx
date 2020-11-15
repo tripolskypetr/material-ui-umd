@@ -9,15 +9,13 @@ namespace pickers {
 
   export namespace components {
 
-    type useTimeHook = (p: IPickerProps) => void;
-
-    const TimeContext = createContext<useTimeHook>(null);
+    const TimeContext = createContext(null);
 
     export const TimeProvider = ({
       children = null,
     }) => {
-      const [props, setProps] = useState<IPickerProps>(null);
-      const useTime = (props) => setProps(props);
+      const [props, setProps] = useState(null);
+      const useTime = () => () => new Promise<any>((onChange) => setProps({onChange}));
       const onChange = useCallback((time) => {
         props.onChange(time);
         setProps(null);
@@ -30,7 +28,7 @@ namespace pickers {
       );
     };
 
-    export const useTime: useTimeHook = () => useContext(TimeContext);
+    export const useTime = () => useContext(TimeContext)();
 
   } // namespace components
 

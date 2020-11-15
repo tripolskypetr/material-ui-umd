@@ -14,6 +14,7 @@ namespace pickers {
 
   const {
     useState,
+    useEffect,
     useCallback,
   } = React;
 
@@ -61,10 +62,8 @@ namespace pickers {
         }
         onChange(time);
       }, [state]);
-      const setMeridiemMode = (mode) => () => setState((p) => {
-        setTimeout(() => handleChange(date));
-        return {...p, meridiemMode: mode };
-      });
+      const setMeridiemMode = (mode) => () => setState((p) => ({...p, meridiemMode: mode }));
+      useEffect(() => handleChange(date), [date, state.meridiemMode]);
       const openMinutesView = () => setState((p) => ({...p, isHourViewShown: false}));
       const openHourView = () => setState((p) => ({...p, isHourViewShown: true}));
       return (
