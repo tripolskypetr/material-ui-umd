@@ -25,7 +25,7 @@
     const time = useTime();
     const onClick = () => time().then((m) => {
       if (m) {
-        alert(m.format('HH:MM:SS'));
+        alert(m.format('H:mm'));
       } else {
         alert('rejected');
       }
