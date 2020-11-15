@@ -1,9 +1,11 @@
 <script src="../../3rdparty/react@16.13.1/react.development.js"></script>
 <script src="../../3rdparty/react-dom@16.13.1/react-dom.development.js"></script>
 <script src="../../3rdparty/use-debounce@5.0.1/use-debounce.min.js"></script>
+<script src="../../3rdparty/classnames@2.2.6/classnames.js"></script>
+<script src="../../3rdparty/moment@2.29.1/moment.min.js"></script>
 <script src="../../dist/material-ui.min.js"></script>
 <script src="../../lib/jsonschema-form/dist/jsonschema-form.js"></script>
-<script src="../../lib/material-pickers/dist/material-pickers.js"></script>
+<script src="../../lib/mini-pickers/dist/mini-pickers.js"></script>
 
 <div id="mount-point"></div>
 
@@ -15,19 +17,23 @@
   } = React;
 
   const {
-    DateProvider,
-    useDate,
+    TimeProvider,
+    useTime,
   } = pickers;
 
+  debugger
+
   const View = () => {
-    const date = useDate();
-    const onClick = () => date({
-      onAccept: (...args) => console.log({args})
-    });
+    const time = useTime();
+    const onClick = () => time({
+      onChange(moment) {
+        console.log({moment})
+      }
+    })
     return h('button', {onClick}, 'omg');
   };
 
-  const App = () => h(DateProvider, null, h(View));
+  const App = () => h(TimeProvider, null, h(View));
 
   ReactDOM.render(h(App), document.querySelector('#mount-point'));
 

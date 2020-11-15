@@ -6,7 +6,7 @@
     "sourceMap": true,
     "declaration": true,
     "lib": ["es2015", "dom"],
-    "outFile": "./dist/material-pickers.js",
+    "outFile": "./dist/mini-pickers.js",
     "rootDir": "./src/",
     "baseUrl": "./",
     "types": [],

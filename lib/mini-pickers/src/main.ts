@@ -6,11 +6,11 @@
 namespace pickers {
 
   const {
-    DateProvider: DateProviderDefault,
-    useDate: useDateDefault,
+    TimeProvider: TimeProviderDefault,
+    useTime: useTimeDefault,
   } = components;
 
-  export const DateProvider = DateProviderDefault;
-  export const useDate = useDateDefault;
+  export const TimeProvider = TimeProviderDefault;
+  export const useTime = useTimeDefault;
 
 } // namespace pickers

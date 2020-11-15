@@ -1,9 +1,0 @@
-/// <reference path="./CalendarActionButtons.tsx"/>
-/// <reference path="./DayButton.tsx"/>
-/// <reference path="./CalendarMonth.tsx"/>
-/// <reference path="./CalendarToolbar.tsx"/>
-/// <reference path="./YearButton.tsx"/>
-/// <reference path="./CalendarYear.tsx"/>
-/// <reference path="./DateDisplay.tsx"/>
-/// <reference path="./Calendar.tsx"/>
-/// <reference path="./DatePickerDialog.tsx"/>

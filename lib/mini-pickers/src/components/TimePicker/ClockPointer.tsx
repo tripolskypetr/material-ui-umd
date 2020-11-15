@@ -1,0 +1,63 @@
+namespace pickers {
+
+  const {
+    makeStyles,
+  } = material.core;
+
+  const {
+    useCallback,
+  } = React;
+
+  export namespace components {
+
+    const useStyles = makeStyles((theme) => ({
+      pointer: {
+        width: 2,
+        backgroundColor: theme.palette.primary[500],
+        height: '40%',
+        position: 'absolute',
+        left: 'calc(50% - 1px)',
+        bottom: '50%',
+        transformOrigin: 'center bottom 0px',
+      },
+      thumb: {
+        width: 4,
+        height: 4,
+        backgroundColor: theme.palette.common.white,
+        borderRadius: '100%',
+        position: 'absolute',
+        top: -21,
+        left: -15,
+        border: `14px solid ${theme.palette.primary[500]}`,
+        boxSizing: 'content-box',
+      },
+      noPoint: {
+        backgroundColor: theme.palette.primary[500],
+      },
+    }));
+
+    export const ClockPointer = ({
+      hasSelected = false,
+      value = 0,
+      max = 0,
+    }) => {
+      const classes = useStyles();
+      const getAngleStyle = useCallback(() => {
+        const angle = (360 / max) * value;
+        return {
+          transform: `rotateZ(${angle}deg)`,
+        };
+      }, [value, max]);
+      return (
+        <div
+          className={classes.pointer}
+          style={getAngleStyle()}
+        >
+          <div className={classNames(classes.thumb, { [classes.noPoint]: hasSelected })} />
+        </div>
+      );
+    };
+
+  } // namespace components
+
+} // namespace pickers
