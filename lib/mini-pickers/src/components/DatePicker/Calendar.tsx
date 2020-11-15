@@ -44,6 +44,9 @@ namespace pickers {
         pointerEvents: 'none',
         color: theme.palette.text.hint,
       },
+      active: {
+        color: theme.palette.primary.main,
+      },
       cell: {
         display: 'flex',
         alignItems: 'center',
@@ -93,6 +96,7 @@ namespace pickers {
               [classes.hidden]: day.get('month') !== currentMonthNumber,
               [classes.selected]: day.toString() === date.toString(),
               [classes.disabled]: disableFuture && day.isAfter(moment()),
+              [classes.active]: moment().isSame(day, 'date')
             });
             return (
               <IconButton
