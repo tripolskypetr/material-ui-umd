@@ -13,6 +13,10 @@ namespace form {
     createField,
   } = fields;
 
+  const {
+    useResolved,
+  } = hooks;
+
   export namespace components {
 
     export const One = ({

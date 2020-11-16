@@ -19,7 +19,7 @@ namespace form {
     assign,
   } = Object;
 
-  export namespace components {
+  export namespace hooks {
 
     type useResolvedHook = (
       handler: () => Promise<any> | any,
@@ -77,6 +77,6 @@ namespace form {
       return [data, setData];
     };
 
-  } // namespace components
+  } // namespace hooks
 
 } // namespace form

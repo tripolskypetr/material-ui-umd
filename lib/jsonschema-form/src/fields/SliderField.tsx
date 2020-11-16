@@ -17,7 +17,7 @@ namespace form {
 
   const {
     useDelayed
-  } = components;
+  } = hooks;
 
   const {
     makeManaged,

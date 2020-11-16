@@ -7,8 +7,6 @@ namespace app {
   const {
     MuiThemeProvider,
     createMuiTheme,
-    CssBaseline,
-    Container,
   } = material.core;
 
   const {
@@ -68,22 +66,19 @@ namespace app {
   const App = () => {
     const router = useRef(null);
     const pages = [
-      {icon: LooksOne, title: "Документ со Справочником", url: "/list"},
-      {icon: LooksTwo, title: "Использование Snackbar", url: "/snack"}
+      {icon: LooksOne, title: "Документ со Справочником", click() { router.current("/list") } },
+      {icon: LooksTwo, title: "Использование Snackbar", click() { router.current("/snack") } },
     ];
     return (
       <MuiThemeProvider theme={theme}>
         <SnackProvider>
-          <CssBaseline />
-          <Scaffold pages={pages} go={(url) => router.current(url)}>
-            <Container>
-              <Router ref={router}>
-                <Route url="/" component={BriefPage}/>
-                <Route url="/list" component={ListPage}/>
-                <Route url="/one/:id" component={OnePage}/>
-                <Route url="/snack" component={SnackPage}/>
-              </Router>
-            </Container>
+          <Scaffold title="Form generator app" pages={pages}>
+            <Router ref={router}>
+              <Route url="/" component={BriefPage}/>
+              <Route url="/list" component={ListPage}/>
+              <Route url="/one/:id" component={OnePage}/>
+              <Route url="/snack" component={SnackPage}/>
+            </Router>
           </Scaffold>
         </SnackProvider>
       </MuiThemeProvider>

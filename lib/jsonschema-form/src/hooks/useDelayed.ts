@@ -5,11 +5,7 @@ namespace form {
     useLayoutEffect,
   } = React;
 
-  const {
-    deepCompare,
-  } = utils;
-
-  export namespace components {
+  export namespace hooks {
 
     /**
      * Конструкция позволяет дождаться применения всех эффектов, а затем дополнительно
@@ -29,6 +25,6 @@ namespace form {
       return value;
     };
 
-  } // namespace components
+  } // namespace hooks
 
 } // namespace form
