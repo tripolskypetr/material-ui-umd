@@ -11,7 +11,14 @@ namespace other {
 
     export const DispatchContext = createContext<useDispatchHook>(null);
 
-    export const useDispatch = () => useContext(DispatchContext)();
+    export const useDispatch = () => {
+      const ctx = useContext(DispatchContext);
+      if (ctx) {
+        return ctx();
+      } else {
+        return [null];
+      }
+    };
 
   } // namespace components
 

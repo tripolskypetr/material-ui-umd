@@ -2,7 +2,7 @@ namespace other {
 
   const {
     useState,
-    useEffect,
+    useLayoutEffect,
   } = React;
 
   export namespace components {
@@ -59,7 +59,7 @@ namespace other {
       const [resolvedHeaders, setResolvedHeaders] = useState(null);
       const [resolvedSearchParams, setResolvedSearchParams] = useState(null);
 
-      useEffect(() => {
+      useLayoutEffect(() => {
         const process = async () => {
           setResolvedHeaders(await resolve(headers, state));
           setResolvedSearchParams(await resolve(searchParams, state));
@@ -67,7 +67,7 @@ namespace other {
         setResolvedHeaders(null);
         setResolvedSearchParams(null);
         process();
-      }, [headers, searchParams, state])
+      }, [state])
 
       const f: fetchFunc = (url: string, {
         headers,

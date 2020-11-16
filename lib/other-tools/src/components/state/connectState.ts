@@ -16,10 +16,10 @@ namespace other {
       component,
       mapStateToProps = (state) => state,
       mapDispatchToProps = ({}) => ({})
-    ) => () => {
+    ) => (props) => {
       const [state, dispatch] = useDispatch();
       if (state) {
-        return h(component, {...mapStateToProps(state), ...mapDispatchToProps(dispatch)});
+        return h(component, {...mapStateToProps(state), ...mapDispatchToProps(dispatch), ...props});
       } else {
         return null;
       }
