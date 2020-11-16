@@ -6,7 +6,17 @@ namespace other {
 
   export namespace components {
 
-    export const connectState = (component, mapStateToProps = (state) => state, mapDispatchToProps = ({}) => ({})) => () => {
+    export type connectStateFunc = (
+      component: material.Component,
+      mapStateToProps?: (obj: any) => any,
+      mapDispatchToProps?: (dispatch: (a: state.IReducerAction) => void) => any,
+    ) => material.Component;
+
+    export const connectState: connectStateFunc = (
+      component,
+      mapStateToProps = (state) => state,
+      mapDispatchToProps = ({}) => ({})
+    ) => () => {
       const [state, dispatch] = useDispatch();
       if (state) {
         return h(component, {...mapStateToProps(state), ...mapDispatchToProps(dispatch)});

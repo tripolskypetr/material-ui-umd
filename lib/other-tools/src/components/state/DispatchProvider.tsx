@@ -8,7 +8,7 @@ namespace other {
 
     export interface IDispatchProviderProps<S = any> {
       reducer: React.Reducer<S, other.state.IReducerAction>,
-      children: React.ReactNode;
+      children?: React.ReactNode;
       initialState: S;
     }
 

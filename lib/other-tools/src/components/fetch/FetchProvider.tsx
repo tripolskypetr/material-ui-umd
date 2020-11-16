@@ -8,7 +8,7 @@ namespace other {
   export namespace components {
 
     export interface IFetchProviderProps {
-      children: React.ReactNode;
+      children?: React.ReactNode;
       /**
        *  - Токен можно передать в заголовке. Если используются
        * state-tools, входным параметром будет текущее состояние
@@ -16,7 +16,7 @@ namespace other {
        * склейка
        * @example {"MY-Token": "J3QQ4-H7H2V-2HCH4-M3HK8-6M8VW"}
        */
-      headers: any | ((s: any) => any) | ((s: any) => Promise<any>);
+      headers?: any | ((s: any) => any) | ((s: any) => Promise<any>);
       /**
        *  - Токен можно передать GET параметром. Если используются
        * state-tools, входным параметром будет текущее состояние.
@@ -24,7 +24,7 @@ namespace other {
        * склейка
        * @example ?token=J3QQ4-H7H2V-2HCH4-M3HK8-6M8VW
        */
-      searchParams: string | ((s: any) => string) | ((s: any) => Promise<string>);
+      searchParams?: string | ((s: any) => string) | ((s: any) => Promise<string>);
     }
 
     const resolve = async (handler: any, state: any) => {
