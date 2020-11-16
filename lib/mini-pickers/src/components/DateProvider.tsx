@@ -15,7 +15,7 @@ namespace pickers {
       children = null,
     }) => {
       const [props, setProps] = useState(null);
-      const useDate = (now = moment()) => () => new Promise<any>((onChange) => setProps({now, onChange}));
+      const useDate = () => (now = moment()) => new Promise<any>((onChange) => setProps({now, onChange}));
       const onChange = useCallback((time) => {
         props.onChange(time);
         setProps(null);
