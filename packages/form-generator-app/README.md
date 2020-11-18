@@ -80,10 +80,17 @@ pwd # путь material-ui-umd/lib/jsonschema-form
 npm run build
 ```
 
- - Соберите [snack-tools](../../lib/snack-tools)
+ - Соберите [other-tools](../../lib/other-tools)
 
 ```
 pwd # путь material-ui-umd/lib/snack-tools
+npm run build
+```
+
+ - Соберите [mini-pickers](../../lib/mini-pickers)
+
+```
+pwd # путь material-ui-umd/lib/mini-pickers
 npm run build
 ```
 

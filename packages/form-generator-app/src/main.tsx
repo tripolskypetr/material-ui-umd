@@ -14,6 +14,7 @@ namespace app {
   } = components;
 
   const {
+    PickerPage,
     BriefPage,
     SnackPage,
     ListPage,
@@ -32,6 +33,7 @@ namespace app {
   const {
     LooksOne,
     LooksTwo,
+    Looks3,
   } = material.icons;
 
   const {
@@ -67,7 +69,8 @@ namespace app {
     const router = useRef(null);
     const pages = [
       {icon: LooksOne, title: "Документ со Справочником", click() { router.current("/list") } },
-      {icon: LooksTwo, title: "Использование Snackbar", click() { router.current("/snack") } },
+      {icon: LooksTwo, title: "Использование other-tools", click() { router.current("/snack") } },
+      {icon: Looks3, title: "Использование mini-pickers", click() { router.current("/picker") } },
     ];
     return (
       <MuiThemeProvider theme={theme}>
@@ -78,6 +81,7 @@ namespace app {
               <Route url="/list" component={ListPage}/>
               <Route url="/one/:id" component={OnePage}/>
               <Route url="/snack" component={SnackPage}/>
+              <Route url="/picker" component={PickerPage}/>
             </Router>
           </Scaffold>
         </SnackProvider>
