@@ -1,4 +1,4 @@
-# mini-pickers
+# pickers-tools
 
 > Пикеры даты и времени, портированные из [material-ui-pickers@1.0.0-alpha.1](https://www.npmjs.com/package/material-ui-pickers/v/1.0.0-alpha.1). Минимальные по размеру относительно альтернатив
 
@@ -16,7 +16,7 @@ npm run build:types
  - После, соберите этот инструмент
 
 ```
-pwd # путь material-ui-umd/lib/mini-pickers
+pwd # путь material-ui-umd/lib/pickers-tools
 npm run build
 ```
 

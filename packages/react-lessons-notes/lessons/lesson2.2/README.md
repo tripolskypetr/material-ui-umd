@@ -220,7 +220,7 @@
 
 ## Структура JSON-а
 
-> Примечательными являются следующие свойства, где `type` - тип поля, а `fields` - вложенные поля. Посмотреть опциональные свойства полей [можно тут](https://github.com/tripolskypetr/material-ui-umd/blob/master/lib/jsonschema-form/src/common/IField.ts).
+> Примечательными являются следующие свойства, где `type` - тип поля, а `fields` - вложенные поля. Посмотреть опциональные свойства полей [можно тут](https://github.com/tripolskypetr/material-ui-umd/blob/master/lib/form-tools/src/common/IField.ts).
 
 ```
 {

@@ -22,7 +22,7 @@ namespace form {
       } else if (type === FieldType.Rating) {
         return 3;
       } else {
-        console.warn('jsonschema-form initialValue unknown type');
+        console.warn('form-tools initialValue unknown type');
         return "";
       }
     };

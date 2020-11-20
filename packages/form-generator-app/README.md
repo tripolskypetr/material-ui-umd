@@ -1,6 +1,6 @@
 # Form generator app
 
-> Это приложение позволяет ознакомиться с инструментами [virtual-router](../../lib/virtual-router) и [jsonschema-form](../../lib/jsonschema-form). В качестве объекта изучения будет использоваться абстрактная база профилей
+> Это приложение позволяет ознакомиться с инструментами [router-tools](../../lib/router-tools) и [form-tools](../../lib/form-tools). В качестве объекта изучения будет использоваться абстрактная база профилей
 
 ## Ссылки
 
@@ -66,17 +66,17 @@ npm run build:umd
 npm run build:types
 ```
 
- - Соберите [virtual-router](../../lib/virtual-router)
+ - Соберите [router-tools](../../lib/router-tools)
 
 ```
-pwd # путь material-ui-umd/lib/virtual-router
+pwd # путь material-ui-umd/lib/router-tools
 npm run build
 ```
 
- - Соберите [jsonschema-form](../../lib/jsonschema-form)
+ - Соберите [form-tools](../../lib/form-tools)
 
 ```
-pwd # путь material-ui-umd/lib/jsonschema-form
+pwd # путь material-ui-umd/lib/form-tools
 npm run build
 ```
 
@@ -87,10 +87,10 @@ pwd # путь material-ui-umd/lib/snack-tools
 npm run build
 ```
 
- - Соберите [mini-pickers](../../lib/mini-pickers)
+ - Соберите [pickers-tools](../../lib/pickers-tools)
 
 ```
-pwd # путь material-ui-umd/lib/mini-pickers
+pwd # путь material-ui-umd/lib/pickers-tools
 npm run build
 ```
 

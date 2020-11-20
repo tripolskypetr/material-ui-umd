@@ -1,4 +1,4 @@
-# jsonschema-form
+# form-tools
 
 > Генератор форм по 12-колоночной сетке для быстрой верстки адаптивных для мобильных устройств справочников (One) и документов (List). Посмотрите [form-generator-app](../../packages/form-generator-app), проще всего будет разобраться, как этим пользоваться.
 
@@ -23,7 +23,7 @@ npm run build:types
  - После, соберите этот инструмент
 
 ```
-pwd # путь material-ui-umd/lib/jsonschema-form
+pwd # путь material-ui-umd/lib/form-tools
 npm run build
 ```
 

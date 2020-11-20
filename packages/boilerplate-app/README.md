@@ -25,7 +25,7 @@ npm run build
 ## Обратите внимание
 
 Обратите внимание: NastyRouter используется как пример использования
-Redux. Я настоятельно рекомендую посмотреть в сторону [virtual-router](../../lib/virtual-router)
+Redux. Я настоятельно рекомендую посмотреть в сторону [router-tools](../../lib/router-tools)
 из [form-generator-app](../form-generator-app)
 
 ## Скриншот

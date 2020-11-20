@@ -7,4 +7,4 @@
 
 ## С чего начать?
 
-Посмотрите [form-generator-app](../packages/form-generator-app), этот проект использует инструменты [virtual-router](./virtual-router), [jsonschema-form](./jsonschema-form) и весьма интересен для разбора содержимого
+Посмотрите [form-generator-app](../packages/form-generator-app), этот проект использует инструменты [router-tools](./router-tools), [form-tools](./form-tools) и весьма интересен для разбора содержимого

@@ -38,7 +38,7 @@ namespace app {
           </Typography>
           <Typography variant="body1" className={classes.line}>
             Это приложение позволяет ознакомиться с
-            инструментами <em>virtual-router</em> и <em>jsonschema-form</em>.
+            инструментами <em>router-tools</em> и <em>form-tools</em>.
             В качестве объекта изучения будет использоваться
             абстрактная база профилей
           </Typography>

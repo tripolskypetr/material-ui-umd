@@ -6,7 +6,7 @@
     "sourceMap": true,
     "declaration": true,
     "lib": ["es2015", "dom"],
-    "outFile": "./dist/virtual-router.js",
+    "outFile": "./dist/router-tools.js",
     "rootDir": "./src/",
     "baseUrl": "./",
     "types": [],

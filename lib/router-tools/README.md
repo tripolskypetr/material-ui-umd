@@ -1,4 +1,4 @@
-# virtual-router
+# router-tools
 
 > Минимальный роутер, основанный на контекcте и не использующий адресную строку браузера. В качестве парсера ссылок был взять модуль [path-to-regexp](https://www.npmjs.com/package/path-to-regexp) из веб-сервера [Express](https://expressjs.com/ru/).
 
@@ -7,7 +7,7 @@
 Сборка umd дистрибутива не требуется: работает обособленно
 
 ```
-pwd # путь material-ui-umd/lib/virtual-router
+pwd # путь material-ui-umd/lib/router-tools
 npm run build
 ```
 

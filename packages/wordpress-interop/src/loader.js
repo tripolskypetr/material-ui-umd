@@ -5,5 +5,5 @@
   window.useDebounce || document.write(template("/3rdparty/use-debounce@5.0.1/use-debounce.min.js"));
   window.classNames || document.write(template("/3rdparty/classnames@2.2.6/classnames.js"));
   window.material || document.write(template("/dist/material-ui.min.js"));
-  window.form || document.write(template("/lib/jsonschema-form/dist/jsonschema-form.js"));
+  window.form || document.write(template("/lib/form-tools/dist/form-tools.js"));
 })();

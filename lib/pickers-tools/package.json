@@ -1,5 +1,5 @@
 {
-  "name": "virtual-router",
+  "name": "pickers-tools",
   "scripts": {
     "dev": "tsc --project ./tsconfig.json -w",
     "build": "tsc --project ./tsconfig.json"

@@ -8,7 +8,7 @@ namespace app {
 
     /**
      * Компонент Scaffold был вынесен в общий код
-     * библиотеки jsonschema-form для повторного
+     * библиотеки form-tools для повторного
      * использования
      */
     export const Scaffold = ScaffoldDefault;

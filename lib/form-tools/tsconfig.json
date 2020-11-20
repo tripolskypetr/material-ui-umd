@@ -6,7 +6,7 @@
     "sourceMap": true,
     "declaration": true,
     "lib": ["es2015", "dom"],
-    "outFile": "./dist/jsonschema-form.js",
+    "outFile": "./dist/form-tools.js",
     "rootDir": "./src/",
     "baseUrl": "./",
     "types": [],

@@ -70,7 +70,7 @@ namespace app {
     const pages = [
       {icon: LooksOne, title: "Документ со Справочником", click() { router.current("/list") } },
       {icon: LooksTwo, title: "Использование other-tools", click() { router.current("/snack") } },
-      {icon: Looks3, title: "Использование mini-pickers", click() { router.current("/picker") } },
+      {icon: Looks3, title: "Использование pickers-tools", click() { router.current("/picker") } },
     ];
     return (
       <MuiThemeProvider theme={theme}>
