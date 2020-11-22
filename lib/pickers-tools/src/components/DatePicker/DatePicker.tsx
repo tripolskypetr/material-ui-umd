@@ -36,6 +36,10 @@ namespace pickers {
       const openYearSelection = () => setShowYearSelection(true);
       const openCalendar = () => setShowYearSelection(false);
       const startOfDay = date.startOf('day');
+      const onYearChange = (date) => {
+        setShowYearSelection(false);
+        onChange(date);
+      };
       return (
         <div className={classes.container}>
           <Toolbar className={classes.toolbar}>
@@ -57,7 +61,7 @@ namespace pickers {
               ?
                 <YearSelection
                   date={startOfDay}
-                  onChange={onChange}
+                  onChange={onYearChange}
                   minDate={moment(minDate)}
                   maxDate={moment(maxDate)}
                   disableFuture={disableFuture}
