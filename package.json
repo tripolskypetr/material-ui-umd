@@ -6,7 +6,10 @@
   "scripts": {
     "serve": "http-server",
     "build:umd": "webpack-cli",
-    "build:types": "tsc --project ./tsconfig.json"
+    "build:lib": "cd lib && sh build.sh",
+    "build:types": "tsc --project ./tsconfig.json",
+    "clean:umd": "rm ./dist/* && touch ./dist/meow.txt",
+    "clean:lib": "cd lib && sh clean.sh"
   },
   "repository": {
     "type": "git",

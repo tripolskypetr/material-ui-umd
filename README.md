@@ -21,6 +21,10 @@
  - [Заметки по курсу лекций React](packages/react-lessons-notes/README.md)
  - [Заметки по курсу лекций JavaScript](packages/javascript-lessons-notes/README.md)
 
+**FAQ**
+
+ - [FAQ](./HOWTO.md)
+
 ## Брифинг
 
 Начиная с версии 16.8 в React доступен хук [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer), реализующий паттерн [state reducer pattern](https://redux.js.org/). Как следствие, библиотека все больше начинает походить на полноценный фреймворк со своей методологией программирования. Отличительной особенностью так и остается миниатюрность: [легко интегрировать в другие решения](reactjs.org/docs/web-components.html#using-react-in-your-web-components), простейший к пониманию и легкий к отладке код прикладного программиста.
