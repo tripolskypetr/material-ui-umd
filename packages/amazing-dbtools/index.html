@@ -1,0 +1,79 @@
+<script src="../../3rdparty/react@16.13.1/react.development.js"></script>
+<script src="../../3rdparty/react-dom@16.13.1/react-dom.development.js"></script>
+<script src="../../dist/material-ui.min.js"></script>
+<script src="../../lib/idb-tools/dist/idb-tools.js"></script>
+
+<div id="mount-point"></div>
+
+<script>
+  (function() {
+
+    const {
+      createElement: h,
+      Fragment,
+    } = React;
+
+    const {
+      Button,
+    } = material.core;
+
+    const {
+      DatabaseProvider,
+      useDB,
+    } = idb;
+
+    const addArticle = async (db) => {
+      await db.add('articles', {
+        title: prompt('Article title', 'Article 1'),
+        date: new Date(),
+        body: prompt('Article body', 'Example content'),
+      });
+    };
+
+    const showArticles = async (db) => alert(JSON.stringify(
+      await db.getAllFromIndex('articles', 'date'),
+    null, 2));
+
+    const removeBody = async (db) => {
+      const tx = db.transaction('articles', 'readwrite');
+      const index = tx.store.index('date');
+      for await (const cursor of index.iterate()) {
+        const article = { ...cursor.value };
+        article.body = '';
+        cursor.update(article);
+      }
+      await tx.done;
+    };
+
+    const View = () => {
+      const db = useDB();
+      return h(Fragment, null, 
+        h(Button, {onClick: () => addArticle(db)}, 'Add an article'),
+        h(Button, {onClick: () => showArticles(db)}, 'Get all articles'),
+        h(Button, {onClick: () => removeBody(db)}, 'Remove body of all articles')
+      );
+    };
+
+    const name = 'amazing-dbtools-articles';
+    const version = 1;
+
+    const upgrade = (db) => {
+      // Create a store of objects
+      const store = db.createObjectStore('articles', {
+        // The 'id' property of the object will be the key.
+        keyPath: 'id',
+        // If it isn't explicitly set, create a value by auto incrementing.
+        autoIncrement: true,
+      });
+      // Create an index on the 'date' property of the objects.
+      store.createIndex('date', 'date');
+    };
+
+    const App = () => h(DatabaseProvider, {name, version, upgrade},
+      h(View),
+    );
+
+    ReactDOM.render(h(App), document.querySelector('#mount-point'));
+
+  })();
+</script>

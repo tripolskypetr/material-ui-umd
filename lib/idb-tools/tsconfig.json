@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "target": "ES2019",
+    "downlevelIteration": true,
+    "moduleResolution": "classic",
+    "jsx": "react",
+    "sourceMap": true,
+    "declaration": true,
+    "lib": ["es2015", "esnext.asynciterable", "es2017", "dom"],
+    "outFile": "./dist/idb-tools.js",
+    "rootDir": "./src/",
+    "baseUrl": "./",
+    "types": [],
+    "typeRoots": [
+      "../../type",
+      "../../dist",
+    ],
+  },
+  "exclude": [
+    "./node_modules/@types/",
+    "./node_modules/",
+    "./dist/*",
+  ],
+  "include": [
+    "../../type",
+    "../../dist",
+    "./src",
+  ],
+}

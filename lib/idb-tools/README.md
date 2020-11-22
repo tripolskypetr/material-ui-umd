@@ -12,3 +12,7 @@
 pwd # путь material-ui-umd/lib/idb-tools
 npm run build
 ```
+
+## Пример работы
+
+Посмотрите [amazing-dbtools](../../packages/amazing-dbtools), пример использования `idb-tools` на основе кода.

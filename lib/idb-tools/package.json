@@ -1,0 +1,7 @@
+{
+  "name": "idb-tools",
+  "scripts": {
+    "dev": "tsc --project ./tsconfig.json -w",
+    "build": "tsc --project ./tsconfig.json"
+  }
+}
