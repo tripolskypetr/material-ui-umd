@@ -83,7 +83,7 @@ npm run build
  - Соберите [other-tools](../../lib/other-tools)
 
 ```
-pwd # путь material-ui-umd/lib/snack-tools
+pwd # путь material-ui-umd/lib/other-tools
 npm run build
 ```
 

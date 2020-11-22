@@ -10,7 +10,7 @@
 pwd # Путь material-ui-umd/packages/offline-docs
 npm run unzip
 npm run serve &
-npx open http://127.0.0.1:8000 # Быстрое открытие из консоли
+npx open-cli http://127.0.0.1:8000 # Быстрое открытие из консоли
 ```
 
 Если вы работаете из-под Windows, для запуска веб-сервера запустите команду `python -m http.server`, там как второй так и третий питон одинаково называются.
