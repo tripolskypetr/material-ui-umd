@@ -3,15 +3,15 @@ namespace other {
   export namespace fetch {
 
     export interface IResponse<J = JSON> extends IBody<J> {
-      error(): Response;
-      redirect(url: string, status?: number): Response;
+      error(): IResponse;
+      redirect(url: string, status?: number): IResponse;
       type: ResponseType;
       url: string;
       status: number;
       ok: boolean;
       statusText: string;
-      headers: Headers;
-      clone(): Response;
+      headers: IHeaders;
+      clone(): IResponse;
     }
 
   } // namespace fetch

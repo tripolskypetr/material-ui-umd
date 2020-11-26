@@ -1,0 +1,26 @@
+namespace other {
+
+  const {
+    createContext,
+    useContext,
+  } = React;
+
+  export namespace components {
+
+    type trFunc = (key: string) => string;
+
+    const createTr = (tr: trFunc) => (
+      template: TemplateStringsArray,
+      ...substitutions: any[]
+    ): string => template
+      .slice(0, template.length - 1)
+      .map((tmpl, idx) => tr(tmpl) + substitutions[idx])
+      .join('');
+
+    export const TranslationContext = createContext<trFunc>(null);
+
+    export const useTr = createTr(useContext(TranslationContext));
+
+  } // namespace components
+
+} // namespace other

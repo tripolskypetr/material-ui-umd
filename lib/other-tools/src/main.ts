@@ -20,6 +20,11 @@ namespace other {
     useFetch: useFetchDefault,
   } = components;
 
+  const {
+    TranslationProvider: TranslationProviderDefault,
+    useTr: useTrDefault,
+  } = components;
+
   export namespace snack {
     export const SnackProvider = SnackProviderDefault;
     export const useSnack = useSnackDefault;
@@ -35,5 +40,10 @@ namespace other {
     export const FetchProvider = FetchProviderDefault;
     export const useFetch = useFetchDefault;
   } // namespace fetch
+
+  export namespace i11n {
+    export const TranslationProvider = TranslationProviderDefault;
+    export const useTr = useTrDefault;
+  } // namespace i11n
 
 } // namespace other
