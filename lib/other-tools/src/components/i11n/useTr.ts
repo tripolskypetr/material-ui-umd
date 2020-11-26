@@ -13,7 +13,7 @@ namespace other {
       template: TemplateStringsArray,
       ...substitutions: any[]
     ): string => template
-      .map((tmpl, idx) => tr(tmpl) + (substitutions[idx] || ''))
+      .map((tmpl, idx) => tr(tmpl) + (idx > substitutions.length - 1 ? '' : substitutions[idx]))
       .join('');
 
     export const TranslationContext = createContext<trFunc>(null);
