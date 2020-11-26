@@ -35,36 +35,54 @@ namespace pickers {
         height: '100%',
         position: 'absolute',
         pointerEvents: 'auto',
+        touchAction: 'none',
       },
     });
+
+    const touch = new class {
+      private lastOffsetX;
+      private lastOffsetY;
+      toMouseEvent = ({target, targetTouches}) => {
+        const {left, top} = target.getBoundingClientRect();
+        const {scrollX, scrollY} = window;
+        const [touch] = targetTouches;
+        if (touch) {
+          const {pageX, pageY} = touch;
+          this.lastOffsetX = pageX - scrollX - left;
+          this.lastOffsetY = pageY - scrollY - top;
+        }
+        return {
+          offsetX: this.lastOffsetX,
+          offsetY: this.lastOffsetY,
+        };
+      };
+    };
 
     export const Clock = ({
       type = '',
       value = 0,
       children = null,
-      onChange = (value, finish) => console.log({value, finish}),
+      onChange = (value) => console.log({value}),
     }) => {
       const classes = useStyles();
 
-      const setTime = (e, finish) => {
-        if (typeof e.offsetX === 'undefined') {
-          console.warn('Touch events not supporting');
-        }
+      const setTime = (e) => {
         const value = type === clockType.MINUTES
           ? getMinutes(e.offsetX, e.offsetY)
           : getHours(e.offsetX, e.offsetY);
-        onChange(value, finish);
-      };
-
-      const handleUp = (event) => {
-        event.preventDefault();
-        setTime(event.nativeEvent, true);
+        onChange(value);
       };
 
       const handleMove = (e) => {
         e.preventDefault();
         if (e.buttons !== 1) { return; }
-        setTime(e.nativeEvent, false);
+        setTime(e.nativeEvent);
+      };
+
+      const handleTouchMove = (e) => {
+        e.stopPropagation();
+        setTime(touch.toMouseEvent(e));
+        return true;
       };
 
       const hasSelected = () => {
@@ -76,15 +94,11 @@ namespace pickers {
 
       return (
         <div className={classes.container}>
-          <div
-            className={classes.clock}
-          >
-            {/*onTouchMove={handleTouchMove}*/}
-            {/*onTouchEnd={handleTouchEnd}*/}
+          <div className={classes.clock}>
             <div
               className={classes.squareMask}
-              onMouseUp={handleUp}
               onMouseMove={handleMove}
+              onTouchMove={handleTouchMove}
             />
             <ClockPointer
               max={type === clockType.HOURS ? 12 : 60}

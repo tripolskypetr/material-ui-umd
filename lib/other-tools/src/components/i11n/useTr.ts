@@ -18,7 +18,7 @@ namespace other {
 
     export const TranslationContext = createContext<trFunc>(null);
 
-    export const useTr = createTr(useContext(TranslationContext));
+    export const useTr = () => createTr(useContext(TranslationContext));
 
   } // namespace components
 
