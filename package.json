@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "http-server",
+    "deploy": "sh deploy.sh",
     "build:umd": "webpack-cli",
     "build:lib": "cd lib && sh build.sh",
     "build:types": "tsc --project ./tsconfig.json",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/tripolskypetr/material-ui-umd#readme",
   "devDependencies": {
+    "google-closure-compiler": "^20201102.0.1",
     "http-server": "^0.12.3",
     "tslint": "^6.1.2",
     "typescript": "^3.8.3",
