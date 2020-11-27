@@ -15,12 +15,17 @@ namespace other {
 
   export namespace components {
 
+    interface IQueuedSnack extends snack.ISnack {
+      key?: number;
+    }
+
     const applyCloseMiddleware = (
       s: snack.ISnack,
       message: string,
       onClose: CallableFunction,
-    ): snack.ISnack => ({
-      ...s, message, onClose() {
+    ): IQueuedSnack => ({
+      ...s, message, key: Date.now(),
+      onClose() {
         if (s.onClose) { setTimeout(() => s.onClose()); }
         onClose();
       }

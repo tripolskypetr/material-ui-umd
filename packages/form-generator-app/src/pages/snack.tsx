@@ -127,7 +127,11 @@ namespace app {
       const snack = useSnack();
       const onClose = () => console.log('close');
       const onAction = () => console.log('action');
-      const onClick = useCallback(() => snack(object.message, {...object, onClose, onAction}), [object]);
+      const onClick = useCallback(() => {
+        snack(object.message, {...object, onClose, onAction});
+        // tslint:disable-next-line: no-string-literal
+        window["showSnack"] = onClick;
+      }, [object]);
       return (
         <Fragment>
           <Breadcrumbs currentTitle="Snack" backwardTitle="Главная"
