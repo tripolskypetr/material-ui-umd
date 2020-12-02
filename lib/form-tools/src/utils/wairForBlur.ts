@@ -6,7 +6,7 @@ namespace form {
      * Ожидает потерю фокуса, используя
      * document.activeElement
      */
-    export const waitForBlur = (ref: HTMLElement) => new Promise((res) => {
+    export const waitForBlur = (ref: HTMLElement) => new Promise<void>((res) => {
       const interval = setInterval(() => {
         /**
          * Для поддержки группы полей, также проверяем наличие родителя сквозь

@@ -8,12 +8,15 @@ namespace router {
     useState,
     useEffect,
     forwardRef,
+    useLayoutEffect,
   } = React;
 
   const {
     createElement,
     isValidElement,
   } = React;
+
+  const STORAGE_KEY = 'Router_lastUrl';
 
   export namespace components {
 
@@ -40,10 +43,10 @@ namespace router {
       export const Router = ({
         children = null,
         guardFallback = '/',
-        currentUrl = '/',
+        initialtUrl = '/',
+        saveState = true,
       }, ref) => {
-
-        const [url, setUrl] = useState(currentUrl);
+        const [url, setUrl] = useState(sessionStorage.getItem(STORAGE_KEY) || initialtUrl);
         const [routes, setRoutes] = useState([]);
         const [route, setRoute] = useState(null);
 
@@ -64,6 +67,12 @@ namespace router {
           setRoutes(routes);
         }, []);
 
+        useLayoutEffect(() => {
+          if (saveState) {
+            sessionStorage.setItem(STORAGE_KEY, url);
+          }
+        }, [saveState, url])
+
         useEffect(() => {
           const route = getRoute(routes, url);
           if (route) {
@@ -81,8 +90,6 @@ namespace router {
           // tslint:disable-next-line: no-string-literal
           window['routerGo'] = go;
         }, [url, routes]);
-
-        useEffect(() => setUrl(currentUrl), [currentUrl]);
 
         if (ref) {
           ref.current = go;
