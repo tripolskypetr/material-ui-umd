@@ -1,5 +1,6 @@
 /// <reference path="./get.ts"/>
 /// <reference path="./set.ts"/>
+/// <reference path="./create.ts"/>
 /// <reference path="./error.ts"/>
 /// <reference path="./isNullOrUndefined.ts"/>
 /// <reference path="./deepCompare.ts"/>

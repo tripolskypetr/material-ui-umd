@@ -13,6 +13,7 @@ namespace form {
     initialValue,
     deepClone,
     deepFlat,
+    create,
   } = utils;
 
   const {
@@ -32,6 +33,7 @@ namespace form {
       if (fields) {
         deepFlat(fields, "fields").forEach((f) => {
           if (f.name && f.type) {
+            create(obj, f.name);
             obj[f.name] = f.defaultValue || initialValue(f.type);
           }
         });
