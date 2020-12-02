@@ -17,6 +17,7 @@
       "../../lib/router-tools/dist",
       "../../lib/pickers-tools/dist",
       "../../lib/other-tools/dist",
+      "../../lib/chart-tools/dist",
     ],
   },
   "exclude": [
@@ -31,6 +32,7 @@
     "../../lib/router-tools/dist",
     "../../lib/pickers-tools/dist",
     "../../lib/other-tools/dist",
+    "../../lib/chart-tools/dist",
     "./src",
   ],
 }

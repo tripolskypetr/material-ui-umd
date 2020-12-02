@@ -15,6 +15,7 @@ namespace app {
 
   const {
     PickerPage,
+    ChartPage,
     BriefPage,
     SnackPage,
     ListPage,
@@ -34,6 +35,7 @@ namespace app {
     LooksOne,
     LooksTwo,
     Looks3,
+    Looks4,
   } = material.icons;
 
   const {
@@ -71,6 +73,7 @@ namespace app {
       {icon: LooksOne, title: "Документ со Справочником", click() { router.current("/list") } },
       {icon: LooksTwo, title: "Использование other-tools", click() { router.current("/snack") } },
       {icon: Looks3, title: "Использование pickers-tools", click() { router.current("/picker") } },
+      {icon: Looks4, title: "Использование chart-tools", click() { router.current("/chart") } },
     ];
     return (
       <MuiThemeProvider theme={theme}>
@@ -82,6 +85,7 @@ namespace app {
               <Route url="/one/:id" component={OnePage}/>
               <Route url="/snack" component={SnackPage}/>
               <Route url="/picker" component={PickerPage}/>
+              <Route url="/chart" component={ChartPage}/>
             </Router>
           </Scaffold>
         </SnackProvider>
