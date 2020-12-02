@@ -20,10 +20,11 @@ namespace form {
   export namespace components {
 
     export const One = ({
-      fields, change,
+      fields,
       prefix = 'root',
       fallback = null,
       handler = () => ({}),
+      change = () => null,
       focus = null,
       blur = null,
       LoadPlaceholder = null,

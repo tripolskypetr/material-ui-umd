@@ -55,12 +55,10 @@ namespace chart {
         const renderChart = useCallback(() => {
           const { current: node } = element;
           options.legend = legend;
-          const config = { type, data, options, plugins};
+          const config = { type, data, options, plugins, };
           const instance = new window.Chart(node, config);
+          if (ref) { ref.current = instance; }
           chartInstance.current = instance;
-          if (ref) {
-            ref.current = instance;
-          }
         }, [type, data, options, plugins]);
 
         const updateChart = useCallback(() => {
@@ -69,18 +67,18 @@ namespace chart {
             return;
           } else {
             chart.options = window.Chart.helpers.configMerge(chart.options, options);
+            const indexed = new Map(data?.datasets?.map((d) => [trackBy(d), d]));
+            chart.config.data.datasets.forEach((d) => {
+              const key = trackBy(d);
+              if (indexed.has(key)) {
+                Object.entries(indexed.get(key))
+                  .forEach(([k, v]) => d[k] = v);
+              } else {
+                return;
+              }
+            });
+            chart.update();
           }
-          const indexed = new Map(data.datasets.map((d) => [trackBy(d), d]));
-          chart.config.data.datasets.forEach((d) => {
-            const key = trackBy(d);
-            if (indexed.has(key)) {
-              Object.entries(indexed.get(key))
-                .forEach(([k, v]) => d[k] = v);
-            } else {
-              return;
-            }
-          });
-          chart.update();
         }, [data]);
 
         const destroyChart = () => {
