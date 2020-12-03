@@ -48,48 +48,43 @@ namespace app {
 
       const fields: form.IField[] = [
         {
+          type: FieldType.Component,
+          style: {
+            minHeight: 'calc(100vh - 100px)',
+            position: 'sticky',
+            padding: '10px',
+          },
+          columns: '6',
+          compute: (props) => <Chart {...applyData(props)} />,
+        },
+        {
           type: FieldType.Group,
+          columns: '6',
           fields: [
             {
-              type: FieldType.Component,
-              style: {
-                minHeight: 'calc(100vh - 100px)',
-                position: 'sticky',
-                padding: '10px',
-              },
-              columns: '6',
-              compute: (props) => <Chart {...applyData(props)} />,
+              type: FieldType.Line,
+              title: 'Общие параметры',
             },
             {
-              type: FieldType.Group,
-              columns: '6',
-              fields: [
-                {
-                  type: FieldType.Line,
-                  title: 'Общие параметры',
-                },
-                {
-                  type: FieldType.Checkbox,
-                  name: 'redraw',
-                  title: 'Полная перерисовка',
-                  defaultValue: true,
-                },
-                {
-                  type: FieldType.Combo,
-                  name: 'type',
-                  itemList: [
-                    ChartType.Scatter,
-                    ChartType.Bubble,
-                    ChartType.Polar,
-                    ChartType.Radar,
-                    ChartType.HorizontalBar,
-                    ChartType.Bar,
-                    ChartType.Pie,
-                    ChartType.Doughnut,
-                  ],
-                  defaultValue: ChartType.Doughnut,
-                },
+              type: FieldType.Checkbox,
+              name: 'redraw',
+              title: 'Полная перерисовка',
+              defaultValue: true,
+            },
+            {
+              type: FieldType.Combo,
+              name: 'type',
+              itemList: [
+                ChartType.Scatter,
+                ChartType.Bubble,
+                ChartType.Polar,
+                ChartType.Radar,
+                ChartType.HorizontalBar,
+                ChartType.Bar,
+                ChartType.Pie,
+                ChartType.Doughnut,
               ],
+              defaultValue: ChartType.Doughnut,
             },
           ],
         },
