@@ -6,7 +6,7 @@ namespace form {
   /**
    * Свойства, не доступные управляемому полю
    */
-  type exclude = 'object' | 'type' | 'focus' | 'blur';
+  type exclude = 'object' | 'type' | 'focus' | 'blur' | 'ready';
 
   /**
    * Возможные значения value

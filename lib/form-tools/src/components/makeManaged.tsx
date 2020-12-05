@@ -65,6 +65,7 @@ namespace form {
       isVisible = () => true,
       isInvalid = () => null,
       change = (v) => console.log({v}),
+      ready = () => null,
       compute = null,
       object = {},
       name = '',
@@ -108,6 +109,12 @@ namespace form {
           setVisible(isVisible(object));
           setInvalid(isInvalid(object));
         }
+        /**
+         * Вызываем коллбек для подсчета компонентов, получивших
+         * изменения. Важно при первой отрисовке, пока все не
+         * получили целевой объект форма не отображается
+         */
+        ready();
       }, [object]);
 
       /**

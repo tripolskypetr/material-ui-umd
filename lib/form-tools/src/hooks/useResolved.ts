@@ -1,4 +1,3 @@
-
 /// <reference path="../utils/index.ts"/>
 
 namespace form {
@@ -53,7 +52,7 @@ namespace form {
         const tryResolve = async () => {
           if (isRoot.current) {
             return
-          } if (typeof handler === 'function') {
+          } else if (typeof handler === 'function') {
             try {
               const result = handler();
               if (result instanceof Promise) {

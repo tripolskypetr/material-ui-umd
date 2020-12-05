@@ -175,6 +175,13 @@
                         defaultValue: 10,
                         inputType: 'number',
                         trailingIcon: SquareFoot,
+                        isInvalid(obj) {
+                          if (obj["Длинна"] < 10) {
+                            return "Длинна не может быть меньше 10";
+                          } else {
+                            return null
+                          }
+                        },
                         trailingIconClick(v, onChange) { alert(v) }
                       },
                       {
@@ -182,6 +189,13 @@
                         type: "text",
                         name: "Ширина",
                         defaultValue: 20,
+                        isInvalid(obj) {
+                          if (obj["Ширина"] < 20) {
+                            return "Ширина не может быть меньше 20";
+                          } else {
+                            return null
+                          }
+                        },
                         inputType: 'number',
                         trailingIcon: SquareFoot,
                       },
@@ -198,7 +212,7 @@
                       {
                         type: "progress",
                         compute: (obj) => obj["Длинна"] * obj["Ширина"],
-                        progressBarColor(percent) {
+                        /*progressBarColor(percent) {
                           if (percent < 10) {
                             return 'maroon';
                           } else if (percent < 30) {
@@ -210,8 +224,8 @@
                           } else {
                             return 'green';
                           }
-                        },
-                        progressColor(percent) {
+                        },*/
+                        /*progressColor(percent) {
                           if (percent < 10) {
                             return '#8000008c';
                           } else if (percent < 30) {
@@ -223,7 +237,7 @@
                           } else {
                             return '#00800061';
                           }
-                        },
+                        },*/
                         maxPercent: 500,
                       },
                     ]

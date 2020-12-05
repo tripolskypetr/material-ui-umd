@@ -14,6 +14,7 @@ namespace form {
    */
   export interface IEntity extends Omit<IField, exclude> {
     change?: (object) => void;
+    ready: () => void;
     object: object;
   }
 
