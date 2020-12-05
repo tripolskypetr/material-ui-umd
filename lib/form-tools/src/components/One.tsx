@@ -58,7 +58,7 @@ namespace form {
           change(v);
         };
         const onReady = () => {
-          if (--waitingReady.current === 0) {
+          if (--waitingReady.current === -1) {
             ready();
           }
         };
