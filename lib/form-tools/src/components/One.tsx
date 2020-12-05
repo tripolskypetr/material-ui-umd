@@ -110,7 +110,6 @@ namespace form {
       const [visible, setVisible] = useState(false);
       const classes = useStyles();
       const onReady = () => {
-        console.log('onReady')
         setVisible(true);
         ready();
       };
