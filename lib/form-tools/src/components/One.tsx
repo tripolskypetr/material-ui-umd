@@ -30,6 +30,11 @@ namespace form {
     makeStyles,
   } = material.core;
 
+  const {
+    isManaged,
+    deepFlat,
+  } = utils;
+
   export namespace components {
 
     const useStyles = makeStyles({
@@ -40,7 +45,15 @@ namespace form {
 
     namespace internal {
 
-      const waitReady = (f) => Boolean(f.name);
+      const countManaged = (fields) => {
+        const total = fields.filter(({type}) => isManaged(type)).length;
+        if (total === 0) {
+          /* группа, вложенная в группу */
+          return 1;
+        } else {
+          return total;
+        }
+      };
 
       export const One = ({
         fields, ready,
@@ -52,13 +65,13 @@ namespace form {
         blur = null,
       }: IOneProps) => {
         const [object, setObject] = useResolved(handler, fallback, fields);
-        const waitingReady = useRef(fields.filter(waitReady).length);
+        const waitingReady = useRef(countManaged(fields));
         const onChange = (v) => {
           setObject(v);
           change(v);
         };
         const onReady = () => {
-          if (--waitingReady.current === -1) {
+          if (--waitingReady.current === 0) {
             ready();
           }
         };
