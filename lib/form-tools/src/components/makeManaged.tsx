@@ -98,16 +98,16 @@ namespace form {
        */
       useEffect(() => {
         if (compute) {
-          setValue(compute(object));
+          setValue(compute(object, (v) => setValue(v)));
         } else {
           const newValue = get(object, name);
           if (newValue !== value) {
             inputUpdate.current = true;
             setValue(newValue);
           }
-          setDisabled(isDisabled(object));
-          setVisible(isVisible(object));
-          setInvalid(isInvalid(object));
+          setDisabled(isDisabled(object, (v) => setDisabled(v)));
+          setVisible(isVisible(object, (v) => setVisible(v)));
+          setInvalid(isInvalid(object, (v) => setInvalid(v)));
         }
         /**
          * Вызываем коллбек для подсчета компонентов, получивших
@@ -130,7 +130,7 @@ namespace form {
         } else {
           const copy = deepClone(object);
           const check = set(copy, name, debouncedValue);
-          const invalid = isInvalid(copy);
+          const invalid = isInvalid(copy, (v) => setInvalid(v));
           setInvalid(invalid);
           if (!check || !name) {
             throw new Error(`One error invalid name specified "${name}"`);
