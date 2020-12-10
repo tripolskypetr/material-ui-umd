@@ -24,7 +24,7 @@ namespace form {
 
   const {
     useDebounce,
-  } = useDebounceHook;
+  } = hooks;
 
   export namespace components {
 
