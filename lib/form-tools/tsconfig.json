@@ -6,7 +6,7 @@
     "sourceMap": true,
     "declaration": true,
     "lib": ["es2015", "es2017.object", "dom"],
-    "outFile": "dist/form-tools.js",
+    "outFile": "./dist/form-tools.js",
     "rootDir": "./src/",
     "baseUrl": "./",
     "types": [],
