@@ -16,6 +16,7 @@
     ],
   },
   "exclude": [
+    "../../dist/other-tools.d.ts",
     "./node_modules/@types/",
     "./node_modules/",
     "./dist/*",

@@ -18,6 +18,7 @@
     ],
   },
   "exclude": [
+    "../../dist/idb-tools.d.ts",
     "./node_modules/@types/",
     "./node_modules/",
     "./dist/*",

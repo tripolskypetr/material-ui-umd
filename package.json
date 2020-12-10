@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "serve": "http-server",
-    "deploy": "sh deploy.sh",
+    "deploy": "npm install && sh deploy.sh",
+    "postinstall": "sh deploy.sh",
     "build:umd": "webpack-cli",
     "build:lib": "cd lib && sh build.sh",
     "build:types": "tsc --project ./tsconfig.json",
     "clean:umd": "rm ./dist/* && touch ./dist/meow.txt",
     "clean:lib": "cd lib && sh clean.sh"
   },
+  "module": "./dist/form-tools.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tripolskypetr/material-ui-umd.git"

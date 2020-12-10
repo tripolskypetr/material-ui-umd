@@ -16,6 +16,7 @@
     ],
   },
   "exclude": [
+    "../../dist/chart-tools.d.ts",
     "./node_modules/@types/",
     "./node_modules/",
     "./dist/*",
