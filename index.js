@@ -1,6 +1,2 @@
-exports.lab = require("@material-ui/lab");
-exports.core = require("@material-ui/core");
-exports.icons = require("@material-ui/icons");
-exports.styles = require("@material-ui/styles");
-exports.system = require("@material-ui/system");
-exports.pickers = require("@material-ui/pickers");
+exports.form = require('./dist/form-tools');
+exports.router = require('./dist/router-tools');

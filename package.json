@@ -14,6 +14,7 @@
   },
   "main": "./index.js",
   "module": "./index.js",
+  "typings": "./index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tripolskypetr/material-ui-umd.git"
