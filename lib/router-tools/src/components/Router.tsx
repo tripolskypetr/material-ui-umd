@@ -16,6 +16,10 @@ namespace router {
     isValidElement,
   } = React;
 
+  const {
+    pathToRegexp,
+  } = utils;
+
   const STORAGE_KEY = 'Router_lastUrl';
 
   export namespace components {

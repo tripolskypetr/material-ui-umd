@@ -1,4 +1,6 @@
 
+/// <reference path="./interop.ts"/>
+/// <reference path="./utils/index.ts"/>
 /// <reference path="./components/index.ts"/>
 
 namespace router {
