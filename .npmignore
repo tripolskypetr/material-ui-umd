@@ -2,3 +2,7 @@ node_modules
 packages
 3rdparty
 assets
+lib/chart-tools
+lib/idb-tools
+lib/other-tools
+lib/picker-tools
