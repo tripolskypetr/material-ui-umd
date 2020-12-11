@@ -48,6 +48,10 @@ namespace form {
     createContext,
   } = React;
 
+  const {
+    classNames,
+  } = utils;
+
   export namespace components {
 
     const useStyles = makeStyles({

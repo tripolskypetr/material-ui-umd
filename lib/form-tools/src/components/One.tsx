@@ -31,8 +31,8 @@ namespace form {
   } = material.core;
 
   const {
+    classNames,
     isManaged,
-    deepFlat,
   } = utils;
 
   export namespace components {

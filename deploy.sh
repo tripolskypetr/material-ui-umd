@@ -2,7 +2,6 @@
 
 rm dist/*
 
-npm install
 npm run build:umd
 npm run build:types
 npm run build:lib

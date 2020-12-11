@@ -2,18 +2,18 @@
   "name": "material-ui-umd",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "serve": "http-server",
     "deploy": "npm install && sh deploy.sh",
     "postinstall": "sh deploy.sh",
-    "build:umd": "webpack-cli",
+    "build:umd": "webpack-cli --entry ./interop.js",
     "build:lib": "cd lib && sh build.sh",
     "build:types": "tsc --project ./tsconfig.json",
     "clean:umd": "rm ./dist/* && touch ./dist/meow.txt",
     "clean:lib": "cd lib && sh clean.sh"
   },
-  "module": "./dist/form-tools.js",
+  "main": "./index.js",
+  "module": "./index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tripolskypetr/material-ui-umd.git"

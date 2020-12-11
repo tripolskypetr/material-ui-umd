@@ -10,6 +10,7 @@
     "rootDir": "./src/",
     "baseUrl": "./",
     "types": [],
+    "skipLibCheck": true,
     "typeRoots": [
       "../../type",
       "../../dist",

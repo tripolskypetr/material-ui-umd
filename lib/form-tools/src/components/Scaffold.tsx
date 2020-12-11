@@ -29,6 +29,7 @@ namespace form {
   } = React;
 
   const {
+    classNames,
     createIcon,
   } = utils;
 
