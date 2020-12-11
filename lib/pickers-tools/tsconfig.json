@@ -17,7 +17,7 @@
     ],
   },
   "exclude": [
-    "../../dist/picker-tools.d.ts",
+    "../../dist/pickers-tools.d.ts",
     "./node_modules/@types/",
     "./node_modules/",
     "./dist/*",
