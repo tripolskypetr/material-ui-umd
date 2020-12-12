@@ -20,12 +20,6 @@
     "./dist/material-ui.d.ts",
   ],
   "include": [
-    "./dist/chart-tools.d.ts",
-    "./dist/form-tools.d.ts",
-    "./dist/idb-tools.d.ts",
-    "./dist/other-tools.d.ts",
-    "./dist/pickers-tools.d.ts",
-    "./dist/router-tools.d.ts",
     "./type",
     "./src",
   ],

@@ -1,2 +1,3 @@
-exports.form = require('./dist/form-tools');
-exports.router = require('./dist/router-tools');
+const form  = require('./dist/form-tools');
+module.exports = form;
+exports.default = form.One;
