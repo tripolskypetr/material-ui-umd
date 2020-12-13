@@ -46,12 +46,12 @@ namespace form {
     namespace internal {
 
       const countManaged = (fields) => {
-        const total = fields.filter(({type}) => isManaged(type)).length;
-        if (total === 0) {
+        const total = fields?.filter(({type}) => isManaged(type)).length;
+        if (total) {
+          return total;
+        } else {
           /* группа, вложенная в группу */
           return 1;
-        } else {
-          return total;
         }
       };
 
