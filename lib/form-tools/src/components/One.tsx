@@ -131,7 +131,7 @@ namespace form {
           <Group className={classNames({[classes.hidden]: !visible})}>
             {h(internal.One, {...props, ready: onReady})}
           </Group>
-          {LoadPlaceholder}
+          {!visible && LoadPlaceholder}
         </Fragment>
       )
     }
