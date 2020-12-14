@@ -31,6 +31,7 @@ namespace pickers {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: '50%',
+        pointerEvents: 'all',
         color: theme.palette.type === 'light'
           ? theme.palette.text.primary
           : theme.palette.text.hint
@@ -44,6 +45,7 @@ namespace pickers {
       selected = false,
       label = '',
       index = 0,
+      ...otherProps
     }) => {
       const classes = useStyles();
       const className = classNames(classes.clockNumber, {
@@ -56,8 +58,11 @@ namespace pickers {
         };
       };
       return (
-        <div className={className}
-          style={getTransformStyle(index)}>
+        <div
+          className={className}
+          style={getTransformStyle(index)}
+          {...otherProps}
+        >
           { label }
         </div>
       );
