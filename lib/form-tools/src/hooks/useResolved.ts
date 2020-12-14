@@ -9,15 +9,14 @@ namespace form {
   } = React;
 
   const {
+    deepMerge: assign,
     initialValue,
     deepClone,
     deepFlat,
     create,
+    set,
+    get,
   } = utils;
-
-  const {
-    assign,
-  } = Object;
 
   export namespace hooks {
 
@@ -33,7 +32,8 @@ namespace form {
         deepFlat(fields, "fields").forEach((f) => {
           if (f.name && f.type) {
             create(obj, f.name);
-            obj[f.name] = f.defaultValue || initialValue(f.type);
+            const value = f.defaultValue || get(obj, f.name) || initialValue(f.type);
+            set(obj, f.name, value);
           }
         });
       }

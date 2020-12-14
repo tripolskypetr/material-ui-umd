@@ -12,3 +12,4 @@
 /// <reference path="./createIcon.ts"/>
 /// <reference path="./isManaged.ts"/>
 /// <reference path="./classNames.ts"/>
+/// <reference path="./deepMerge.ts"/>
