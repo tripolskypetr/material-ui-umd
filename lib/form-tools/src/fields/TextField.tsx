@@ -25,7 +25,7 @@ namespace form {
         <InputAdornment position="start">
           <IconButton edge="start" onClick={() => {
             if (leadingIconClick) {
-              leadingIconClick(v, c);
+              leadingIconClick(v, (v) => c(v, true));
             }
           }}>
             { icon(leadingIcon) }
@@ -36,7 +36,7 @@ namespace form {
         <InputAdornment position="end">
           <IconButton edge="end" onClick={() => {
             if (trailingIconClick) {
-              trailingIconClick(v, c);
+              trailingIconClick(v, (v) => c(v, true));
             }
           }}>
             { icon(trailingIcon) }

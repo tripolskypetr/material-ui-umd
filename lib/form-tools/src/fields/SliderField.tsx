@@ -32,7 +32,7 @@ namespace form {
     const createIcon = (icn, value, onChange, click, edge) => (
       <IconButton onClick={() => {
         if (click) {
-          click(value, onChange)
+          click(value, (v) => onChange(v, true))
         }
       }} edge={edge}>
         { icon(icn) }

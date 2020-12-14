@@ -154,8 +154,8 @@ namespace form {
        * если поле вычисляемое или только
        * на чтение
        */
-      const onChange = (newValue) => {
-        if (readonly) { return; }
+      const onChange = (newValue, skipReadonly = false) => {
+        if (readonly && !skipReadonly) { return; }
         if (compute) { return; }
         setValue(newValue);
       };
