@@ -6,7 +6,12 @@ namespace form {
   const {
     Paper: MatPaper,
     makeStyles,
+    Box,
   } = material.core;
+
+  const {
+    classNames,
+  } = utils;
 
   const useStyles = makeStyles({
     strech: {
@@ -39,10 +44,12 @@ namespace form {
           phoneColumns={phoneColumns}
           tabletColumns={tabletColumns}
           desktopColumns={desktopColumns}>
-          <MatPaper className={classes.content}>
-            <Group>
-              {children}
-            </Group>
+          <MatPaper className={classNames(classes.content, classes.strech)}>
+            <Box p={1} className={classes.content}>
+              <Group>
+                {children}
+              </Group>
+            </Box>
           </MatPaper>
         </Group>
       );

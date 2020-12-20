@@ -53,7 +53,7 @@ namespace mobxApp {
           password: '12345',
         });
         const handleClick = () => {
-          console.log(data);
+          console.log(data, authService);
         };
         return (
           <Fragment>

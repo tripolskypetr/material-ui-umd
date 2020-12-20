@@ -15,6 +15,10 @@ namespace form {
     ExpandMore,
   } = material.icons;
 
+  const {
+    classNames,
+  } = utils;
+
   const useStyles = makeStyles((theme) => ({
     heading: {
       fontSize: theme.typography.pxToRem(15),

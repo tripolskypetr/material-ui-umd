@@ -15,6 +15,10 @@ namespace mobxApp {
   } = form;
 
   const {
+    SnackProvider,
+  } = other.snack;
+
+  const {
     createMuiTheme,
     MuiThemeProvider,
   } = material.core;
@@ -50,12 +54,14 @@ namespace mobxApp {
 
   const App = () => (
     <MuiThemeProvider theme={THEME_LIGHT}>
-      <Scaffold title="Boilerplate" showMenu={false}>
-        <Router initialtUrl="/login">
-          <Route url="/login" component={LoginPage} />
-          <Route url="/home" component={HomePage} />
-        </Router>
-      </Scaffold>
+      <SnackProvider>
+        <Scaffold title="Boilerplate" showMenu={false}>
+          <Router initialtUrl="/login">
+            <Route url="/login" component={LoginPage} />
+            <Route url="/home" component={HomePage} />
+          </Router>
+        </Scaffold>
+      </SnackProvider>
     </MuiThemeProvider>
   );
 

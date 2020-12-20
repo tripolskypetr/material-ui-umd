@@ -2,7 +2,6 @@ namespace mobxApp {
 
   const {
     makeObservable,
-    observable,
   } = mobx;
 
   export namespace services {
@@ -21,27 +20,7 @@ namespace mobxApp {
 
       constructor(
         private onError = (res) => res,
-      ) {
-        this.onInit();
-      }
-
-      /**
-       * Метод для переопределения, подразумевается
-       * вызов makeObservable
-       */
-      protected onInit() {
-        this.makeObservable();
-      }
-
-      /**
-       * Для наследования, наблюдаемые, вычисляемые поля
-       * и действия объявляются тут
-       */
-      makeObservable(annotations = {}, options?) {
-        makeObservable(this, {
-          ...annotations,
-        }, options);
-      }
+      ) { }
 
       get(url: RequestInfo, options: RequestInit, skipError = false, body = null): Promise<Response> {
         return fetch(url, {

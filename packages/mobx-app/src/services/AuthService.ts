@@ -1,8 +1,9 @@
 namespace mobxApp {
 
   const {
-    // observable,
+    makeObservable,
     // computed,
+    observable,
     action,
   } = mobx;
 
@@ -10,10 +11,16 @@ namespace mobxApp {
 
     export class AuthService extends ApiService {
 
-      onInit() {
-        super.makeObservable({
-          clearToken: action('Очистка заданного токена'),
-          applyToken: action('Применение токена (авторизация)'),
+      count = 0;
+      inc = () => this.count++
+      dec = () => this.count--
+
+      constructor(...args) {
+        super(...args);
+        makeObservable(this, {
+          count: observable,
+          inc: action,
+          dec: action,
         });
       }
 
