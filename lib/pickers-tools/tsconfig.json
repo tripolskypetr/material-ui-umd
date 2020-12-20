@@ -5,7 +5,7 @@
     "jsx": "react",
     "sourceMap": true,
     "declaration": true,
-    "lib": ["es2015", "dom"],
+    "lib": ["es2018", "dom"],
     "outFile": "./dist/pickers-tools.js",
     "rootDir": "./src/",
     "baseUrl": "./",

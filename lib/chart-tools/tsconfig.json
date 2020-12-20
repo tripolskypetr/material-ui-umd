@@ -5,7 +5,7 @@
     "jsx": "react",
     "sourceMap": true,
     "declaration": true,
-    "lib": ["es2015", "es2017.object", "dom"],
+    "lib": ["es2018", "dom"],
     "outFile": "./dist/chart-tools.js",
     "rootDir": "./src/",
     "baseUrl": "./",
