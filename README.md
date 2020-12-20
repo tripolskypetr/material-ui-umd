@@ -11,7 +11,6 @@
 **Документация инструмента**
 
  - [Генератор форм на основе JSON шаблона](./lib/form-tools/README.md)
- - [Шаблон для быстрого старта](./packages/form-generator-app/README.md)
  - [Офлайн-копия сайта с документацией](packages/offline-docs/README.md)
  - [Создать свой umd дистрибутив](packages/how-it-is-made/README.md)
  - [Применение вместе с WordPress на ванильном JavaScript](packages/wordpress-interop/README.md)
