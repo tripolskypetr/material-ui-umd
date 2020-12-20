@@ -13,6 +13,10 @@ namespace form {
     Group,
   } = components;
 
+  const {
+    classNames,
+  } = utils;
+
   export namespace fields {
 
     const useStyles = makeStyles((theme) => ({

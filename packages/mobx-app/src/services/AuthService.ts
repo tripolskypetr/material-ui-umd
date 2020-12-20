@@ -11,7 +11,7 @@ namespace mobxApp {
     export class AuthService extends ApiService {
 
       onInit() {
-        this.makeObservable({
+        super.makeObservable({
           clearToken: action('Очистка заданного токена'),
           applyToken: action('Применение токена (авторизация)'),
         });

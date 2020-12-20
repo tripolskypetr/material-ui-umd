@@ -1,7 +1,8 @@
 {
-  "name": "redux-app",
+  "name": "mobx-app",
   "scripts": {
     "dev": "tsc --project ./tsconfig.json -w",
-    "build": "tsc --project ./tsconfig.json"
+    "build": "tsc --project ./tsconfig.json",
+    "api": "node server.js"
   }
 }

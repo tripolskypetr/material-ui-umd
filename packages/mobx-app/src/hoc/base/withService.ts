@@ -20,7 +20,7 @@ namespace mobxApp {
     observer,
   } = mobxReactLite;
 
-  export namespace hooks {
+  export namespace hoc {
 
     /**
      * Компонент высшего порядка позволяет осуществить забор контекста
@@ -30,7 +30,7 @@ namespace mobxApp {
       (Component: material.Component) => (props) => {
         const go = useRouter();
         const handleError = () => go(fallbackRoute);
-        return h(Component, assign(props, {
+        return h(Component, assign({}, props, {
           [serviceName]: new Service(handleError),
         }))
       };

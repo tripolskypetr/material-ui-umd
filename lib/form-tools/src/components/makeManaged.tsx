@@ -18,6 +18,7 @@ namespace form {
   const {
     get, set,
     deepClone,
+    classNames,
     deepCompare,
     waitForBlur,
   } = utils;
@@ -91,7 +92,7 @@ namespace form {
        * передавать в свойство value значение null
        */
       const [value, setValue] = useState(false);
-      const [debouncedValue] = useDebounce(value, skipDebounce ? 0 : 600);
+      const [debouncedValue] = useDebounce(value, skipDebounce ? 0 : 50);
 
       /**
        * Эффект входящего изменения.

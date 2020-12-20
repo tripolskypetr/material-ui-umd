@@ -33,55 +33,62 @@ namespace mobxApp {
         this.makeObservable();
       }
 
+      /**
+       * Для наследования, наблюдаемые, вычисляемые поля
+       * и действия объявляются тут
+       */
       makeObservable(annotations = {}, options?) {
         makeObservable(this, {
           ...annotations,
-          token: observable,
         }, options);
       }
 
-      get(url: RequestInfo, options: RequestInit): Promise<Response> {
+      get(url: RequestInfo, options: RequestInit, skipError = false, body = null): Promise<Response> {
         return fetch(url, {
           ...options,
           method: 'GET',
           headers: {
-            'Token': this.token,
+            ...this.token ? { 'Token': this.token } : { },
             ...options.headers,
           },
-        }).catch(this.onError);
+          body,
+        }).catch(skipError ? () => null : this.onError);
       }
 
-      post(url: RequestInfo, options: RequestInit): Promise<Response> {
+      post(url: RequestInfo, options: RequestInit, skipError = false, body = null): Promise<Response> {
         return fetch(url, {
           ...options,
           method: 'POST',
           headers: {
-            'Token': this.token,
+            ...this.token ? { 'Token': this.token } : { },
             ...options.headers,
           },
-        }).catch(this.onError);
+          body,
+        }).catch(skipError ? () => null : this.onError);
       }
 
-      put(url: RequestInfo, options: RequestInit): Promise<Response> {
+      put(url: RequestInfo, options: RequestInit, skipError = false, body = null): Promise<Response> {
         return fetch(url, {
           ...options,
           method: 'PUT',
           headers: {
-            'Token': this.token,
+            ...this.token ? { 'Token': this.token } : { },
             ...options.headers,
           },
-        }).catch(this.onError);
+          body,
+        }).catch(skipError ? () => null : this.onError);
       }
 
-      patch(url: RequestInfo, options: RequestInit): Promise<Response> {
+      patch(url: RequestInfo, options: RequestInit, skipError = false, body = null): Promise<Response> {
         return fetch(url, {
           ...options,
           method: 'PATCH',
           headers: {
-            'Token': this.token,
+            ...this.token ? { 'Token': this.token } : { },
             ...options.headers,
           },
-        }).catch(this.onError);
+          body,
+        }).catch(skipError ? () => null : this.onError);
       }
 
     } // class ApiService

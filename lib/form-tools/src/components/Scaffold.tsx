@@ -56,7 +56,7 @@ namespace form {
       },
       appBar: {
         background: theme.palette.background.level2,
-        color: theme.palette.text.primary,
+        color: theme.palette.getContrastText(theme.palette.background.level2),
       },
       offset: theme.mixins.toolbar,
       adjust: {

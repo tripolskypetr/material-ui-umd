@@ -4,7 +4,7 @@ namespace mobxApp {
     AuthService,
   } = services;
 
-  export namespace hooks {
+  export namespace hoc {
 
     export const withAuthService = withService(AuthService, 'authService');
 

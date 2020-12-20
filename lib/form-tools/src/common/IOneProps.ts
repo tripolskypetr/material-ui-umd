@@ -7,7 +7,7 @@ namespace form {
     /**
      * Позволяет загружать данные в компонент
      */
-    handler?: () => Promise<any> | any;
+    handler?: any | (Promise<any>);
     /**
      * Вызывается при ошибке в handler
      */
