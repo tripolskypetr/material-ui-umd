@@ -115,4 +115,4 @@ declare global {
 
   } // namespace mobx
 
-} // declare mobx
+} // declare global
