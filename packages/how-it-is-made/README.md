@@ -86,7 +86,7 @@ declare namespace material{export class core{}export class icons{}export class s
 
 Рассмотрим на примере [mobx-react-lite](../../type/mobx-react-lite@3.1.6) из файлов описания типов в этом репозитории.
 
-**Было: **
+**Было:**
 
 ```
 import "./utils/assertEnvironment";
@@ -102,7 +102,7 @@ export { isObserverBatched, observerBatching } from "./utils/observerBatching";
 export declare function useStaticRendering(enable: boolean): void;
 ```
 
-**Стало: **
+**Стало:**
 
 ```
 import * as staticRendering from "./staticRendering";
