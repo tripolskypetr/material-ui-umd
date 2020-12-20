@@ -1,4 +1,4 @@
-namespace boilerplate {
+namespace reduxApp {
 
   const {
     Typography,
@@ -93,4 +93,4 @@ namespace boilerplate {
 
   } // namespace pages
 
-} // namespace boilerplate
+} // namespace reduxApp

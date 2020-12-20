@@ -1,7 +1,7 @@
 
 /// <reference path="../actions.ts"/>
 
-namespace boilerplate {
+namespace reduxApp {
 
   const {
     Drawer,
@@ -161,4 +161,4 @@ namespace boilerplate {
 
   } // namespace components
 
-} // namespace boilerplate
+} // namespace reduxApp

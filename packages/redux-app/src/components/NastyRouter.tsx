@@ -1,7 +1,7 @@
 
 /// <reference path="../pages/index.ts"/>
 
-namespace boilerplate {
+namespace reduxApp {
 
   const {
     BriefingPage,
@@ -39,4 +39,4 @@ namespace boilerplate {
 
   } // namespace components
 
-} // namespace boilerplate
+} // namespace reduxApp

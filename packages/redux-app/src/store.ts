@@ -2,7 +2,7 @@
 /// <reference path="./reducers/index.ts"/>
 /// <reference path="./middlewares/index.ts"/>
 
-namespace boilerplate {
+namespace reduxApp {
 
   const {
     applyMiddleware,
@@ -29,4 +29,4 @@ namespace boilerplate {
     )
   );
 
-} // namespace boilerplate
+} // namespace reduxApp

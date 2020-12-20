@@ -1,7 +1,7 @@
-namespace boilerplate {
+namespace reduxApp {
 
   export const enum RouteActions {
     Go = 'route-go'
   };
 
-} // namespace boilerplate
+} // namespace reduxApp

@@ -1,4 +1,4 @@
-namespace boilerplate {
+namespace reduxApp {
 
   export namespace components {
 
@@ -12,4 +12,4 @@ namespace boilerplate {
 
   } // namespace components
 
-} // namespace boilerplate
+} // namespace reduxApp

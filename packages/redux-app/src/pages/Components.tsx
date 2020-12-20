@@ -1,4 +1,4 @@
-namespace boilerplate {
+namespace reduxApp {
 
   const {
     Fragment
@@ -184,4 +184,4 @@ namespace boilerplate {
 
   } // namespace components
 
-} // namespace boilerplate
+} // namespace reduxApp

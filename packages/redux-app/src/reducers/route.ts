@@ -1,7 +1,7 @@
 
 /// <reference path="../actions.ts"/>
 
-namespace boilerplate {
+namespace reduxApp {
 
   export namespace reducers {
 
@@ -29,4 +29,4 @@ namespace boilerplate {
 
   } // reducers
 
-} // namespace boilerplate
+} // namespace reduxApp

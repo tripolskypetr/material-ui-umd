@@ -1,4 +1,4 @@
-# boilerplate-app
+# redux-app
 
 > Устаревший шаблон для старта проекта с material-umd и Redux. Для тех, кто не умеет пользоваться контекстом и хуками.
 
@@ -16,7 +16,7 @@ npm run build:types
  - После, соберите это приложение
 
 ```
-pwd # путь material-ui-umd/packages/boilerplate-app
+pwd # путь material-ui-umd/packages/redux-app
 npm run build
 ```
 

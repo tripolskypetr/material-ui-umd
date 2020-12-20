@@ -2,7 +2,7 @@
 /// <reference path="./components/index.ts"/>
 /// <reference path="./store.ts"/>
 
-namespace boilerplate {
+namespace reduxApp {
 
   const {
     MuiThemeProvider,
@@ -75,4 +75,4 @@ namespace boilerplate {
 
   export const main = () => ReactDOM.render(<App/>, document.querySelector('#mount-point'));
 
-} // namespace boilerplate
+} // namespace reduxApp
