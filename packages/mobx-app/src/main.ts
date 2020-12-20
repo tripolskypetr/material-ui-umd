@@ -1,5 +1,5 @@
 
-/// <reference path="./services/ApiService.tsx"/>
+/// <reference path="./services/index.ts"/>
 /// <reference path="./hooks/index.ts"/>
 
 namespace mobxApp {

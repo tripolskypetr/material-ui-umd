@@ -1,10 +1,10 @@
 import * as staticRendering from "./staticRendering";
 
-import * as observer from "./observer";
-import * as ObserverComponent from "./ObserverComponent";
-import * as useLocalObservable from "./useLocalObservable";
-import * as useLocalStore from "./useLocalStore";
-import * as useAsObservableSource from "./useAsObservableSource";
+import * as observerM from "./observer";
+import * as ObserverComponentM from "./ObserverComponent";
+import * as useLocalObservableM from "./useLocalObservable";
+import * as useLocalStoreM from "./useLocalStore";
+import * as useAsObservableSourceM from "./useAsObservableSource";
 
 import * as reactionCleanupTracking from './utils/reactionCleanupTracking';
 import * as observerBatching from './utils/observerBatching';
@@ -16,13 +16,13 @@ declare global {
     export const isUsingStaticRendering = staticRendering.isUsingStaticRendering;
     export const enableStaticRendering = staticRendering.enableStaticRendering;
 
-    export const observer = observer.observer;
-    export const IObserverOptions = observer.IObserverOptions;
+    export const observer = observerM.observer;
+    export const IObserverOptions = observerM.IObserverOptions;
 
-    export const Observer = Observer.ObserverComponent;
-    export const useLocalObservable = useLocalObservable.useLocalObservable;
-    export const useLocalStore = useLocalStore.useLocalStore;
-    export const useAsObservableSource = useAsObservableSource.useAsObservableSource;
+    export const Observer = ObserverComponentM.ObserverComponent;
+    export const useLocalObservable = useLocalObservableM.useLocalObservable;
+    export const useLocalStore = useLocalStoreM.useLocalStore;
+    export const useAsObservableSource = useAsObservableSourceM.useAsObservableSource;
 
     export const clearTimers = reactionCleanupTracking.resetCleanupScheduleForTests;
 

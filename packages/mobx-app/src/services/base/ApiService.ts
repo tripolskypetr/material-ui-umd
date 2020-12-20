@@ -3,7 +3,6 @@ namespace mobxApp {
   const {
     makeObservable,
     observable,
-    action,
   } = mobx;
 
   export namespace services {
@@ -22,18 +21,23 @@ namespace mobxApp {
 
       constructor(
         private onError = (res) => res,
-      ) { }
+      ) {
+        this.onInit();
+      }
 
-      makeObservable(annotations, options?) {
+      /**
+       * Метод для переопределения, подразумевается
+       * вызов makeObservable
+       */
+      protected onInit() {
+        this.makeObservable();
+      }
+
+      makeObservable(annotations = {}, options?) {
         makeObservable(this, {
           ...annotations,
           token: observable,
-          clearToken: action,
         }, options);
-      }
-
-      clearToken() {
-        this.token = '';
       }
 
       get(url: RequestInfo, options: RequestInit): Promise<Response> {
@@ -80,7 +84,7 @@ namespace mobxApp {
         }).catch(this.onError);
       }
 
-    }
+    } // class ApiService
 
   } // namespace services
 

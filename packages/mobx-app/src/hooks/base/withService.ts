@@ -27,7 +27,7 @@ namespace mobxApp {
      * роутера для переадресации на страницу авторизации при ошибке
      */
     const createConsumer = (Service: typeof services.ApiService, serviceName: string, fallbackRoute: string) =>
-      (Component: React.ComponentType<any>) => (props) => {
+      (Component: material.Component) => (props) => {
         const go = useRouter();
         const handleError = () => go(fallbackRoute);
         return h(Component, assign(props, {
@@ -40,7 +40,7 @@ namespace mobxApp {
      * я сразу применяю реакцию observer из mobx-react-lite
      */
     export const withService = (Service, serviceName: string, fallbackRoute = '/') =>
-      (Component: React.ComponentType<any>) => compose(
+      (Component: material.Component) => compose(
       createConsumer(Service, serviceName, fallbackRoute),
       observer,
     )(Component);
