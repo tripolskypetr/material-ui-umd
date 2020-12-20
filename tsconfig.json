@@ -14,6 +14,7 @@
     "typeRoots": ["./type"],
   },
   "exclude": [
+    "./node_modules/@types/react",
     "./node_modules/@types/",
     "./node_modules/",
     "./packages/",

@@ -13,3 +13,4 @@
 /// <reference path="./isManaged.ts"/>
 /// <reference path="./classNames.ts"/>
 /// <reference path="./deepMerge.ts"/>
+/// <reference path="./compose.ts"/>

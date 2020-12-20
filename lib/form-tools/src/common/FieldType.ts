@@ -4,6 +4,7 @@ namespace form {
     Switch = 'switch',
     Line = 'line',
     Group = 'group',
+    Paper = 'paper',
     Expansion= 'expansion',
     Radio = 'radio',
     Checkbox = 'checkbox',

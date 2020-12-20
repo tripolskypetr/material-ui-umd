@@ -94,6 +94,14 @@ namespace form {
                         handler={object} change={onChange} />
                     </Expansion>
                   );
+                } else if (field.type === FieldType.Paper) {
+                  return (
+                    <Paper {...field} key={currentPath}>
+                      <One ready={onReady} focus={focus} blur={blur}
+                        prefix={currentPath} fields={field.fields}
+                        handler={object} change={onChange} />
+                    </Paper>
+                  );
                 } else if (field.type === FieldType.Group) {
                   return (
                     <Group {...field} key={currentPath}>

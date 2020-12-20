@@ -14,9 +14,15 @@ namespace form {
     Breadcrumbs: BreadcrumbsDefault,
   } = components;
 
+  const {
+    compose: composeDefault,
+  } = utils;
+
   export const One = OneDefault;
   export const List = ListDefault;
   export const Scaffold = ScaffoldDefault;
   export const Breadcrumbs = BreadcrumbsDefault;
+
+  export const compose = composeDefault;
 
 } // namespace form
