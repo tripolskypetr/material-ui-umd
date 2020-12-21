@@ -2,7 +2,6 @@
   "name": "mobx-app",
   "scripts": {
     "dev": "tsc --project ./tsconfig.json -w",
-    "build": "tsc --project ./tsconfig.json",
-    "api": "node server.js"
+    "build": "tsc --project ./tsconfig.json"
   }
 }

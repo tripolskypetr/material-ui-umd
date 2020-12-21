@@ -50,7 +50,7 @@ namespace router {
         initialtUrl = '/',
         saveState = true,
       }, ref) => {
-        const [url, setUrl] = useState(sessionStorage.getItem(STORAGE_KEY) || initialtUrl);
+        const [url, setUrl] = useState((saveState && sessionStorage.getItem(STORAGE_KEY)) || initialtUrl);
         const [routes, setRoutes] = useState([]);
         const [route, setRoute] = useState(null);
 
@@ -72,10 +72,8 @@ namespace router {
         }, []);
 
         useLayoutEffect(() => {
-          if (saveState) {
-            sessionStorage.setItem(STORAGE_KEY, url);
-          }
-        }, [saveState, url])
+          sessionStorage.setItem(STORAGE_KEY, url);
+        }, [url])
 
         useEffect(() => {
           const route = getRoute(routes, url);

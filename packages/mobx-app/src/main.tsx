@@ -1,4 +1,5 @@
 
+/// <reference path="./hooks/index.ts"/>
 /// <reference path="./services/index.ts"/>
 /// <reference path="./hoc/index.ts"/>
 /// <reference path="./pages/index.ts"/>
@@ -56,7 +57,7 @@ namespace mobxApp {
     <MuiThemeProvider theme={THEME_LIGHT}>
       <SnackProvider>
         <Scaffold title="Boilerplate" showMenu={false}>
-          <Router initialtUrl="/login">
+          <Router initialtUrl="/login" saveState={false}>
             <Route url="/login" component={LoginPage} />
             <Route url="/home" component={HomePage} />
           </Router>

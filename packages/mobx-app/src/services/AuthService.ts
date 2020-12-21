@@ -9,28 +9,35 @@ namespace mobxApp {
 
   export namespace services {
 
-    export class AuthService extends ApiService {
+    export class AuthService extends BaseService {
 
       count = 0;
-      inc = () => this.count++
-      dec = () => this.count--
+      inc = () => this.count++;
+      dec = () => this.count--;
 
-      constructor(...args) {
-        super(...args);
+      constructor() {
+        super();
         makeObservable(this, {
           count: observable,
           inc: action,
           dec: action,
-        });
+        })
       }
 
-      applyToken(token: string) {
-        this.token = token;
+      /**
+       * Получение токена по паролю
+       */
+      login(login: string, password: string) {
+        console.log(login, password);
       }
 
-      clearToken() {
-        this.token = '';
+      /**
+       * Удаление токена
+       */
+      logout(token: string) {
+        console.log(token);
       }
+
 
     } // class AuthService
 

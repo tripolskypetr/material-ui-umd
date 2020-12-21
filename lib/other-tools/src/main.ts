@@ -25,6 +25,10 @@ namespace other {
     useTr: useTrDefault,
   } = components;
 
+  const {
+    ErrorBoundary: ErrorBoundaryDefault,
+  } = components;
+
   export namespace snack {
     export const SnackProvider = SnackProviderDefault;
     export const useSnack = useSnackDefault;
@@ -45,5 +49,9 @@ namespace other {
     export const TranslationProvider = TranslationProviderDefault;
     export const useTr = useTrDefault;
   } // namespace i11n
+
+  export namespace error {
+    export const ErrorBoundary = ErrorBoundaryDefault;
+  } // namespace error
 
 } // namespace other

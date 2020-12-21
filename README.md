@@ -15,6 +15,8 @@
  - [Создать свой umd дистрибутив](packages/how-it-is-made/README.md)
  - [Применение вместе с WordPress на ванильном JavaScript](packages/wordpress-interop/README.md)
  - [Пикеры даты и времени](packages/amazing-pickers/README.md)
+ - [Использование Redux](packages/redux-app/README.md)
+ - [Использование Mobx](packages/mobx-app/README.md)
 
 **Лекции для новичков**
 

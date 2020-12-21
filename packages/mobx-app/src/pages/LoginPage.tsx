@@ -6,6 +6,7 @@ namespace mobxApp {
 
   const {
     useState,
+    useEffect,
   } = React;
 
   const {
@@ -20,6 +21,10 @@ namespace mobxApp {
   const {
     withAuthService,
   } = hoc;
+
+  const {
+    useRouter,
+  } = router;
 
   export namespace pages {
 
@@ -48,12 +53,15 @@ namespace mobxApp {
       export const LoginPage = ({
         authService,
       }) => {
+        const go = useRouter();
         const [data, setData] = useState({
           login: 'tripolskypetr',
           password: '12345',
         });
         const handleClick = () => {
-          console.log(data, authService);
+          const {login, password} = data;
+          authService.login(login, password);
+          go('/home');
         };
         return (
           <Fragment>

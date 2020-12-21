@@ -1,10 +1,6 @@
 namespace mobxApp {
 
   const {
-    useRouter,
-  } = router;
-
-  const {
     assign,
   } = Object;
 
@@ -26,13 +22,11 @@ namespace mobxApp {
      * Компонент высшего порядка позволяет осуществить забор контекста
      * роутера для переадресации на страницу авторизации при ошибке
      */
-    const createConsumer = (Service: typeof services.ApiService, serviceName: string, fallbackRoute: string) =>
+    const createConsumer = (Service: typeof services.BaseService, serviceName: string) =>
       (Component: material.Component) => (props) => {
-        const go = useRouter();
-        const handleError = () => go(fallbackRoute);
         return h(Component, assign({}, props, {
-          [serviceName]: new Service(handleError),
-        }))
+          [serviceName]: new Service(),
+        }));
       };
 
     /**
@@ -41,7 +35,7 @@ namespace mobxApp {
      */
     export const withService = (Service, serviceName: string, fallbackRoute = '/') =>
       (Component: material.Component) => compose(
-      createConsumer(Service, serviceName, fallbackRoute),
+      createConsumer(Service, serviceName),
       observer,
     )(Component);
 

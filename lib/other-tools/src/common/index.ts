@@ -2,3 +2,4 @@
 /// <reference path="./state/index.ts"/>
 /// <reference path="./fetch/index.ts"/>
 /// <reference path="./i11n/index.ts"/>
+/// <reference path="./error/index.ts"/>

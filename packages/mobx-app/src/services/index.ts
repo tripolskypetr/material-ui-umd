@@ -1,2 +1,2 @@
-/// <reference path="./base/ApiService.ts"/>
+/// <reference path="./base/BaseService.ts"/>
 /// <reference path="./AuthService.ts"/>

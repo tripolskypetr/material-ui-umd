@@ -11,16 +11,16 @@ namespace mobxApp {
   } = React;
 
   const {
-    useState,
-  } = React;
-
-  const {
     makeStyles,
   } = material.core;
 
   const {
     withAuthService,
   } = hoc;
+
+  const {
+    useRouter,
+  } = router;
 
   export namespace pages {
 
@@ -53,6 +53,11 @@ namespace mobxApp {
         authService,
       }) => {
         const classes = useStyles();
+        const go = useRouter();
+        const handleRevoke = () => {
+          authService.logout('token');
+          go('/login');
+        };
         return (
           <Fragment>
             <Box className={classes.root}>
@@ -61,7 +66,7 @@ namespace mobxApp {
                 <Button onClick={authService.inc}>+</Button>
                 <Button onClick={authService.dec}>-</Button>
               </Box>
-              <Button>
+              <Button onClick={handleRevoke}>
                 Отозвать токен
               </Button>
             </Box>
