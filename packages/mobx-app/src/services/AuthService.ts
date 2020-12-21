@@ -21,7 +21,8 @@ namespace mobxApp {
           count: observable,
           inc: action,
           dec: action,
-        })
+        });
+        this.enableLogging(this);
       }
 
       /**
