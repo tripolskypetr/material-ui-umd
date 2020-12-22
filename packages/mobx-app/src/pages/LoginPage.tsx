@@ -6,7 +6,6 @@ namespace mobxApp {
 
   const {
     useState,
-    useEffect,
   } = React;
 
   const {
@@ -17,10 +16,6 @@ namespace mobxApp {
   const {
     Button,
   } = material.core;
-
-  const {
-    withAuthService,
-  } = hoc;
 
   const {
     useRouter,
@@ -48,35 +43,23 @@ namespace mobxApp {
       },
     ];
 
-    namespace internal {
-
-      export const LoginPage = ({
-        authService,
-      }) => {
-        const go = useRouter();
-        const [data, setData] = useState({
-          login: 'tripolskypetr',
-          password: '12345',
-        });
-        const handleClick = () => {
-          const {login, password} = data;
-          authService.login(login, password);
-          go('/home');
-        };
-        return (
-          <Fragment>
-            <One handler={data} fields={fields}
-              change={(d) => setData(d)} />
-            <Button onClick={handleClick}>
-              Войти
-            </Button>
-          </Fragment>
-        );
-      };
-
-    } // namespace internal
-
-    export const LoginPage = withAuthService(internal.LoginPage);
+    export const LoginPage = () => {
+      const go = useRouter();
+      const [data, setData] = useState({
+        login: 'tripolskypetr',
+        password: '12345',
+      });
+      const handleClick = () => go('/home');
+      return (
+        <Fragment>
+          <One handler={data} fields={fields}
+            change={(d) => setData(d)} />
+          <Button onClick={handleClick}>
+            Войти
+          </Button>
+        </Fragment>
+      );
+    };
 
   } // namespace pages
 

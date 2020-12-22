@@ -14,3 +14,4 @@
 /// <reference path="./classNames.ts"/>
 /// <reference path="./deepMerge.ts"/>
 /// <reference path="./compose.ts"/>
+/// <reference path="./createKey.ts"/>

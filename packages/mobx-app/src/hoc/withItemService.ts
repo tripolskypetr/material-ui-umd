@@ -1,12 +1,12 @@
 namespace mobxApp {
 
   const {
-    AuthService,
+    ItemService,
   } = services;
 
   export namespace hoc {
 
-    export const withAuthService = withService(AuthService, 'authService', '/login');
+    export const withItemService = withService(ItemService, 'itemService');
 
   } // namespace hooks
 

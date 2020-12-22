@@ -29,6 +29,10 @@ namespace mobxApp {
     LoginPage,
   } = pages;
 
+  const {
+    PromptProvider,
+  } = pickers;
+
   const THEME_LIGHT = createMuiTheme({
     palette: {
       type: 'light',
@@ -56,12 +60,14 @@ namespace mobxApp {
   const App = () => (
     <MuiThemeProvider theme={THEME_LIGHT}>
       <SnackProvider>
-        <Scaffold title="Boilerplate" showMenu={false}>
-          <Router initialtUrl="/login" saveState={false}>
-            <Route url="/login" component={LoginPage} />
-            <Route url="/home" component={HomePage} />
-          </Router>
-        </Scaffold>
+        <PromptProvider>
+          <Scaffold title="Boilerplate" showMenu={false}>
+            <Router initialtUrl="/login">
+              <Route url="/login" component={LoginPage} />
+              <Route url="/home" component={HomePage} />
+            </Router>
+          </Scaffold>
+        </PromptProvider>
       </SnackProvider>
     </MuiThemeProvider>
   );

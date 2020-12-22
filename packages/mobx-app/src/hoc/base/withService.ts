@@ -18,14 +18,30 @@ namespace mobxApp {
 
   export namespace hoc {
 
+    type Service = typeof services.BaseService;
+
+    // tslint:disable-next-line: new-parens
+    const manager = new class {
+      private instances = new WeakMap<Service, any>();
+      inject(type: Service) {
+        if (this.instances.has(type)) {
+          return this.instances.get(type);
+        } else {
+          const instance = new type();
+          this.instances.set(type, instance);
+          return instance;
+        }
+      }
+    };
+
     /**
      * Компонент высшего порядка позволяет осуществить забор контекста
      * роутера для переадресации на страницу авторизации при ошибке
      */
-    const createConsumer = (Service: typeof services.BaseService, serviceName: string) =>
+    const createConsumer = (Service: Service, serviceName: string) =>
       (Component: material.Component) => (props) => {
         return h(Component, assign({}, props, {
-          [serviceName]: new Service(),
+          [serviceName]: manager.inject(Service),
         }));
       };
 
@@ -33,7 +49,7 @@ namespace mobxApp {
      * Во избежание дублирований, через функциональную композицию,
      * я сразу применяю реакцию observer из mobx-react-lite
      */
-    export const withService = (Service, serviceName: string, fallbackRoute = '/') =>
+    export const withService = (Service, serviceName: string) =>
       (Component: material.Component) => compose(
       createConsumer(Service, serviceName),
       observer,

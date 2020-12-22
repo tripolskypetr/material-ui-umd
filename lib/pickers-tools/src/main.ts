@@ -10,6 +10,8 @@ namespace pickers {
     useTime: useTimeDefault,
     DateProvider: DateProviderDefault,
     useDate: useDateDefault,
+    PromptProvider: PromptProviderDefault,
+    usePrompt: usePromptDefault,
   } = components;
 
   export const TimeProvider = TimeProviderDefault;
@@ -17,5 +19,8 @@ namespace pickers {
 
   export const DateProvider = DateProviderDefault;
   export const useDate = useDateDefault;
+
+  export const PromptProvider = PromptProviderDefault;
+  export const usePrompt = usePromptDefault;
 
 } // namespace pickers

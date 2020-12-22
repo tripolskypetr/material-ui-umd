@@ -13,6 +13,7 @@
     "baseUrl": "./",
     "types": [],
     "typeRoots": [
+      "../../lib/pickers-tools/dist",
       "../../lib/router-tools/dist",
       "../../lib/other-tools/dist",
       "../../lib/form-tools/dist",
@@ -26,6 +27,7 @@
     "./dist/*",
   ],
   "include": [
+    "../../lib/pickers-tools/dist",
     "../../lib/router-tools/dist",
     "../../lib/other-tools/dist",
     "../../lib/form-tools/dist",

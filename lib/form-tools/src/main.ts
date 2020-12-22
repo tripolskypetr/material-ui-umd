@@ -16,6 +16,7 @@ namespace form {
 
   const {
     compose: composeDefault,
+    createKey: createKeyDefault,
   } = utils;
 
   export const One = OneDefault;
@@ -24,5 +25,6 @@ namespace form {
   export const Breadcrumbs = BreadcrumbsDefault;
 
   export const compose = composeDefault;
+  export const createKey = createKeyDefault;
 
 } // namespace form

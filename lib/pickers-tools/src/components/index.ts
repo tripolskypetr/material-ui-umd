@@ -5,3 +5,4 @@
 /// <reference path="./TimeProvider.tsx"/>
 /// <reference path="./DatePicker/index.ts"/>
 /// <reference path="./DateProvider.tsx"/>
+/// <reference path="./PromptProvider.tsx"/>
