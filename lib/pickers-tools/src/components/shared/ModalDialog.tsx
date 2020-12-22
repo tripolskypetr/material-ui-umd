@@ -23,6 +23,7 @@ namespace pickers {
 
     export const ModalDialog = ({
       children = null,
+      dividers = false,
       onAccept = () => console.log('accept'),
       onDismiss = () => console.log('dismiss'),
       ...other
@@ -30,7 +31,7 @@ namespace pickers {
       const classes = useStyles();
       return (
         <Dialog {...other}>
-          <DialogContent className={classes.dialog}>
+          <DialogContent dividers={dividers} className={classes.dialog}>
             { children }
           </DialogContent>
           <DialogActions>

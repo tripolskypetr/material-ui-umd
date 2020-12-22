@@ -23,6 +23,13 @@ namespace mobxApp {
       price: number;
     }
 
+    /**
+     * Применять состояние mobx следует сразу, как только
+     * появляются вычисляемые поля: попытка считать total
+     * отдельно от содержимого корзины потенциально посадит
+     * главного бухгалтера на бутылку
+     * Single Responsibility
+     */
     export class ItemService extends BaseService {
 
       count = 0;

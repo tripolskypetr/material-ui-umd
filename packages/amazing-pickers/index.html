@@ -19,7 +19,36 @@
     useDate,
     TimeProvider,
     useTime,
+    PromptProvider,
+    usePrompt,
+    RadioProvider,
+    useRadio,
   } = pickers;
+
+  const Radio = () => {
+    const radio = useRadio();
+    const onClick = () => radio('Title', ['a', 'b', 'c']).then((result) => {
+      const [v, i] = result;
+      if (v) {
+        alert(`value="${v}" index="${i}"`);
+      } else {
+        alert('rejected');
+      }
+    })
+    return h('button', {onClick}, 'Radio');
+  };
+
+  const Prompt = () => {
+    const prompt = usePrompt();
+    const onClick = () => prompt('Title', 'Default value').then((v) => {
+      if (v) {
+        alert(v);
+      } else {
+        alert('rejected');
+      }
+    })
+    return h('button', {onClick}, 'Prompt');
+  };
 
   const Time = () => {
     const time = useTime();
@@ -47,8 +76,14 @@
 
   const App = () => h(TimeProvider, null, 
     h(DateProvider, null,
-      h(Time),
-      h(Date),
+      h(PromptProvider, null,
+        h(RadioProvider, null,
+          h(Time),
+          h(Date),
+          h(Prompt),
+          h(Radio),
+        )
+      )
     )
   );
 

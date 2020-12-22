@@ -6,3 +6,4 @@
 /// <reference path="./DatePicker/index.ts"/>
 /// <reference path="./DateProvider.tsx"/>
 /// <reference path="./PromptProvider.tsx"/>
+/// <reference path="./RadioProvider.tsx"/>

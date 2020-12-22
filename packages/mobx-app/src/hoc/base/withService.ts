@@ -21,7 +21,7 @@ namespace mobxApp {
     type Service = typeof services.BaseService;
 
     // tslint:disable-next-line: new-parens
-    const manager = new class {
+    const ioc = new class {
       private instances = new WeakMap<Service, any>();
       inject(type: Service) {
         if (this.instances.has(type)) {
@@ -37,11 +37,12 @@ namespace mobxApp {
     /**
      * Компонент высшего порядка позволяет осуществить забор контекста
      * роутера для переадресации на страницу авторизации при ошибке
+     * Inversion of Control and Dependency Injection
      */
     const createConsumer = (Service: Service, serviceName: string) =>
       (Component: material.Component) => (props) => {
         return h(Component, assign({}, props, {
-          [serviceName]: manager.inject(Service),
+          [serviceName]: ioc.inject(Service),
         }));
       };
 
