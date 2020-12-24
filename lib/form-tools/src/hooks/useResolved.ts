@@ -20,10 +20,15 @@ namespace form {
 
   export namespace hooks {
 
-    type useResolvedHook = (
+    interface IResolvedHookProps {
       handler: () => Promise<any> | any,
       fallback: (e: Error) => void,
       fields: IField[],
+      change: (obj: any, initial?: boolean) => void,
+    }
+
+    type useResolvedHook = (
+      props: IResolvedHookProps
     ) => [any, (v: any) => void];
 
     const buildObj = (fields: IField[]) => {
@@ -45,7 +50,12 @@ namespace form {
      * один раз. Для дочерних One компонентов осуществляется
      * подписка на изменения
      */
-    export const useResolved: useResolvedHook = (handler, fallback, fields) => {
+    export const useResolved: useResolvedHook = ({
+      handler,
+      fallback,
+      fields,
+      change,
+    }) => {
       const [data, setData] = useState(null);
       const isRoot = useRef(false);
       useEffect(() => {
@@ -56,9 +66,13 @@ namespace form {
             try {
               const result = handler();
               if (result instanceof Promise) {
-                setData(assign(buildObj(fields), deepClone(await result)));
+                const newData = assign(buildObj(fields), deepClone(await result));
+                change(newData, true);
+                setData(newData);
               } else {
-                setData(assign(buildObj(fields), deepClone(result)));
+                const newData = assign(buildObj(fields), deepClone(result));
+                change(newData, true);
+                setData(newData);
               }
             } catch (e) {
               if (fallback) {

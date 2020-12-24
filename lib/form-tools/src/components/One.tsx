@@ -44,6 +44,10 @@ namespace form {
 
     namespace internal {
 
+      /**
+       * Мы отображаем корневой компонент только после инициализации
+       * полей вложенных групп...
+       */
       const countManaged = (fields) => {
         const total = fields?.filter(({type}) => isManaged(type)).length;
         if (total) {
@@ -63,8 +67,10 @@ namespace form {
         focus = null,
         blur = null,
       }: IOneProps) => {
-        const [object, setObject] = useResolved(handler, fallback, fields);
         const waitingReady = useRef(countManaged(fields));
+        const [object, setObject] = useResolved({
+          handler, fallback, fields, change,
+        });
         const onChange = (v) => {
           setObject(v);
           change(v);

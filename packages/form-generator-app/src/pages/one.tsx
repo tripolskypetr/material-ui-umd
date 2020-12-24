@@ -237,7 +237,12 @@ namespace app {
 
       const back = () => go('/list');
       const handler = () => data.get(id);
-      const change = (obj) => setChangedObj(obj);
+
+      const change = (obj, initial) => {
+        if (!initial) {
+          setChangedObj(obj);
+        }
+      };
 
       const onSave = useCallback(() => {
         data.patch(changedObj);

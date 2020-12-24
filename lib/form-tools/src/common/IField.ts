@@ -204,6 +204,13 @@ namespace form {
      */
     defaultValue?: string | number | boolean;
 
+    /**
+     * Позволяет выключить отступ справа для поля. Можно использовать
+     * по аналогии с исключением последней запятой при склеивании массива
+     * руками, если раздражает
+     */
+    skipRightMargin?: boolean;
+
   }
 
 } // namespace form

@@ -13,7 +13,7 @@ namespace form {
     classNames,
   } = utils;
 
-  const useStyles = makeStyles({
+  const useStyles = makeStyles((theme) => ({
     strech: {
       position: 'relative',
       display: 'flex',
@@ -23,8 +23,12 @@ namespace form {
     content: {
       flexGrow: 1,
       width: '100%',
+      marginRight: theme.spacing(1),
+      '& $content': {
+        marginRight: 'initial',
+      },
     },
-  });
+  }));
 
   export namespace components {
 
@@ -45,8 +49,8 @@ namespace form {
           tabletColumns={tabletColumns}
           desktopColumns={desktopColumns}>
           <MatPaper className={classNames(classes.content, classes.strech)}>
-            <Box p={1} className={classes.content}>
-              <Group>
+            <Box p={2} className={classes.content}>
+              <Group skipRightMargin={true}>
                 {children}
               </Group>
             </Box>
