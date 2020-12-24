@@ -18,6 +18,7 @@ namespace pickers {
         '&:first-child': {
           padding: 0,
         },
+        overflow: 'hidden',
       },
     });
 
