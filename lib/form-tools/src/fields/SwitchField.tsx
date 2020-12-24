@@ -8,9 +8,9 @@ namespace form {
   } = components;
 
   const {
+    Box,
     Switch,
-    FormGroup,
-    FormControlLabel,
+    Typography,
   } = material.core;
 
   export namespace fields {
@@ -18,11 +18,14 @@ namespace form {
     export const SwitchField = makeManaged(({
       disabled, value, onChange, title
     }) => (
-      <FormGroup>
-        <FormControlLabel
-          control={<Switch disabled={disabled} checked={value} onChange={() => onChange(!value)} />}
-          label={title} />
-      </FormGroup>
+      <Box display="flex" alignItems="center">
+        <Box flex={1}>
+          <Typography variant="body1">
+            {title}
+          </Typography>
+        </Box>
+        <Switch disabled={disabled} checked={value} onChange={() => onChange(!value)} />
+      </Box>
     ), true);
 
   } // namespace fields

@@ -77,6 +77,7 @@
             {
               type: FieldType.Component,
               columns: '2',
+              style: {maxWidth: '64px'},
               compute: Logo,
             },
             {
@@ -101,11 +102,31 @@
                 <Box display="flex" flexDirection="column">
                   <Hr/>
                   <Typography variant="body2">
-                    <Link href="https://theonekit.com">Official site</Link>
+                    <Link href="https://theonekit.com" target="_blank">Official site</Link>
                   </Typography>
                 </Box>
               ),
             },
+          ],
+        },
+        {
+          type: FieldType.Paper,
+          fields: [
+            {
+              type: FieldType.Switch,
+              name: 'isViewFps',
+              title: 'View FPS',
+              skipRightMargin: true,
+            },
+            {
+              type: FieldType.Component,
+              compute: () => (
+                <Typography variant="body2">
+                  Show network status indicators while playing. This parameter
+                  will be applied the next time game is started
+                </Typography>
+              ),
+            }
           ],
         },
       ],
@@ -132,6 +153,49 @@
                 'Usa',
                 'China',
               ],
+            },
+          ],
+        },
+        {
+          type: FieldType.Paper,
+          fields: [
+            {
+              type: FieldType.Component,
+              compute: () => (
+                <Box display="flex" flexDirection="column">
+                  <Typography variant="body1">STREAMING SETTINGS</Typography>
+                  <Typography variant="body2">
+                    Regulates performance and traffic consumption. Actual performance
+                    depends on network connection and system. This parameter will be
+                    applied the next time you...  
+                  </Typography>
+                </Box>
+              ),
+            },
+            {
+              type: FieldType.Radio,
+              radioValue: 'auto',
+              phoneColumns: '6',
+              tabletColumns: '2',
+              name: 'streamingType',
+              defaultValue: 'auto',
+              title: 'Auto',
+            },
+            {
+              type: FieldType.Radio,
+              radioValue: 'fps',
+              phoneColumns: '6',
+              tabletColumns: '2',
+              name: 'streamingType',
+              title: 'Fps',
+            },
+            {
+              type: FieldType.Radio,
+              radioValue: 'quality',
+              phoneColumns: '6',
+              tabletColumns: '2',
+              name: 'streamingType',
+              title: 'Quality',
             },
           ],
         },

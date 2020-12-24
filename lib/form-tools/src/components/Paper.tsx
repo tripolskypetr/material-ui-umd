@@ -24,8 +24,10 @@ namespace form {
       flexGrow: 1,
       width: '100%',
       marginRight: theme.spacing(1),
+      marginBottom: theme.spacing(1),
       '& $content': {
         marginRight: 'initial',
+        marginBottom: 'initial',
       },
     },
   }));
