@@ -1,5 +1,4 @@
 
-/// <reference path="../components/index.ts"/>
 /// <reference path="../common/index.ts"/>
 /// <reference path="../fields/index.ts"/>
 
