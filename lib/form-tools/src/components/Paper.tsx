@@ -52,7 +52,7 @@ namespace form {
           desktopColumns={desktopColumns}>
           <MatPaper className={classNames(classes.content, classes.strech)}>
             <Box p={2} className={classes.content}>
-              <Group skipRightMargin={true}>
+              <Group>
                 {children}
               </Group>
             </Box>

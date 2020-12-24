@@ -74,7 +74,8 @@ namespace form {
       blur = null,
       readonly = false,
       style = null,
-      skipRightMargin = false,
+      fieldRightMargin,
+      fieldBottomMargin,
       ...otherProps
     }: IEntity) => {
 
@@ -149,7 +150,8 @@ namespace form {
         phoneColumns,
         tabletColumns,
         desktopColumns,
-        skipRightMargin,
+        fieldRightMargin,
+        fieldBottomMargin,
       };
 
       /**

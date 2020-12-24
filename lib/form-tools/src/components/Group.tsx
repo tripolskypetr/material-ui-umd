@@ -24,9 +24,9 @@ namespace form {
         }
       };
 
-      const renderItem = (isItem, children, skipRightMargin) => {
+      const renderItem = (isItem, children, mr, mb) => {
         if (isItem) {
-          return h(Box, {mr: skipRightMargin ? 0 : 1, mb: 2}, children);
+          return h(Box, {mr, mb}, children);
         } else {
           return children;
         }
@@ -41,7 +41,8 @@ namespace form {
         children = null,
         isItem = false,
         style = null,
-        skipRightMargin = false,
+        fieldRightMargin = 1,
+        fieldBottomMargin = 2,
         ...otherProps
       }, ref) => (
         <Grid ref={ref} alignItems="flex-start"  {...otherProps} {...gridProps(isItem)}
@@ -50,7 +51,7 @@ namespace form {
           md={n(columns ? columns : (phoneColumns || tabletColumns) ? (phoneColumns || tabletColumns) : '12')}
           lg={n(columns ? columns : (tabletColumns || desktopColumns) ? (tabletColumns || desktopColumns) : '12')}
           xl={n(columns ? columns : desktopColumns ? desktopColumns : '12')} className={className} style={style}>
-          { renderItem(isItem, children, skipRightMargin) }
+          { renderItem(isItem, children, fieldRightMargin, fieldBottomMargin) }
         </Grid>
       );
 
