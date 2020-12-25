@@ -23,7 +23,16 @@
     usePrompt,
     RadioProvider,
     useRadio,
+    ConfirmProvider,
+    useConfirm,
   } = pickers;
+
+  const Confirm = () => {
+    const confirm = useConfirm();
+    const onClick = () => confirm('Подтвердите действие', 'Вы уверены, что хотите выйти?')
+      .then((result) => alert(result));
+    return h('button', {onClick}, 'Confirm');
+  };
 
   const Radio = () => {
     const radio = useRadio();
@@ -78,10 +87,13 @@
     h(DateProvider, null,
       h(PromptProvider, null,
         h(RadioProvider, null,
-          h(Time),
-          h(Date),
-          h(Prompt),
-          h(Radio),
+          h(ConfirmProvider, null,
+            h(Time),
+            h(Date),
+            h(Prompt),
+            h(Radio),
+            h(Confirm),
+          )
         )
       )
     )

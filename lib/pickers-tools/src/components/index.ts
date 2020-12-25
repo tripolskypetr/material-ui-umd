@@ -7,3 +7,4 @@
 /// <reference path="./DateProvider.tsx"/>
 /// <reference path="./PromptProvider.tsx"/>
 /// <reference path="./RadioProvider.tsx"/>
+/// <reference path="./ConfirmProvider.tsx"/>

@@ -14,6 +14,8 @@ namespace pickers {
     usePrompt: usePromptDefault,
     RadioProvider: RadioProviderDefault,
     useRadio: useRadioDefault,
+    ConfirmProvider: ConfirmProviderDefault,
+    useConfirm: useConfirmDefault,
   } = components;
 
   export const TimeProvider = TimeProviderDefault;
@@ -27,5 +29,8 @@ namespace pickers {
 
   export const RadioProvider = RadioProviderDefault;
   export const useRadio = useRadioDefault;
+
+  export const ConfirmProvider = ConfirmProviderDefault;
+  export const useConfirm = useConfirmDefault;
 
 } // namespace pickers
