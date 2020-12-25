@@ -11,4 +11,6 @@
 
 4. **[utils/isManaged.ts](./utils/isManaged.ts)** - Я рекомендую каждое поле оборачивать в [makeManaged](./components/makeManaged.tsx)
 
-5. **[common/TypedField.ts](./common/TypedField.ts)** - Объявление строгой типизации для пользователя
+5. **[common/FieldType.ts](./common/FieldType.ts)** - Добавление записи в enum
+
+6. **[common/TypedField.ts](./common/TypedField.ts)** - Объявление строгой типизации для пользователя
