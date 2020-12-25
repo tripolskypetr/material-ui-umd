@@ -41,7 +41,8 @@ namespace form {
   /**
    * Логическое ветвление компонентов
    */
-  export type TypedFieldRegistry<T = any> = T extends Expansion ? Expansion
+  export type TypedFieldRegistry<T = any> =
+    T extends Expansion ? Expansion
     : T extends Group ? Group
     : T extends Paper ? Paper
     : T extends Checkbox ? Checkbox
