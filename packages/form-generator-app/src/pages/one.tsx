@@ -258,7 +258,7 @@ namespace app {
             saveDisabled={!changedObj}
             save={() => onSave()}
             back={back} />
-          <OneTyped fields={fields}
+          <One.typed fields={fields}
             handler={handler}
             change={change} />
         </Fragment>

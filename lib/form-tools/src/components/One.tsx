@@ -155,6 +155,8 @@ namespace form {
      */
     export const OneTyped = (props: IOneTypedProps) => h(One, props);
 
+    One.typed = OneTyped;
+
   } // namespace components
 
 } // namespace form
