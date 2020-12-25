@@ -9,6 +9,6 @@
 
 3. **[utils/initialValue.ts](./utils/initialValue.ts)** - Значение по-умолчанию для поля
 
-4. **[utils/isManaged.ts](./utils/isManaged.ts)** - Я рекомендую каждое поле оборачивать в [makeField](./components/makeField.ts)
+4. **[utils/isManaged.ts](./utils/isManaged.ts)** - Я рекомендую каждое поле оборачивать в [makeManaged](./components/makeManaged.tsx)
 
 5. **[common/TypedField.ts](./common/TypedField.ts)** - Объявление строгой типизации для пользователя
