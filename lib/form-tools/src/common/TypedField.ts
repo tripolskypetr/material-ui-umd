@@ -40,6 +40,7 @@ namespace form {
 
   /**
    * Логическое ветвление компонентов
+   * Typescript type-guard
    */
   export type TypedFieldRegistry<T = any> =
     T extends Expansion ? Expansion
