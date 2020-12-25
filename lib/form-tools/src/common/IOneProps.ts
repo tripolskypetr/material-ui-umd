@@ -42,4 +42,12 @@ namespace form {
     LoadPlaceholder?: null | material.Element;
   }
 
+  /**
+   * После написания формы можно включить
+   * строгую проверку полей
+   */
+  export interface IOneTypedProps extends Omit<IOneProps, 'fields'> {
+    fields: TypedField[];
+  }
+
 } // namespace form

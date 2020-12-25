@@ -15,11 +15,19 @@ namespace form {
 
   export namespace fields {
 
+    export interface IRatingFieldProps {
+      value: PickProp<IManaged, 'value'>;
+      disabled: PickProp<IManaged, 'disabled'>;
+      readonly: PickProp<IManaged, 'readonly'>;
+      title: PickProp<IManaged, 'title'>;
+      onChange: PickProp<IManaged, 'onChange'>;
+    }
+
     export const RatingField = makeManaged(({
       value, disabled,
       readonly, title,
       onChange
-    }) => (
+    }: IManaged) => (
       <Box display="flex" justifyContent="center"
         component="fieldset" borderColor="transparent">
         <Typography component="legend">{title}</Typography>

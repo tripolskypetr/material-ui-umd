@@ -10,6 +10,7 @@ namespace form {
   const {
     One: OneDefault,
     List: ListDefault,
+    OneTyped: OneTypedDefault,
     Scaffold: ScaffoldDefault,
     Breadcrumbs: BreadcrumbsDefault,
   } = components;
@@ -21,6 +22,7 @@ namespace form {
 
   export const One = OneDefault;
   export const List = ListDefault;
+  export const OneTyped = OneTypedDefault;
   export const Scaffold = ScaffoldDefault;
   export const Breadcrumbs = BreadcrumbsDefault;
 

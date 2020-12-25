@@ -10,12 +10,8 @@ namespace form {
   } = material.core;
 
   const {
-    Group,
+    makeManaged,
   } = components;
-
-  const {
-    classNames,
-  } = utils;
 
   export namespace fields {
 
@@ -36,32 +32,21 @@ namespace form {
       }
     }));
 
-    export const LineField = ({
-      className = '',
-      columns = '',
+    export interface ILineFieldProps {
+      title: PickProp<IManaged, 'title'>;
+    }
+
+    export const LineField = makeManaged(({
       title = '',
-      phoneColumns = '',
-      tabletColumns = '',
-      desktopColumns = '',
-      styles = null,
-    }) => {
-
+    }: ILineFieldProps) => {
       const classes = useStyles();
-
-      const groupProps = {
-        styles, columns,
-        desktopColumns,
-        tabletColumns,
-        phoneColumns,
-      };
-
       return (
-        <Group {...groupProps} className={classNames(className, classes.root)}>
+        <Box className={classes.root}>
           <Typography variant="h5">{title}</Typography>
           <Box className={classes.line}></Box>
-        </Group>
+        </Box>
       );
-    };
+    });
 
   } // namespace fields
 

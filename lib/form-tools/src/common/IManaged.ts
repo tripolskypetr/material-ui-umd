@@ -3,10 +3,7 @@
 
 namespace form {
 
-  /**
-   * Свойства, не доступные управляемому полю
-   */
-  type exclude = 'object' | 'type' | 'focus' | 'blur' | 'ready';
+  export type PickProp<T extends {}, P extends keyof T> = T[P];
 
   /**
    * Возможные значения value
@@ -14,29 +11,48 @@ namespace form {
   type v = number | string | boolean;
 
   /**
-   * Свойства сущности, обернутой в компонент высшего порядка
+   * Типизацию компоновки следует вынести отдельно
    */
-  export interface IManaged extends Omit<IEntity, exclude> {
+  export interface IManagedLayout {
+    columns?: PickProp<IField, 'columns'>;
+    phoneColumns?: PickProp<IField, 'phoneColumns'>;
+    tabletColumns?: PickProp<IField, 'tabletColumns'>;
+    desktopColumns?: PickProp<IField, 'desktopColumns'>;
+    fieldRightMargin?: PickProp<IField, 'fieldRightMargin'>;
+    fieldBottomMargin?: PickProp<IField, 'fieldBottomMargin'>;
+  }
 
-    /**
-     * Компонент высшего порядка перехватывает управление
-     */
-    columns?: never;
-    phoneColumns?: never;
-    tabletColumns?: never;
-    desktopColumns?: never;
-    isDisabled?: never;
-    isVisible?: never;
-    isInvalid?: never;
-    change?: never;
-    object?: never;
-    name?: never;
-    readonly?: never;
+  /**
+   * Компонент высшего порядка makeManaged
+   * перехватывает управление над свойствами
+   * поля
+   */
+  export interface IManagedShallow extends IManagedLayout {
+    isDisabled?: PickProp<IField, 'isDisabled'>;
+    isVisible?: PickProp<IField, 'isVisible'>;
+    isInvalid?: PickProp<IField, 'isInvalid'>;
+    compute?: PickProp<IField, 'compute'>;
+    defaultValue?: v;
+  }
 
-    /**
-     * Компонент высшего порядка предоставляет удобную
-     * абстракцию
-     */
+  /**
+   * Свойства, не доступные управляемому полю
+   */
+  type Exclude = {
+    object: never;
+    type: never;
+    focus: never;
+    blur: never;
+    ready: never;
+    change: never;
+    name: never;
+  } & IManagedShallow;
+
+  /**
+   * Свойства сущности, обернутой в компонент высшего порядка
+   * Предоставляется удобная абстракция
+   */
+  export interface IManaged extends Omit<IEntity, keyof Exclude> {
     value: v;
     disabled: boolean;
     invalid: string | null;

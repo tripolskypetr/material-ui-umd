@@ -25,11 +25,7 @@ namespace form {
      * Общие поля. Поле name позволяет задать забор
      * поля из целевого объекта, не нужен для group,
      * expansion и line.
-     *  - Поле id пробрасывается в аттрибуты корневого
-     * блока компонента на странице и не используется в
-     * компоненте List.
      */
-    id?: string;
     name?: string;
 
     /**
@@ -77,8 +73,8 @@ namespace form {
      * окна, расположенного в коде прикладного программиста. Коллбек
      * получает на вход текущее значение поля и функцию onChange...
      */
-    leadingIconClick?: (value: any, onChange: CallableFunction) => void;
-    trailingIconClick?: (value: any, onChange: CallableFunction) => void;
+    leadingIconClick?: (value: any, onChange?: (v: any) => void) => void;
+    trailingIconClick?: (value: any, onChange?: (v: any) => void) => void;
 
     /**
      * Максимальное число для высчитывания процента

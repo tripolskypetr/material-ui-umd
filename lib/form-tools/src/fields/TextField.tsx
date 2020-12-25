@@ -50,6 +50,23 @@ namespace form {
       rows: inputRows,
     });
 
+    export interface ITextFieldProps {
+      invalid: PickProp<IManaged, 'invalid'>;
+      value: PickProp<IManaged, 'value'>;
+      disabled: PickProp<IManaged, 'disabled'>;
+      inputType: PickProp<IManaged, 'inputType'>;
+      description: PickProp<IManaged, 'description'>;
+      outlined: PickProp<IManaged, 'outlined'>;
+      title: PickProp<IManaged, 'title'>;
+      leadingIcon: PickProp<IManaged, 'leadingIcon'>;
+      trailingIcon: PickProp<IManaged, 'trailingIcon'>;
+      leadingIconClick: PickProp<IManaged, 'leadingIconClick'>;
+      trailingIconClick: PickProp<IManaged, 'trailingIconClick'>;
+      inputRows: PickProp<IManaged, 'inputRows'>;
+      placeholder: PickProp<IManaged, 'placeholder'>;
+      onChange: PickProp<IManaged, 'onChange'>;
+    }
+
     export const TextField = makeManaged(({
       invalid, value, disabled,
       inputType = 'text',
@@ -63,7 +80,7 @@ namespace form {
       inputRows: rows = 1,
       placeholder = '',
       onChange
-    }: IManaged) => (
+    }: ITextFieldProps) => (
       <MatTextField variant={outlined ? "outlined" : "standard"} helperText={invalid || description}
         InputProps={icons(li, ti, lic, tic, value, onChange)} type={inputType}
         value={value} error={invalid !== null} placeholder={placeholder}

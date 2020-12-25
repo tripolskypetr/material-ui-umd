@@ -67,13 +67,21 @@ namespace form {
       }
     };
 
+    export interface IProgressFieldProps {
+      progressBarColor: PickProp<IManaged, 'progressBarColor'>;
+      progressColor: PickProp<IManaged, 'progressColor'>;
+      maxPercent: PickProp<IManaged, 'maxPercent'>;
+      showPercentLabel: PickProp<IManaged, 'showPercentLabel'>;
+      value: PickProp<IManaged, 'value'>;
+    }
+
     export const ProgressField = makeManaged(({
       progressBarColor = null,
       progressColor = null,
       maxPercent = 1.0,
       showPercentLabel,
       value,
-    }) => (
+    }: IProgressFieldProps) => (
       <Box display="flex" alignItems="center">
         <Box width="100%" mr={1}>
           <LinearProgress value={percent(value, maxPercent)}

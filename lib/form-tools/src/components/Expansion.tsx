@@ -1,5 +1,6 @@
 
 /// <reference path="./Group.tsx"/>
+/// <reference path="../common/IManaged.ts"/>
 
 namespace form {
 
@@ -43,6 +44,12 @@ namespace form {
 
   export namespace components {
 
+    export interface IExpansionProps extends IManagedLayout {
+      title?: PickProp<IField, 'title'>,
+      description?: PickProp<IField, 'description'>,
+      className?: PickProp<IField, 'className'>,
+    }
+
     export const Expansion = ({
       title = '',
       description = '',
@@ -53,7 +60,7 @@ namespace form {
       desktopColumns = '',
       children = null,
       ...otherProps
-    }) => {
+    }: IExpansionProps & {children: any}) => {
       const classes = useStyles();
       return (
         <Group className={classNames(className, classes.strech)} columns={columns}

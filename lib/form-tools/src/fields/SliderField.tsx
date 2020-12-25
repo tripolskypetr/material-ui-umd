@@ -81,6 +81,18 @@ namespace form {
       }
     }
 
+    export interface ISliderFieldProps {
+      value: PickProp<IManaged, 'value'>;
+      onChange: PickProp<IManaged, 'onChange'>;
+      leadingIcon: PickProp<IManaged, 'leadingIcon'>;
+      trailingIcon: PickProp<IManaged, 'trailingIcon'>;
+      leadingIconClick: PickProp<IManaged, 'leadingIconClick'>;
+      trailingIconClick: PickProp<IManaged, 'trailingIconClick'>;
+      sliderThumbColor: PickProp<IManaged, 'sliderThumbColor'>;
+      sliderTrackColor: PickProp<IManaged, 'sliderTrackColor'>;
+      sliderRailColor: PickProp<IManaged, 'sliderRailColor'>;
+    }
+
     export const SliderField = makeManaged(({
       value, onChange,
       leadingIcon: li = null,
@@ -91,7 +103,7 @@ namespace form {
       sliderTrackColor: trc = null,
       sliderRailColor: rc = null,
       ...otherProps
-    }) => (
+    }: ISliderFieldProps) => (
       <Box mr={1}>
         <Grid alignItems="center" container spacing={2}>
           <Grid item>

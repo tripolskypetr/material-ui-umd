@@ -6,6 +6,7 @@ namespace app {
   const {
     Breadcrumbs,
     FieldType,
+    OneTyped,
     One,
   } = form;
 
@@ -32,7 +33,7 @@ namespace app {
 
   export namespace pages {
 
-    const fields: form.IField[] = [
+    const fields: form.TypedField[] = [
       {
         type: FieldType.Group,
         fields: [
@@ -257,7 +258,7 @@ namespace app {
             saveDisabled={!changedObj}
             save={() => onSave()}
             back={back} />
-          <One fields={fields}
+          <OneTyped fields={fields}
             handler={handler}
             change={change} />
         </Fragment>

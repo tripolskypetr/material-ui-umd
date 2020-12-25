@@ -147,7 +147,13 @@ namespace form {
           {!visible && LoadPlaceholder}
         </Fragment>
       )
-    }
+    };
+
+    /**
+     * После написания формы можно включить строгую
+     * проверку типов полей
+     */
+    export const OneTyped = (props: IOneTypedProps) => h(One, props);
 
   } // namespace components
 

@@ -15,6 +15,18 @@ namespace form {
 
   export namespace fields {
 
+    export interface IItemsFieldProps {
+      value: PickProp<IManaged, 'value'>;
+      disabled: PickProp<IManaged, 'disabled'>;
+      description: PickProp<IManaged, 'description'>;
+      placeholder: PickProp<IManaged, 'placeholder'>;
+      outlined: PickProp<IManaged, 'outlined'>;
+      itemList: PickProp<IManaged, 'itemList'>;
+      title: PickProp<IManaged, 'title'>;
+      tr: PickProp<IManaged, 'tr'>;
+      onChange: PickProp<IManaged, 'onChange'>;
+    }
+
     export const ItemsField = makeManaged(({
       value, disabled,
       description = '',
@@ -23,8 +35,8 @@ namespace form {
       itemList = [],
       title = '',
       tr = (s) => s,
-      onChange
-    }: IManaged) => (
+      onChange,
+    }: IItemsFieldProps) => (
       <Autocomplete multiple onChange={({}, v) => onChange(v)}
         options={itemList} disabled={disabled} value={value}
         getOptionLabel={(s) => tr(s)}
