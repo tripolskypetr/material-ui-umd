@@ -5,6 +5,8 @@
 /// <reference path="./hooks/index.ts"/>
 /// <reference path="./components/index.ts"/>
 
+/// <reference path="./common/TypedField.ts"/>
+
 namespace form {
 
   const {
