@@ -3,7 +3,7 @@
 
 namespace form {
 
-  export interface IOneProps {
+  export interface IOneProps<Field = IField> {
     /**
      * Позволяет загружать данные в компонент
      */
@@ -31,7 +31,7 @@ namespace form {
     /**
      * Массив полей, выводимый в компоненте
      */
-    fields: IField[];
+    fields: Field[];
     /**
      * Префикс для формирования ключей элементов
      */
@@ -40,14 +40,6 @@ namespace form {
      * Плейсхолдер, показываемый во время загрузки данных
      */
     LoadPlaceholder?: null | material.Element;
-  }
-
-  /**
-   * После написания формы можно включить
-   * строгую проверку полей
-   */
-  export interface IOneTypedProps extends Omit<IOneProps, 'fields'> {
-    fields: TypedField[];
   }
 
 } // namespace form

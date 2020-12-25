@@ -153,7 +153,7 @@ namespace form {
      * После написания формы можно включить строгую
      * проверку типов полей
      */
-    export const OneTyped = (props: IOneTypedProps) => h(One, props);
+    export const OneTyped = (props: IOneProps<TypedField>) => h(One, props);
 
     One.typed = OneTyped;
 
