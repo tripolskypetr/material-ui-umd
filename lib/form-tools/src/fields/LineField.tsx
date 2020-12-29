@@ -10,7 +10,7 @@ namespace form {
   } = material.core;
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   export namespace fields {
@@ -36,7 +36,7 @@ namespace form {
       title: PickProp<IManaged, 'title'>;
     }
 
-    export const LineField = makeManaged(({
+    export const LineField = makeField(({
       title = '',
     }: ILineFieldProps) => {
       const classes = useStyles();

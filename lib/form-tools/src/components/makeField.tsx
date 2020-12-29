@@ -56,7 +56,7 @@ namespace form {
      *    представлены invalid, disabled, visible и можно задваивать вызов onChange
      *  - Управляет фокусировкой, мануально ожидая потерю фокуса, эмулируя onBlur
      */
-    export function makeManaged(
+    export function makeField(
       Component: React.FC<Partial<IManaged>>,
       skipDebounce = false,
     ) {
@@ -106,6 +106,8 @@ namespace form {
         useEffect(() => {
           if (compute) {
             setValue(compute(object, (v) => setValue(v)));
+          } else if (!name) {
+            void(0);
           } else {
             const newValue = get(object, name);
             if (newValue !== value) {

@@ -21,6 +21,8 @@ namespace form {
         return [];
       } else if (type === FieldType.Rating) {
         return 3;
+      } else if (type === FieldType.Typography) {
+        return '';
       } else {
         console.warn('form-tools initialValue unknown type');
         return "";

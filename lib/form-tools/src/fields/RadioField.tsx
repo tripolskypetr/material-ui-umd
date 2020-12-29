@@ -1,10 +1,10 @@
 
-/// <reference path="../components/makeManaged.tsx"/>
+/// <reference path="../components/makeField.tsx"/>
 
 namespace form {
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   const {
@@ -24,7 +24,7 @@ namespace form {
       radioValue: PickProp<IManaged, 'radioValue'>;
     }
 
-    export const RadioField = makeManaged(({
+    export const RadioField = makeField(({
       disabled, value, onChange, title, radioValue
     }: IRadioFieldProps) => (
       <FormGroup>

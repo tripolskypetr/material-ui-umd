@@ -37,6 +37,7 @@ namespace form {
   type Slider = TypedFieldFactoryShallow<FieldType.Slider, fields.ISliderFieldProps>;
   type Switch = TypedFieldFactoryShallow<FieldType.Switch, fields.ISwitchFieldProps>;
   type Text = TypedFieldFactoryShallow<FieldType.Text, fields.ITextFieldProps>;
+  type Typography = TypedFieldFactoryShallow<FieldType.Typography, fields.ITypographyFieldProps>;
 
   /**
    * Логическое ветвление компонентов
@@ -57,6 +58,7 @@ namespace form {
     : T extends Slider ? Slider
     : T extends Switch ? Switch
     : T extends Text ? Text
+    : T extends Typography ? Typography
     : never;
 
   /**

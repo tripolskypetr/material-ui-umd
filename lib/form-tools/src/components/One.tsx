@@ -30,8 +30,8 @@ namespace form {
   } = material.core;
 
   const {
+    isField,
     classNames,
-    isManaged,
   } = utils;
 
   export namespace components {
@@ -49,7 +49,7 @@ namespace form {
        * полей вложенных групп...
        */
       const countManaged = (fields) => {
-        const total = fields?.filter(({type}) => isManaged(type)).length;
+        const total = fields?.filter(isField).length;
         if (total) {
           return total;
         } else {

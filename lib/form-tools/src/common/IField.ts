@@ -3,19 +3,6 @@
 
 namespace form {
 
-  type inputType = "text"
-    | "color"
-    | "date"
-    | "email"
-    | "month"
-    | "number"
-    | "password"
-    | "search"
-    | "tel"
-    | "time"
-    | "url"
-    | "week";
-
   /**
    * Объект поля для прикладного программиста
    */
@@ -54,7 +41,20 @@ namespace form {
     /**
      * Поле type для MatTextField
      */
-    inputType?: inputType;
+    inputType?: keyof {
+      text: "text",
+      color: "color",
+      date: "date",
+      email: "email",
+      month: "month",
+      number: "number",
+      password: "password",
+      search: "search",
+      tel: "tel",
+      time: "time",
+      url: "url",
+      week: "week",
+    };
 
     /**
      * Делает TextField многострочным, если
@@ -207,6 +207,21 @@ namespace form {
      */
     fieldRightMargin?: number;
     fieldBottomMargin?: number;
+
+    /**
+     * Шрифт для поля Typography
+     */
+    typoVariant?: keyof {
+      h2: 'h2',
+      h3: 'h3',
+      h4: 'h4',
+      h5: 'h5',
+      h6: 'h6',
+      subtitle1: 'subtitle1',
+      subtitle2: 'subtitle2',
+      body1: 'body1',
+      body2: 'body2',
+    };
 
   }
 

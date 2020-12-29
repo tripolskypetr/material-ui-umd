@@ -15,6 +15,7 @@ namespace form {
     Combo = 'combo',
     Items = 'items',
     Rating = 'rating',
+    Typography = 'typography',
   };
 
 } // namespace form

@@ -1,10 +1,10 @@
 
-/// <reference path="../components/makeManaged.tsx"/>
+/// <reference path="../components/makeField.tsx"/>
 
 namespace form {
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   const {
@@ -22,7 +22,7 @@ namespace form {
       title: PickProp<IManaged, 'title'>;
     }
 
-    export const SwitchField = makeManaged(({
+    export const SwitchField = makeField(({
       disabled, value, onChange, title
     }: ISwitchFieldProps) => (
       <Box display="flex" alignItems="center">

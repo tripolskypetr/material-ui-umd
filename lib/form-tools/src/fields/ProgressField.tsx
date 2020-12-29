@@ -26,7 +26,7 @@ namespace form {
   } = hooks;
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   export namespace fields {
@@ -75,7 +75,7 @@ namespace form {
       value: PickProp<IManaged, 'value'>;
     }
 
-    export const ProgressField = makeManaged(({
+    export const ProgressField = makeField(({
       progressBarColor = null,
       progressColor = null,
       maxPercent = 1.0,

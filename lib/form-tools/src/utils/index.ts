@@ -10,7 +10,7 @@
 /// <reference path="./initialValue.ts"/>
 /// <reference path="./wairForBlur.ts"/>
 /// <reference path="./createIcon.ts"/>
-/// <reference path="./isManaged.ts"/>
+/// <reference path="./isField.ts"/>
 /// <reference path="./classNames.ts"/>
 /// <reference path="./deepMerge.ts"/>
 /// <reference path="./compose.ts"/>

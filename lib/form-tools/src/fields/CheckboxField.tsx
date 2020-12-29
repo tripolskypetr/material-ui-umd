@@ -1,5 +1,5 @@
 
-/// <reference path="../components/makeManaged.tsx"/>
+/// <reference path="../components/makeField.tsx"/>
 
 namespace form {
 
@@ -10,7 +10,7 @@ namespace form {
   } = material.core;
 
   const {
-    makeManaged
+    makeField
   } = components;
 
   export namespace fields {
@@ -22,7 +22,7 @@ namespace form {
       title: PickProp<IManaged, 'title'>;
     }
 
-    export const CheckboxField = makeManaged(({
+    export const CheckboxField = makeField(({
       disabled, value, onChange, title
     }: ICheckboxFieldProps) => (
       <FormGroup>

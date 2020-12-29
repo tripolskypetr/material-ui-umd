@@ -29,6 +29,8 @@ namespace form {
         return <ItemsField {...entity} key={currentPath} />
       } else if (type === FieldType.Rating) {
         return <RatingField {...entity} key={currentPath} />
+      } else if (type === FieldType.Typography) {
+        return <TypographyField {...entity} key={currentPath} />
       } else {
         throw new Error('FieldFactory unknown key type')
       }

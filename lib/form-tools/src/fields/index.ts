@@ -9,4 +9,5 @@
 /// <reference path="./ComboField.tsx"/>
 /// <reference path="./ItemsField.tsx"/>
 /// <reference path="./RatingField.tsx"/>
+/// <reference path="./TypographyField.tsx"/>
 /// <reference path="./createField.tsx"/>

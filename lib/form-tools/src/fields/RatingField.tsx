@@ -10,7 +10,7 @@ namespace form {
   } = material.core;
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   export namespace fields {
@@ -23,7 +23,7 @@ namespace form {
       onChange: PickProp<IManaged, 'onChange'>;
     }
 
-    export const RatingField = makeManaged(({
+    export const RatingField = makeField(({
       value, disabled,
       readonly, title,
       onChange

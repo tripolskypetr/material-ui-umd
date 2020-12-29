@@ -20,7 +20,7 @@ namespace form {
   } = hooks;
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   const {
@@ -93,7 +93,7 @@ namespace form {
       sliderRailColor: PickProp<IManaged, 'sliderRailColor'>;
     }
 
-    export const SliderField = makeManaged(({
+    export const SliderField = makeField(({
       value, onChange,
       leadingIcon: li = null,
       trailingIcon: ti = null,

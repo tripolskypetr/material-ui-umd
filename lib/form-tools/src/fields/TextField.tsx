@@ -1,5 +1,5 @@
 
-/// <reference path="../components/makeManaged.tsx"/>
+/// <reference path="../components/makeField.tsx"/>
 /// <reference path="../utils/createIcon.ts"/>
 
 namespace form {
@@ -11,7 +11,7 @@ namespace form {
   } = material.core;
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   const {
@@ -67,7 +67,7 @@ namespace form {
       onChange: PickProp<IManaged, 'onChange'>;
     }
 
-    export const TextField = makeManaged(({
+    export const TextField = makeField(({
       invalid, value, disabled,
       inputType = 'text',
       description = '',

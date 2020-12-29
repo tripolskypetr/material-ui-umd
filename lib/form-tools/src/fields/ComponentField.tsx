@@ -5,7 +5,7 @@ namespace form {
   } = React;
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   export namespace fields {
@@ -14,7 +14,7 @@ namespace form {
       value: PickProp<IManaged, 'value'>;
     }
 
-    export const ComponentField = makeManaged((props: IComponentFieldProps) => {
+    export const ComponentField = makeField((props: IComponentFieldProps) => {
       if (isValidElement(props.value)) {
         return props.value;
       } else {

@@ -9,7 +9,7 @@ namespace form {
   } = material.lab;
 
   const {
-    makeManaged,
+    makeField,
   } = components;
 
   export namespace fields {
@@ -26,7 +26,7 @@ namespace form {
       onChange: PickProp<IManaged, 'onChange'>;
     }
 
-    export const ComboField = makeManaged(({
+    export const ComboField = makeField(({
       value, disabled,
       description = '',
       placeholder = '',
