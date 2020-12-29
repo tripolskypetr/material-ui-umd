@@ -107,7 +107,7 @@ namespace form {
           if (compute) {
             setValue(compute(object, (v) => setValue(v)));
           } else if (!name) {
-            void(0);
+            // void(0);
           } else {
             const newValue = get(object, name);
             if (newValue !== value) {

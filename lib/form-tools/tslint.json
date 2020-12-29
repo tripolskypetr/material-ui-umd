@@ -2,7 +2,6 @@
   "defaultSeverity": "error",
   "extends": ["tslint:recommended"],
   "rules": {
-    "no-unused-expression": false,
     "no-shadowed-variable": false,
     "no-var-requires": false,
     "interface-name": false,
