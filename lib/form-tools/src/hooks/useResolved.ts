@@ -11,6 +11,7 @@ namespace form {
   const {
     deepMerge: assign,
     initialValue,
+    deepCompare,
     deepClone,
     deepFlat,
     create,
@@ -83,7 +84,7 @@ namespace form {
             } finally {
               isRoot.current = true;
             }
-          } else {
+          } else if (!deepCompare(data, handler)) {
             setData(assign(buildObj(fields), handler));
           }
         };
