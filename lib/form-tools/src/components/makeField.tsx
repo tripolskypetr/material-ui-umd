@@ -99,7 +99,7 @@ namespace form {
          * передавать в свойство value значение null
          */
         const [value, setValue] = useState(false);
-        const [debouncedValue] = useDebounce(value, skipDebounce ? 0 : 150);
+        const [debouncedValue] = useDebounce(value, skipDebounce ? 0 : 800);
 
         /**
          * Эффект входящего изменения.
