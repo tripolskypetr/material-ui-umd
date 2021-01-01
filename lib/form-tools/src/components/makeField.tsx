@@ -133,6 +133,7 @@ namespace form {
          * производительности
          */
         useEffect(() => {
+          const wasInvalid = !!invalid;
           if (inputUpdate.current) {
             inputUpdate.current = false;
           } else if (compute) {
@@ -149,7 +150,7 @@ namespace form {
             } else if (invalid !== null) {
               invalidity(invalid);
               return;
-            } else if (!deepCompare(object, copy)) {
+            } else if (!deepCompare(object, copy) || wasInvalid) {
               change(copy);
             }
           }
