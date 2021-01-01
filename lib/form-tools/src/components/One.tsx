@@ -63,6 +63,7 @@ namespace form {
         prefix = 'root',
         fallback = null,
         handler = () => ({}),
+        invalidity = () => null,
         change = () => null,
         focus = null,
         blur = null,
@@ -85,8 +86,8 @@ namespace form {
             <Fragment>
               {fields?.map((field, index) => {
                 const entity: IEntity = {
-                  focus, blur,
-                  ...field, object,
+                  invalidity: field.invalidity || invalidity,
+                  focus, blur, ...field, object,
                   change: onChange,
                   ready: onReady,
                 };
@@ -96,7 +97,8 @@ namespace form {
                     <Expansion {...field} key={currentPath}>
                       <One ready={onReady} blur={blur} focus={focus}
                         prefix={currentPath} fields={field.fields}
-                        handler={object} change={onChange} />
+                        handler={object} change={onChange}
+                        invalidity={invalidity} />
                     </Expansion>
                   );
                 } else if (field.type === FieldType.Paper) {
@@ -104,7 +106,8 @@ namespace form {
                     <Paper {...field} key={currentPath}>
                       <One ready={onReady} focus={focus} blur={blur}
                         prefix={currentPath} fields={field.fields}
-                        handler={object} change={onChange} />
+                        handler={object} change={onChange}
+                        invalidity={invalidity} />
                     </Paper>
                   );
                 } else if (field.type === FieldType.Group) {
@@ -112,7 +115,8 @@ namespace form {
                     <Group {...field} key={currentPath}>
                       <One ready={onReady} focus={focus} blur={blur}
                         prefix={currentPath} fields={field.fields}
-                        handler={object} change={onChange} />
+                        handler={object} change={onChange}
+                        invalidity={invalidity} />
                     </Group>
                   );
                 } else {

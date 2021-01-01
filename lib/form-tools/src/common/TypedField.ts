@@ -7,11 +7,7 @@
 
 namespace form {
 
-  type Exclude = Omit<IManaged, keyof IEntity> & {
-    type: never;
-    name: never;
-    fields: never;
-  };
+  type Exclude = Omit<IManaged, keyof IEntity>;
 
   type TypedFieldFactory<T extends FieldType, F extends {}> = {
     [P in keyof Omit<F, keyof Exclude>]?: F[P];

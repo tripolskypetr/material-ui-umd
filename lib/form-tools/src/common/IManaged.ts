@@ -31,6 +31,7 @@ namespace form {
     isDisabled?: PickProp<IField, 'isDisabled'>;
     isVisible?: PickProp<IField, 'isVisible'>;
     isInvalid?: PickProp<IField, 'isInvalid'>;
+    invalidity?: PickProp<IField, 'invalidity'>;
     compute?: PickProp<IField, 'compute'>;
     defaultValue?: v;
   }

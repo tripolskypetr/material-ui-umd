@@ -164,6 +164,14 @@ namespace app {
                 name: 'email',
                 type: FieldType.Text,
                 isDisabled: (obj) => !obj.subscribed,
+                isInvalid({email}) {
+                  const expr = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+                  if (!expr.test(email)) {
+                    return 'Указан неверный адрес электронной почты';
+                  } else {
+                    return null;
+                  }
+                },
                 title: 'Почта',
                 description: 'tripolskypetr@gmail.com',
               },
@@ -245,6 +253,8 @@ namespace app {
         }
       };
 
+      const invalid = () => setChangedObj(null);
+
       const onSave = useCallback(() => {
         data.patch(changedObj);
         snack('Сохранено!');
@@ -259,6 +269,7 @@ namespace app {
             save={() => onSave()}
             back={back} />
           <One.typed fields={fields}
+            invalidity={invalid}
             handler={handler}
             change={change} />
         </Fragment>

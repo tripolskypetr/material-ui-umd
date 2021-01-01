@@ -76,6 +76,7 @@ namespace form {
         name = '',
         focus = null,
         blur = null,
+        invalidity,
         readonly = false,
         style = null,
         fieldRightMargin,
@@ -146,6 +147,7 @@ namespace form {
             } else if (!check) {
               throw new Error(`One error invalid name specified "${name}"`);
             } else if (invalid !== null) {
+              invalidity(invalid);
               return;
             } else if (!deepCompare(object, copy)) {
               change(copy);

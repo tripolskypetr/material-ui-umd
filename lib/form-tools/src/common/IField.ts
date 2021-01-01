@@ -196,6 +196,12 @@ namespace form {
     compute?: (v, change?: (v: any) => void) => any;
 
     /**
+     * Коллбек, вызываемый у поля при не прохождении
+     * валидации
+     */
+    invalidity?: (e: string) => any;
+
+    /**
      * Значение по-умолчанию для поля
      */
     defaultValue?: string | number | boolean;
