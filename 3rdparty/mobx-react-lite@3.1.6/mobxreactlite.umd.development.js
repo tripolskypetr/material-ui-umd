@@ -580,4 +580,3 @@
     Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
-//# sourceMappingURL=mobxreactlite.umd.development.js.map
