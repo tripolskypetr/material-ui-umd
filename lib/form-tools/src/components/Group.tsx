@@ -10,9 +10,11 @@ namespace form {
     Box,
   } = material.core;
 
-  const n = (v: string) => Number(v);
+  const FULL_ROW = '12';
 
   export namespace components {
+
+    const n = (v: string) => Number(v);
 
     namespace internal {
 
@@ -46,11 +48,11 @@ namespace form {
         ...otherProps
       }, ref) => (
         <Grid ref={ref} alignItems="flex-start"  {...otherProps} {...gridProps(isItem)}
-          xs={n(columns ? columns : phoneColumns ? phoneColumns : '12')}
-          sm={n(columns ? columns : phoneColumns ? phoneColumns : '12')}
-          md={n(columns ? columns : (phoneColumns || tabletColumns) ? (phoneColumns || tabletColumns) : '12')}
-          lg={n(columns ? columns : (tabletColumns || desktopColumns) ? (tabletColumns || desktopColumns) : '12')}
-          xl={n(columns ? columns : desktopColumns ? desktopColumns : '12')} className={className} style={style}>
+          xs={n(phoneColumns || columns || FULL_ROW)}
+          sm={n(phoneColumns || columns || FULL_ROW)}
+          md={n(phoneColumns || tabletColumns || columns || FULL_ROW)}
+          lg={n(tabletColumns || desktopColumns || columns || FULL_ROW)}
+          xl={n(desktopColumns || columns || FULL_ROW)} className={className} style={style}>
           { renderItem(isItem, children, fieldRightMargin, fieldBottomMargin) }
         </Grid>
       );
