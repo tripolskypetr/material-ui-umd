@@ -8,3 +8,4 @@
 /// <reference path="./PromptProvider.tsx"/>
 /// <reference path="./RadioProvider.tsx"/>
 /// <reference path="./ConfirmProvider.tsx"/>
+/// <reference path="./OneProvider.tsx"/>

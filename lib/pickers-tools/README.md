@@ -13,6 +13,13 @@ npm run build:umd
 npm run build:types
 ```
 
+ - Соберите [form-tools](../form-tools)
+
+```
+pwd # путь material-ui-umd/lib/form-tools
+npm run build
+```
+
  - После, соберите этот инструмент
 
 ```

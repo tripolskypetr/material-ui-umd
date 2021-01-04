@@ -23,6 +23,7 @@
     "./dist/*",
   ],
   "include": [
+    "../form-tools/dist/",
     "../../type",
     "../../dist",
     "./src",

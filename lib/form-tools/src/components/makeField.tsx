@@ -99,7 +99,7 @@ namespace form {
          * передавать в свойство value значение null
          */
         const [value, setValue] = useState(false);
-        const [debouncedValue] = useDebounce(value, skipDebounce ? 0 : 800);
+        const [debouncedValue, {pending, flush}] = useDebounce(value, skipDebounce ? 0 : 800);
 
         /**
          * Эффект входящего изменения.
@@ -182,13 +182,11 @@ namespace form {
          * фокуса
          */
         const onFocus = () => {
-          if (blur) {
-            waitForBlur(groupRef.current)
-              .then(blur);
-          }
-          if (focus) {
-            focus();
-          }
+          waitForBlur(groupRef.current).then(() => {
+            if (pending()) { flush(); }
+            if (blur) { blur(); }
+          });
+          if (focus) { focus(); }
         };
 
         const managedProps: IManaged = {
