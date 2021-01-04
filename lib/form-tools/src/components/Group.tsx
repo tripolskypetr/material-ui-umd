@@ -50,7 +50,7 @@ namespace form {
         <Grid ref={ref} alignItems="flex-start"  {...otherProps} {...gridProps(isItem)}
           xs={n(phoneColumns || columns || FULL_ROW)}
           sm={n(phoneColumns || columns || FULL_ROW)}
-          md={n(phoneColumns || tabletColumns || columns || FULL_ROW)}
+          md={n(tabletColumns || phoneColumns || columns || FULL_ROW)}
           lg={n(tabletColumns || desktopColumns || columns || FULL_ROW)}
           xl={n(desktopColumns || columns || FULL_ROW)} className={className} style={style}>
           { renderItem(isItem, children, fieldRightMargin, fieldBottomMargin) }
