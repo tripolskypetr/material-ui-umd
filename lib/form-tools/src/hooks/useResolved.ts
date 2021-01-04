@@ -14,6 +14,7 @@ namespace form {
     deepCompare,
     deepClone,
     deepFlat,
+    isField,
     create,
     set,
     get,
@@ -36,7 +37,7 @@ namespace form {
       const obj = {};
       if (fields) {
         deepFlat(fields, "fields").forEach((f) => {
-          if (f.name && f.type) {
+          if (isField(f)) {
             create(obj, f.name);
             const value = f.defaultValue || get(obj, f.name) || initialValue(f.type);
             set(obj, f.name, value);

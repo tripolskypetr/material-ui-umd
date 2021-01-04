@@ -20,12 +20,12 @@
   window.mobx || document.write(template("3rdparty/mobx@6.0.4/mobx.umd.development.js"));
   window.mobxReactLite || document.write(template("3rdparty/mobx-react-lite@3.1.6/mobxreactlite.umd.development.js"));
 
-  window.material || document.write(template("3rdparty/material-ui-umd@1.1/material-ui.min.js"));
-  window.form || document.write(template("3rdparty/material-ui-umd@1.1/form-tools.js"));
-  window.router || document.write(template("3rdparty/material-ui-umd@1.1/router-tools.js"));
-  window.other || document.write(template("3rdparty/material-ui-umd@1.1/other-tools.js"));
-  window.pickers || document.write(template("3rdparty/material-ui-umd@1.1/pickers-tools.js"));
-  window.idb || document.write(template("3rdparty/material-ui-umd@1.1/idb-tools.js"));
-  window.chart || document.write(template("3rdparty/material-ui-umd@1.1/chart-tools.js"));
+  window.material || document.write(template("dist/material-ui.min.js"));
+  window.form || document.write(template("lib/form-tools/dist/form-tools.js"));
+  window.router || document.write(template("lib/router-tools/dist/router-tools.js"));
+  window.other || document.write(template("lib/other-tools/dist/other-tools.js"));
+  window.pickers || document.write(template("lib/pickers-tools/dist/pickers-tools.js"));
+  window.idb || document.write(template("lib/idb-tools/dist/idb-tools.js"));
+  window.chart || document.write(template("lib/chart-tools/dist/chart-tools.js"));
 
 })();

@@ -12,6 +12,10 @@ namespace form {
     makeStyles,
   } = material.core;
 
+  const {
+    classNames,
+  } = utils;
+
   export namespace components {
 
     const useStyles = makeStyles({

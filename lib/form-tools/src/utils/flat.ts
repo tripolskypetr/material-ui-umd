@@ -2,21 +2,16 @@ namespace form {
 
   export namespace utils {
 
-    export const flat = (arr, fieldName = "items") => arr.reduce((acm, val) =>
-      Array.isArray(val[fieldName])
-        ? acm.concat({...val, [fieldName]: []}, flat(val[fieldName]))
-        : acm.concat(val), []);
-
-    export const deepFlat = (arr, fieldName = "items") => {
-      let result = arr;
-      while (true) {
-        const iter = flat(result, fieldName);
-        if (result.length === iter.length) {
-          return result;
-        } else {
-          result = iter;
+    export const deepFlat = (arr = [], fieldName = "fields") => {
+      const result = [];
+      const process = (entries = []) => entries.forEach((entry) => {
+        if (Array.isArray(entry[fieldName])) {
+          process(entry[fieldName])
         }
-      }
+        result.push(entry);
+      });
+      process(arr);
+      return result;
     };
 
   } // namespace utils

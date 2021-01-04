@@ -19,7 +19,7 @@ namespace form {
     export const TypographyField = makeField(({
       value = '',
       placeholder = '',
-      typoVariant = 'h2',
+      typoVariant = 'body1',
     }: ITypographyFieldProps) => (
       <Typography variant={typoVariant}>
         {value || placeholder}
