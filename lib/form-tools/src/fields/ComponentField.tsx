@@ -17,8 +17,10 @@ namespace form {
     export const ComponentField = makeField((props: IComponentFieldProps) => {
       if (isValidElement(props.value)) {
         return props.value;
-      } else {
+      } else if (props.value) {
         return <p>Invalid component</p>
+      } else {
+        return null;
       }
     });
 
